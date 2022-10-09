@@ -13,8 +13,8 @@ interface ISeemore {
   onClick?: () => void;
 }
 
-const Seemore = ({ onClick }: ISeemore): JSX.Element => {
+const SeeMore = ({ onClick }: ISeemore): JSX.Element => {
   return <Container onClick={onClick}>See more &gt;</Container>;
 };
 
-export default Seemore;
+export default SeeMore;

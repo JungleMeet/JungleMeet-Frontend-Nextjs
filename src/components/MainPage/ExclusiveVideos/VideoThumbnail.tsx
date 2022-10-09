@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import styled from "styled-components";
 
-export interface IVideo {
+export interface IVideoThumbnailProps {
   src: string;
   title: string;
 }
@@ -14,7 +14,7 @@ const MovieTitle = styled.div`
   color: #111827;
 `;
 
-const Video = ({ src, title }: IVideo): JSX.Element => {
+const VideoThumbnail = ({ src, title }: IVideoThumbnailProps): JSX.Element => {
   return (
     <Box>
       <iframe src={src} title={title} width="450" height="253" allow="fullscreen"></iframe>
@@ -23,4 +23,4 @@ const Video = ({ src, title }: IVideo): JSX.Element => {
   );
 };
 
-export default Video;
+export default VideoThumbnail;

@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Video from "./video/video";
-import { IVideo } from "./video/video";
+import Video from "./VideoThumbnail";
+import { IVideoThumbnailProps } from "./VideoThumbnail";
 
 const VideosContainer = styled.div`
   display: flex;
   justify-content: space-around;
   gap: 48px;
+  padding: 10px;
+  overflow: hidden;
 `;
 
 const staticSrc = [
@@ -16,7 +18,7 @@ const staticSrc = [
 ];
 
 const Videos = () => {
-  const [videoList, setVideoList] = useState<IVideo[]>([]); // 这里是否需要定义type？是不是有默认值就不需要type了？
+  const [videoList, setVideoList] = useState<IVideoThumbnailProps[]>([]); // 这里是否需要定义type？是不是有默认值就不需要type了？
 
   useEffect(() => {
     setVideoList(staticSrc);
