@@ -1,4 +1,5 @@
 import ExclusiveVideos from "@/components/MainPage/ExclusiveVideos/ExclusiveVideos";
+import Footer from "@/components/FooterSection/Footer";
 import styled from "styled-components";
 
 const PageContainer = styled.div`
@@ -7,11 +8,16 @@ const PageContainer = styled.div`
   margin: auto;
 `;
 
+
 const HomePage = (): JSX.Element => {
   return (
+    <>
     <PageContainer>
       <ExclusiveVideos />
+      
     </PageContainer>
+    <Footer />
+    </>
   );
 };
 
