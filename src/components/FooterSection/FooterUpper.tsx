@@ -56,7 +56,7 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 };
 
 
-export default function LargeWithNewsletter() {
+export default function FooterWithMenu() {
   return (
     <Box>
       <Container as={Stack} maxW={'7xl'} py={4} direction={{ base: 'column', md: 'row' }}
