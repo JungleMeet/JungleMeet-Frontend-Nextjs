@@ -1,0 +1,22 @@
+.rank_list {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.rank_list_title {
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.rank_container {
+  display: flex;
+  justify-content: flex-end;
+}
