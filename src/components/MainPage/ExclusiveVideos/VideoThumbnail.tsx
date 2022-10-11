@@ -2,8 +2,8 @@ import { Box } from "@chakra-ui/react";
 import styled from "styled-components";
 
 export interface IVideoThumbnailProps {
-  src: string;
-  title: string;
+    src: string;
+    title: string;
 }
 
 const MovieTitle = styled.div`
@@ -15,12 +15,12 @@ const MovieTitle = styled.div`
 `;
 
 const VideoThumbnail = ({ src, title }: IVideoThumbnailProps): JSX.Element => {
-  return (
-    <Box>
-      <iframe src={src} title={title} width="450" height="253" allow="fullscreen"></iframe>
-      <MovieTitle>{title}</MovieTitle>
-    </Box>
-  );
+    return (
+        <Box>
+            <iframe src={src} title={title} width="450" height="253" allow="fullscreen"></iframe>
+            <MovieTitle>{title}</MovieTitle>
+        </Box>
+    );
 };
 
 export default VideoThumbnail;
