@@ -1,4 +1,5 @@
 import ExclusiveVideos from "@/components/MainPage/ExclusiveVideos/ExclusiveVideos";
+import HeroBanner from "@/components/MainPage/HeroBanner/HeroBanner";
 import styled from "styled-components";
 
 const PageContainer = styled.div`
@@ -10,6 +11,7 @@ const PageContainer = styled.div`
 const HomePage = (): JSX.Element => {
   return (
     <PageContainer>
+      <HeroBanner />
       <ExclusiveVideos />
     </PageContainer>
   );
