@@ -2,7 +2,7 @@ import React from "react";
 import NavBarContainer from "./NavBarContainer";
 import { Input,InputGroup, InputRightElement, Image } from '@chakra-ui/react';
 import { SearchIcon, ChevronDownIcon } from '@chakra-ui/icons';
-import Hamburger from './Hamburger';
+import Hamburger from './Hamburger/Hamburger';
 import { 
     Link,
     Menu,
@@ -30,7 +30,7 @@ const NavBar = () => {
             <Link color='#FFFFFF' fontSize='16px' fontWeight='700' lineHeight='24px'>Sign in</Link>
             <Hamburger/>
             <Menu>
-                <MenuButton as={Button} rightIcon={<ChevronDownIcon />} border='none'>
+                <MenuButton as={Button} rightIcon={<ChevronDownIcon />} border='none' bgColor='transparent' color='#FFFFFF'>
                 EN
                 </MenuButton>
                 <MenuList>
