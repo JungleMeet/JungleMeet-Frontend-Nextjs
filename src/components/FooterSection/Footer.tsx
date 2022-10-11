@@ -6,7 +6,7 @@ export const FooterContent = `© ${new Date().getFullYear()} Jungle Meet Forum. 
 
 
 const FooterContainer = styled.div`
-  
+
   background-color: #ffffff;
   
 `;
@@ -14,7 +14,7 @@ const FooterContainer = styled.div`
 
 
 const Logo = (props: any) => {
-  return (
+return (
     <svg width="201" height="35" viewBox="0 0 201 35" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M18.4211 3.31579L23.5789 0L28.3684 8.47368L18.4211 3.31579Z" fill="#B1173C"/>
 <path d="M17.3158 4.05263L12.1579 6.63158L34.2632 19.1579L29.1053 10.3158L17.3158 4.05263Z" fill="#B1173C"/>

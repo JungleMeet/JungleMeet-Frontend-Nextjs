@@ -16,7 +16,6 @@ const HomePage = (): JSX.Element => {
             <NavBar/>
             <PageContainer>
                 <ExclusiveVideos />
-            
             </PageContainer>
             <Footer />
         </>
