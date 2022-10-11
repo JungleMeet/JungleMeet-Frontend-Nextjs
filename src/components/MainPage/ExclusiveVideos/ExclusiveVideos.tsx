@@ -3,15 +3,15 @@ import Videos from "./Videos";
 import { SectionContainer, SectionHeaderContainer, SectionTitle } from "../Containers";
 
 const ExclusiveVideos = () => {
-  return (
-    <SectionContainer>
-      <SectionHeaderContainer>
-        <SectionTitle>Exclusive Videos</SectionTitle>
-        <SeeMore />
-      </SectionHeaderContainer>
-      <Videos />
-    </SectionContainer>
-  );
+    return (
+        <SectionContainer>
+            <SectionHeaderContainer>
+                <SectionTitle>Exclusive Videos</SectionTitle>
+                <SeeMore />
+            </SectionHeaderContainer>
+            <Videos />
+        </SectionContainer>
+    );
 };
 
 export default ExclusiveVideos;

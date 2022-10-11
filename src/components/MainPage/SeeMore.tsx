@@ -10,11 +10,11 @@ const Container = styled.span`
   padding-top: 18px;
 `;
 interface ISeemore {
-  onClick?: () => void;
+    onClick?: () => void;
 }
 
 const SeeMore = ({ onClick }: ISeemore): JSX.Element => {
-  return <Container onClick={onClick}>See more &gt;</Container>;
+    return <Container onClick={onClick}>See more &gt;</Container>;
 };
 
 export default SeeMore;

@@ -12,11 +12,11 @@ import type { NextPage } from "next";
 // import ExclusiveVideos from "./mainPage/exclusiveVideos";
 
 const Home: NextPage = () => {
-  // const count = useSelector(changeCounter);
-  // const dispatch = useDispatch();
-  return (
-    <>
-      {/* <Flex align="center" justify="center" flexDirection="column" maxW="60rem">
+    // const count = useSelector(changeCounter);
+    // const dispatch = useDispatch();
+    return (
+        <>
+            {/* <Flex align="center" justify="center" flexDirection="column" maxW="60rem">
         <Heading mt="24px" mb={4}>
           Welcome to Jungle Meet Forum
         </Heading>
@@ -46,9 +46,9 @@ const Home: NextPage = () => {
           Plus 100
         </Button>
       </Flex> */}
-      {/* <ExclusiveVideos /> */}
-    </>
-  );
+            {/* <ExclusiveVideos /> */}
+        </>
+    );
 };
 
 // // TODO sample
