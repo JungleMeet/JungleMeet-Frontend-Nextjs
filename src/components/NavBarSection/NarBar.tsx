@@ -4,13 +4,8 @@ import React from "react";
 // import MenuToggle from "./Navigation/MenuToggle";
 import NavBarContainer from "./NavBarContainer";
 
-const NavBar = (props) => {
+const NavBar = () => {
+    return <NavBarContainer> </NavBarContainer>;
+};
 
-    return (
-        <NavBarContainer {...props}>
-            
-        </NavBarContainer>
-    )
-}
-
-export default NavBar
+export default NavBar;

@@ -1,10 +1,10 @@
 import { Flex, useColorModeValue } from "@chakra-ui/react";
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 interface NavBarContainerProps {
     children: ReactNode;
 }
-const NavBarContainer = ({ children, ...extraStyles } : NavBarContainerProps) => {
+const NavBarContainer = ({ children }: NavBarContainerProps) => {
     return (
         <Flex
             as="nav"
@@ -14,11 +14,11 @@ const NavBarContainer = ({ children, ...extraStyles } : NavBarContainerProps) =>
             w="100%"
             mb={8}
             p={8}
-            bg={useColorModeValue('gray.100', 'gray.900')}
-            {...extraStyles}>
+            bg={useColorModeValue("gray.100", "gray.900")}
+        >
             {children}
         </Flex>
-    )
-}
+    );
+};
 
-export default NavBarContainer
+export default NavBarContainer;
