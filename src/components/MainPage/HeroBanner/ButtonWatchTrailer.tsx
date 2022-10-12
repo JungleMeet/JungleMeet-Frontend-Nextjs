@@ -19,7 +19,7 @@ const ButtonWatchTrailer = ({ onClick }: IButtonWatchTrailer): JSX.Element => {
                 }}
             >
                 <Image src="/playIcon.svg" boxSize="16px" mr="8px" />
-        WATCH TRAILER
+                WATCH TRAILER
             </Button>
         </Box>
     );

@@ -36,9 +36,9 @@ const HeroBanner = () => {
     ];
 
     return (
-        <Box w="100%" pos="relative">
+        <Box w="1440px" pos="relative" m="auto">
             <Flex flexDir="column" gap="16px" pos="absolute" top="25%" left="5%" width="404px">
-                <Heading as="h1" fontSize="h1" fontWeight="700" color="white" display="inline-block">
+                <Heading as="h1" fontSize="h1" fontWeight="800" color="white" display="inline-block">
                     {heroBanners[0].title.split(":")[1]
                         ? `${heroBanners[1].title.split(":")[0]} :`
                         : heroBanners[1].title}
@@ -46,11 +46,12 @@ const HeroBanner = () => {
                     {heroBanners[0].title.split(":")[1]}
                 </Heading>
                 <IMDBRanking
-                    gap={"72.25px"}
+                    gap="72.25px"
                     imdb={heroBanners[0].imdb}
                     thumbsUp={heroBanners[0].thumbsUp}
+                    color="white"
                 />
-                <Text color="white" lineHeight="lh20" fontSize="text5">
+                <Text color="white" textStyle="myText">
                     {heroBanners[0].info}
                 </Text>
                 <ButtonWatchTrailer />
