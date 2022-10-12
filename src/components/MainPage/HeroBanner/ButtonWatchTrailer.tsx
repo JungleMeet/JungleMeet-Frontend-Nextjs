@@ -14,6 +14,7 @@ const ButtonWatchTrailer = ({ onClick }: IButtonWatchTrailer): JSX.Element => {
                 bg="rose.700"
                 color="white"
                 fontSize="text"
+                fontFamily="secondary"
                 _hover={{
                     background: "rose.900",
                 }}
