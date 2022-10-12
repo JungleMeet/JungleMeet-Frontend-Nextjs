@@ -3,11 +3,14 @@ import NavBarContainer from "./NavBarContainer";
 import { Input,InputGroup, InputRightElement, Image } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import IconContainer from './IconContainer/IconContainer';
-
-const NavBar = () => {
-
+interface NavBarBgColor{
+    bgColor: string;
+}
+    
+const NavBar = ({bgColor}:NavBarBgColor) => {
+    
     return (
-        <NavBarContainer>
+        <NavBarContainer bgColor={bgColor}>
             <Image src="JungleMeetLogoWhiteText.svg" ml='48px' />
             <InputGroup w='525px' h='36px' >
                 <Input

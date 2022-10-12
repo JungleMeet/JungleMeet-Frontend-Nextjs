@@ -3,8 +3,9 @@ import { ReactNode } from 'react';
 
 interface NavBarContainerProps {
     children: ReactNode;
+    bgColor: string;
 }
-const NavBarContainer = ({ children } : NavBarContainerProps) => {
+const NavBarContainer = ({ children, bgColor } : NavBarContainerProps) => {
     return (
         <Flex
             as="nav"
@@ -16,7 +17,9 @@ const NavBarContainer = ({ children } : NavBarContainerProps) => {
             bg='#0A0202'
             maxW='1440px'
             m='auto'
-
+            zIndex='999'
+            position='absolute'
+            backgroundColor={bgColor}
         >
             {children}
         </Flex>
