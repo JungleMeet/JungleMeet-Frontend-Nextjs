@@ -14,12 +14,12 @@ const ButtonWatchTrailer = ({ onClick }: IButtonWatchTrailer): JSX.Element => {
                 bg="rose.700"
                 color="white"
                 fontSize="text"
-                fontFamily="DM Sans"
+                fontFamily="secondary"
                 _hover={{
                     background: "rose.900",
                 }}
             >
-                <Image src="/playIcon.svg" boxSize="16px" mr="6px" />
+                <Image src="/playIcon.svg" boxSize="16px" mr="8px" />
         WATCH TRAILER
             </Button>
         </Box>
