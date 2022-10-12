@@ -7,6 +7,8 @@ export const FooterContent = `© ${new Date().getFullYear()} Jungle Meet Forum. 
 const FooterContainer = styled.div`
 
   background-color: #ffffff;
+  width: 1440px;
+  margin: auto;
 `;
 
 const Logo = (props: any) => {
