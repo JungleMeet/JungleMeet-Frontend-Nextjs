@@ -1,4 +1,4 @@
-import heroImage from "../../../assets/heroImage-Avengers.png";
+import heroImage from "@/assets/heroImage-Avengers.png";
 import ButtonWatchTrailer from "./ButtonWatchTrailer";
 import IMDBRanking from "../IMDBRanking";
 import { Box, Image, Flex, Heading, Text } from "@chakra-ui/react";
@@ -49,6 +49,7 @@ const HeroBanner = () => {
                     gap={"72.25px"}
                     imdb={heroBanners[0].imdb}
                     thumbsUp={heroBanners[0].thumbsUp}
+                    color={"white"}
                 />
                 <Text color="white" lineHeight="lh20" fontSize="text5">
                     {heroBanners[0].info}
