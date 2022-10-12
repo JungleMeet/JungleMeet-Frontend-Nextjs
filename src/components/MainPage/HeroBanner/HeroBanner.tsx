@@ -1,4 +1,4 @@
-import heroImage from "../../../assets/heroImage-Avengers.png";
+import heroImage from "@/assets/heroImage-Avengers.png";
 import ButtonWatchTrailer from "./ButtonWatchTrailer";
 import IMDBRanking from "../IMDBRanking";
 import { Box, Image, Flex, Heading, Text } from "@chakra-ui/react";
