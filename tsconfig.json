@@ -42,6 +42,6 @@
     "src/styles/Chakra.ts",
     "src/__tests__/pages/Home/index.spec.tsx", 
     "src/assets/thumbsUp.tsx",
-    "src/custom.d.ts",
+    "src/custom.d.ts", "src/components/NavBarSection/IconContainer",
   ],
 }

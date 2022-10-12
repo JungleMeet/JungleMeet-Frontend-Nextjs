@@ -14,10 +14,13 @@ const NavBarContainer = ({ children } : NavBarContainerProps) => {
             w="100%"
             h="80px"
             bg='#0A0202'
+            maxW='1440px'
+            m='auto'
+
         >
             {children}
         </Flex>
     )
 }
 
-export default NavBarContainer
+export default NavBarContainer;
