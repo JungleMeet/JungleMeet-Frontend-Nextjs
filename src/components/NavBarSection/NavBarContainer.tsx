@@ -1,11 +1,11 @@
 import { Flex } from "@chakra-ui/react";
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 interface NavBarContainerProps {
     children: ReactNode;
     bgColor: string;
 }
-const NavBarContainer = ({ children, bgColor } : NavBarContainerProps) => {
+const NavBarContainer = ({ children, bgColor }: NavBarContainerProps) => {
     return (
         <Flex
             as="nav"
@@ -14,16 +14,16 @@ const NavBarContainer = ({ children, bgColor } : NavBarContainerProps) => {
             wrap="wrap"
             w="100%"
             h="80px"
-            bg='#0A0202'
-            maxW='1440px'
-            m='auto'
-            zIndex='999'
-            position='absolute'
+            bg="#0A0202"
+            maxW="1440px"
+            m="auto"
+            zIndex="999"
+            position="absolute"
             backgroundColor={bgColor}
         >
             {children}
         </Flex>
-    )
-}
+    );
+};
 
 export default NavBarContainer;

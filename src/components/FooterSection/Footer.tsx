@@ -1,10 +1,8 @@
-import { Box, Flex, Text, useColorModeValue,Image } from "@chakra-ui/react";
+import { Box, Flex, Text, useColorModeValue, Image } from "@chakra-ui/react";
 import FooterUpper from "@/components/FooterSection/FooterUpper";
 import { FooterContainer } from "@/components/FooterSection/FooterContainer";
 
 export const FooterContent = `© ${new Date().getFullYear()} Jungle Meet Forum. All rights reserved`;
-
-
 
 const Footer = () => {
     return (
@@ -36,7 +34,6 @@ const Footer = () => {
             </Box>
         </FooterContainer>
     );
-    
 };
 
 export default Footer;
