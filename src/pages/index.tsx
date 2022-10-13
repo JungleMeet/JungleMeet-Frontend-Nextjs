@@ -7,14 +7,13 @@ import FeaturedMovie from "@/components/MainPage/FeaturedMovie/FeaturedMovie";
 
 const PageContainer = styled.div`
   max-width: 1440px;
-  background-color: #f4f5f7;
   margin: auto;
 `;
 
 const HomePage = (): JSX.Element => {
     return (
         <>
-            <NavBar bgColor='transparent'/>
+            <NavBar bgColor="transparent" />
             <HeroBanner />
             <PageContainer>
                 <FeaturedMovie />
