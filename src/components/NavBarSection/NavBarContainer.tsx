@@ -20,6 +20,8 @@ const NavBarContainer = ({ children, bgColor } : NavBarContainerProps) => {
             zIndex='999'
             position='absolute'
             backgroundColor={bgColor}
+            left='50%'
+            transform='translate(-50%)'
         >
             {children}
         </Flex>
