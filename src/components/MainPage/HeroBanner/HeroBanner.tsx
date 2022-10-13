@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { createStyles } from "@mantine/core";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
-import { heroData } from "./bannerData"
+import { heroData } from "./bannerData";
 import CarouselSlide from "./CarouselSlide";
 import { Carousel } from "@mantine/carousel";
 
@@ -40,8 +40,8 @@ const HeroBanner = () => {
                 nextControlIcon={<AiOutlineRight fill="#ffffff" size="50" />}
                 previousControlIcon={<AiOutlineLeft fill="#ffffff" size="50" />}
             >
-                {heroData.map(({...item}) => (
-                    <CarouselSlide key={item.title} {...item}/>
+                {heroData.map((item) => (
+                    <CarouselSlide key={item.title} {...item} />
                 ))}
             </Carousel>
         </Box>
