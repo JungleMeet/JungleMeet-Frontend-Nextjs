@@ -4,8 +4,8 @@ import { screen } from "@testing-library/react";
 import Footer, { FooterContent } from "../../../components/FooterSection/Footer";
 
 describe("Footer", () => {
-  it("shoud render footer success", () => {
-    renderWithMockedProvider(<Footer />);
-    expect(screen.getByText(FooterContent)).toBeInTheDocument();
-  });
+    it("shoud render footer success", () => {
+        renderWithMockedProvider(<Footer />);
+        expect(screen.getByText(FooterContent)).toBeInTheDocument();
+    });
 });

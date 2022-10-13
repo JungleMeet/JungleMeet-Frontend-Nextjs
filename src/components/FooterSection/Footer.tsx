@@ -4,11 +4,10 @@ import styled from "styled-components";
 
 export const FooterContent = `© ${new Date().getFullYear()} Jungle Meet Forum. All rights reserved`;
 
-
 const FooterContainer = styled.div`
-  
   background-color: #ffffff;
-  
+  width: 1440px;
+  margin: auto;
 `;
 
 

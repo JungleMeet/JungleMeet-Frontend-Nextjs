@@ -1,58 +1,57 @@
 import {
-  Box,
-  chakra,
-  Container,
-  Link,
-  Stack,
-  Heading,
-  Text,
-  VisuallyHidden,
-  Flex,
-  Spacer,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import { ReactNode } from 'react';
-import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-
-
+    Box,
+    chakra,
+    Container,
+    Link,
+    Stack,
+    Heading,
+    Text,
+    VisuallyHidden,
+    Flex,
+    Spacer,
+    useColorModeValue,
+} from "@chakra-ui/react";
+import { ReactNode } from "react";
+import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const SocialButton = ({
-  children,
-  label,
-  href,
+    children,
+    label,
+    href,
 }: {
-  children: ReactNode;
-  label: string;
-  href: string;
+    children: ReactNode;
+    label: string;
+    href: string;
 }) => {
-  return (
-    <chakra.button
-      bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
-      rounded={'full'}
-      w={8}
-      h={8}
-      cursor={'pointer'}
-      as={'a'}
-      href={href}
-      display={'inline-flex'}
-      alignItems={'center'}
-      justifyContent={'center'}
-      transition={'background 0.3s ease'}
-      _hover={{
-        bg: useColorModeValue('blackAlpha.200', 'whiteAlpha.200'),
-      }}>
-      <VisuallyHidden>{label}</VisuallyHidden>
-      {children}
-    </chakra.button>
-  );
+    return (
+        <chakra.button
+            bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
+            rounded={"full"}
+            w={8}
+            h={8}
+            cursor={"pointer"}
+            as={"a"}
+            href={href}
+            display={"inline-flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            transition={"background 0.3s ease"}
+            _hover={{
+                bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200"),
+            }}
+        >
+            <VisuallyHidden>{label}</VisuallyHidden>
+            {children}
+        </chakra.button>
+    );
 };
 
 const ListHeader = ({ children }: { children: ReactNode }) => {
-  return (
-    <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
-      {children}
-    </Text>
-  );
+    return (
+        <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
+            {children}
+        </Text>
+    );
 };
 
 
