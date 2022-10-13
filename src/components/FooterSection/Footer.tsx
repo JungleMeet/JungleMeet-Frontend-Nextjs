@@ -1,15 +1,9 @@
 import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import FooterUpper from "@/components/FooterSection/FooterUpper";
-import styled from "styled-components";
+import { FooterContainer } from "@/components/FooterSection/FooterContainer";
 
 export const FooterContent = `© ${new Date().getFullYear()} Jungle Meet Forum. All rights reserved`;
 
-const FooterContainer = styled.div`
-
-  background-color: #ffffff;
-  width: 1440px;
-  margin: auto;
-`;
 
 const Logo = (props: any) => {
     return (
