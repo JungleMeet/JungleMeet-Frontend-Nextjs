@@ -66,7 +66,7 @@ const Footer = () => {
                 >
                     <Logo />
                 </Flex>
-                <Text pt={6} fontSize={"sm"} textAlign={"center"}>
+                <Text pt={6} fontFamily={"secondary"} fontSize={"text5"} textAlign={"center"}>
                     {FooterContent}
                 </Text>
             </Box>
