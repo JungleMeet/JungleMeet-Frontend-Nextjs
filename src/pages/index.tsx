@@ -15,7 +15,7 @@ const PageContainer = styled.div`
 const HomePage = (): JSX.Element => {
     return (
         <>
-            <NavBar bgColor='transparent'/>
+            <NavBar bgColor="transparent" />
             <HeroBanner />
             <PageContainer>
                 <FeaturedMovie />
