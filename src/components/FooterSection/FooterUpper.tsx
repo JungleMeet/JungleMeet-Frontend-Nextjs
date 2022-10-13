@@ -91,7 +91,7 @@ export default function FooterWithMenu() {
                             <Link href={"#"}>Privacy & Policy</Link>
                         </Stack>
                     </Stack>
-                    <Spacer w="100px" />
+                    <Spacer w="120px" />
                     <Stack fontFamily={"secondary"} maxW="345px" align={"start"}>
                         <ListHeader >Useful Links</ListHeader>
                         <Link fontSize={"text4"} href={"#"}>Feature Movie</Link>
