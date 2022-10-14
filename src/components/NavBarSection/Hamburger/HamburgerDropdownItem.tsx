@@ -1,6 +1,4 @@
-import {
-    MenuItem,
-} from '@chakra-ui/react'
+import { MenuItem } from "@chakra-ui/react";
 
 interface itemProps {
     key: string;
@@ -9,12 +7,12 @@ interface itemProps {
     content: string;
 }
 
-const HamburgerDropdownItem = (props: itemProps): JSX.Element=> {
+const HamburgerDropdownItem = (props: itemProps): JSX.Element => {
     return (
-        <MenuItem icon = { < props.icon />} command={props.command}>
+        <MenuItem icon={<props.icon />} command={props.command}>
             {props.content}
         </MenuItem>
-    )
+    );
 };
 
 export default HamburgerDropdownItem;

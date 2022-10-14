@@ -1,5 +1,6 @@
 import ExclusiveVideos from "@/components/MainPage/ExclusiveVideos/ExclusiveVideos";
 import HeroBanner from "@/components/MainPage/HeroBanner/HeroBanner";
+import NewArrivalVideos from "@/components/MainPage/NewArrivalVideos/NewArrivals";
 import Footer from "@/components/FooterSection/Footer";
 import styled from "styled-components";
 import NavBar from "@/components/NavBarSection/NarBar";
@@ -14,10 +15,11 @@ const PageContainer = styled.div`
 const HomePage = (): JSX.Element => {
     return (
         <>
-            <NavBar bgColor='transparent'/>
+            <NavBar bgColor="transparent" />
             <HeroBanner />
             <PageContainer>
                 <FeaturedMovie />
+                <NewArrivalVideos />
                 <ExclusiveVideos />
             </PageContainer>
             <Footer />

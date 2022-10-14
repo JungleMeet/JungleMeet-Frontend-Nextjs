@@ -76,7 +76,7 @@ export default function FooterWithMenu() {
                     <Spacer w="90px" />
                     <Stack justify={"center"} align={"center"} maxW="342px" spacing={6}>
                         <Stack direction={"row"} spacing={10}>
-                            <SocialButton label={"Twitter"}  href={"#"}>
+                            <SocialButton label={"Twitter"} href={"#"}>
                                 <FaTwitter />
                             </SocialButton>
                             <SocialButton label={"YouTube"} href={"#"}>
@@ -86,18 +86,32 @@ export default function FooterWithMenu() {
                                 <FaInstagram />
                             </SocialButton>
                         </Stack>
-                        <Stack fontFamily={"secondary"} fontWeight={"600"} fontSize={"h5"} direction={"row"} spacing={5}>
+                        <Stack
+                            fontFamily={"secondary"}
+                            fontWeight={"600"}
+                            fontSize={"h5"}
+                            direction={"row"}
+                            spacing={5}
+                        >
                             <Link href={"#"}>Conditions of Use</Link>
                             <Link href={"#"}>Privacy & Policy</Link>
                         </Stack>
                     </Stack>
                     <Spacer w="120px" />
                     <Stack fontFamily={"secondary"} maxW="345px" align={"start"}>
-                        <ListHeader >Useful Links</ListHeader>
-                        <Link fontSize={"text4"} href={"#"}>Feature Movie</Link>
-                        <Link fontSize={"text4"} href={"#"}>New Arrival</Link>
-                        <Link fontSize={"text4"} href={"#"}>Disscusion</Link>
-                        <Link fontSize={"text4"} href={"#"}>Contact Us</Link>
+                        <ListHeader>Useful Links</ListHeader>
+                        <Link fontSize={"text4"} href={"#"}>
+              Feature Movie
+                        </Link>
+                        <Link fontSize={"text4"} href={"#"}>
+              New Arrival
+                        </Link>
+                        <Link fontSize={"text4"} href={"#"}>
+              Disscusion
+                        </Link>
+                        <Link fontSize={"text4"} href={"#"}>
+              Contact Us
+                        </Link>
                     </Stack>
                 </Flex>
             </Container>
