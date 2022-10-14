@@ -54,7 +54,7 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
     );
 };
 
-export default function FooterWithMenu() {
+export default function FooterUpper() {
     return (
         <Box>
             <Container
