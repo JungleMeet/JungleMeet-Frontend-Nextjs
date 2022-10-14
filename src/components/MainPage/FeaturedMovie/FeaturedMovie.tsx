@@ -5,7 +5,7 @@ import Movies from "./Movies";
 
 const SectionContainer = styled.div`
   width: 840px;
-  padding: 10px;
+  margin-bottom: 90px;
 `;
 
 const FeaturedMovie = () => {

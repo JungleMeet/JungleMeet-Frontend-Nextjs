@@ -1,20 +1,15 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import Video from "./VideoThumbnail";
 import { IVideoThumbnailProps } from "./VideoThumbnail";
-
-const VideosContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  gap: 48px;
-  padding: 10px;
-  overflow: hidden;
-`;
+import React from "react";
+import { Carousel } from "@mantine/carousel";
+import CarouselContainer from "@/components/CarouselContainer";
 
 const staticSrc = [
     { src: "https://www.youtube.com/embed/DUnQcJz76Ck", title: "The Super Mario Bros" },
     { src: "https://www.youtube.com/embed/szby7ZHLnkA", title: "Sonic the Hedgehog" },
     { src: "https://www.youtube.com/embed/9kK86zmhpWc", title: "Pikachu's Cutest Moments" },
+    { src: "https://www.youtube.com/embed/szby7ZHLnkA", title: "Sonic the Hedgehog" },
 ];
 
 const Videos = () => {
@@ -25,11 +20,13 @@ const Videos = () => {
     }, []);
 
     return (
-        <VideosContainer>
-            {videoList.map(({ src, title }) => {
-                return <Video src={src} title={title} key={title} />;
-            })}
-        </VideosContainer>
+        <CarouselContainer>
+            {videoList.map(({ src, title }) => ( 
+                <Carousel.Slide gap={48}>
+                    <Video src={src} title={title} key={title} />
+                </Carousel.Slide>
+            ))}
+        </CarouselContainer>
     );
 };
 

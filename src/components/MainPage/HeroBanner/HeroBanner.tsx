@@ -4,6 +4,8 @@ import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 import { heroData } from "./bannerData";
 import CarouselSlide from "./CarouselSlide";
 import { Carousel } from "@mantine/carousel";
+import { useRef } from 'react';
+import Autoplay from 'embla-carousel-autoplay';
 
 const useStyles = createStyles((_theme, _params, getRef) => ({
     controls: {
@@ -29,6 +31,7 @@ const useStyles = createStyles((_theme, _params, getRef) => ({
 
 const HeroBanner = () => {
     const { classes } = useStyles();
+    const autoplay = useRef(Autoplay({ delay: 4000 }));
 
     return (
         <Box w="100%" maxWidth="1440px" pos="relative" m="auto">
@@ -39,6 +42,9 @@ const HeroBanner = () => {
                 controlsOffset="lg"
                 nextControlIcon={<AiOutlineRight fill="#ffffff" size="50" />}
                 previousControlIcon={<AiOutlineLeft fill="#ffffff" size="50" />}
+                plugins={[autoplay.current]}
+                onMouseEnter={autoplay.current.stop}
+                onMouseLeave={autoplay.current.reset}
             >
                 {heroData.map((item) => (
                     <CarouselSlide key={item.title} {...item} />
