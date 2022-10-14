@@ -14,7 +14,6 @@ const NavBarContainer = ({ children, bgColor }: NavBarContainerProps) => {
             wrap="wrap"
             w="100%"
             h="80px"
-            bg="#0A0202"
             maxW="1440px"
             m="auto"
             zIndex="999"
