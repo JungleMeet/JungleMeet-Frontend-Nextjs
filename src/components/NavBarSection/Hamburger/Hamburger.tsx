@@ -10,7 +10,7 @@ const HamburgerContainer = styled.div`
 
 const Hamburger = () => {
     return (
-        <Menu offset={[70, 10]}>
+        <Menu offset={[-60, 10]}>
             <MenuButton>
                 <HamburgerContainer>
                     <Image src="./hamburger.svg" />

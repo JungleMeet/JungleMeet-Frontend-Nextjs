@@ -12,13 +12,13 @@ const IMDBRanking = ({ gap, imdb, thumbsUp, color }: IIMDBRankingProps): JSX.Ele
         <Flex gap={gap} height="17px" m="0" width="100%">
             <Box display="flex">
                 <Image src="/Imdb.svg" mr="9px" />
-                <Text fontSize="text5" lineHeight="17px" color={color || "white"} fontFamily="secondary">
+                <Text fontSize="text5" lineHeight="17px" color={color} fontFamily="secondary">
                     {imdb}
                 </Text>
             </Box>
             <Box display="flex">
                 <Image src="/thumbsUp.svg" mr="7px" />
-                <Text fontSize="text5" lineHeight="17px" color={color || "white"} fontFamily="secondary">
+                <Text fontSize="text5" lineHeight="17px" color={color} fontFamily="secondary">
                     {thumbsUp}
                 </Text>
             </Box>
