@@ -7,7 +7,7 @@ import "../styles/styles.css";
 
 function JungleMeetForumApp({ Component, pageProps }: AppProps) {
     return (
-        <Chakra cookies={pageProps.cookies}>
+        <Chakra cookies={pageProps}>
             <Provider store={store}>
                 <Component {...pageProps} />
             </Provider>

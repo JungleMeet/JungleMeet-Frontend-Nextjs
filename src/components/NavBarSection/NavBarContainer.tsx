@@ -14,6 +14,7 @@ const NavBarContainer = ({ children, bgColor }: NavBarContainerProps) => {
             wrap="wrap"
             w="100%"
             h="80px"
+<<<<<<< HEAD
             bg="#0A0202"
             maxW="1440px"
             m="auto"
@@ -21,6 +22,20 @@ const NavBarContainer = ({ children, bgColor }: NavBarContainerProps) => {
             position="absolute"
             left="50%"
             transform="translate(-50%)"
+||||||| 595c50a
+            bg='#0A0202'
+            maxW='1440px'
+            m='auto'
+            zIndex='999'
+            position='absolute'
+=======
+            maxW="1440px"
+            m="auto"
+            zIndex="999"
+            position="absolute"
+            left="50%"
+            transform="translate(-50%)"
+>>>>>>> main
             backgroundColor={bgColor}
         >
             {children}

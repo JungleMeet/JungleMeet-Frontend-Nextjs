@@ -1,5 +1,6 @@
 import ExclusiveVideos from "@/components/MainPage/ExclusiveVideos/ExclusiveVideos";
 import HeroBanner from "@/components/MainPage/HeroBanner/HeroBanner";
+import NewArrivalVideos from "@/components/MainPage/NewArrivalVideos/NewArrivals";
 import Footer from "@/components/FooterSection/Footer";
 import styled from "styled-components";
 import NavBar from "@/components/NavBarSection/NarBar";
@@ -18,6 +19,7 @@ const HomePage = (): JSX.Element => {
             <HeroBanner />
             <PageContainer>
                 <FeaturedMovie />
+                <NewArrivalVideos />
                 <ExclusiveVideos />
             </PageContainer>
             <Footer />
