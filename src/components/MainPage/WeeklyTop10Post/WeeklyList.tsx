@@ -1,28 +1,23 @@
-import styled from "styled-components";
+import { Flex, Text } from "@chakra-ui/react";
 
-const WeeklyListContainer = styled.div`
-  display: flex;
-  gap: 20px;
-`;
-const WeeklyList = [
-  {
-    title: "The First post name",
-  },
-  {
-    title: "The Second post name",
-  },
-  { title: "The Third post name" },
-  { title: "The Fourth post name" },
-];
+interface IWeeklyListProps {
+  ranking: number;
+  title: string;
+}
 
-const WeeklyLists = () => {
+const WeeklyList = ({ ranking, title }: IWeeklyListProps) => {
   return (
-    <WeeklyListContainer>
-      {WeeklyLists.map(({ title }) => {
-        return <WeeklyList title={title} key={title} />;
-      })}
-    </WeeklyListContainer>
+    <Flex
+      gap="22"
+      borderBottom="1px"
+      borderBottomColor="#DFDFDF"
+      paddingBottom="8px"
+      paddingTop="19px"
+    >
+      <Text>{ranking}</Text>
+      <Text color="#3B82F6">{title}</Text>
+    </Flex>
   );
 };
 
-export default WeeklyLists;
+export default WeeklyList;

@@ -6,16 +6,10 @@ import { Carousel } from "@mantine/carousel";
 import CarouselContainer from "@/components/CarouselContainer";
 
 const staticSrc = [
-<<<<<<< HEAD
   { src: "https://www.youtube.com/embed/DUnQcJz76Ck", title: "The Super Mario Bros" },
   { src: "https://www.youtube.com/embed/szby7ZHLnkA", title: "Sonic the Hedgehog" },
   { src: "https://www.youtube.com/embed/9kK86zmhpWc", title: "Pikachu's Cutest Moments" },
-=======
-    { src: "https://www.youtube.com/embed/DUnQcJz76Ck", title: "The Super Mario Bros" },
-    { src: "https://www.youtube.com/embed/szby7ZHLnkA", title: "Sonic the Hedgehog" },
-    { src: "https://www.youtube.com/embed/9kK86zmhpWc", title: "Pikachu's Cutest Moments" },
-    { src: "https://www.youtube.com/embed/szby7ZHLnkA", title: "Sonic the Hedgehog" },
->>>>>>> main
+  { src: "https://www.youtube.com/embed/szby7ZHLnkA", title: "Sonic the Hedgehog" },
 ];
 
 const Videos = () => {
@@ -25,25 +19,15 @@ const Videos = () => {
     setVideoList(staticSrc);
   }, []);
 
-<<<<<<< HEAD
   return (
-    <VideosContainer>
-      {videoList.map(({ src, title }) => {
-        return <Video src={src} title={title} key={title} />;
-      })}
-    </VideosContainer>
+    <CarouselContainer loop={false} slideSize="33.333%">
+      {videoList.map(({ src, title }) => (
+        <Carousel.Slide gap={48}>
+          <Video src={src} title={title} key={title} />
+        </Carousel.Slide>
+      ))}
+    </CarouselContainer>
   );
-=======
-    return (
-        <CarouselContainer loop={false} slideSize="33.333%">
-            {videoList.map(({ src, title }) => (
-                <Carousel.Slide gap={48}>
-                    <Video src={src} title={title} key={title} />
-                </Carousel.Slide>
-            ))}
-        </CarouselContainer>
-    );
->>>>>>> main
 };
 
 export default Videos;

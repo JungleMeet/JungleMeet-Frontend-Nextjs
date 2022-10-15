@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { SectionHeaderContainer, SectionTitle } from "../Containers";
 import More from "../More";
-import WeeklyLists from "./WeeklyList";
+import WeeklyLists from "./WeeklyLists";
 
 const SectionContainer = styled.div`
   width: 300px;

@@ -9,15 +9,15 @@ const SectionContainer = styled.div`
 `;
 
 const FeaturedMovie = () => {
-    return (
-        <SectionContainer>
-            <SectionHeaderContainer>
-                <SectionTitle>Featured Movie</SectionTitle>
-                <SeeMore />
-            </SectionHeaderContainer>
-            <Movies />
-        </SectionContainer>
-    );
+  return (
+    <SectionContainer>
+      <SectionHeaderContainer>
+        <SectionTitle>Featured Movie</SectionTitle>
+        <SeeMore />
+      </SectionHeaderContainer>
+      <Movies />
+    </SectionContainer>
+  );
 };
 
 export default FeaturedMovie;
