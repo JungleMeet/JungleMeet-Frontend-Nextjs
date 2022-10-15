@@ -13,7 +13,7 @@ const MenuListTitle = styled.span`
 `;
 
 const HamburgerDropdown = () => {
-    const menuItemArray = [
+    const MENU_ITEMS = [
         {
             itemIcon: AiOutlineSetting,
             command: "",
@@ -39,12 +39,11 @@ const HamburgerDropdown = () => {
         <>
             <MenuList minW="180px">
                 <MenuListTitle>Application</MenuListTitle>
-                {menuItemArray.map((item) => (
+                {MENU_ITEMS.map(({itemIcon, ...rest}) => (
                     <HamburgerDropdownItem
-                        key={item.content}
-                        icon={item.itemIcon}
-                        command={item.command}
-                        content={item.content}
+                        key={rest.content}
+                        Icon={itemIcon}
+                        {...rest}
                     />
                 ))}
             </MenuList>

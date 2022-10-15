@@ -1,16 +1,17 @@
 import { MenuItem } from "@chakra-ui/react";
+import {IconType} from "react-icons";
 
-interface itemProps {
+interface ItemProps {
     key: string;
-    icon: any;
+    Icon: IconType;
     command: string;
     content: string;
 }
 
-const HamburgerDropdownItem = (props: itemProps): JSX.Element => {
+const HamburgerDropdownItem = ({Icon, command, content}: ItemProps) => {
     return (
-        <MenuItem icon={<props.icon />} command={props.command}>
-            {props.content}
+        <MenuItem icon={<Icon />} command={command}>
+            {content}
         </MenuItem>
     );
 };
