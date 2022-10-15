@@ -36,6 +36,8 @@
     "@emotion/styled": "^11",
     "@reduxjs/toolkit": "^1.8.1",
     "axios": "^0.27.2",
+    "embla-carousel-autoplay": "^7.0.3",
+    "embla-carousel-react": "^7.0.3",
     "framer-motion": "^6",
     "lodash": "^4.17.21",
     "next": "^12.1.5",
@@ -72,6 +74,6 @@
     "jest": "^27.5.1",
     "lint-staged": "^12.3.7",
     "prettier": "^2.6.2",
-    "typescript": "4.6.2"
+    "typescript": "^4.6.2"
   }
 }

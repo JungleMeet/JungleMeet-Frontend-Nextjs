@@ -5,6 +5,7 @@ import store from "../app/store";
 import { Chakra } from "@/styles/Chakra";
 
 function JungleMeetForumApp({ Component, pageProps }: AppProps) {
+<<<<<<< HEAD
   return (
     <Chakra cookies={pageProps.cookies}>
       <Provider store={store}>
@@ -12,6 +13,15 @@ function JungleMeetForumApp({ Component, pageProps }: AppProps) {
       </Provider>
     </Chakra>
   );
+=======
+    return (
+        <Chakra cookies={pageProps.cookies}>
+            <Provider store={store}>
+                <Component {...pageProps} />
+            </Provider>
+        </Chakra>
+    );
+>>>>>>> main
 }
 
 export default JungleMeetForumApp;

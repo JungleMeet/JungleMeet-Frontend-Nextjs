@@ -6,6 +6,7 @@ const PageContainer = styled.div`
   max-width: 1440px;
   background-color: #f4f5f7;
   margin: auto;
+  padding-top: 90px;
 `;
 
 const HomePage = (): JSX.Element => {
