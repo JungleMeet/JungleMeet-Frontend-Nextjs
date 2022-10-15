@@ -1,15 +1,16 @@
-import styled from "styled-components";
+// import styled from "styled-components";
 import VideoThumbnail from "./VideoThumbnail";
 import VideoCardInfo from "./VideoCardInfo";
+import CarouselContainer from "@/components/CarouselContainer";
+import { Carousel } from "@mantine/carousel";
 
-const VideosContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
-  gap: 49px;
-  padding: 10px;
-  overflow: hidden;
-`;
+// const VideosContainer = styled.div`
+//   display: flex;
+//   justify-content: flex-start;
+//   flex-direction: row;
+/* gap: 49px;
+  overflow: hidden; */
+// `;
 
 const videoList = [
     {
@@ -62,15 +63,36 @@ const videoList = [
         likes: "90%",
         type: "action",
     },
+    {
+        id: 6,
+        src: "/DontBreath2.jpg",
+        title: "Dont Breath 2",
+        country: "USA",
+        year: 1966,
+        imdb: "8.2",
+        likes: "90%",
+        type: "action",
+    },
+    {
+        id: 7,
+        src: "/DontBreath2.jpg",
+        title: "Dont Breath 2",
+        country: "USA",
+        year: 1966,
+        imdb: "8.2",
+        likes: "90%",
+        type: "action",
+    },
 ];
 
 const VideoCards = () => {
     return (
-        <VideosContainer>
+    // <VideosContainer>
+        <CarouselContainer loop={true} slideSize="210px">
             {videoList.map((info) => {
                 return (
                 // eslint-disable-next-line react/jsx-key
-                    <div>
+                    <Carousel.Slide gap={49}>
                         <VideoThumbnail src={info.src} title={info.title} key={info.id} />
 
                         <VideoCardInfo
@@ -82,10 +104,11 @@ const VideoCards = () => {
                             type={info.type}
                             key={info.id}
                         />
-                    </div>
+                    </Carousel.Slide>
                 );
             })}
-        </VideosContainer>
+        </CarouselContainer>
+    // </VideosContainer>
     );
 };
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const SectionContainer = styled.div`
   width: 100%;
-  padding: 10px;
+  margin-bottom: 90px;
 `;
 
 export const SectionHeaderContainer = styled.div`

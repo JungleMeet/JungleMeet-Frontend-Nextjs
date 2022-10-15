@@ -9,6 +9,7 @@ import FeaturedMovie from "@/components/MainPage/FeaturedMovie/FeaturedMovie";
 const PageContainer = styled.div`
   max-width: 1440px;
   margin: auto;
+  padding-top: 90px;
 `;
 
 const HomePage = (): JSX.Element => {

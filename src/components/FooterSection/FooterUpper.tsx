@@ -64,6 +64,8 @@ export default function FooterUpper() {
                 direction={{ base: "column", md: "row" }}
                 spacing={5}
                 align={{ base: "center", md: "center" }}
+                p="0"
+                justifyContent="space-between"
             >
                 <Flex mt={"50px"}>
                     <Stack maxW="355px" spacing={6}>
