@@ -8,7 +8,7 @@ import { Carousel } from "@mantine/carousel";
 //   display: flex;
 //   justify-content: flex-start;
 //   flex-direction: row;
-  /* gap: 49px;
+/* gap: 49px;
   overflow: hidden; */
 // `;
 
@@ -82,13 +82,13 @@ const videoList = [
         imdb: "8.2",
         likes: "90%",
         type: "action",
-    }
+    },
 ];
 
 const VideoCards = () => {
     return (
-        // <VideosContainer>
-            <CarouselContainer loop={true} slideSize="210px">
+    // <VideosContainer>
+        <CarouselContainer loop={true} slideSize="210px">
             {videoList.map((info) => {
                 return (
                 // eslint-disable-next-line react/jsx-key
@@ -107,8 +107,8 @@ const VideoCards = () => {
                     </Carousel.Slide>
                 );
             })}
-            </CarouselContainer>
-        // </VideosContainer>
+        </CarouselContainer>
+    // </VideosContainer>
     );
 };
 

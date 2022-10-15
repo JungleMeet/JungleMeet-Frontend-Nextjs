@@ -15,7 +15,7 @@ const useStyles = createStyles((_theme, _params, getRef) => ({
         width: "110%",
         padding: "0",
         left: "50%",
-        transform: "translate(-50%)"
+        transform: "translate(-50%)",
     },
 
     control: {
@@ -34,15 +34,14 @@ const CarouselContainer = ({ children, slideSize, loop }: ICarouselContainerProp
             classNames={classes}
             controlsOffset="xl"
             nextControlIcon={<AiOutlineRight fill="gray.900" size="40" />}
-            previousControlIcon={<AiOutlineLeft fill="gray.900" size="40"/>}
+            previousControlIcon={<AiOutlineLeft fill="gray.900" size="40" />}
             height="100%"
             slideSize={slideSize}
             align="start"
         >
             {children}
-         </Carousel>
+        </Carousel>
     );
 };
 
 export default CarouselContainer;
-

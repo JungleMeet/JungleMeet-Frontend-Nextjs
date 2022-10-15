@@ -21,7 +21,7 @@ const Videos = () => {
 
     return (
         <CarouselContainer loop={false} slideSize="33.333%">
-            {videoList.map(({ src, title }) => ( 
+            {videoList.map(({ src, title }) => (
                 <Carousel.Slide gap={48}>
                     <Video src={src} title={title} key={title} />
                 </Carousel.Slide>

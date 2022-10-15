@@ -67,7 +67,7 @@ export default function FooterUpper() {
                 p="0"
                 justifyContent="space-between"
             >
-                <Flex mt={"50px"}  >
+                <Flex mt={"50px"}>
                     <Stack maxW="355px" spacing={6}>
                         <Heading fontSize={"text3"}>About Jungle Meet</Heading>
                         <Text fontSize={"text5"} lineHeight={"lh32"}>

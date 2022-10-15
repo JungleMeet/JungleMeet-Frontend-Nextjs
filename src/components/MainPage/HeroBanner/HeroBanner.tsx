@@ -4,8 +4,8 @@ import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 import { heroData } from "./bannerData";
 import CarouselSlide from "./CarouselSlide";
 import { Carousel } from "@mantine/carousel";
-import { useRef } from 'react';
-import Autoplay from 'embla-carousel-autoplay';
+import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
 
 const useStyles = createStyles((_theme, _params, getRef) => ({
     controls: {
