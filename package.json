@@ -32,10 +32,17 @@
   "dependencies": {
     "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^1.8.8",
-    "@emotion/react": "^11",
+    "@emotion/react": "^11.10.4",
+    "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11",
+    "@mantine/carousel": "^5.5.5",
+    "@mantine/core": "^5.5.5",
+    "@mantine/hooks": "^5.5.5",
+    "@mantine/next": "^5.5.5",
     "@reduxjs/toolkit": "^1.8.1",
     "axios": "^0.27.2",
+    "embla-carousel-autoplay": "^7.0.3",
+    "embla-carousel-react": "^7.0.3",
     "framer-motion": "^6",
     "lodash": "^4.17.21",
     "next": "^12.1.5",
@@ -64,15 +71,15 @@
     "@typescript-eslint/parser": "^5.15.0",
     "babel-plugin-styled-components": "^2.0.7",
     "cypress": "^9.5.2",
-    "eslint": "^8.11.0",
+    "eslint": "^8.25.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-next": "12.1.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react": "^7.31.10",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.7",
     "prettier": "^2.6.2",
-    "typescript": "4.6.2"
+    "typescript": "^4.6.2"
   }
 }
