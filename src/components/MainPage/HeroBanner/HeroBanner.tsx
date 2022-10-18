@@ -31,6 +31,7 @@ const useStyles = createStyles((_theme, _params, getRef) => ({
 
 const HeroBanner = () => {
     const { classes } = useStyles();
+    // eslint-disable-next-line new-cap
     const autoplay = useRef(Autoplay({ delay: 4000 }));
 
     return (

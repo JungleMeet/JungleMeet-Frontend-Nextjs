@@ -30,7 +30,7 @@ const VideoCardInfo = (info: VideoCardInfoProps): JSX.Element => {
             <div>
                 {info.country} {info.year}
             </div>
-            <IMDBRanking gap={"95px"} imdb={info.imdb} thumbsUp={info.likes} color={"black"} />
+            <IMDBRanking gap={"30px"} imdb={info.imdb} thumbsUp={info.likes} color={"black"} />
             <div>{info.type}</div>
         </Box>
     );

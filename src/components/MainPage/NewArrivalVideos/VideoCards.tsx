@@ -88,7 +88,7 @@ const videoList = [
 const VideoCards = () => {
     return (
     // <VideosContainer>
-        <CarouselContainer loop={true} slideSize="210px">
+        <CarouselContainer loop={true} slideSize="160px">
             {videoList.map((info) => {
                 return (
                 // eslint-disable-next-line react/jsx-key
