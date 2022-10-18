@@ -17,6 +17,7 @@ export const NewArrivalsSectionHeaderContainer = styled.div`
   font-family: "Inter";
 `;
 export const SectionTitle = styled.div`
+  margin-bottom:90px;
   font-weight: 700;
   font-size: 36px;
   line-height: 47px;

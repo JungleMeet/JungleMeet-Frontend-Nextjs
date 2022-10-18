@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { useEffect, useState } from "react";
 import Video from "./VideoThumbnail";
 import { IVideoThumbnailProps } from "./VideoThumbnail";
