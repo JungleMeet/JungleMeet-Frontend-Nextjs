@@ -1,8 +1,13 @@
-import { extendTheme, theme as base } from "@chakra-ui/react";
+import {
+    extendTheme,
+    // ThemeConfig,
+    theme as base
+} from "@chakra-ui/react";
+
 
 type ThemeConfig = {
-    [key: string]: string | boolean;
-};
+    [key: string]: string | boolean
+}
 
 const config: ThemeConfig = {
     initialColorMode: "light",
@@ -11,7 +16,6 @@ const config: ThemeConfig = {
 
 const styles = {
     styles: {
-        // eslint-disable-next-line
         global: (props: any) => ({
             "html, body": {
                 bg: props.colorMode === "dark" ? "gray.800" : "white",

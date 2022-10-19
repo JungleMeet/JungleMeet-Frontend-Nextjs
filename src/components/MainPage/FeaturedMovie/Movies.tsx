@@ -21,7 +21,7 @@ const movieList = [
         watch: "Watch trailors",
     },
     { src: "/dunkirk.jpg", title: "Dunkirk", imdb: "7.8", thumbsUp: "94%", watch: "Watch trailors" },
-    { src: "/dunkirk.jpg", title: "Dunkirk", imdb: "7.8", thumbsUp: "94%", watch: "Watch options" },
+    { src: "/dunkirk.jpg", title: "Dunker", imdb: "7.8", thumbsUp: "94%", watch: "Watch options" },
 ];
 
 const Movies = () => {
