@@ -1,4 +1,4 @@
-import { Box , Image} from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 
 export interface IVideoThumbnailProps {
     src: string;
@@ -16,20 +16,19 @@ const VideoThumbnail = ({ src, title }: IVideoThumbnailProps): JSX.Element => {
                 borderRadius="50%"
                 backdropFilter="blur(10px)"
                 pos="absolute"
-                top= "16px"
+                top="16px"
                 right="63.5px"
                 max-width="100%"
                 display="block"
-            >   
+            >
                 <Image
                     src="/heart.svg"
                     width="16px"
                     height="13.3px"
                     color="gray.100"
                     margin="8.76px 7px 7.15px"
-                   
                 />
-            </Box> 
+            </Box>
         </Box>
     );
 };
