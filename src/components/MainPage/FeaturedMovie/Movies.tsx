@@ -23,10 +23,20 @@ const movieList = [
         watch: "Watch trailors",
     },
     {
-        id: 3, src: "/dunkirk.jpg", title: "Dunkirk", imdb: "7.8", thumbsUp: "94%", watch: "Watch trailors"
+        id: 3,
+        src: "/dunkirk.jpg",
+        title: "Dunkirk",
+        imdb: "7.8",
+        thumbsUp: "94%",
+        watch: "Watch trailors",
     },
     {
-        id: 4, src: "/dunkirk.jpg", title: "Dunker", imdb: "7.8", thumbsUp: "94%", watch: "Watch options"
+        id: 4,
+        src: "/dunkirk.jpg",
+        title: "Dunker",
+        imdb: "7.8",
+        thumbsUp: "94%",
+        watch: "Watch options",
     },
 ];
 
@@ -35,14 +45,7 @@ const Movies = () => {
         <MoviesContainer>
             {movieList.map(({ id, src, title, imdb, thumbsUp, watch }) => {
                 return (
-                    <Movie
-                        src={src}
-                        title={title}
-                        imdb={imdb}
-                        thumbsUp={thumbsUp}
-                        watch={watch}
-                        key={id}
-                    />
+                    <Movie src={src} title={title} imdb={imdb} thumbsUp={thumbsUp} watch={watch} key={id} />
                 );
             })}
         </MoviesContainer>
