@@ -11,12 +11,10 @@ import {
     TabPanels,
     Tab,
     TabPanel,
-    Button,
-    FormControl,
     Flex
 } from '@chakra-ui/react';
 import styled from 'styled-components';
-import FormInput from './FormInput';
+import LoginForm from './LoginForm/LoginForm';
 import {AiFillGoogleCircle, AiFillTwitterCircle} from "react-icons/ai";
 
 interface ILoginModal {
@@ -93,45 +91,36 @@ const LoginModal = ({isOpen, onClose}: ILoginModal) => {
                         </TabList>
                         <TabPanels>
                             <TabPanel p='0'>
-                                <FormControl display='flex' flexDirection='column' alignItems='center' p='0' gap='31px'>
-                                    <FormInput type='name' placeholder='Email Address / Username'></FormInput>
-                                    <FormInput type='password' placeholder='Password'></FormInput>
-                                    <Button 
-                                        type='submit' 
-                                        w='359px' 
-                                        h='50px' 
-                                        backgroundColor='lightBlue.600'
-                                        color='gray.50'
-                                    >Log in</Button>
-                                    <Flex
-                                        _before={{
-                                            content: '""',
-                                            borderBottom: "1px solid",
-                                            borderColor: '#000',
-                                            flexGrow: 1,
-                                            mr: '13px',
-                                            w: '126px',
-                                        }}
-                                        _after={{
-                                            content: '""',
-                                            borderBottom: "1px solid",
-                                            borderColor: '#000',
-                                            flexGrow: 1,
-                                            ml: '13px',
-                                            w: '126px'
-                                        }}
-                                        fontSize='text5'
-                                        fontWeight='400'
-                                        color='gray.500'
-                                        lineHeight='32px'
-                                        position='relative'
-                                        alignItems='center'
-                                    >Log in with</Flex>
-                                </FormControl>
-                            </TabPanel>
+                                <LoginForm></LoginForm>
+                            </TabPanel>    
                             <TabPanel p='0'>
                                 <p>two!</p>
                             </TabPanel>
+                            <Flex
+                                _before={{
+                                    content: '""',
+                                    borderBottom: "1px solid",
+                                    borderColor: '#000',
+                                    flexGrow: 1,
+                                    mr: '13px',
+                                    w: '126px',
+                                }}
+                                _after={{
+                                    content: '""',
+                                    borderBottom: "1px solid",
+                                    borderColor: '#000',
+                                    flexGrow: 1,
+                                    ml: '13px',
+                                    w: '126px'
+                                }}
+                                fontSize='text5'
+                                fontWeight='400'
+                                color='gray.500'
+                                lineHeight='32px'
+                                position='relative'
+                                alignItems='center'
+                                mt='25px'
+                            >Log in with</Flex>
                             <LoginIconContainer >
                                 <AiFillTwitterCircle size='28px'/>
                                 <AiFillGoogleCircle size='28px'/>

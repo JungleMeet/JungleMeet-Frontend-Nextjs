@@ -8,13 +8,14 @@ const placeHolderStyle = {
 }
 
 interface IFormInput {
-    type: string,
-    placeholder: string
+    name: string,
+    placeholder: string,
 }
-const FormInput = ({type, placeholder}:IFormInput) => {
+const FormInput = ({name, placeholder}:IFormInput) => {
+    console.log(name, placeholder);
     return (
         <Input 
-            type={type} 
+            type={name} 
             placeholder={placeholder}
             _placeholder={placeHolderStyle}
             w='359px'

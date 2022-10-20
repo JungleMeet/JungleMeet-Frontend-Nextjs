@@ -43,6 +43,7 @@
     "axios": "^0.27.2",
     "embla-carousel-autoplay": "^7.0.3",
     "embla-carousel-react": "^7.0.3",
+    "formik": "^2.2.9",
     "framer-motion": "^6",
     "lodash": "^4.17.21",
     "next": "^12.1.5",
