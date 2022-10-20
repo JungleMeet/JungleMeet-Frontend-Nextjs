@@ -9,7 +9,7 @@ import HamburgerDropdownItem from "./HamburgerDropdownItem";
 import styled from "styled-components";
 
 const MenuListTitle = styled.span`
-  padding-left: 15px;
+    padding-left: 15px;
 `;
 
 const HamburgerDropdown = () => {

@@ -1,16 +1,18 @@
 import styled from "styled-components";
 import Hamburger from "../Hamburger/Hamburger";
-import { Link, Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
+import { Link, Menu, MenuButton, MenuList, MenuItem, Button, useDisclosure } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import LoginModal from '../../Login/LoginModal';
 
 const IconContainerStyles = styled.div`
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  margin-right: 84.75px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-right: 84.75px;
 `;
 
 const IconContainer = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <IconContainerStyles>
             <Link
@@ -19,9 +21,11 @@ const IconContainer = () => {
                 fontWeight="700"
                 lineHeight="lh24"
                 fontFamily="secondary"
+                onClick={onOpen}
             >
         Sign in
             </Link>
+            <LoginModal isOpen={isOpen} onClose={onClose}/>
             <Hamburger />
             <Menu offset={[-30, 10]}>
                 <MenuButton
