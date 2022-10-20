@@ -6,16 +6,16 @@ import styled from "styled-components";
 import NavBar from "@/components/NavBarSection/NarBar";
 import FeaturedMovie from "@/components/MainPage/FeaturedMovie/FeaturedMovie";
 
-const PageContainer = styled.div`
+export const PageContainer = styled.div`
   max-width: 1440px;
   margin: auto;
-  padding-top: 90px;
+  padding: 90px;
 `;
 
 const HomePage = (): JSX.Element => {
     return (
         <>
-            <NavBar bgColor="transparent" />
+            <NavBar />
             <HeroBanner />
             <PageContainer>
                 <FeaturedMovie />
