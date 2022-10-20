@@ -12,15 +12,15 @@ const NewArrivals = () => {
     return (
         <SectionContainer>
             <NewArrivalsSectionHeaderContainer max-width="150px">
-                <SectionTitle >New Arrival</SectionTitle>
+                <SectionTitle>New Arrival</SectionTitle>
                 <Text fontWeight="500" fontSize="20px" fontFamily="heading" color="gray.500">
-                     Popular
+          Popular
                 </Text>
                 <Text fontWeight="500" fontSize="20px" fontFamily="heading" color="gray.500">
-                     Newest
+          Newest
                 </Text>
                 <Text fontWeight="500" fontSize="20px" fontFamily="heading" color="gray.500">
-                     Top10
+          Top10
                 </Text>
                 <SectionSubTitleSeeMore>
                     <SeeMore />
