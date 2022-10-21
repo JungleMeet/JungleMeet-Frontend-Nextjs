@@ -3,6 +3,7 @@ import { ChakraProvider, cookieStorageManager, localStorageManager } from "@chak
 import theme from "./theme";
 
 interface ChakraProps {
+    // eslint-disable-next-line
     cookies: any;
     children: React.ReactNode;
 }

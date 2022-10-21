@@ -11,7 +11,7 @@ import {
 const NewArrivals = () => {
     return (
         <SectionContainer>
-            <NewArrivalsSectionHeaderContainer>
+            <NewArrivalsSectionHeaderContainer max-width="150px">
                 <SectionTitle>New Arrival</SectionTitle>
                 <Text fontWeight="500" fontSize="20px" fontFamily="heading" color="gray.500">
           Popular
