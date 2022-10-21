@@ -5,6 +5,7 @@ import Footer from "@/components/FooterSection/Footer";
 import styled from "styled-components";
 import NavBar from "@/components/NavBarSection/NarBar";
 import FeaturedMovie from "@/components/MainPage/FeaturedMovie/FeaturedMovie";
+import PopularDisscusion from "@/components/MainPage/PopularDisscusion/PopularDisscusion";
 
 const PageContainer = styled.div`
   max-width: 1440px;
@@ -21,6 +22,7 @@ const HomePage = (): JSX.Element => {
                 <FeaturedMovie />
                 <NewArrivalVideos />
                 <ExclusiveVideos />
+                <PopularDisscusion />
             </PageContainer>
             <Footer />
         </>

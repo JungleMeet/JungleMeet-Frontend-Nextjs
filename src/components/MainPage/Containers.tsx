@@ -8,6 +8,7 @@ export const SectionContainer = styled.div`
 export const SectionHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 50px;
 `;
 
 export const NewArrivalsSectionHeaderContainer = styled.div`
