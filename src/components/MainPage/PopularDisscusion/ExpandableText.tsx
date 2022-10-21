@@ -16,17 +16,20 @@ const ExpandableText = forwardRef<HTMLDivElement, Props>(
       setExpandedCount(expandedCount ? undefined : noOfLines);
     };
 
-    useEffect(() => {
-      return () => {
-        console.log("Component will be unmount");
-      };
-    }, []);
-
-    const inputRef = React.useRef<HTMLInputElement | null>(null);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
     const isTextClamped =
       (inputRef.current?.scrollHeight as number) > (inputRef.current?.clientHeight as number) ||
       isClicked;
+
+    // useEffect(() => {
+    //   return () => {
+    //     console.log(inputRef.current?.scrollHeight);
+    //     console.log("---");
+    //     console.log(inputRef.current?.clientHeight);
+    //     console.log(isTextClamped);
+    //   };
+    // }, []);
 
     return (
       <Box ref={ref} {...rest}>
@@ -52,7 +55,5 @@ const ExpandableText = forwardRef<HTMLDivElement, Props>(
     );
   }
 );
-
-ExpandableText.displayName = "ExpandableText ";
 
 export default ExpandableText;

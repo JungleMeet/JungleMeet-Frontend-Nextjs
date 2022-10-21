@@ -6,10 +6,8 @@ import styled from "styled-components";
 import NavBar from "@/components/NavBarSection/NarBar";
 import FeaturedMovie from "@/components/MainPage/FeaturedMovie/FeaturedMovie";
 import PopularDisscusion from "@/components/MainPage/PopularDisscusion/PopularDisscusion";
-=======
 import WeeklyTop10Post from "@/components/MainPage/WeeklyTop10Post/WeeklyTop10Post";
 import { Flex } from "@chakra-ui/react";
->>>>>>> main
 
 const PageContainer = styled.div`
   max-width: 1440px;
@@ -18,22 +16,22 @@ const PageContainer = styled.div`
 `;
 
 const HomePage = (): JSX.Element => {
-    return (
-        <>
-            <NavBar bgColor="transparent" />
-            <HeroBanner />
-            <PageContainer>
-                <Flex>
-                    <FeaturedMovie />
-                    <WeeklyTop10Post />
-                </Flex>
-                <NewArrivalVideos />
-                <ExclusiveVideos />
-                <PopularDisscusion />
-            </PageContainer>
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      <NavBar bgColor="transparent" />
+      <HeroBanner />
+      <PageContainer>
+        <Flex>
+          <FeaturedMovie />
+          <WeeklyTop10Post />
+        </Flex>
+        <NewArrivalVideos />
+        <ExclusiveVideos />
+        <PopularDisscusion />
+      </PageContainer>
+      <Footer />
+    </>
+  );
 };
 
 export default HomePage;
