@@ -5,6 +5,8 @@ import Footer from "@/components/FooterSection/Footer";
 import styled from "styled-components";
 import NavBar from "@/components/NavBarSection/NarBar";
 import FeaturedMovie from "@/components/MainPage/FeaturedMovie/FeaturedMovie";
+import WeeklyTop10Post from "@/components/MainPage/WeeklyTop10Post/WeeklyTop10Post";
+import { Flex } from "@chakra-ui/react";
 
 export const PageContainer = styled.div`
   max-width: 1440px;
@@ -18,7 +20,10 @@ const HomePage = (): JSX.Element => {
             <NavBar />
             <HeroBanner />
             <PageContainer>
-                <FeaturedMovie />
+                <Flex>
+                    <FeaturedMovie />
+                    <WeeklyTop10Post />
+                </Flex>
                 <NewArrivalVideos />
                 <ExclusiveVideos />
             </PageContainer>
