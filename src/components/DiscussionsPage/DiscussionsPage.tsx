@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import Discussion from "./Discussion";
 import { discusstionsDate } from "./discussionsData";
+import Pagination from "./Pagination";
 
 const DiscussionsPage = () => {
     const discusstionnsDataMemo = useMemo(
@@ -24,7 +25,12 @@ const DiscussionsPage = () => {
         [discusstionsDate]
     );
 
-    return <>{discusstionnsDataMemo}</>;
+    return (
+        <>
+            {discusstionnsDataMemo}
+            <Pagination />
+        </>
+    );
 };
 
 export default DiscussionsPage;

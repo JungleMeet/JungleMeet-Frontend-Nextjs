@@ -1,16 +1,16 @@
-import heroImage from "@/assets/heroImage-Avengers.png";
+// import heroImage from "@/assets/heroImage-Avengers.png";
 import heroImage01 from "@/assets/herobanner-01.jpg";
 import heroImage02 from "@/assets/herobanner-02.jpg";
 
 export const heroData = [
-    {
-        title: "Avengers: End game",
-        imdb: "8.4",
-        thumbsUp: "95%",
-        image: heroImage,
-        about:
-      "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
-    },
+    // {
+    //     title: "Avengers: End game",
+    //     imdb: "8.4",
+    //     thumbsUp: "95%",
+    //     image: heroImage,
+    //     about:
+    //   "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
+    // },
     {
         title: "The Avengers",
         imdb: "8.5",

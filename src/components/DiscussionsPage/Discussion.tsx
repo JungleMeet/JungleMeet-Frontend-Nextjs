@@ -1,7 +1,7 @@
-import { Flex, Image, Link, Box, Divider } from "@chakra-ui/react";
+import { Flex, Image, Link, Box, Divider, Text } from "@chakra-ui/react";
 import React from "react";
 import DiscussionExerpt from "../DiscussionExerpt";
-import CreatedByTheAuthor from "./CreatedByTheAuthor";
+import CreatedByTheAuthor from "../CreatedByTheAuthor";
 
 interface IDiscussionProps {
     gap: string;
@@ -47,20 +47,23 @@ const Discussion = ({
                 <Link fontSize="text3" color="blue.500" fontWeight="700" lineHeight="lh28">
                     {title}
                 </Link>
-                <CreatedByTheAuthor
-                    gap={gap}
-                    color={color}
-                    fontSize={fontSize}
-                    lineHeight={lineHeight}
-                    fontWeight={fontWeight}
-                    imageSize={imageSize}
-                    likesColor={likesColor}
-                    author={author}
-                    createdAt={createdAt}
-                    likes={likes}
-                    views={views}
-                    comments={comments}
-                />
+                <Flex alignItems="center" justifyContent="space-between">
+                    <CreatedByTheAuthor
+                        gap={gap}
+                        color={color}
+                        fontSize={fontSize}
+                        lineHeight={lineHeight}
+                        fontWeight={fontWeight}
+                        imageSize={imageSize}
+                        author={author}
+                        createdAt={createdAt}
+                    />
+                    <Flex>
+                        <Text color="red">{likes} liked</Text>
+                        <Text color={likesColor}>&nbsp; &bull; {views} views </Text>
+                        <Text color={likesColor}>&nbsp; &bull; {comments} comments</Text>
+                    </Flex>
+                </Flex>
                 <DiscussionExerpt content={content} />
             </Box>
             <Divider />
