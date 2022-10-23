@@ -34,7 +34,7 @@ const HeroBanner = () => {
     const autoplay = useRef(autoPlay({ delay: 4000 }));
 
     return (
-        <Box w="100%" maxWidth="1440px" pos="relative" m="auto">
+        <Box w="100%" maxWidth="1440px" pos="relative" m="auto" paddingTop="76px">
             <Carousel
                 withIndicators
                 loop
