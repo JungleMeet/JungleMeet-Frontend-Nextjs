@@ -8,15 +8,17 @@ const placeHolderStyle = {
 }
 
 interface IFormInput {
-    name: string,
-    placeholder: string,
+    name: string;
+    placeholder: string;
+    type: string;
+    value: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-const FormInput = ({name, placeholder}:IFormInput) => {
-    console.log(name, placeholder);
+const FormInput = ({onChange, ...rest }:IFormInput) => {
+
     return (
         <Input 
-            type={name} 
-            placeholder={placeholder}
+            {...rest}
             _placeholder={placeHolderStyle}
             w='359px'
             h='50px'
@@ -24,6 +26,7 @@ const FormInput = ({name, placeholder}:IFormInput) => {
             pl='21px'
             pt='15px'
             pb='15px'
+            onChange = {onChange}
         />
     )
 }

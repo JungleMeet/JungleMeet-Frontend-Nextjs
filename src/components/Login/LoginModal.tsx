@@ -46,7 +46,7 @@ const LoginModal = ({isOpen, onClose}: ILoginModal) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose} >
             <ModalOverlay />
-            <ModalContent maxW='583px' h='583px'>
+            <ModalContent maxW='583px' minH='583px'>
                 <ModalHeader
                     display='flex'
                     flexDirection='column'
@@ -119,6 +119,8 @@ const LoginModal = ({isOpen, onClose}: ILoginModal) => {
                                 lineHeight='32px'
                                 position='relative'
                                 alignItems='center'
+                                width='359px'
+                                margin='auto'
                                 mt='25px'
                             >Log in with</Flex>
                             <LoginIconContainer >
