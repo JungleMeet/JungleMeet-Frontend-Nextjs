@@ -11,11 +11,11 @@ import {
     TabPanels,
     Tab,
     TabPanel,
-    Flex
-} from '@chakra-ui/react';
-import styled from 'styled-components';
-import LoginForm from './LoginForm/LoginForm';
-import {AiFillGoogleCircle, AiFillTwitterCircle} from "react-icons/ai";
+    Flex,
+} from "@chakra-ui/react";
+import styled from "styled-components";
+import LoginForm from "./LoginForm/LoginForm";
+import { AiFillGoogleCircle, AiFillTwitterCircle } from "react-icons/ai";
 
 interface ILoginModal {
     isOpen: boolean;
