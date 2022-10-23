@@ -6,7 +6,8 @@ import {
 
 
 type ThemeConfig = {
-    [key: string]: string | boolean
+    initialColorMode: string 
+    useSystemColorMode: boolean
 }
 
 const config: ThemeConfig = {
