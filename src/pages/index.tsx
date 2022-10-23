@@ -9,29 +9,29 @@ import PopularDisscusion from "@/components/MainPage/PopularDisscusion/PopularDi
 import WeeklyTop10Post from "@/components/MainPage/WeeklyTop10Post/WeeklyTop10Post";
 import { Flex } from "@chakra-ui/react";
 
-const PageContainer = styled.div`
+export const PageContainer = styled.div`
   max-width: 1440px;
   margin: auto;
-  padding-top: 90px;
+  padding: 90px;
 `;
 
 const HomePage = (): JSX.Element => {
-  return (
-    <>
-      <NavBar bgColor="transparent" />
-      <HeroBanner />
-      <PageContainer>
-        <Flex>
-          <FeaturedMovie />
-          <WeeklyTop10Post />
-        </Flex>
-        <NewArrivalVideos />
-        <ExclusiveVideos />
-        <PopularDisscusion />
-      </PageContainer>
-      <Footer />
-    </>
-  );
+    return (
+        <>
+            <NavBar />
+            <HeroBanner />
+            <PageContainer>
+                <Flex>
+                    <FeaturedMovie />
+                    <WeeklyTop10Post />
+                </Flex>
+                <NewArrivalVideos />
+                <ExclusiveVideos />
+                <PopularDisscusion />
+            </PageContainer>
+            <Footer />
+        </>
+    );
 };
 
 export default HomePage;

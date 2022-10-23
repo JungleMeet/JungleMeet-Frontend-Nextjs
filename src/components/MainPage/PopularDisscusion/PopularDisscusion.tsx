@@ -3,15 +3,15 @@ import { SectionContainer, SectionHeaderContainer, SectionTitle } from "../Conta
 import DisscusionPosts from "./DisscusionPosts";
 
 const PopularDisscusion = () => {
-  return (
-    <SectionContainer>
-      <SectionHeaderContainer>
-        <SectionTitle>Popular Disscusion</SectionTitle>
-        <SeeMore />
-      </SectionHeaderContainer>
-      <DisscusionPosts />
-    </SectionContainer>
-  );
+    return (
+        <SectionContainer>
+            <SectionHeaderContainer>
+                <SectionTitle>Popular Disscusion</SectionTitle>
+                <SeeMore />
+            </SectionHeaderContainer>
+            <DisscusionPosts />
+        </SectionContainer>
+    );
 };
 
 export default PopularDisscusion;

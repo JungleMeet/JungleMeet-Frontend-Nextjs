@@ -8,7 +8,7 @@ export const SectionContainer = styled.div`
 export const SectionHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
+  margin-bottom: 0px;
 `;
 
 export const NewArrivalsSectionHeaderContainer = styled.div`
@@ -18,7 +18,7 @@ export const NewArrivalsSectionHeaderContainer = styled.div`
   font-family: "Inter";
 `;
 export const SectionTitle = styled.div`
-  margin-bottom: 90px;
+  margin-bottom: 50px;
   font-weight: 700;
   font-size: 36px;
   line-height: 47px;
