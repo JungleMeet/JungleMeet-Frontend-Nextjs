@@ -18,18 +18,16 @@ const ExpandableText = forwardRef<HTMLDivElement, Props>(
 
     const inputRef = React.useRef<HTMLInputElement>(null);
 
-    const isTextClamped =
-      (inputRef.current?.scrollHeight as number) > (inputRef.current?.clientHeight as number) ||
-      isClicked;
+    const [display, setDisplay] = useState(false);
 
-    // useEffect(() => {
-    //   return () => {
-    //     console.log(inputRef.current?.scrollHeight);
-    //     console.log("---");
-    //     console.log(inputRef.current?.clientHeight);
-    //     console.log(isTextClamped);
-    //   };
-    // }, []);
+    useEffect(() => {
+      const isTextClamped =
+        (inputRef.current?.scrollHeight as number) > (inputRef.current?.clientHeight as number) ||
+        isClicked;
+
+      setDisplay(isTextClamped);
+      console.log(display);
+    }, [setDisplay]);
 
     return (
       <Box ref={ref} {...rest}>
@@ -40,7 +38,7 @@ const ExpandableText = forwardRef<HTMLDivElement, Props>(
         <Flex>
           <Spacer />
           <Button
-            display={isTextClamped ? "block" : "none"}
+            display={display ? "block" : "none"}
             fontSize="text5"
             variant="link"
             onClick={handleToggle}

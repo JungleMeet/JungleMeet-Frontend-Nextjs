@@ -66,6 +66,7 @@ const PostCardInfoProps: React.FC<PostCardInfoProps> = (props) => {
                 </Box>
               </Flex>
             </Box>
+
             <ExpandableText noOfLines={2}>
               <Text fontSize="text5" lineHeight="lh32">
                 {props.description}
