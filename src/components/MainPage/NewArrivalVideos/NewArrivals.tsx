@@ -23,7 +23,7 @@ const NewArrivals = () => {
           Top10
                 </Text>
                 <SectionSubTitleSeeMore>
-                    <SeeMore />
+                    <SeeMore href="/" />
                 </SectionSubTitleSeeMore>
             </NewArrivalsSectionHeaderContainer>
             <VideoCards />

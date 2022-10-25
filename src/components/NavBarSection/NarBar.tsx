@@ -3,11 +3,14 @@ import NavBarContainer from "./NavBarContainer";
 import { Input, InputGroup, InputRightElement, Image } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import IconContainer from "./IconContainer/IconContainer";
+import Link from "next/link";
 
 const NavBar = () => {
     return (
         <NavBarContainer>
-            <Image src="JungleMeetLogoWhiteText.svg" ml="48px" />
+            <Link href="/">
+                <Image src="JungleMeetLogoWhiteText.svg" ml="48px" _hover={{ cursor: "pointer" }} />
+            </Link>
             <InputGroup w="525px" h="36px">
                 <Input
                     _placeholder={{

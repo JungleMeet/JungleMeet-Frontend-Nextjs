@@ -7,7 +7,9 @@ const PageButton = ({ children }: { children: React.ReactNode }) => {
             bg="transparent"
             _hover={{
                 background: "transparent",
+                border: "none",
             }}
+            _focus={{ border: "none" }}
         >
             {children}
         </Button>

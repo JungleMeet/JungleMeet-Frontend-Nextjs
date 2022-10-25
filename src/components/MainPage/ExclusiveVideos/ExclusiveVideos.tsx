@@ -7,7 +7,7 @@ const ExclusiveVideos = () => {
         <SectionContainer>
             <SectionHeaderContainer>
                 <SectionTitle>Exclusive Videos</SectionTitle>
-                <SeeMore />
+                <SeeMore href="/" />
             </SectionHeaderContainer>
             <Videos />
         </SectionContainer>
