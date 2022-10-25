@@ -1,6 +1,6 @@
 import { Flex, Image, Link, Box, Divider, Text } from "@chakra-ui/react";
 import React from "react";
-import ExpandableText from "../MainPage/PopularDisscusion/ExpandableText";
+import ExpandableTextComponent from "../MainPage/PopularDisscusion/ExpandableTextComponent";
 import DiscussionAuthor from "./DiscussionAuthor";
 
 interface IDiscussionProps {
@@ -41,11 +41,11 @@ const Discussion = ({
                         <Text color="gray.400">&nbsp; &bull; {comments} comments</Text>
                     </Flex>
                 </Flex>
-                <ExpandableText noOfLines={2}>
+                <ExpandableTextComponent noOfLines={2}>
                     <Text fontSize="text5" lineHeight="lh32">
                         {content}
                     </Text>
-                </ExpandableText>
+                </ExpandableTextComponent>
             </Box>
             <Divider />
         </Flex>
