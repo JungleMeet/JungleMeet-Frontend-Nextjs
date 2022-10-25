@@ -12,7 +12,7 @@ import { Flex } from "@chakra-ui/react";
 export const PageContainer = styled.div`
   max-width: 1440px;
   margin: auto;
-  padding: 90px;
+  padding: 90px 90px 0px 90px;
 `;
 
 const HomePage = (): JSX.Element => {
