@@ -12,7 +12,7 @@ const FeaturedMovie = () => {
     return (
         <SectionContainer>
             <SectionHeaderContainer>
-                <SectionTitle>Featured Movie</SectionTitle>
+                <SectionTitle>NowPlaying</SectionTitle>
                 <SeeMore />
             </SectionHeaderContainer>
             <Movies />

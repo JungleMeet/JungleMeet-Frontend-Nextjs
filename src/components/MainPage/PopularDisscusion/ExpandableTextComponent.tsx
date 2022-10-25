@@ -53,4 +53,5 @@ const ExpandableTextComponent = forwardRef<HTMLDivElement, Props>(
     }
 );
 
+ExpandableTextComponent.displayName = "ExpandableTextComponent";
 export default ExpandableTextComponent;

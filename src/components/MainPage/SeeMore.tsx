@@ -7,7 +7,7 @@ const Container = styled.span`
   font-size: 18px;
   line-height: 24px;
   cursor: pointer;
-  padding-top: 18px;
+  // padding-top: 18px;
 `;
 interface ISeemore {
     onClick?: () => void;
