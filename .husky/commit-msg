@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn commitlint --edit 
+npx husky add .husky/commit-msg 'npx commitlint --edit $1'

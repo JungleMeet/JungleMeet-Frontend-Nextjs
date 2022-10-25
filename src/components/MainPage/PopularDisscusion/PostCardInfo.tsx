@@ -1,7 +1,7 @@
 import { Flex, Text, Link, Spacer, Stack, Heading, Box, Image, Divider } from "@chakra-ui/react";
 import { PostsContainer } from "./PostsContainer";
 import React from "react";
-import ExpandableText from "./ExpandableText";
+import ExpandableTextComponent from "./ExpandableTextComponent";
 
 interface PostCardInfoProps {
     title: string;
@@ -67,11 +67,11 @@ const PostCardInfoProps: React.FC<PostCardInfoProps> = (props) => {
                             </Flex>
                         </Box>
 
-                        <ExpandableText noOfLines={2}>
+                        <ExpandableTextComponent noOfLines={2}>
                             <Text fontSize="text5" lineHeight="lh32">
                                 {props.description}
                             </Text>
-                        </ExpandableText>
+                        </ExpandableTextComponent>
                     </Box>
                 </Flex>
                 <Divider marginTop="18px" />
