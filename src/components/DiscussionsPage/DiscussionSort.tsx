@@ -9,9 +9,14 @@ const DiscussionSort = () => {
           Sorted By:
                 </Heading>
             </label>
-            <Select placeholder="views count" height="53px" width="176px" variant="outline">
-                <option>liked count</option>
-                <option>comments count</option>
+            <Select
+                placeholder="Most Viewed"
+                height="53px"
+                width="176px"
+                variant="outline"
+                fontSize={"text2"}
+            >
+                <option>Most Recent</option>
             </Select>
         </Flex>
     );
