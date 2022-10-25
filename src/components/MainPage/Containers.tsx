@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const SectionContainer = styled.div`
   width: 100%;
   // margin-bottom: 90px;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   margin-top: 82px;
 `;
 
