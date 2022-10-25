@@ -18,7 +18,6 @@ const LoginForm = () => {
         <Form
             onSubmit={(event) => {
                 event.preventDefault();
-                console.log(email, password);
             }}
         >
             <FormControl width="auto" p="0">

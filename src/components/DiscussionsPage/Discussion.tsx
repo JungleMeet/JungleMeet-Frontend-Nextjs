@@ -1,16 +1,9 @@
 import { Flex, Image, Link, Box, Divider, Text } from "@chakra-ui/react";
 import React from "react";
-import DiscussionExerpt from "../DiscussionExerpt";
-import CreatedByTheAuthor from "../CreatedByTheAuthor";
+import ExpandableTextComponent from "../MainPage/PopularDisscusion/ExpandableTextComponent";
+import DiscussionAuthor from "./DiscussionAuthor";
 
 interface IDiscussionProps {
-    gap: string;
-    color: string;
-    fontSize: string;
-    lineHeight: string;
-    fontWeight: string;
-    imageSize: string;
-    likesColor: string;
     title: string;
     image: string;
     alt: string;
@@ -23,13 +16,6 @@ interface IDiscussionProps {
 }
 
 const Discussion = ({
-    gap,
-    color,
-    fontSize,
-    lineHeight,
-    fontWeight,
-    imageSize,
-    likesColor,
     title,
     image,
     alt,
@@ -48,23 +34,18 @@ const Discussion = ({
                     {title}
                 </Link>
                 <Flex alignItems="center" justifyContent="space-between">
-                    <CreatedByTheAuthor
-                        gap={gap}
-                        color={color}
-                        fontSize={fontSize}
-                        lineHeight={lineHeight}
-                        fontWeight={fontWeight}
-                        imageSize={imageSize}
-                        author={author}
-                        createdAt={createdAt}
-                    />
+                    <DiscussionAuthor author={author} createdAt={createdAt} />
                     <Flex>
                         <Text color="red">{likes} liked</Text>
-                        <Text color={likesColor}>&nbsp; &bull; {views} views </Text>
-                        <Text color={likesColor}>&nbsp; &bull; {comments} comments</Text>
+                        <Text color="gray.400">&nbsp; &bull; {views} views </Text>
+                        <Text color="gray.400">&nbsp; &bull; {comments} comments</Text>
                     </Flex>
                 </Flex>
-                <DiscussionExerpt content={content} />
+                <ExpandableTextComponent noOfLines={2}>
+                    <Text fontSize="text5" lineHeight="lh32">
+                        {content}
+                    </Text>
+                </ExpandableTextComponent>
             </Box>
             <Divider />
         </Flex>

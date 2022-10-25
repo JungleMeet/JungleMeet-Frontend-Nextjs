@@ -13,7 +13,7 @@ const FeaturedMovie = () => {
         <SectionContainer>
             <SectionHeaderContainer>
                 <SectionTitle>NowPlaying</SectionTitle>
-                <SeeMore />
+                <SeeMore href="/" />
             </SectionHeaderContainer>
             <Movies />
         </SectionContainer>

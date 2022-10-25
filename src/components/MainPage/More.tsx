@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 const Container = styled.span`
@@ -14,11 +15,15 @@ const Container = styled.span`
   cursor: pointer;
 `;
 interface IMore {
-    onClick?: () => void;
+    href: string;
 }
 
-const More = ({ onClick }: IMore): JSX.Element => {
-    return <Container onClick={onClick}>More &gt;&gt;</Container>;
+const More = ({ href }: IMore): JSX.Element => {
+    return (
+        <Link href={href} style={{ cursor: "pointer" }}>
+            <Container>More &gt;&gt;</Container>
+        </Link>
+    );
 };
 
 export default More;
