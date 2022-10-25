@@ -41,7 +41,7 @@ const ExpandableTextComponent = forwardRef<HTMLDivElement, Props>(
                         fontSize="text5"
                         variant="link"
                         onClick={handleToggle}
-                        _focus={{border:"none"}}
+                        _focus={{ border: "none" }}
                         mr="20px"
                     >
                         <Text fontSize="text5" lineHeight="lh32" textColor="blue.500">
