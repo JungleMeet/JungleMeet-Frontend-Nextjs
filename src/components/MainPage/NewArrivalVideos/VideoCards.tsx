@@ -94,7 +94,7 @@ const VideoCards = () => {
 
                 return (
                     <Carousel.Slide gap={49} key={id}>
-                        <VideoThumbnail src={src} title={title} />
+                        <VideoThumbnail src={src} title={title} id={id} />
                         <VideoCardInfo
                             title={title}
                             country={country}
