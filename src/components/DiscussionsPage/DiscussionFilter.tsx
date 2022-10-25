@@ -1,5 +1,6 @@
-import { Flex, Switch, Stack, Heading, Divider, Text, Select } from "@chakra-ui/react";
+import { Flex, Switch, Stack, Heading, Divider, Text } from "@chakra-ui/react";
 import React from "react";
+import DiscussionSort from "./DiscussionSort";
 
 const DiscussionFilter = () => {
     return (
@@ -14,17 +15,7 @@ const DiscussionFilter = () => {
                         <Text fontSize={"text2"}>Abstract</Text>
                     </Stack>
                 </Flex>
-                <Flex alignItems="center">
-                    <label htmlFor="sort">
-                        <Heading fontSize={"text1"} pr="17px">
-              Sorted By:
-                        </Heading>
-                    </label>
-                    <Select placeholder="views count" height="53px" width="176px" variant="outline">
-                        <option>liked count</option>
-                        <option>comments count</option>
-                    </Select>
-                </Flex>
+                <DiscussionSort />
             </Flex>
             <Divider orientation="horizontal" mt="13px" />
         </>
