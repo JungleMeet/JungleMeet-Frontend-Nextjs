@@ -8,17 +8,15 @@ const Container = styled.div`
   font-size: 18px;
   line-height: 24px;
   cursor: pointer;
-  padding-top: 18px;
+  // padding-top: 18px;
 `;
 interface ISeemore {
-    // onClick?: () => void;
     href: string;
 }
 
 const SeeMore = ({ href }: ISeemore): JSX.Element => {
-    // return <Container onClick={onClick}>See more &gt;</Container>;
     return (
-        <Link href={href}>
+        <Link href={href} style={{ cursor: "pointer" }}>
             <Container>See more &gt;</Container>
         </Link>
     );
