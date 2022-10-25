@@ -38,12 +38,6 @@ const DiscussionsPage = () => {
                 postsPerPage={postsPerPage}
                 totalPosts={posts.length}
                 paginate={paginate}
-                // handleCreatePath={(pagination) =>
-                //     qs.stringifyUrl(
-                //       { url: "/", query: { pagination, keyword } },
-                //       { skipEmptyString: true, skipNull: true }
-                //     )
-                //   }
             />
         </>
     );

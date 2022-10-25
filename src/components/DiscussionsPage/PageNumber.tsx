@@ -37,6 +37,6 @@ const PageNumber = React.forwardRef<HTMLDivElement, IPageNumberProps>(
     }
 );
 
-PageNumber.displayName = "PageNumber"
+PageNumber.displayName = "PageNumber";
 
 export default PageNumber;

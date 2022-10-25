@@ -1,7 +1,7 @@
 import ArrowLeftSVG from "@/assets/ArrowLeftSVG";
 import ArrowRightSVG from "@/assets/ArrowRightSVG";
 import { Flex, Text, Input, HStack } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React from "react";
 import PageButton from "./PageButton";
 import PageNumber from "./PageNumber";
 import Link from "next/link";
@@ -19,16 +19,6 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }: IPaginationProps) =>
         pageNumbers.push(i);
     }
 
-    const element = React.useRef<HTMLDivElement>(null);
-
-    // console.log("+++++",element.current);
-
-    useEffect(() => {
-        if (element.current) {
-            element.current.focus();
-        }
-    }, []);
-
     return (
         <Flex justifyContent="center" gap="30px" marginTop="55px">
             <Flex alignItems="center">
@@ -39,7 +29,6 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }: IPaginationProps) =>
                     {pageNumbers.length > 0 &&
             pageNumbers.map((number) => (
                 <Link href="#" key={number}>
-                    {/* <PageNumber onClick={() => paginate(number)} ref={element}> */}
                     <PageNumber onClick={() => paginate(number)}>{number}</PageNumber>
                 </Link>
             ))}
