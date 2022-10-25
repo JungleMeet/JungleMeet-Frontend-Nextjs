@@ -39,12 +39,8 @@ const HamburgerDropdown = () => {
         <>
             <MenuList minW="180px">
                 <MenuListTitle>Application</MenuListTitle>
-                {MENU_ITEMS.map(({itemIcon, ...rest}) => (
-                    <HamburgerDropdownItem
-                        key={rest.content}
-                        Icon={itemIcon}
-                        {...rest}
-                    />
+                {MENU_ITEMS.map(({ itemIcon, ...rest }) => (
+                    <HamburgerDropdownItem key={rest.content} Icon={itemIcon} {...rest} />
                 ))}
             </MenuList>
         </>
