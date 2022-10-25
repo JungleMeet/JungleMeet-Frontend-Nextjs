@@ -13,7 +13,7 @@ const Hamburger = () => {
         <Menu offset={[-60, 10]}>
             <MenuButton>
                 <HamburgerContainer>
-                    <Image src="./hamburger.svg" />
+                    <Image src="../hamburger.svg" />
                 </HamburgerContainer>
             </MenuButton>
             <HamburgerDropdown />

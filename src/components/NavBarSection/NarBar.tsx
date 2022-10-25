@@ -3,14 +3,13 @@ import NavBarContainer from "./NavBarContainer";
 import { Input, InputGroup, InputRightElement, Image } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import IconContainer from "./IconContainer/IconContainer";
+// eslint-disable-next-line no-unused-vars
 import Link from "next/link";
 
 const NavBar = () => {
     return (
         <NavBarContainer>
-            <Link href="/">
-                <Image src="JungleMeetLogoWhiteText.svg" ml="48px" cursor="pointer" />
-            </Link>
+            <Image src="../JungleMeetLogoWhiteText.svg" ml="48px" />
             <InputGroup w="525px" h="36px">
                 <Input
                     _placeholder={{

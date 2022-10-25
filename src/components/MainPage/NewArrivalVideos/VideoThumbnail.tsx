@@ -1,14 +1,17 @@
 import { Box, Image } from "@chakra-ui/react";
-
+import Link from "next/link";
 export interface IVideoThumbnailProps {
     src: string;
     title: string;
+    id: number;
 }
 
-const VideoThumbnail = ({ src, title }: IVideoThumbnailProps): JSX.Element => {
+const VideoThumbnail = ({ src, title, id }: IVideoThumbnailProps): JSX.Element => {
     return (
         <Box pos="relative">
-            <img src={src} title={title} width="160" height="310"></img>
+            <Link href={`/movies/${id}`}>
+                <img src={src} title={title} width="160" height="310"></img>
+            </Link>
             <Box
                 bg="rgba(156, 163, 175, 0.5)"
                 width="30px"
