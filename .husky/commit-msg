@@ -2,4 +2,3 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npx husky add .husky/commit-msg 'npx commitlint --edit $1'
-npx commitlint --edit
