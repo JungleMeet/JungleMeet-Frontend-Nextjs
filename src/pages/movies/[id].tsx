@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import Footer from "@/components/FooterSection/Footer";
 import NavBar from "@/components/NavBarSection/NarBar";
 import React from "react";
+import { PageContainer } from "../index";
 
 const MoviePage = (): JSX.Element => {
     const router = useRouter();
@@ -9,7 +10,9 @@ const MoviePage = (): JSX.Element => {
     return (
         <>
             <NavBar />
-            {id}
+            <PageContainer>
+                <span>{id}</span>
+            </PageContainer>
             <Footer />
         </>
     );

@@ -1,6 +1,6 @@
 import ExclusiveVideos from "@/components/MainPage/ExclusiveVideos/ExclusiveVideos";
 import HeroBanner from "@/components/MainPage/HeroBanner/HeroBanner";
-import NewArrivalVideos from "@/components/MainPage/NewArrivalVideos/NewArrivals";
+import UpcomingMovies from "@/components/MainPage/UpcomingMovies/UpcomingMovies";
 import Footer from "@/components/FooterSection/Footer";
 import styled from "styled-components";
 import NavBar from "@/components/NavBarSection/NarBar";
@@ -26,7 +26,7 @@ const HomePage = (): JSX.Element => {
                     <NowPlaying />
                     <WeeklyTop10Post />
                 </Flex>
-                <NewArrivalVideos />
+                <UpcomingMovies />
                 <ExclusiveVideos />
                 <PopularDisscusion />
             </PageContainer>

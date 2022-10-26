@@ -14,9 +14,13 @@ const WeeklyList = ({ ranking, title, icon }: IWeeklyListProps) => {
             borderBottomColor="#DFDFDF"
             alignItems="center"
         >
-            <Flex gap="22" paddingBottom="8px" paddingTop="19px">
-                <Text>{ranking}</Text>
-                <Text color="#3B82F6">{title}</Text>
+            <Flex gap="22" paddingBottom="8px">
+                <Text fontSize="14px" fontWeight="500" lineHeight="20px">
+                    {ranking}
+                </Text>
+                <Text color="#3B82F6" fontSize="14px" fontWeight="500" lineHeight="20px">
+                    {title}
+                </Text>
             </Flex>
             <Image src={icon} alignItems="end" />
         </Flex>

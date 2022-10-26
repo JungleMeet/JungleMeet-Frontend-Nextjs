@@ -4,6 +4,7 @@ import WeeklyList from "./WeeklyList";
 const WeeklyListContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 19px;
 `;
 const Lists = [
     { title: "The First post name", ranking: 1, icon: "/Fire.svg" },

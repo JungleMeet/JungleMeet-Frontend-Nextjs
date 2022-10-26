@@ -10,6 +10,7 @@ interface Props extends BoxProps {
 const ExpandableTextComponent = forwardRef<HTMLDivElement, Props>(
     ({ children, noOfLines, ...rest }, ref) => {
         const [expandedCount, setExpandedCount] = useState<number | undefined>(noOfLines);
+        // console.log(expandedCount);
         const [isClicked, setIsClicked] = useState(false);
         const handleToggle = () => {
             setIsClicked(true);
@@ -26,7 +27,7 @@ const ExpandableTextComponent = forwardRef<HTMLDivElement, Props>(
         isClicked;
 
             setDisplay(isTextClamped);
-        }, [setDisplay]);
+        }, []);
 
         return (
             <Box ref={ref} {...rest}>
