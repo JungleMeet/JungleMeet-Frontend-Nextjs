@@ -1,0 +1,487 @@
+1
+00:00:00,600 --> 00:00:05,700
+Welcome back to this court, so honest for you that, first of all, our nation in this first video
+
+2
+00:00:05,700 --> 00:00:10,920
+of the session supported, I will use a political presentation, which is quite popular package for
+
+3
+00:00:11,060 --> 00:00:11,520
+the nation.
+
+4
+00:00:11,880 --> 00:00:16,150
+And this president looks like this here.
+
+5
+00:00:16,410 --> 00:00:22,260
+OK, so first of all, it's all this president from here go back and I simply go to the new terminal
+
+6
+00:00:22,410 --> 00:00:25,710
+and put that here and install it.
+
+7
+00:00:26,430 --> 00:00:30,900
+And then I go to my components and the home component.
+
+8
+00:00:32,010 --> 00:00:42,420
+First of all, import that, so import the veggie nation from the.
+
+9
+00:00:45,940 --> 00:00:59,870
+Oops, Vasteras dash pagination, and then I will use it after this section for displaying all the product
+
+10
+00:01:00,310 --> 00:01:00,760
+rooms.
+
+11
+00:01:01,240 --> 00:01:02,410
+So pagination.
+
+12
+00:01:05,760 --> 00:01:08,850
+And we have to actually wrap it inside.
+
+13
+00:01:10,410 --> 00:01:13,320
+A empty bags.
+
+14
+00:01:17,730 --> 00:01:22,970
+Like this and the pictures, we have to pass a lot of options, actually, first of all, I have to
+
+15
+00:01:22,980 --> 00:01:27,690
+display the active page.
+
+16
+00:01:28,500 --> 00:01:30,340
+So what is the active page of the portrait?
+
+17
+00:01:30,360 --> 00:01:36,990
+Later than I have also posted here the items on the page.
+
+18
+00:01:37,740 --> 00:01:40,760
+OK, so how many items want to display per page?
+
+19
+00:01:41,010 --> 00:01:43,620
+So for that I have to actually import from here.
+
+20
+00:01:46,400 --> 00:01:58,780
+On the state results page, then I will stay here, the room's count and then the filtered count like
+
+21
+00:01:58,780 --> 00:02:07,480
+this, so I will simply pass deserves a page right here, then have to pass.
+
+22
+00:02:07,480 --> 00:02:20,410
+The total items count so total items count in the rooms, count how many items have that is rooms count
+
+23
+00:02:21,470 --> 00:02:24,070
+all you have to give up on change.
+
+24
+00:02:24,280 --> 00:02:25,740
+That is basically a function.
+
+25
+00:02:26,350 --> 00:02:31,050
+So then the debate is change.
+
+26
+00:02:31,270 --> 00:02:33,610
+I have to do something, some sort of I set.
+
+27
+00:02:37,220 --> 00:02:38,740
+Front page.
+
+28
+00:02:40,290 --> 00:02:49,480
+No, I have the past couple of options, first of all, of the next page is equal to for next page text.
+
+29
+00:02:50,050 --> 00:02:53,380
+OK, that is going to be next.
+
+30
+00:02:53,950 --> 00:02:55,450
+These rules are not required.
+
+31
+00:02:55,480 --> 00:02:56,740
+This one is not required.
+
+32
+00:02:57,340 --> 00:02:59,560
+But I want to display the next and previous.
+
+33
+00:03:03,500 --> 00:03:12,920
+Also, OK, so for the previous display here, the previous model, if I go there, you can see that
+
+34
+00:03:12,920 --> 00:03:15,650
+here by default it will display these icons.
+
+35
+00:03:15,930 --> 00:03:19,440
+So I want to replace that for the next page, I believe.
+
+36
+00:03:19,460 --> 00:03:22,980
+What's next for the previous type here?
+
+37
+00:03:23,000 --> 00:03:24,660
+Previous and these are.
+
+38
+00:03:24,680 --> 00:03:27,880
+And this button and this is the first page and the last page.
+
+39
+00:03:28,160 --> 00:03:32,360
+So I'll use coastland last after next to previous.
+
+40
+00:03:32,360 --> 00:03:36,470
+I also have right here first page text.
+
+41
+00:03:37,190 --> 00:03:40,670
+That is going to be first.
+
+42
+00:03:42,510 --> 00:03:53,450
+Then we have the last page text which is last, then display here, pass here the item
+
+43
+00:03:56,780 --> 00:03:57,380
+Glaus.
+
+44
+00:03:58,830 --> 00:04:04,680
+That is the item, because I have override these glasses.
+
+45
+00:04:05,250 --> 00:04:12,950
+I have changed the color and the UI a little bit, you can find those in the scenes.
+
+46
+00:04:12,950 --> 00:04:17,900
+That's fine, actually, if I go to Styles and global access.
+
+47
+00:04:18,960 --> 00:04:20,850
+And I called the these.
+
+48
+00:04:23,160 --> 00:04:31,520
+Some of them here, you will see that I have changed from color to the page color, paging over color.
+
+49
+00:04:31,960 --> 00:04:40,900
+So you have this over these tiles not as defined as function alerts, actually call this handle pagination
+
+50
+00:04:40,900 --> 00:04:41,500
+like this.
+
+51
+00:04:42,400 --> 00:04:44,620
+OK, simply copied from here.
+
+52
+00:04:45,760 --> 00:04:50,170
+Goldthorpe and I defined out here so const handle pagination.
+
+53
+00:04:51,370 --> 00:05:01,550
+That is going to a function that will have the page number, which is the current page number that should
+
+54
+00:05:01,580 --> 00:05:07,570
+not give us, and then after getting the page and I simply have to go to that particular page number
+
+55
+00:05:07,570 --> 00:05:18,010
+of that products, what I do is right here, window door location, thought he should have is going
+
+56
+00:05:18,010 --> 00:05:21,940
+to be able to slash, which is the home page.
+
+57
+00:05:22,210 --> 00:05:24,600
+But now I will pass here.
+
+58
+00:05:24,610 --> 00:05:25,540
+That is called Page.
+
+59
+00:05:25,970 --> 00:05:33,700
+What is the page that pages page number that this will give us pagination.
+
+60
+00:05:33,880 --> 00:05:36,010
+OK, first of it.
+
+61
+00:05:37,690 --> 00:05:40,240
+And what is the error?
+
+62
+00:05:43,690 --> 00:05:51,160
+But we have to give the activation number, so now we are setting the page in the query so you can get
+
+63
+00:05:51,180 --> 00:06:01,450
+the biscuit from the query, a similar type here calls the page from Roder query.
+
+64
+00:06:02,140 --> 00:06:06,840
+And we also have to import the water from the next selection order.
+
+65
+00:06:07,450 --> 00:06:13,390
+So import use, rather, from next.
+
+66
+00:06:14,600 --> 00:06:19,280
+Slash Roger and then I have to use this.
+
+67
+00:06:25,050 --> 00:06:31,980
+OK, it's not from the doctor or the current number, which is which will be in here.
+
+68
+00:06:32,040 --> 00:06:38,970
+OK, so by default there is not any page numbers also written here that by default the patient is going
+
+69
+00:06:38,970 --> 00:06:41,730
+to be one like this and.
+
+70
+00:06:42,580 --> 00:06:48,790
+And from the work we do, we get back our page in form of string, so we have to read that a number.
+
+71
+00:06:49,110 --> 00:06:57,160
+The the the page is equal to number and parts of the page, and we are overriding the value of page
+
+72
+00:06:57,970 --> 00:07:01,360
+led by default.
+
+73
+00:07:01,720 --> 00:07:06,670
+If you go to the home page without any page query, then in that case the patient is going to be one
+
+74
+00:07:06,670 --> 00:07:09,550
+by default and it can give us in springform.
+
+75
+00:07:09,550 --> 00:07:10,930
+So we convert that into the number.
+
+76
+00:07:11,140 --> 00:07:20,350
+And now I will pass this page as the current page in our active page like this subliterate and also
+
+77
+00:07:20,350 --> 00:07:20,980
+go back.
+
+78
+00:07:21,750 --> 00:07:24,460
+Let's close this one a little page.
+
+79
+00:07:24,550 --> 00:07:29,950
+You will see that you to have a patient here, surgical center as we go about maybe a score.
+
+80
+00:07:30,980 --> 00:07:43,910
+And what I do is I first of all, to type here a check that if reserves are paid is less, then so if
+
+81
+00:07:43,920 --> 00:07:48,290
+reserves per page is less, then the rules count.
+
+82
+00:07:49,240 --> 00:07:52,120
+OK, then I have to pay attention.
+
+83
+00:07:54,220 --> 00:07:54,790
+All right.
+
+84
+00:07:54,800 --> 00:07:55,790
+So I simply
+
+85
+00:07:58,550 --> 00:07:58,820
+this.
+
+86
+00:07:59,600 --> 00:07:59,920
+OK.
+
+87
+00:08:01,040 --> 00:08:07,040
+So, for example, if the rumors are true and that's what we are just for, for definitely it doesn't
+
+88
+00:08:07,040 --> 00:08:09,020
+make any sense to discredit pagination.
+
+89
+00:08:09,200 --> 00:08:12,630
+So make sure that the results are paid is less than the rumors count.
+
+90
+00:08:12,980 --> 00:08:18,820
+OK, in this case only seven and eight is false or distraught to sample it.
+
+91
+00:08:18,830 --> 00:08:27,680
+I give it a glass display, Fleck's moocher class and then I type here justify.
+
+92
+00:08:32,010 --> 00:08:42,810
+Content center to center, and then I will also moderate both sides like this, and then I got this
+
+93
+00:08:42,930 --> 00:08:48,960
+live and wrapped inside that is like this and now I go back.
+
+94
+00:08:49,410 --> 00:08:56,230
+Now it is centered so I can see that we are getting only here two pages, one and two, because Fusspot
+
+95
+00:08:56,230 --> 00:09:00,120
+products are on first page and millions of products are on my second page.
+
+96
+00:09:00,120 --> 00:09:06,980
+If I want to, you will see that it goes to this is all pages equal to page number two.
+
+97
+00:09:07,230 --> 00:09:12,450
+But the products are the same because we also have to participate on our backend.
+
+98
+00:09:13,200 --> 00:09:24,480
+So now we successfully get paid is equal to what I do is I simply go back on your score and in the pages
+
+99
+00:09:25,200 --> 00:09:34,460
+in or whether it is index in those index number, you also have access here of quitte.
+
+100
+00:09:36,990 --> 00:09:37,410
+OK.
+
+101
+00:09:38,960 --> 00:09:44,590
+We as we have access to the programs, we also have access to liquidity, so nobody can pass here after
+
+102
+00:09:44,600 --> 00:09:45,030
+request.
+
+103
+00:09:45,050 --> 00:09:48,450
+I can also pass here the equity page.
+
+104
+00:09:48,740 --> 00:09:51,110
+OK, but what is the current page number?
+
+105
+00:09:52,070 --> 00:09:55,220
+Simply save it and then go back to my actions.
+
+106
+00:09:56,680 --> 00:10:06,040
+So the actions, actions and now here I will get my request and also have a look at the current page
+
+107
+00:10:06,040 --> 00:10:06,420
+number.
+
+108
+00:10:06,700 --> 00:10:09,040
+So by default, that is also going to be one here.
+
+109
+00:10:09,650 --> 00:10:16,010
+OK, if we don't get back any to page, no defaults on the first page.
+
+110
+00:10:16,690 --> 00:10:22,750
+So after the runes, I simply have to pass in here that page.
+
+111
+00:10:24,860 --> 00:10:33,890
+Is equal to the current rate like this and are also sending the request the back and if to go back.
+
+112
+00:10:35,330 --> 00:10:43,890
+Reload page, you will see that now on page two and we are seeing the military are rooms, if I go to
+
+113
+00:10:43,890 --> 00:10:47,730
+one more page called one and we are displaying all the rooms.
+
+114
+00:10:47,970 --> 00:10:56,730
+And even though if I remove this page and now is on the one to go to, if I go back to my escort in
+
+115
+00:10:56,730 --> 00:11:01,280
+the controllers room controllers, I change per page proposal.
+
+116
+00:11:02,990 --> 00:11:03,140
+It.
+
+117
+00:11:04,740 --> 00:11:11,430
+So close, this one, this one month ago, back if I paid, you will see that on page two.
+
+118
+00:11:11,430 --> 00:11:18,010
+We have one group products, but now we have these four pages here because now they are displaying truisms
+
+119
+00:11:18,120 --> 00:11:19,560
+but bit like this.
+
+120
+00:11:19,830 --> 00:11:25,610
+OK, so this one that was also implemented successfully here, I hope I understand in my next video,
+
+121
+00:11:25,620 --> 00:11:29,070
+I will also handle this search functionality in this project.
+
+122
+00:11:29,250 --> 00:11:31,230
+OK, so I will see you the next video.
