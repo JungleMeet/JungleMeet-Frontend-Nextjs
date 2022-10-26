@@ -2,6 +2,7 @@ import { Button, FormControl, FormErrorMessage } from "@chakra-ui/react";
 import FormInput from "./FormInput";
 import { useState } from "react";
 import styled from "styled-components";
+import login from '../../../api/login';
 
 const Form = styled.form`
   display: flex;
@@ -17,6 +18,8 @@ const LoginForm = () => {
     return (
         <Form
             onSubmit={(event) => {
+                const res = login(email, password);
+                console.log(res);
                 event.preventDefault();
             }}
         >
