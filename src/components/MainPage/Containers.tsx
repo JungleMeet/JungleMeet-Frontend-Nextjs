@@ -12,7 +12,7 @@ export const SectionHeaderContainer = styled.div`
   justify-content: space-between;
   margin-bottom: 50px;
   align-items: center;
-  padding: 3.5px 0;
+  // padding: 3.5px 0;
 `;
 
 export const NewArrivalsSectionHeaderContainer = styled.div`
