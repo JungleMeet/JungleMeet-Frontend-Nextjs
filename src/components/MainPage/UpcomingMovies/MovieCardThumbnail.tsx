@@ -1,4 +1,4 @@
-import { Box, Image} from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import Link from "next/link";
 export interface IMovieCardThumbnailProps {
     src: string;
@@ -8,7 +8,7 @@ export interface IMovieCardThumbnailProps {
 
 const MovieCardThumbnail = ({ src, title, id }: IMovieCardThumbnailProps): JSX.Element => {
     return (
-        <Box w='100%'>
+        <Box w="100%">
             <Link href={`/movies/${id}`}>
                 <Image src={src} title={title} width="100%" height="321"></Image>
             </Link>

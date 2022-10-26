@@ -11,7 +11,7 @@ const IMDBRanking = ({ gap, imdb, color }: IIMDBRankingProps): JSX.Element => {
     return (
         <Flex gap={gap} height="12px" m="0" width="100%">
             <Box display="flex" alignItems="center">
-                <Image src="/TMDB.svg" mr="9px" width="39px"/>
+                <Image src="/TMDB.svg" mr="9px" width="39px" />
                 <Text fontSize="text6" lineHeight="12px" color={color} fontFamily="secondary">
                     {imdb}
                 </Text>

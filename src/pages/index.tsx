@@ -10,10 +10,10 @@ import WeeklyTop10Post from "@/components/MainPage/WeeklyTop10Post/WeeklyTop10Po
 import { Flex } from "@chakra-ui/react";
 
 export const PageContainer = styled.div`
-    max-width: 1440px;
-    margin: auto;
-    padding: 98px;
-    padding-bottom: 0;
+  max-width: 1440px;
+  margin: auto;
+  padding: 98px;
+  padding-bottom: 0;
 `;
 
 const HomePage = (): JSX.Element => {
