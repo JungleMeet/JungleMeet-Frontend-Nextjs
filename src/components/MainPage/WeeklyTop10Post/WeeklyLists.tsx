@@ -5,7 +5,6 @@ const WeeklyListContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 19px;
-  
 `;
 const Lists = [
     { title: "The First post name", ranking: 1, icon: "/Fire.svg" },
@@ -22,7 +21,7 @@ const Lists = [
 
 const WeeklyLists = () => {
     return (
-        <WeeklyListContainer >
+        <WeeklyListContainer>
             {Lists.map(({ title, ranking, icon }) => {
                 return <WeeklyList title={title} ranking={ranking} icon={icon} key={title} />;
             })}

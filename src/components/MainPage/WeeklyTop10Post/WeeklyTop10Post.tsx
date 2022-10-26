@@ -4,17 +4,17 @@ import More from "../More";
 import WeeklyLists from "./WeeklyLists";
 
 const SectionContainer = styled.div`
-    width: 600px;
-    padding-left: 56px;
+  width: 600px;
+  padding-left: 56px;
 `;
 
 const WeeklyTop10Header = styled(SectionHeaderContainer)`
-    margin-bottom: 22px;
-`
+  margin-bottom: 22px;
+`;
 
 const WeeklyTop10Title = styled(SectionTitle)`
-    font-size: 24px
-`
+  font-size: 24px;
+`;
 const WeeklyTop10Post = () => {
     return (
         <SectionContainer>

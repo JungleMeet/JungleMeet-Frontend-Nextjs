@@ -59,6 +59,9 @@ const MovieThumbnail = ({ src, title, imdb, icon, watch }: IMovieThumbnailProps)
                     height="32px"
                     backdropFilter="blur(5px)"
                     borderRadius="5px"
+                    _hover={{
+                        backgroundColor: 'gray.600',
+                    }}
                 >
                     <Image src={icon} marginRight="8.84px"></Image>
                     {watch}
