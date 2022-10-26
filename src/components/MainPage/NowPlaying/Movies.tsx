@@ -13,6 +13,7 @@ const movieList = [
         imdb: "8.2",
         thumbsUp: "70%",
         watch: "Watch options",
+        icon: "/watchoptions.svg",
     },
     {
         id: 2,
@@ -21,6 +22,7 @@ const movieList = [
         imdb: "8.4",
         thumbsUp: "87%",
         watch: "Watch trailors",
+        icon: "/watchtrailors.svg",
     },
     {
         id: 3,
@@ -29,6 +31,7 @@ const movieList = [
         imdb: "7.8",
         thumbsUp: "94%",
         watch: "Watch trailors",
+        icon: "/watchtrailors.svg",
     },
     {
         id: 4,
@@ -36,16 +39,25 @@ const movieList = [
         title: "Dunker",
         imdb: "7.8",
         thumbsUp: "94%",
-        watch: "Watch options",
+        watch: "Watch trailors",
+        icon: "/watchtrailors.svg",
     },
 ];
 
 const Movies = () => {
     return (
         <MoviesContainer>
-            {movieList.map(({ id, src, title, imdb, thumbsUp, watch }) => {
+            {movieList.map(({ id, src, title, imdb, thumbsUp, watch, icon }) => {
                 return (
-                    <Movie src={src} title={title} imdb={imdb} thumbsUp={thumbsUp} watch={watch} key={id} />
+                    <Movie
+                        src={src}
+                        title={title}
+                        imdb={imdb}
+                        thumbsUp={thumbsUp}
+                        watch={watch}
+                        icon={icon}
+                        key={id}
+                    />
                 );
             })}
         </MoviesContainer>
