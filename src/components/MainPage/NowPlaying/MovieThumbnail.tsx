@@ -5,7 +5,6 @@ interface IMovieThumbnailProps {
     src: string;
     title: string;
     imdb: string;
-    thumbsUp: string;
     icon: string;
     watch: string;
 }
@@ -14,14 +13,13 @@ const MovieThumbnail = ({
     src,
     title,
     imdb,
-    thumbsUp,
     icon,
     watch,
 }: IMovieThumbnailProps): JSX.Element => {
     return (
         <Box pos="relative" height="406px" width="194px" bg="rgba(0, 0, 0, 0.9)" borderRadius="5px">
             <Image src={src} width="194px" height="247px" objectFit="cover" />
-            <Box
+            {/* <Box
                 bg="rgba(156, 163, 175, 0.5)"
                 width="30px"
                 height="29.21px"
@@ -38,22 +36,22 @@ const MovieThumbnail = ({
                     color="gray.100"
                     margin="8.76px 7px 7.15px"
                 />
-            </Box>
+            </Box> */}
             <Box width="194px" height="40px">
                 <Text
                     fontWeight="700"
-                    fontSize="text6"
+                    fontSize="text5"
                     lineHeight="20px"
                     fontFamily="secondary"
                     color="#FFF"
-                    marginTop="16px"
+                    marginTop="19px"
                     marginLeft="12px"
                 >
                     {title}
                 </Text>
             </Box>
             <Box marginTop="11.5px" marginLeft="12px">
-                <IMDBRanking gap={"55px"} imdb={imdb} thumbsUp={thumbsUp} color="white" />
+                <IMDBRanking gap={"55px"} imdb={imdb} color="white" />
             </Box>
             <Box marginTop="31.5px" display="flex" alignItems="center" justifyContent="center">
                 <Button
