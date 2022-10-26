@@ -9,13 +9,7 @@ interface IMovieThumbnailProps {
     watch: string;
 }
 
-const MovieThumbnail = ({
-    src,
-    title,
-    imdb,
-    icon,
-    watch,
-}: IMovieThumbnailProps): JSX.Element => {
+const MovieThumbnail = ({ src, title, imdb, icon, watch }: IMovieThumbnailProps): JSX.Element => {
     return (
         <Box pos="relative" height="406px" width="194px" bg="rgba(0, 0, 0, 0.9)" borderRadius="5px">
             <Image src={src} width="194px" height="247px" objectFit="cover" />
