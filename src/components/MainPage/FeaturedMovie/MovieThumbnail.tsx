@@ -1,5 +1,5 @@
 import { Box, Button, Image, Text } from "@chakra-ui/react";
-import IMDBRanking from "../TMDBRanking";
+import TMDBRanking from "../TMDBRanking";
 
 interface IMovieThumbnailProps {
     src: string;
@@ -50,7 +50,7 @@ const MovieThumbnail = ({
                 </Text>
             </Box>
             <Box marginTop="9px">
-                <IMDBRanking gap={"55px"} tmdb={tmdb} thumbsUp={thumbsUp} color="gray.900" />
+                <TMDBRanking gap={"55px"} tmdb={tmdb} thumbsUp={thumbsUp} color="gray.900" />
             </Box>
             <Box marginTop="29px" display="flex" alignItems="center" justifyContent="center">
                 <Button

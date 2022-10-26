@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import styled from "styled-components";
-import IMDBRanking from "../TMDBRanking";
+import TMDBRanking from "../TMDBRanking";
 
 export interface VideoCardInfoProps {
     title: string;
@@ -30,7 +30,7 @@ const VideoCardInfo = (info: VideoCardInfoProps): JSX.Element => {
             <div>
                 {info.country} {info.year}
             </div>
-            <IMDBRanking gap={"30px"} tmdb={info.tmdb} thumbsUp={info.likes} color={"black"} />
+            <TMDBRanking gap={"30px"} tmdb={info.tmdb} thumbsUp={info.likes} color={"black"} />
             <div>{info.type}</div>
         </Box>
     );

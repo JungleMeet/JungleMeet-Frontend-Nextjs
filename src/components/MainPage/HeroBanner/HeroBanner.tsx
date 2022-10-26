@@ -61,10 +61,16 @@ const HeroBanner = () => {
                 onMouseEnter={autoplay.current.stop}
                 onMouseLeave={autoplay.current.reset}
             >
-                {topRatedMoviesMemo?.map(({ id, ...rest }) => (
-                    <CarouselSlide key={id} {...rest} />
+                {topRatedMoviesMemo?.map(({ id, title, voteAverage, overview, heroBanner }) => (
+                    <CarouselSlide
+                        key={id}
+                        title={title}
+                        voteAverage={voteAverage}
+                        overview={overview}
+                        heroBanner={heroBanner}
+                        id={id}
+                    />
                 ))}
-                {/* {herroBannerMemo} */}
             </Carousel>
         </Box>
     );

@@ -1,23 +1,23 @@
 import React from "react";
 import ButtonWatchTrailer from "./ButtonWatchTrailer";
-import IMDBRanking from "../TMDBRanking";
 import { Heading, Text, Flex, Image } from "@chakra-ui/react";
 import { Carousel } from "@mantine/carousel";
+import TMDBRanking from "../TMDBRanking";
 
 interface ICarouselSlideProps {
     title: string;
     voteAverage: string;
-    thumbsUp?: string;
     overview: string;
     heroBanner: string;
+    id: number;
 }
 
 const CarouselSlide = ({
     title,
     voteAverage,
-    thumbsUp,
     overview,
     heroBanner,
+    id,
 }: ICarouselSlideProps): JSX.Element => {
     return (
         <Carousel.Slide key={title}>
@@ -35,11 +35,11 @@ const CarouselSlide = ({
                 <Heading as="h1" fontSize="h1" fontWeight="800" color="white" display="inline-block">
                     {title}
                 </Heading>
-                <IMDBRanking gap="72.25px" tmdb={voteAverage} thumbsUp={thumbsUp} color="white" />
+                <TMDBRanking gap="72.25px" tmdb={voteAverage} color="white" />
                 <Text color="white" textStyle="myText">
                     {overview}
                 </Text>
-                <ButtonWatchTrailer />
+                <ButtonWatchTrailer value={id} />
             </Flex>
             <Image src={heroBanner} boxSize="100%" objectFit="cover" alt="hero image" />
         </Carousel.Slide>
