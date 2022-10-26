@@ -1,5 +1,5 @@
 import { Box, Flex, Text, useColorModeValue, Image } from "@chakra-ui/react";
-import FooterUpper from "@/components/FooterSection/FooterUpper";
+import FooterUpperPart from "@/components/FooterSection/FooterUpperPart";
 import { FooterContainer } from "@/components/FooterSection/FooterContainer";
 
 export const FooterContent = `© ${new Date().getFullYear()} Jungle Meet Forum. All rights reserved`;
@@ -7,7 +7,7 @@ export const FooterContent = `© ${new Date().getFullYear()} Jungle Meet Forum. 
 const Footer = () => {
     return (
         <FooterContainer>
-            <FooterUpper />
+            <FooterUpperPart />
             <Box as="footer" opacity={0.9} py={1}>
                 <Flex
                     align={"center"}

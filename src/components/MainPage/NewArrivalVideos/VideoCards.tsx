@@ -90,19 +90,18 @@ const VideoCards = () => {
     // <VideosContainer>
         <CarouselContainer loop={true} slideSize="160px">
             {videoList.map((info) => {
-                return (
-                // eslint-disable-next-line react/jsx-key
-                    <Carousel.Slide gap={49}>
-                        <VideoThumbnail src={info.src} title={info.title} key={info.id} />
+                const { src, title, id, country, year, imdb, likes, type } = info;
 
+                return (
+                    <Carousel.Slide gap={49} key={id}>
+                        <VideoThumbnail src={src} title={title} id={id} />
                         <VideoCardInfo
-                            title={info.title}
-                            country={info.country}
-                            year={info.year}
-                            imdb={info.imdb}
-                            likes={info.likes}
-                            type={info.type}
-                            key={info.id}
+                            title={title}
+                            country={country}
+                            year={year}
+                            imdb={imdb}
+                            likes={likes}
+                            type={type}
                         />
                     </Carousel.Slide>
                 );

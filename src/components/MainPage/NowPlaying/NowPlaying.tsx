@@ -4,20 +4,19 @@ import SeeMore from "../SeeMore";
 import Movies from "./Movies";
 
 const SectionContainer = styled.div`
-  width: 840px;
-  margin-bottom: 90px;
+  /*width: 840px;*/
 `;
 
-const FeaturedMovie = () => {
+const NowPlaying = () => {
     return (
         <SectionContainer>
             <SectionHeaderContainer>
-                <SectionTitle>Featured Movie</SectionTitle>
-                <SeeMore />
+                <SectionTitle>NowPlaying</SectionTitle>
+                <SeeMore href="/" />
             </SectionHeaderContainer>
             <Movies />
         </SectionContainer>
     );
 };
 
-export default FeaturedMovie;
+export default NowPlaying;
