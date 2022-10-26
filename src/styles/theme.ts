@@ -6,7 +6,7 @@ import {
 
 
 type ThemeConfig = {
-    initialColorMode: string 
+    initialColorMode: string
     useSystemColorMode: boolean
 }
 
