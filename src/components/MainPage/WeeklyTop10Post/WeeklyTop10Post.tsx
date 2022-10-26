@@ -1,11 +1,19 @@
 import styled from "styled-components";
-import { SectionHeaderContainer, SectionTitle } from "../Containers";
+import { SectionHeaderContainer } from "../Containers";
 import More from "../More";
 import WeeklyLists from "./WeeklyLists";
 
 const SectionContainer = styled.div`
   width: 600px;
   padding-left: 56px;
+`;
+
+const SectionTitle = styled.div`
+  margin-bottom: 22px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  padding-top: 10px;
 `;
 
 const WeeklyTop10Post = () => {
