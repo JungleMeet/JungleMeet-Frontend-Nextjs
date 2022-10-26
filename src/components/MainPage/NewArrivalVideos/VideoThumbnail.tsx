@@ -1,5 +1,6 @@
 import { Box, Image } from "@chakra-ui/react";
 import Link from "next/link";
+
 export interface IVideoThumbnailProps {
     src: string;
     title: string;
