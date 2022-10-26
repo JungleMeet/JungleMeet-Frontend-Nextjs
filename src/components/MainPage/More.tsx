@@ -25,7 +25,6 @@ const More = ({ href }: IMore): JSX.Element => {
             <Container>More &gt;&gt;</Container>
         </Link>
     );
-
 };
 
 export default More;
