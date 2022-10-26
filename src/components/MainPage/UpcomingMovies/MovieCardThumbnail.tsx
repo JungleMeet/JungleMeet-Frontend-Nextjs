@@ -1,18 +1,18 @@
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Image} from "@chakra-ui/react";
 import Link from "next/link";
-export interface IVideoThumbnailProps {
+export interface IMovieCardThumbnailProps {
     src: string;
     title: string;
     id: number;
 }
 
-const VideoThumbnail = ({ src, title, id }: IVideoThumbnailProps): JSX.Element => {
+const MovieCardThumbnail = ({ src, title, id }: IMovieCardThumbnailProps): JSX.Element => {
     return (
-        <Box pos="relative">
+        <Box w='100%'>
             <Link href={`/movies/${id}`}>
-                <img src={src} title={title} width="160" height="310"></img>
+                <Image src={src} title={title} width="100%" height="321"></Image>
             </Link>
-            <Box
+            {/* <Box
                 bg="rgba(156, 163, 175, 0.5)"
                 width="30px"
                 height="29.21px"
@@ -31,9 +31,9 @@ const VideoThumbnail = ({ src, title, id }: IVideoThumbnailProps): JSX.Element =
                     color="gray.100"
                     margin="8.76px 7px 7.15px"
                 />
-            </Box>
+            </Box> */}
         </Box>
     );
 };
 
-export default VideoThumbnail;
+export default MovieCardThumbnail;

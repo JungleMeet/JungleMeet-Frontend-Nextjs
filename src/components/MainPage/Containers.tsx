@@ -10,8 +10,9 @@ export const SectionContainer = styled.div`
 export const SectionHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 53.5px;
+  margin-bottom: 50px;
   align-items: center;
+  padding: 3.5px 0;
 `;
 
 export const NewArrivalsSectionHeaderContainer = styled.div`

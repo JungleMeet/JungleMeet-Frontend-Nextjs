@@ -1,6 +1,6 @@
 import ExclusiveVideos from "@/components/MainPage/ExclusiveVideos/ExclusiveVideos";
 import HeroBanner from "@/components/MainPage/HeroBanner/HeroBanner";
-import NewArrivalVideos from "@/components/MainPage/NewArrivalVideos/NewArrivals";
+import UpcomingMovies from "@/components/MainPage/UpcomingMovies/UpcomingMovies";
 import Footer from "@/components/FooterSection/Footer";
 import styled from "styled-components";
 import NavBar from "@/components/NavBarSection/NarBar";
@@ -10,10 +10,10 @@ import WeeklyTop10Post from "@/components/MainPage/WeeklyTop10Post/WeeklyTop10Po
 import { Flex } from "@chakra-ui/react";
 
 export const PageContainer = styled.div`
-  max-width: 1440px;
-  margin: auto;
-  padding: 98px;
-  padding-bottom: 0;
+    max-width: 1440px;
+    margin: auto;
+    padding: 98px;
+    padding-bottom: 0;
 `;
 
 const HomePage = (): JSX.Element => {
@@ -26,7 +26,7 @@ const HomePage = (): JSX.Element => {
                     <FeaturedMovie />
                     <WeeklyTop10Post />
                 </Flex>
-                <NewArrivalVideos />
+                <UpcomingMovies />
                 <ExclusiveVideos />
                 <PopularDisscusion />
             </PageContainer>
