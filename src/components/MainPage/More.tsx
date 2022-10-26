@@ -10,7 +10,8 @@ const Container = styled.span`
   font-weight: 500;
   font-size: 18px;
   line-height: 20px;
-  // padding-top: 14px;
+
+  padding-top: 14px;
   color: #3b82f6;
   cursor: pointer;
 `;

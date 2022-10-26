@@ -24,7 +24,7 @@ export const NewArrivalsSectionHeaderContainer = styled.div`
   margin-bottom: 54px;
 `;
 export const SectionTitle = styled.div`
-  // margin-bottom: 50px;
+  margin-bottom: 90px;
   font-weight: 700;
   font-size: 30px;
   line-height: 47px;
