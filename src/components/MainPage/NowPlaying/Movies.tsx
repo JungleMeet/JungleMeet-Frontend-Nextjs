@@ -44,16 +44,7 @@ const Movies = () => {
     return (
         <MoviesContainer>
             {movieList.map(({ id, src, title, imdb, watch, icon }) => {
-                return (
-                    <Movie
-                        src={src}
-                        title={title}
-                        imdb={imdb}
-                        watch={watch}
-                        icon={icon}
-                        key={id}
-                    />
-                );
+                return <Movie src={src} title={title} imdb={imdb} watch={watch} icon={icon} key={id} />;
             })}
         </MoviesContainer>
     );
