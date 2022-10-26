@@ -9,7 +9,9 @@ import Link from "next/link";
 const NavBar = () => {
     return (
         <NavBarContainer>
-            <Image src="../JungleMeetLogoWhiteText.svg" ml="48px" />
+            <Link href="/">
+                <Image src="../JungleMeetLogoWhiteText.svg" ml="48px" cursor="pointer" />
+            </Link>
             <InputGroup w="525px" h="36px">
                 <Input
                     _placeholder={{

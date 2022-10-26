@@ -1,11 +1,11 @@
 import { Box } from "@chakra-ui/react";
 import { createStyles } from "@mantine/core";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
-import { heroData } from "./bannerData";
 import CarouselSlide from "./CarouselSlide";
 import { Carousel } from "@mantine/carousel";
-import { useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { default as autoPlay } from "embla-carousel-autoplay";
+import axiosApi from "@/utils/axiosApi";
 
 const useStyles = createStyles((_theme, _params, getRef) => ({
     controls: {
@@ -30,14 +30,29 @@ const useStyles = createStyles((_theme, _params, getRef) => ({
 }));
 
 const HeroBanner = () => {
+    const [topRatedMovies, setTopRatedMovies] = useState([]);
+    // eslint-disable-next-line no-unused-vars
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchMovies = async () => {
+            setLoading(true);
+            const { data } = await axiosApi.get("/movies/tops");
+            setTopRatedMovies(data);
+        };
+        fetchMovies();
+    }, []);
+
     const { classes } = useStyles();
     const autoplay = useRef(autoPlay({ delay: 4000 }));
+
+    const topRatedMoviesMemo = useMemo(() => topRatedMovies, [topRatedMovies]);
 
     return (
         <Box w="100%" maxWidth="1440px" pos="relative" m="auto" paddingTop="76px">
             <Carousel
                 withIndicators
-                loop
+                // loop
                 classNames={classes}
                 controlsOffset="lg"
                 nextControlIcon={<AiOutlineRight fill="#ffffff" size="50" />}
@@ -46,9 +61,10 @@ const HeroBanner = () => {
                 onMouseEnter={autoplay.current.stop}
                 onMouseLeave={autoplay.current.reset}
             >
-                {heroData.map((item) => (
-                    <CarouselSlide key={item.title} {...item} />
+                {topRatedMoviesMemo?.map(({ id, ...rest }) => (
+                    <CarouselSlide key={id} {...rest} />
                 ))}
+                {/* {herroBannerMemo} */}
             </Carousel>
         </Box>
     );

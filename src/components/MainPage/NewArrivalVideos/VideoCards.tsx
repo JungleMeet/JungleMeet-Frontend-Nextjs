@@ -19,7 +19,7 @@ const videoList = [
         title: "Dune",
         country: "USA",
         year: 1966,
-        imdb: "8.0",
+        voteAverage: "8.0",
         likes: "88%",
         type: "action",
     },
@@ -29,7 +29,7 @@ const videoList = [
         title: "No Time To Die",
         country: "USA",
         year: 2002,
-        imdb: "7.8",
+        voteAverage: "7.8",
         likes: "80%",
         type: "Action/Thriller",
     },
@@ -39,7 +39,7 @@ const videoList = [
         title: "Shang-Chi and the Legend of the Ten Rings",
         country: "USA",
         year: 2016,
-        imdb: "8.4",
+        voteAverage: "8.4",
         likes: "70%",
         type: "action",
     },
@@ -49,7 +49,7 @@ const videoList = [
         title: "Dont Breath 2",
         country: "USA",
         year: 2001,
-        imdb: "9.2",
+        voteAverage: "9.2",
         likes: "90%",
         type: "action",
     },
@@ -59,7 +59,7 @@ const videoList = [
         title: "Dont Breath 2",
         country: "USA",
         year: 1966,
-        imdb: "8.2",
+        voteAverage: "8.2",
         likes: "90%",
         type: "action",
     },
@@ -69,7 +69,7 @@ const videoList = [
         title: "Dont Breath 2",
         country: "USA",
         year: 1966,
-        imdb: "8.2",
+        voteAverage: "8.2",
         likes: "90%",
         type: "action",
     },
@@ -79,7 +79,7 @@ const videoList = [
         title: "Dont Breath 2",
         country: "USA",
         year: 1966,
-        imdb: "8.2",
+        voteAverage: "8.2",
         likes: "90%",
         type: "action",
     },
@@ -90,7 +90,7 @@ const VideoCards = () => {
     // <VideosContainer>
         <CarouselContainer loop={true} slideSize="160px">
             {videoList.map((info) => {
-                const { src, title, id, country, year, imdb, likes, type } = info;
+                const { src, title, id, country, year, voteAverage, likes, type } = info;
 
                 return (
                     <Carousel.Slide gap={49} key={id}>
@@ -99,7 +99,7 @@ const VideoCards = () => {
                             title={title}
                             country={country}
                             year={year}
-                            imdb={imdb}
+                            tmdb={voteAverage}
                             likes={likes}
                             type={type}
                         />

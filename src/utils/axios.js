@@ -27,7 +27,6 @@ export const api = async (
     return response;
 };
 
-
 // For testing only, TODO: remove
 export async function fetchPost(id) {
     return new Promise((resolve) =>

@@ -1,19 +1,24 @@
 import React from "react";
 import ButtonWatchTrailer from "./ButtonWatchTrailer";
-import IMDBRanking from "../IMDBRanking";
+import IMDBRanking from "../TMDBRanking";
 import { Heading, Text, Flex, Image } from "@chakra-ui/react";
 import { Carousel } from "@mantine/carousel";
-import { StaticImageData } from "next/image";
 
-interface IAboutProps {
+interface ICarouselSlideProps {
     title: string;
-    imdb: string;
-    thumbsUp: string;
-    about: string;
-    image: StaticImageData;
+    voteAverage: string;
+    thumbsUp?: string;
+    overview: string;
+    heroBanner: string;
 }
 
-const CarouselSlide = ({ title, imdb, thumbsUp, about, image }: IAboutProps): JSX.Element => {
+const CarouselSlide = ({
+    title,
+    voteAverage,
+    thumbsUp,
+    overview,
+    heroBanner,
+}: ICarouselSlideProps): JSX.Element => {
     return (
         <Carousel.Slide key={title}>
             <Flex
@@ -30,13 +35,13 @@ const CarouselSlide = ({ title, imdb, thumbsUp, about, image }: IAboutProps): JS
                 <Heading as="h1" fontSize="h1" fontWeight="800" color="white" display="inline-block">
                     {title}
                 </Heading>
-                <IMDBRanking gap="72.25px" imdb={imdb} thumbsUp={thumbsUp} color="white" />
+                <IMDBRanking gap="72.25px" tmdb={voteAverage} thumbsUp={thumbsUp} color="white" />
                 <Text color="white" textStyle="myText">
-                    {about}
+                    {overview}
                 </Text>
                 <ButtonWatchTrailer />
             </Flex>
-            <Image src={image.src} boxSize="100%" objectFit="cover" alt="hero image" />
+            <Image src={heroBanner} boxSize="100%" objectFit="cover" alt="hero image" />
         </Carousel.Slide>
     );
 };
