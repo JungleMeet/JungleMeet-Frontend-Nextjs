@@ -4,10 +4,7 @@ import IMDBRanking from "../IMDBRanking";
 
 export interface MovieCardInfoProps {
     title: string;
-    // country: string;
-    // year: number;
     imdb: string;
-    // likes: string;
     type: string;
 }
 

@@ -32,6 +32,7 @@ const UpcomingMovies = () => {
                             lineHeight: "36px",
                             color: "#000",
                         }}
+                        _focus={{border: 'none'}}
                         p="0"
                     >
             Upcoming Movies
@@ -46,6 +47,7 @@ const UpcomingMovies = () => {
                             lineHeight: "36px",
                             color: "#000",
                         }}
+                        _focus={{border: 'none'}}
                         p="0"
                     >
             Popular
@@ -60,6 +62,7 @@ const UpcomingMovies = () => {
                             lineHeight: "36px",
                             color: "#000",
                         }}
+                        _focus={{border: 'none'}}
                         p="0"
                     >
             Newest
@@ -74,6 +77,7 @@ const UpcomingMovies = () => {
                             lineHeight: "36px",
                             color: "#000",
                         }}
+                        _focus={{border: 'none'}}
                         p="0"
                     >
             Top 10
