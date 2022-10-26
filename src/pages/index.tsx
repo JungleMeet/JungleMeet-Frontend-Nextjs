@@ -5,19 +5,21 @@ import Footer from "@/components/FooterSection/Footer";
 import styled from "styled-components";
 import NavBar from "@/components/NavBarSection/NarBar";
 import FeaturedMovie from "@/components/MainPage/FeaturedMovie/FeaturedMovie";
+import PopularDisscusion from "@/components/MainPage/PopularDisscusion/PopularDisscusion";
 import WeeklyTop10Post from "@/components/MainPage/WeeklyTop10Post/WeeklyTop10Post";
 import { Flex } from "@chakra-ui/react";
 
-const PageContainer = styled.div`
+export const PageContainer = styled.div`
   max-width: 1440px;
   margin: auto;
-  padding-top: 90px;
+  padding: 98px;
+  padding-bottom: 0;
 `;
 
 const HomePage = (): JSX.Element => {
     return (
         <>
-            <NavBar bgColor="transparent" />
+            <NavBar />
             <HeroBanner />
             <PageContainer>
                 <Flex>
@@ -26,6 +28,7 @@ const HomePage = (): JSX.Element => {
                 </Flex>
                 <NewArrivalVideos />
                 <ExclusiveVideos />
+                <PopularDisscusion />
             </PageContainer>
             <Footer />
         </>

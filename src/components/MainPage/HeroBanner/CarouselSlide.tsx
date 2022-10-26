@@ -16,11 +16,19 @@ interface IAboutProps {
 const CarouselSlide = ({ title, imdb, thumbsUp, about, image }: IAboutProps): JSX.Element => {
     return (
         <Carousel.Slide key={title}>
-            <Flex flexDir="column" gap="16px" pos="absolute" top="25%" left="7%" width="404px">
+            <Flex
+                flexDir="column"
+                gap="16px"
+                pos="absolute"
+                bottom="50px"
+                left="80px"
+                width="40%"
+                padding="30px 50px"
+                backgroundColor="rgba(0,0,0,0.4)"
+                borderRadius="20px"
+            >
                 <Heading as="h1" fontSize="h1" fontWeight="800" color="white" display="inline-block">
-                    {title.split(":")[1] ? `${title.split(":")[0]} :` : title}
-                    <br />
-                    {title.split(":")[1]}
+                    {title}
                 </Heading>
                 <IMDBRanking gap="72.25px" imdb={imdb} thumbsUp={thumbsUp} color="white" />
                 <Text color="white" textStyle="myText">

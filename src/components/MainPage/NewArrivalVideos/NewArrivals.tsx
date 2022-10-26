@@ -12,6 +12,7 @@ const NewArrivals = () => {
     return (
         <SectionContainer>
             <NewArrivalsSectionHeaderContainer max-width="150px">
+
                 <SectionTitle>New Arrival</SectionTitle>
                 <Text fontWeight="500" fontSize="20px" fontFamily="heading" color="gray.500">
           Popular
@@ -20,10 +21,38 @@ const NewArrivals = () => {
           Newest
                 </Text>
                 <Text fontWeight="500" fontSize="20px" fontFamily="heading" color="gray.500">
+
+                <SectionTitle>Upcoming Movies</SectionTitle>
+                <Text
+                    fontWeight="500"
+                    fontSize="20px"
+                    fontFamily="heading"
+                    color="gray.500"
+                    line-height="47px"
+                >
+          Popular
+                </Text>
+                <Text
+                    fontWeight="500"
+                    fontSize="20px"
+                    fontFamily="heading"
+                    color="gray.500"
+                    line-height="47px"
+                >
+          Newest
+                </Text>
+                <Text
+                    fontWeight="500"
+                    fontSize="20px"
+                    fontFamily="heading"
+                    color="gray.500"
+                    line-height="47px"
+                >
+
           Top10
                 </Text>
                 <SectionSubTitleSeeMore>
-                    <SeeMore />
+                    <SeeMore href="/" />
                 </SectionSubTitleSeeMore>
             </NewArrivalsSectionHeaderContainer>
             <VideoCards />

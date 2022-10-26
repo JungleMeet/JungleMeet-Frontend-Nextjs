@@ -11,9 +11,11 @@ const SectionContainer = styled.div`
 const WeeklyTop10Post = () => {
     return (
         <SectionContainer>
-            <SectionHeaderContainer>
-                <SectionTitle>Weekly Top 10 Post</SectionTitle>
-                <More />
+
+            <SectionHeaderContainer style={{ marginBottom: "22px" }}>
+                <SectionTitle style={{ fontSize: "24px" }}>Weekly Top 10 Post</SectionTitle>
+                <More href="/" />
+                
             </SectionHeaderContainer>
             <WeeklyLists />
         </SectionContainer>

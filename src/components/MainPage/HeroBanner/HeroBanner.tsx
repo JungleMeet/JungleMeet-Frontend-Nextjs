@@ -5,7 +5,7 @@ import { heroData } from "./bannerData";
 import CarouselSlide from "./CarouselSlide";
 import { Carousel } from "@mantine/carousel";
 import { useRef } from "react";
-import Autoplay from "embla-carousel-autoplay";
+import { default as autoPlay } from "embla-carousel-autoplay";
 
 const useStyles = createStyles((_theme, _params, getRef) => ({
     controls: {
@@ -31,11 +31,10 @@ const useStyles = createStyles((_theme, _params, getRef) => ({
 
 const HeroBanner = () => {
     const { classes } = useStyles();
-    // eslint-disable-next-line new-cap
-    const autoplay = useRef(Autoplay({ delay: 4000 }));
+    const autoplay = useRef(autoPlay({ delay: 4000 }));
 
     return (
-        <Box w="100%" maxWidth="1440px" pos="relative" m="auto">
+        <Box w="100%" maxWidth="1440px" pos="relative" m="auto" paddingTop="76px">
             <Carousel
                 withIndicators
                 loop

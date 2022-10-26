@@ -1,36 +1,30 @@
-import heroImage from "@/assets/heroImage-Avengers.png";
+// import heroImage from "@/assets/heroImage-Avengers.png";
+import heroImage01 from "@/assets/herobanner-01.jpg";
+import heroImage02 from "@/assets/herobanner-02.jpg";
 
 export const heroData = [
+    // {
+    //     title: "Avengers: End game",
+    //     imdb: "8.4",
+    //     thumbsUp: "95%",
+    //     image: heroImage,
+    //     about:
+    //   "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
+    // },
     {
-        title: "Avengers: End game",
-        imdb: "8.4",
-        thumbsUp: "95%",
-        image: heroImage,
-        about:
-      "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
-    },
-    {
-        title: "The Avengers",
+        title: "The Shawshank Redemption",
         imdb: "8.5",
         thumbsUp: "98%",
-        image: heroImage,
+        image: heroImage01,
         about:
-      "Nick Fury is compelled to launch the Avengers Initiative when Loki poses a threat to planet Earth. His squad of superheroes put their minds together to accomplish the task.",
+      "Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.",
     },
     {
-        title: "Avengers: Age of Ultron",
+        title: "Orphan: First Kill",
         imdb: "8.3",
         thumbsUp: "92%",
-        image: heroImage,
+        image: heroImage02,
         about:
-      "Tony Stark builds an artificial intelligence system named Ultron with the help of Bruce Banner. When the sentient Ultron makes plans to wipe out the human race, the Avengers set out to stop him.",
-    },
-    {
-        title: "Avengers: Infinity War",
-        imdb: "8.2",
-        thumbsUp: "90%",
-        image: heroImage,
-        about:
-      "The Avengers must stop Thanos, an intergalactic warlord, from getting his hands on all the infinity stones. However, Thanos is prepared to go to any lengths to carry out his insane plan.",
+      "The Orphan Killer is a tour de force murder flick that defies classification. It goes far beyond current trends in gore and breaks open a new suffering genre of horror. Marcus Miller is a serial murderer hellbent on teaching his estranged sister Audrey what it means to have family loyalty. His lessons are taught in massive doses of vulgar and unimaginable pain. Throughout her brutal torture we learn that Marcus is not the only Miller with Killer in the bloodline as Audrey proves to be a formidable adversary.",
     },
 ];

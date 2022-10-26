@@ -17,7 +17,7 @@ const MovieThumbnail = ({
     watch,
 }: IMovieThumbnailProps): JSX.Element => {
     return (
-        <Box marginTop="44px" pos="relative">
+        <Box marginTop="0px" pos="relative">
             <Image src={src} width="190px" height="250px" />
             <Box
                 bg="rgba(156, 163, 175, 0.5)"
