@@ -38,7 +38,6 @@ const NewArrivals = () => {
                     color="gray.500"
                     line-height="47px"
                 >
-
           Top10
                 </Text>
                 <SectionSubTitleSeeMore>
