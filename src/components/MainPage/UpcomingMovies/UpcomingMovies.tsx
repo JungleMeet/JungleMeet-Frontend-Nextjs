@@ -1,6 +1,6 @@
 import SeeMore from "../SeeMore";
 import MovieCards from "./MovieCards";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
 // import axiosApi from "@/utils/axiosApi";
 import { getUpcoming } from "@/utils/axiosApi";
 import { useState, useEffect } from "react";
@@ -9,7 +9,7 @@ import {
     // SectionTitle,
     SectionSubTitleSeeMore,
 } from "../Containers";
-import { movieList } from "./movieList";
+
 
 const UpcomingMovies = () => {
     const [upcomingMovies, setUpcomingMovies] = useState<
@@ -117,7 +117,10 @@ const UpcomingMovies = () => {
                     </SectionSubTitleSeeMore>
                 </TabList>
                 <TabPanels>
-                    <TabPanel p="0">
+                    {/* <TabPanel p="0"> */}
+                    <MovieCards movieList={upcomingMovies} />
+                    {/* </TabPanel> */}
+                    {/* <TabPanel p="0">
                         <MovieCards movieList={movieList} />
                     </TabPanel>
                     <TabPanel p="0">
@@ -125,10 +128,7 @@ const UpcomingMovies = () => {
                     </TabPanel>
                     <TabPanel p="0">
                         <MovieCards movieList={movieList} />
-                    </TabPanel>
-                    <TabPanel p="0">
-                        <MovieCards movieList={movieList} />
-                    </TabPanel>
+                    </TabPanel> */}
                 </TabPanels>
             </Tabs>
         </SectionContainer>
