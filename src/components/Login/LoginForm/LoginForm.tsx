@@ -2,7 +2,7 @@ import { Button, FormControl, FormErrorMessage } from "@chakra-ui/react";
 import FormInput from "./FormInput";
 import { useState } from "react";
 import styled from "styled-components";
-import login from '../../../api/login';
+import login from "../../../api/login";
 
 const Form = styled.form`
   display: flex;
@@ -14,16 +14,18 @@ const Form = styled.form`
 const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    // const [islogged, setIslogged] = useState(Boolean(document.cookie));
 
     return (
         <Form
-            onSubmit={(event) => {
-                const res = login(email, password);
-                console.log(res);
+            onSubmit={async(event) => {
                 event.preventDefault();
+                const res = await login(email, password);
+                console.log(res);
+                console.log(document.cookie);
             }}
         >
-            <FormControl width="auto" p="0">
+            <FormControl width="auto" p="0" >
                 <FormInput
                     name="email"
                     type="email"
