@@ -6,7 +6,7 @@ import {
 
 
 type ThemeConfig = {
-    initialColorMode: string 
+    initialColorMode: string
     useSystemColorMode: boolean
 }
 
@@ -89,7 +89,7 @@ const theme = extendTheme(config, styles, {
         text3: "18px",
         text4: "16px",
         text5: "14px",
-        text6: "14px",
+        text6: "12px",
     },
     lineHeights: {
         h1: "48px",

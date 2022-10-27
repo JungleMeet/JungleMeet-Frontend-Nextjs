@@ -1,10 +1,10 @@
 import ExclusiveVideos from "@/components/MainPage/ExclusiveVideos/ExclusiveVideos";
 import HeroBanner from "@/components/MainPage/HeroBanner/HeroBanner";
-import NewArrivalVideos from "@/components/MainPage/NewArrivalVideos/NewArrivals";
+import UpcomingMovies from "@/components/MainPage/UpcomingMovies/UpcomingMovies";
 import Footer from "@/components/FooterSection/Footer";
 import styled from "styled-components";
 import NavBar from "@/components/NavBarSection/NarBar";
-import FeaturedMovie from "@/components/MainPage/FeaturedMovie/FeaturedMovie";
+import NowPlaying from "@/components/MainPage/NowPlaying/NowPlaying";
 import PopularDisscusion from "@/components/MainPage/PopularDisscusion/PopularDisscusion";
 import WeeklyTop10Post from "@/components/MainPage/WeeklyTop10Post/WeeklyTop10Post";
 import { Flex } from "@chakra-ui/react";
@@ -23,10 +23,10 @@ const HomePage = (): JSX.Element => {
             <HeroBanner />
             <PageContainer>
                 <Flex>
-                    <FeaturedMovie />
+                    <NowPlaying />
                     <WeeklyTop10Post />
                 </Flex>
-                <NewArrivalVideos />
+                <UpcomingMovies />
                 <ExclusiveVideos />
                 <PopularDisscusion />
             </PageContainer>

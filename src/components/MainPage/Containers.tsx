@@ -3,15 +3,16 @@ import styled from "styled-components";
 export const SectionContainer = styled.div`
   width: 100%;
   // margin-bottom: 90px;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   margin-top: 82px;
 `;
 
 export const SectionHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 53.5px;
+  margin-bottom: 50px;
   align-items: center;
+  // padding: 3.5px 0;
 `;
 
 export const NewArrivalsSectionHeaderContainer = styled.div`
@@ -23,7 +24,7 @@ export const NewArrivalsSectionHeaderContainer = styled.div`
   margin-bottom: 54px;
 `;
 export const SectionTitle = styled.div`
-  /* margin-bottom: 90px; */
+  // margin-bottom: 90px;
   font-weight: 700;
   font-size: 30px;
   line-height: 47px;
