@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Movie from "./MovieThumbnail";
 import axiosApi from "@/utils/axiosApi";
-import { useState, useEffect } from "react";
+import {useState, useEffect} from 'react';
 
 const MoviesContainer = styled.div`
   display: flex;
