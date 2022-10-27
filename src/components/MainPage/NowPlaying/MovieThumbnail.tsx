@@ -4,14 +4,13 @@ import TMDBRanking from "../TMDBRanking";
 interface IMovieThumbnailProps {
     src: string;
     title: string;
-    tmdb: string;
-    icon: string;
-    watch: string;
+    tmdb: number;
+    key: number
 }
 
-const MovieThumbnail = ({ src, title, tmdb, icon, watch }: IMovieThumbnailProps): JSX.Element => {
+const MovieThumbnail = ({ src, title, tmdb, key }: IMovieThumbnailProps): JSX.Element => {
     return (
-        <Box pos="relative" height="406px" width="194px" bg="rgba(0, 0, 0, 0.9)" borderRadius="5px">
+        <Box pos="relative" height="406px" width="194px" bg="rgba(0, 0, 0, 0.9)" borderRadius="5px" key={key}>
             <Image src={src} width="194px" height="247px" objectFit="cover" />
             {/* <Box
                 bg="rgba(156, 163, 175, 0.5)"
@@ -63,8 +62,8 @@ const MovieThumbnail = ({ src, title, tmdb, icon, watch }: IMovieThumbnailProps)
                         backgroundColor: "gray.600",
                     }}
                 >
-                    <Image src={icon} marginRight="8.84px"></Image>
-                    {watch}
+                    <Image src='/watchoptions.svg' marginRight="8.84px"></Image>
+                    Watch options
                 </Button>
             </Box>
         </Box>
