@@ -7,4 +7,16 @@ const axiosApi = axios.create({
     timeout: REQUEST_TIMEOUT,
 });
 
-export default axiosApi
+export const getNowPlaying = async () => {
+    return await axiosApi.get("/movies/list?tag=now_playing");
+}
+
+export const getUpcoming = async () => {
+    return await axiosApi.get("/movies/list?tag=upcoming");
+}
+
+export const getPopular = async () => {
+    return await axiosApi.get("/movies/list?tag=popular");
+
+}
+export default axiosApi;

@@ -4,7 +4,7 @@ import TMDBRanking from "../TMDBRanking";
 
 export interface MovieCardInfoProps {
     title: string;
-    tmdb: string;
+    tmdb: number;
     type: string;
 }
 
@@ -33,12 +33,12 @@ const MovieCategory = styled.div`
   font-family: "DM Sans";
   color: #9ca3af;
 `;
-const MovieCardInfo = (info: MovieCardInfoProps): JSX.Element => {
+const MovieCardInfo = ({ title, tmdb, type }: MovieCardInfoProps): JSX.Element => {
     return (
         <Box mt="21px" ml="12px" mr="16px">
-            <MovieTitle>{info.title} </MovieTitle>
-            <TMDBRanking gap={"30px"} tmdb={info.tmdb} color={"#FFFFFF"} />
-            <MovieCategory>{info.type}</MovieCategory>
+            <MovieTitle>{title} </MovieTitle>
+            <TMDBRanking gap={"30px"} tmdb={tmdb} color={"#FFFFFF"} />
+            <MovieCategory>{type}</MovieCategory>
         </Box>
     );
 };
