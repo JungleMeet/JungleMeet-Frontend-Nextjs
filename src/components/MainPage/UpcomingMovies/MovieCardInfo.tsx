@@ -1,10 +1,10 @@
 import { Box } from "@chakra-ui/react";
 import styled from "styled-components";
-import IMDBRanking from "../IMDBRanking";
+import TMDBRanking from "../TMDBRanking";
 
 export interface MovieCardInfoProps {
     title: string;
-    imdb: string;
+    tmdb: string;
     type: string;
 }
 
@@ -37,7 +37,7 @@ const MovieCardInfo = (info: MovieCardInfoProps): JSX.Element => {
     return (
         <Box mt="21px" ml="12px" mr="16px">
             <MovieTitle>{info.title} </MovieTitle>
-            <IMDBRanking gap={"30px"} imdb={info.imdb} color={"#FFFFFF"} />
+            <TMDBRanking gap={"30px"} tmdb={info.tmdb} color={"#FFFFFF"} />
             <MovieCategory>{info.type}</MovieCategory>
         </Box>
     );

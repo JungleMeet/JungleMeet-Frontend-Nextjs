@@ -1,15 +1,15 @@
 import { Box, Button, Image, Text } from "@chakra-ui/react";
-import IMDBRanking from "../IMDBRanking";
+import TMDBRanking from "../TMDBRanking";
 
 interface IMovieThumbnailProps {
     src: string;
     title: string;
-    imdb: string;
+    tmdb: string;
     icon: string;
     watch: string;
 }
 
-const MovieThumbnail = ({ src, title, imdb, icon, watch }: IMovieThumbnailProps): JSX.Element => {
+const MovieThumbnail = ({ src, title, tmdb, icon, watch }: IMovieThumbnailProps): JSX.Element => {
     return (
         <Box pos="relative" height="406px" width="194px" bg="rgba(0, 0, 0, 0.9)" borderRadius="5px">
             <Image src={src} width="194px" height="247px" objectFit="cover" />
@@ -45,7 +45,7 @@ const MovieThumbnail = ({ src, title, imdb, icon, watch }: IMovieThumbnailProps)
                 </Text>
             </Box>
             <Box marginTop="11.5px" marginLeft="12px">
-                <IMDBRanking gap={"55px"} imdb={imdb} color="white" />
+                <TMDBRanking gap={"55px"} tmdb={tmdb} color="white" />
             </Box>
             <Box marginTop="31.5px" display="flex" alignItems="center" justifyContent="center">
                 <Button
@@ -60,7 +60,7 @@ const MovieThumbnail = ({ src, title, imdb, icon, watch }: IMovieThumbnailProps)
                     backdropFilter="blur(5px)"
                     borderRadius="5px"
                     _hover={{
-                        backgroundColor: 'gray.600',
+                        backgroundColor: "gray.600",
                     }}
                 >
                     <Image src={icon} marginRight="8.84px"></Image>

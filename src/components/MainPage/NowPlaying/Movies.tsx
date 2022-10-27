@@ -10,7 +10,7 @@ const movieList = [
         id: 1,
         src: "/batmanbegins.jpg",
         title: "Batman Begins",
-        imdb: "8.2",
+        voteAverage: "8.2",
         watch: "Watch options",
         icon: "/watchoptions.svg",
     },
@@ -18,7 +18,7 @@ const movieList = [
         id: 2,
         src: "/spiderman.jpg",
         title: "Spider-Man: Into the Spider Verse",
-        imdb: "8.4",
+        voteAverage: "8.4",
         watch: "Watch trailors",
         icon: "/watchtrailors.svg",
     },
@@ -26,7 +26,7 @@ const movieList = [
         id: 3,
         src: "/dunkirk.jpg",
         title: "Dunkirk",
-        imdb: "7.8",
+        voteAverage: "7.8",
         watch: "Watch trailors",
         icon: "/watchtrailors.svg",
     },
@@ -34,8 +34,8 @@ const movieList = [
         id: 4,
         src: "/dunkirk.jpg",
         title: "Dunker",
-        imdb: "7.8",
-        watch: "Watch trailors",
+        voteAverage: "7.8",
+        watch: "Watch options",
         icon: "/watchtrailors.svg",
     },
 ];
@@ -43,8 +43,10 @@ const movieList = [
 const Movies = () => {
     return (
         <MoviesContainer>
-            {movieList.map(({ id, src, title, imdb, watch, icon }) => {
-                return <Movie src={src} title={title} imdb={imdb} watch={watch} icon={icon} key={id} />;
+            {movieList.map(({ id, src, title, voteAverage, watch, icon }) => {
+                return (
+                    <Movie src={src} title={title} tmdb={voteAverage} watch={watch} icon={icon} key={id} />
+                );
             })}
         </MoviesContainer>
     );
