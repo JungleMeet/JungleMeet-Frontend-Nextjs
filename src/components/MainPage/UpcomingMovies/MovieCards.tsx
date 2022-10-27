@@ -18,7 +18,7 @@ interface ImovieListItem {
     src: string;
     title: string;
     id: number;
-    imdb: string;
+    tmdb: string;
     type: string;
 }
 
@@ -29,12 +29,12 @@ interface ImovieList {
 const MovieCards = ({ movieList }: ImovieList) => {
     return (
         <CarouselContainer loop={true} slideSize="160px">
-            {movieList.map(({ src, title, id, imdb, type }: ImovieListItem) => {
+            {movieList.map(({ src, title, id, tmdb, type }: ImovieListItem) => {
                 return (
                     <Carousel.Slide gap={31} key={id}>
                         <MovieCardContainer>
                             <MovieCardThumbnail src={src} title={title} id={id} />
-                            <MovieCardInfo title={title} imdb={imdb} type={type} />
+                            <MovieCardInfo title={title} tmdb={tmdb} type={type} />
                         </MovieCardContainer>
                     </Carousel.Slide>
                 );
