@@ -2,7 +2,7 @@ import { Box, Flex, Text, Image } from "@chakra-ui/react";
 
 interface ITMDBRankingProps {
     gap: string;
-    tmdb: string;
+    tmdb: number;
     // thumbsUp: string;
     color: string;
 }
