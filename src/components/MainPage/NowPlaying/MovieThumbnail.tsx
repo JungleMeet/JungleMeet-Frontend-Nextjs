@@ -5,12 +5,18 @@ interface IMovieThumbnailProps {
     src: string;
     title: string;
     tmdb: number;
-    key: number
+    key: number;
 }
 
-const MovieThumbnail = ({ src, title, tmdb, key }: IMovieThumbnailProps): JSX.Element => {
+const MovieThumbnail = ({ src, title, tmdb }: IMovieThumbnailProps): JSX.Element => {
     return (
-        <Box pos="relative" height="406px" width="194px" bg="rgba(0, 0, 0, 0.9)" borderRadius="5px" key={key}>
+        <Box
+            pos="relative"
+            height="406px"
+            width="194px"
+            bg="rgba(0, 0, 0, 0.9)"
+            borderRadius="5px"
+        >
             <Image src={src} width="194px" height="247px" objectFit="cover" />
             {/* <Box
                 bg="rgba(156, 163, 175, 0.5)"
@@ -62,8 +68,8 @@ const MovieThumbnail = ({ src, title, tmdb, key }: IMovieThumbnailProps): JSX.El
                         backgroundColor: "gray.600",
                     }}
                 >
-                    <Image src='/watchoptions.svg' marginRight="8.84px"></Image>
-                    Watch options
+                    <Image src="/watchoptions.svg" marginRight="8.84px"></Image>
+          Watch options
                 </Button>
             </Box>
         </Box>

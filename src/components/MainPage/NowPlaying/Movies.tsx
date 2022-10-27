@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Movie from "./MovieThumbnail";
 import axiosApi from "@/utils/axiosApi";
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from "react";
 
 const MoviesContainer = styled.div`
   display: flex;
@@ -42,36 +42,33 @@ const MoviesContainer = styled.div`
 //     },
 // ];
 
-
-
 interface ImovieList {
     resourceId: number;
     poster: string;
     title: string;
-    voteAverage: number
+    voteAverage: number;
 }
 const Movies = () => {
     const [movieList, setMovieList] = useState([]);
 
     useEffect(() => {
         const fetchMovies = async () => {
-            try{
-                const {data} = await axiosApi.get("/movies/list?tag=now_playing");
+            try {
+                const { data } = await axiosApi.get("/movies/list?tag=now_playing");
                 console.log(data);
-                setMovieList(data);
-            }catch(err){
+                
+                setMovieList(data.slice(0, 4));
+            } catch (err) {
                 console.log(err);
             }
-        }
+        };
         fetchMovies();
-    },[])
-    
+    }, []);
+
     return (
         <MoviesContainer>
             {movieList.map(({ resourceId, poster, title, voteAverage }: ImovieList) => {
-                return (
-                    <Movie src={poster} title={title} tmdb={voteAverage} key={resourceId} />
-                );
+                return <Movie src={poster} title={title} tmdb={voteAverage} key={resourceId} />;
             })}
         </MoviesContainer>
     );
