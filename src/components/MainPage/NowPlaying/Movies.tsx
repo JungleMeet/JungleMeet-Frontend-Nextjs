@@ -36,22 +36,15 @@ const movieList = [
         title: "Dunker",
         voteAverage: "7.8",
         watch: "Watch options",
+        icon: "/watchtrailors.svg",
     },
 ];
 
 const Movies = () => {
     return (
         <MoviesContainer>
-            {movieList.map(({ id, src, title, voteAverage, watch }) => {
-                return (
-                    <Movie
-                        src={src}
-                        title={title}
-                        tmdb={voteAverage}
-                        watch={watch}
-                        key={id}
-                    />
-                );
+            {movieList.map(({ id, src, title, voteAverage, watch, icon }) => {
+                return <Movie src={src} title={title} tmdb={voteAverage} watch={watch} icon={icon} key={id} />;
             })}
         </MoviesContainer>
     );
