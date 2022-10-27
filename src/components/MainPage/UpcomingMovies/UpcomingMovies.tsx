@@ -10,7 +10,6 @@ import {
     SectionSubTitleSeeMore,
 } from "../Containers";
 
-
 const UpcomingMovies = () => {
     const [upcomingMovies, setUpcomingMovies] = useState<
     {
