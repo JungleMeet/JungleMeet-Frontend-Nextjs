@@ -56,7 +56,7 @@ const Movies = () => {
             try {
                 const { data } = await axiosApi.get("/movies/list?tag=now_playing");
                 console.log(data);
-                
+
                 setMovieList(data.slice(0, 4));
             } catch (err) {
                 console.log(err);
