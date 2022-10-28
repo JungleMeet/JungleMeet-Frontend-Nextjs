@@ -25,7 +25,7 @@ const UpcomingMovies = () => {
         const fetchMovies = async () => {
             try {
                 const { data } = await getUpcoming();
-                // console.log(data);
+                console.log(data);
 
                 setUpcomingMovies(data.slice(0, 10));
             } catch (err) {
@@ -117,7 +117,7 @@ const UpcomingMovies = () => {
                 </TabList>
                 <TabPanels>
                     {/* <TabPanel p="0"> */}
-                    <MovieCards movieList={upcomingMovies} />
+                    {upcomingMovies.length>0 && <MovieCards movieList={upcomingMovies} />}
                     {/* </TabPanel> */}
                     {/* <TabPanel p="0">
                         <MovieCards movieList={movieList} />
