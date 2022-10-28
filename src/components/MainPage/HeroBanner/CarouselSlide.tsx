@@ -25,7 +25,7 @@ const CarouselSlide = ({
                 flexDir="column"
                 gap="16px"
                 pos="absolute"
-                bottom="50px"
+                bottom="220px"
                 left="80px"
                 width="40%"
                 padding="30px 50px"
@@ -35,7 +35,7 @@ const CarouselSlide = ({
                 <Heading as="h1" fontSize="h1" fontWeight="800" color="white" display="inline-block">
                     {title}
                 </Heading>
-                <TMDBRanking gap="72.25px" tmdb={voteAverage} color="white" />
+                <TMDBRanking gap="72.25px" tmdb={+voteAverage} color="white" />
                 <Text color="white" textStyle="myText">
                     {overview}
                 </Text>
