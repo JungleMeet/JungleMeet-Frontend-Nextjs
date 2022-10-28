@@ -68,7 +68,7 @@ const UpcomingTabs = ({ changeMovieListMethod }: IUpcomingTabs) => {
                 </Tab>
             ))}
             <SectionSubTitleSeeMore>
-                <SeeMore href="/" />
+                <SeeMore href="/allmovies" />
             </SectionSubTitleSeeMore>
         </TabList>
     );
