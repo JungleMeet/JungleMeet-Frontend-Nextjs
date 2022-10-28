@@ -1,11 +1,15 @@
 import { Box } from "@chakra-ui/react";
 import styled from "styled-components";
 import TMDBRanking from "../TMDBRanking";
+import CategoryButton from './CategoryButton';
 
 export interface MovieCardInfoProps {
     title: string;
     tmdb: number;
-    type: string;
+    type: {
+        id: number;
+        name: string
+    }[];
 }
 
 const MovieTitle = styled.div`
@@ -24,21 +28,12 @@ const MovieTitle = styled.div`
   display: -webkit-box;
 `;
 
-const MovieCategory = styled.div`
-  margin-top: 14.5px;
-  margin-bottom: 13px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 15.62px;
-  font-family: "DM Sans";
-  color: #9ca3af;
-`;
 const MovieCardInfo = ({ title, tmdb, type }: MovieCardInfoProps): JSX.Element => {
     return (
         <Box mt="21px" ml="12px" mr="16px">
             <MovieTitle>{title} </MovieTitle>
             <TMDBRanking gap={"30px"} tmdb={tmdb} color={"#FFFFFF"} />
-            <MovieCategory>{type}</MovieCategory>
+            <CategoryButton type={type}/>
         </Box>
     );
 };

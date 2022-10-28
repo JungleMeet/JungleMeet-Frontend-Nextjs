@@ -19,4 +19,9 @@ export const getPopular = async () => {
     return await axiosApi.get("/movies/list?tag=popular");
 
 }
+
+export const getTopRated = async () => {
+    return await axiosApi.get("/movies/list?tag=top_rated");
+
+}
 export default axiosApi;
