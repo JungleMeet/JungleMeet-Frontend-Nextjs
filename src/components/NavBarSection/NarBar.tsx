@@ -9,7 +9,7 @@ const NavBar = () => {
     return (
         <NavBarContainer>
             <Link href="/">
-                <Image src="JungleMeetLogoWhiteText.svg" ml="48px" cursor="pointer" alt="logo" />
+                <Image src="/JungleMeetLogoWhiteText.svg" ml="48px" cursor="pointer" alt="logo" />
             </Link>
             <InputGroup w="525px" h="36px">
                 <Input
