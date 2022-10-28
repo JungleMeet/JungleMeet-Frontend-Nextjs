@@ -25,7 +25,7 @@ const UpcomingMovies = () => {
         const fetchMovies = async () => {
             try {
                 const { data } = await getUpcoming();
-                console.log(data);
+                // console.log(data);
 
                 setUpcomingMovies(data.slice(0, 10));
             } catch (err) {
