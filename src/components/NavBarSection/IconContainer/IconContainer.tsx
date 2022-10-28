@@ -31,7 +31,7 @@ const IconContainer = () => {
                 fontFamily="secondary"
                 onClick={onOpen}
             >
-        Sign in
+        Log in/ Sign up
             </Link>
             <LoginModal isOpen={isOpen} onClose={onClose} />
             <Hamburger />

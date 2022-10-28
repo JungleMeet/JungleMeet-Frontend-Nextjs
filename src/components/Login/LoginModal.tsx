@@ -11,11 +11,11 @@ import {
     TabPanels,
     Tab,
     TabPanel,
-    Flex,
 } from "@chakra-ui/react";
 import styled from "styled-components";
 import LoginForm from "./LoginForm/LoginForm";
-import { AiFillGoogleCircle, AiFillTwitterCircle } from "react-icons/ai";
+import SignupForm from "./SignupForm/SignupForm";
+import LoginModalFooter from "./LoginModalFooter";
 
 interface ILoginModal {
     isOpen: boolean;
@@ -30,12 +30,6 @@ const LoginTitleContainer = styled.div`
   height: 24px;
   margin: 0 191px;
 `;
-const LoginIconContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 114px;
-  margin-top: 17px;
-`;
 
 const selectedTabStyle = {
     color: "#000",
@@ -45,8 +39,8 @@ const selectedTabStyle = {
 const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay />
-            <ModalContent maxW="583px" minH="583px">
+            <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px) " />
+            <ModalContent mt="30px" mb="10px" maxW="583px" minH="583px">
                 <ModalHeader
                     display="flex"
                     flexDirection="column"
@@ -93,46 +87,15 @@ const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
                 Sign up
                             </Tab>
                         </TabList>
-                        <TabPanels>
+                        <TabPanels mb="50px">
                             <TabPanel p="0">
                                 <LoginForm></LoginForm>
+                                <LoginModalFooter>Log in with</LoginModalFooter>
                             </TabPanel>
                             <TabPanel p="0">
-                                <p>two!</p>
+                                <SignupForm></SignupForm>
+                                <LoginModalFooter>Sign up with</LoginModalFooter>
                             </TabPanel>
-                            <Flex
-                                _before={{
-                                    content: '""',
-                                    borderBottom: "1px solid",
-                                    borderColor: "#000",
-                                    flexGrow: 1,
-                                    mr: "13px",
-                                    w: "126px",
-                                }}
-                                _after={{
-                                    content: '""',
-                                    borderBottom: "1px solid",
-                                    borderColor: "#000",
-                                    flexGrow: 1,
-                                    ml: "13px",
-                                    w: "126px",
-                                }}
-                                fontSize="text5"
-                                fontWeight="400"
-                                color="gray.500"
-                                lineHeight="32px"
-                                position="relative"
-                                alignItems="center"
-                                width="359px"
-                                margin="auto"
-                                mt="25px"
-                            >
-                Log in with
-                            </Flex>
-                            <LoginIconContainer>
-                                <AiFillTwitterCircle size="28px" />
-                                <AiFillGoogleCircle size="28px" />
-                            </LoginIconContainer>
                         </TabPanels>
                     </Tabs>
                 </ModalBody>
