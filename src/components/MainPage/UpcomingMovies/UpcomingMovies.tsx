@@ -112,7 +112,7 @@ const UpcomingMovies = () => {
             Top 10
                     </Tab>
                     <SectionSubTitleSeeMore>
-                        <SeeMore href="/" />
+                        <SeeMore href="/allmovies" />
                     </SectionSubTitleSeeMore>
                 </TabList>
                 <TabPanels>

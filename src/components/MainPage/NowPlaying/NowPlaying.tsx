@@ -12,7 +12,7 @@ const NowPlaying = () => {
         <SectionContainer>
             <SectionHeaderContainer>
                 <SectionTitle>NowPlaying</SectionTitle>
-                <SeeMore href="/" />
+                <SeeMore href="/nowplaying" />
             </SectionHeaderContainer>
             <Movies />
         </SectionContainer>
