@@ -1,11 +1,9 @@
 import MovieCards from "./MovieCards";
 import { Tabs, TabPanels } from "@chakra-ui/react";
 import { getUpcoming } from "@/utils/axiosApi";
-import { useState, useEffect, useMemo} from "react";
-import {
-    SectionContainer,
-} from "../Containers";
-import UpcomingTabs from './UpcomingTabs';
+import { useState, useEffect, useMemo } from "react";
+import { SectionContainer } from "../Containers";
+import UpcomingTabs from "./UpcomingTabs";
 
 const UpcomingMovies = () => {
     const [upcomingMovies, setUpcomingMovies] = useState<
@@ -16,7 +14,7 @@ const UpcomingMovies = () => {
         voteAverage: number;
         genreNames: {
             id: number;
-            name: string
+            name: string;
         }[];
     }[]
     >([]);
@@ -41,10 +39,10 @@ const UpcomingMovies = () => {
     return (
         <SectionContainer>
             <Tabs>
-                <UpcomingTabs changeMovieListMethod={setUpcomingMovies}/>
+                <UpcomingTabs changeMovieListMethod={setUpcomingMovies} />
                 <TabPanels>
                     {/* <TabPanel p="0"> */}
-                    {upcomingMovies.length>0 && <MovieCards movieList={upcomingMoviesMemo} />}
+                    {upcomingMovies.length > 0 && <MovieCards movieList={upcomingMoviesMemo} />}
                     {/* </TabPanel> */}
                     {/* <TabPanel p="0">
                         <MovieCards movieList={movieList} />

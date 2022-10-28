@@ -1,14 +1,14 @@
 import { Box } from "@chakra-ui/react";
 import styled from "styled-components";
 import TMDBRanking from "../TMDBRanking";
-import CategoryButton from './CategoryButton';
+import CategoryButton from "./CategoryButton";
 
 export interface MovieCardInfoProps {
     title: string;
     tmdb: number;
     type: {
         id: number;
-        name: string
+        name: string;
     }[];
 }
 
@@ -33,7 +33,7 @@ const MovieCardInfo = ({ title, tmdb, type }: MovieCardInfoProps): JSX.Element =
         <Box mt="21px" ml="12px" mr="16px">
             <MovieTitle>{title} </MovieTitle>
             <TMDBRanking gap={"30px"} tmdb={tmdb} color={"#FFFFFF"} />
-            <CategoryButton type={type}/>
+            <CategoryButton type={type} />
         </Box>
     );
 };

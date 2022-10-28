@@ -21,7 +21,7 @@ interface ImovieListItem {
     voteAverage: number;
     genreNames: {
         id: number;
-        name: string
+        name: string;
     }[];
 }
 
@@ -33,7 +33,7 @@ interface ImovieList {
         voteAverage: number;
         genreNames: {
             id: number;
-            name: string
+            name: string;
         }[];
     }[];
 }
