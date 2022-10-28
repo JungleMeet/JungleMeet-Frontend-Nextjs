@@ -34,7 +34,7 @@ interface ImovieList {
 
 const MovieCards = ({ movieList }: ImovieList) => {
     return (
-        <CarouselContainer loop={false} slideSize="160px">
+        <CarouselContainer loop={true} slideSize="160px">
             {movieList?.map(({ poster, title, resourceId, voteAverage, genres }: ImovieListItem) => {
                 return (
                     <Carousel.Slide gap={31} key={resourceId}>
