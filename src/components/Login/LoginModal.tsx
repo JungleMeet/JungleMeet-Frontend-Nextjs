@@ -55,7 +55,7 @@ const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
                     padding="0"
                     marginTop="31px"
                 >
-                    <Image src="JungleMeetLogo.svg"></Image>
+                    <Image src="/JungleMeetLogo.svg"></Image>
                     <LoginTitleContainer>Where the Exploration Begins</LoginTitleContainer>
                 </ModalHeader>
                 <ModalCloseButton />
