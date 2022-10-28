@@ -1,6 +1,6 @@
 import Footer from "@/components/FooterSection/Footer";
 import NavBar from "@/components/NavBarSection/NarBar";
-import { PageContainer } from "@/pages";
+import { ContentWrapper, PageContainer } from "@/pages";
 
 interface IPageWrapperProps {
     children: React.ReactNode;
@@ -8,11 +8,11 @@ interface IPageWrapperProps {
 
 const PageWrapper = ({ children }: IPageWrapperProps): JSX.Element => {
     return (
-        <>
+        <PageContainer>
             <NavBar />
-            <PageContainer>{children}</PageContainer>
+            <ContentWrapper>{children}</ContentWrapper>
             <Footer />
-        </>
+        </PageContainer>
     );
 };
 

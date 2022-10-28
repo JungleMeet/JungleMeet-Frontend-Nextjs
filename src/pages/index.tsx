@@ -12,16 +12,19 @@ import { Flex } from "@chakra-ui/react";
 export const PageContainer = styled.div`
   max-width: 1440px;
   margin: auto;
+`;
+
+export const ContentWrapper = styled.div`
   padding: 98px;
   padding-bottom: 0;
 `;
 
 const HomePage = (): JSX.Element => {
     return (
-        <>
+        <PageContainer>
             <NavBar />
             <HeroBanner />
-            <PageContainer>
+            <ContentWrapper>
                 <Flex>
                     <NowPlaying />
                     <WeeklyTop10Post />
@@ -29,9 +32,9 @@ const HomePage = (): JSX.Element => {
                 <UpcomingMovies />
                 <ExclusiveVideos />
                 <PopularDisscusion />
-            </PageContainer>
+            </ContentWrapper>
             <Footer />
-        </>
+        </PageContainer>
     );
 };
 

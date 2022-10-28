@@ -17,8 +17,6 @@ const NavBarContainer = ({ children }: NavBarContainerProps) => {
             m="auto"
             zIndex="999"
             position="fixed"
-            left="50%"
-            transform="translate(-50%)"
             backgroundColor="rgba(0,0,0,0.85)"
             backdropFilter="grayscale(0.5) opacity(0.8)"
         >

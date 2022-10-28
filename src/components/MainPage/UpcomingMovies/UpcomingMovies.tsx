@@ -31,7 +31,6 @@ const UpcomingMovies = () => {
             }
         };
         fetchMovies();
-    // console.log(upcomingMovies);
     }, []);
     console.log(upcomingMovies);
     const upcomingMoviesMemo = useMemo(() => upcomingMovies, [upcomingMovies]);
@@ -41,18 +40,7 @@ const UpcomingMovies = () => {
             <Tabs>
                 <UpcomingTabs changeMovieListMethod={setUpcomingMovies} />
                 <TabPanels>
-                    {/* <TabPanel p="0"> */}
                     {upcomingMovies.length > 0 && <MovieCards movieList={upcomingMoviesMemo} />}
-                    {/* </TabPanel> */}
-                    {/* <TabPanel p="0">
-                        <MovieCards movieList={movieList} />
-                    </TabPanel>
-                    <TabPanel p="0">
-                        <MovieCards movieList={movieList} />
-                    </TabPanel>
-                    <TabPanel p="0">
-                        <MovieCards movieList={movieList} />
-                    </TabPanel> */}
                 </TabPanels>
             </Tabs>
         </SectionContainer>
