@@ -15,27 +15,36 @@ const MovieCardContainer = styled.div`
 `;
 
 interface ImovieListItem {
-    src: string;
+    poster: string;
     title: string;
-    id: number;
-    imdb: string;
-    type: string;
+    resourceId: number;
+    voteAverage: number;
+    genres: string;
 }
 
 interface ImovieList {
-    movieList: Array<ImovieListItem>;
+    movieList: {
+        poster: string;
+        title: string;
+        resourceId: number;
+        voteAverage: number;
+        genres: string;
+    }[];
 }
 
 const MovieCards = ({ movieList }: ImovieList) => {
     return (
         <CarouselContainer loop={true} slideSize="160px">
-            {movieList.map(({ src, title, id, imdb, type }: ImovieListItem) => {
+            {movieList?.map(({ poster, title, resourceId, voteAverage, genres }: ImovieListItem) => {
                 return (
-                    <Carousel.Slide gap={31} key={id}>
-                        <MovieCardContainer>
-                            <MovieCardThumbnail src={src} title={title} id={id} />
-                            <MovieCardInfo title={title} imdb={imdb} type={type} />
-                        </MovieCardContainer>
+                    <Carousel.Slide gap={31} key={resourceId}>
+                        <>
+                            {console.log("in movie cards", movieList)}
+                            <MovieCardContainer>
+                                <MovieCardThumbnail src={poster} title={title} id={resourceId} />
+                                <MovieCardInfo title={title} tmdb={voteAverage} type={genres} />
+                            </MovieCardContainer>
+                        </>
                     </Carousel.Slide>
                 );
             })}

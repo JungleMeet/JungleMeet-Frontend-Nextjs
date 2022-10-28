@@ -27,7 +27,6 @@ const useStyles = createStyles((_theme, _params, getRef) => ({
 
 const CarouselContainer = ({ children, slideSize, loop }: ICarouselContainerProps): JSX.Element => {
     const { classes } = useStyles();
-
     return (
         <Carousel
             loop={loop}

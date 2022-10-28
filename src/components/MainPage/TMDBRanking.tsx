@@ -1,19 +1,19 @@
 import { Box, Flex, Text, Image } from "@chakra-ui/react";
 
-interface IIMDBRankingProps {
+interface ITMDBRankingProps {
     gap: string;
-    imdb: string;
+    tmdb: number;
     // thumbsUp: string;
     color: string;
 }
 
-const IMDBRanking = ({ gap, imdb, color }: IIMDBRankingProps): JSX.Element => {
+const TMDBRanking = ({ gap, tmdb, color }: ITMDBRankingProps): JSX.Element => {
     return (
         <Flex gap={gap} height="12px" m="0" width="100%">
             <Box display="flex" alignItems="center">
-                <Image src="/TMDB.svg" mr="10px" width="39px" />
+                <Image src="/tmdb.svg" mr="10px" width="39px" />
                 <Text fontSize="text6" lineHeight="12px" color={color} fontFamily="secondary">
-                    {imdb}
+                    {tmdb}
                 </Text>
             </Box>
             {/* <Box display="flex">
@@ -26,4 +26,4 @@ const IMDBRanking = ({ gap, imdb, color }: IIMDBRankingProps): JSX.Element => {
     );
 };
 
-export default IMDBRanking;
+export default TMDBRanking;
