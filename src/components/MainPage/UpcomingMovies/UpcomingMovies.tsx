@@ -117,7 +117,7 @@ const UpcomingMovies = () => {
                 </TabList>
                 <TabPanels>
                     {/* <TabPanel p="0"> */}
-                    {upcomingMovies.length>0 && <MovieCards movieList={upcomingMovies} />}
+                    {upcomingMovies.length > 0 && <MovieCards movieList={upcomingMovies} />}
                     {/* </TabPanel> */}
                     {/* <TabPanel p="0">
                         <MovieCards movieList={movieList} />
