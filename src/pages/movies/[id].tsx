@@ -7,6 +7,7 @@ import {
     SectionTitle,
 } from "@/components/MainPage/Containers";
 import PageWrapper from "@/components/PageWrapper";
+import MovieSection from "@/components/MovieDetails/MovieSection";
 
 const PopularReview = (): JSX.Element => {
     return (
@@ -14,6 +15,7 @@ const PopularReview = (): JSX.Element => {
             <PageWrapper>
                 <SectionContainer>
                     <SectionHeaderContainer>
+                        <MovieSection />
                         <SectionTitle>Popular Review</SectionTitle>
                         <div>
                             <Text
