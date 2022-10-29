@@ -1,14 +1,9 @@
-import SeeMore from "../SeeMore";
 import MovieCards from "./MovieCards";
-import { Tabs, TabList, TabPanels, Tab } from "@chakra-ui/react";
-// import axiosApi from "@/utils/axiosApi";
+import { Tabs, TabPanels } from "@chakra-ui/react";
 import { getUpcoming } from "@/utils/axiosApi";
-import { useState, useEffect } from "react";
-import {
-    SectionContainer,
-    // SectionTitle,
-    SectionSubTitleSeeMore,
-} from "../Containers";
+import { useState, useEffect, useMemo } from "react";
+import { SectionContainer } from "../Containers";
+import UpcomingTabs from "./UpcomingTabs";
 
 const UpcomingMovies = () => {
     const [upcomingMovies, setUpcomingMovies] = useState<
@@ -17,7 +12,10 @@ const UpcomingMovies = () => {
         title: string;
         resourceId: number;
         voteAverage: number;
-        genres: string;
+        genreNames: {
+            id: number;
+            name: string;
+        }[];
     }[]
     >([]);
 
@@ -33,101 +31,16 @@ const UpcomingMovies = () => {
             }
         };
         fetchMovies();
-    // console.log(upcomingMovies);
     }, []);
     console.log(upcomingMovies);
-    // const upcomingMoviesMemo = useMemo(() => movieList, [movieList]);
+    const upcomingMoviesMemo = useMemo(() => upcomingMovies, [upcomingMovies]);
 
     return (
         <SectionContainer>
             <Tabs>
-                <TabList
-                    w="100%"
-                    display="flex"
-                    justifyContent="flex-start"
-                    alignItems="center"
-                    gap="29px"
-                    mb="50px"
-                    color="gray.500"
-                    borderBottom="0"
-                >
-                    <Tab
-                        fontSize="h4"
-                        lineHeight="36px"
-                        fontWeight="500"
-                        _selected={{
-                            fontSize: "30px",
-                            fontWeight: "700",
-                            lineHeight: "36px",
-                            color: "#000",
-                        }}
-                        _focus={{ border: "none" }}
-                        p="0"
-                    >
-            Upcoming Movies
-                    </Tab>
-                    <Tab
-                        fontSize="h4"
-                        lineHeight="36px"
-                        fontWeight="500"
-                        _selected={{
-                            fontSize: "30px",
-                            fontWeight: "700",
-                            lineHeight: "36px",
-                            color: "#000",
-                        }}
-                        _focus={{ border: "none" }}
-                        p="0"
-                    >
-            Popular
-                    </Tab>
-                    <Tab
-                        fontSize="h4"
-                        lineHeight="36px"
-                        fontWeight="500"
-                        _selected={{
-                            fontSize: "30px",
-                            fontWeight: "700",
-                            lineHeight: "36px",
-                            color: "#000",
-                        }}
-                        _focus={{ border: "none" }}
-                        p="0"
-                    >
-            Newest
-                    </Tab>
-                    <Tab
-                        fontSize="h4"
-                        lineHeight="36px"
-                        fontWeight="500"
-                        _selected={{
-                            fontSize: "30px",
-                            fontWeight: "700",
-                            lineHeight: "36px",
-                            color: "#000",
-                        }}
-                        _focus={{ border: "none" }}
-                        p="0"
-                    >
-            Top 10
-                    </Tab>
-                    <SectionSubTitleSeeMore>
-                        <SeeMore href="/" />
-                    </SectionSubTitleSeeMore>
-                </TabList>
+                <UpcomingTabs changeMovieListMethod={setUpcomingMovies} />
                 <TabPanels>
-                    {/* <TabPanel p="0"> */}
-                    {upcomingMovies.length > 0 && <MovieCards movieList={upcomingMovies} />}
-                    {/* </TabPanel> */}
-                    {/* <TabPanel p="0">
-                        <MovieCards movieList={movieList} />
-                    </TabPanel>
-                    <TabPanel p="0">
-                        <MovieCards movieList={movieList} />
-                    </TabPanel>
-                    <TabPanel p="0">
-                        <MovieCards movieList={movieList} />
-                    </TabPanel> */}
+                    {upcomingMovies.length > 0 && <MovieCards movieList={upcomingMoviesMemo} />}
                 </TabPanels>
             </Tabs>
         </SectionContainer>
