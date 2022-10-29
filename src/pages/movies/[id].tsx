@@ -1,22 +1,29 @@
 import { Text, Image } from "@chakra-ui/react";
 import React from "react";
 import ReviewPosts from "@/components/MoviePage/PopularReview/ReviewPosts";
-import { SectionContainer, SectionHeaderContainer, SectionTitle } from "@/components/MainPage/Containers";
+import {
+    SectionContainer,
+    SectionHeaderContainer,
+    SectionTitle,
+} from "@/components/MainPage/Containers";
 import PageWrapper from "@/components/PageWrapper";
-
-
-
 
 const PopularReview = (): JSX.Element => {
     return (
         <>
             <PageWrapper>
-                <SectionContainer>     
+                <SectionContainer>
                     <SectionHeaderContainer>
-                        <SectionTitle >Popular Review</SectionTitle>  
+                        <SectionTitle>Popular Review</SectionTitle>
                         <div>
-                            <Text fontWeight="400" fontSize="18px" color="rose.700" marginRight="800px" lineHeight="24px">
-                           106 reviews  &nbsp; &gt;
+                            <Text
+                                fontWeight="400"
+                                fontSize="18px"
+                                color="rose.700"
+                                marginRight="800px"
+                                lineHeight="24px"
+                            >
+                106 reviews &nbsp; &gt;
                             </Text>
                         </div>
                         {/* write a new review part  */}
@@ -30,8 +37,7 @@ const PopularReview = (): JSX.Element => {
                                 marginLeft="-47.5px"
                                 borderRadius="5px"
                                 margin-top="-5px"
-                            >
-                            </Image>
+                            ></Image>
                             <Image
                                 src="/writeReview.svg"
                                 width="15px"
@@ -40,23 +46,19 @@ const PopularReview = (): JSX.Element => {
                                 position="absolute"
                                 marginLeft="-25px"
                                 marginTop="6px"
-                            >   
-                            </Image> 
-                            <Text fontWeight="700" fontSize="18px" color="blue.500" >
-                           Review
+                            ></Image>
+                            <Text fontWeight="700" fontSize="18px" color="blue.500">
+                Review
                             </Text>
                         </div>
                         {/* write a new review part END */}
-                      
                     </SectionHeaderContainer>
-                    <ReviewPosts/>
+                    <ReviewPosts />
                     <Text fontWeight="400" fontSize="18px" color="rose.700" lineHeight="24px">
-                          See more Reviews (106 reviews)  &nbsp; &gt;
+            See more Reviews (106 reviews) &nbsp; &gt;
                     </Text>
                 </SectionContainer>
             </PageWrapper>
-            
-           
         </>
     );
 };

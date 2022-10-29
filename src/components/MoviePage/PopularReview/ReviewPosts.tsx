@@ -18,8 +18,7 @@ const reviewList = [
         helpful: 80,
         views: 78,
         comments: 18,
-        description:
-      "Watching Dune now is like watching 2001: A Space Odyssey in 1968.",
+        description: "Watching Dune now is like watching 2001: A Space Odyssey in 1968.",
     },
     {
         id: 3,
@@ -28,8 +27,7 @@ const reviewList = [
         helpful: 60,
         views: 25,
         comments: 6,
-        description:
-        "I feel like I watched a two and a half hour trailer."
+        description: "I feel like I watched a two and a half hour trailer.",
     },
 ];
 
