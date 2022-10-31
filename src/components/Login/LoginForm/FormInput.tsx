@@ -12,6 +12,7 @@ interface IFormInput {
     placeholder: string;
     type: string;
     value: string;
+    pattern?: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 const FormInput = ({ onChange, ...rest }: IFormInput) => {
