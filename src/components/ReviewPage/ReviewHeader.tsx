@@ -31,7 +31,7 @@ const ReviewHeader = () => {
                     />
                 </Flex>
             </Flex>
-            <Divider orientation="horizontal" mb="12px" mt="44px" />
+            <Divider orientation="horizontal" mb="12px" mt="44px" borderColor="grey.200" />
         </>
     );
 };

@@ -1,14 +1,12 @@
 import PageWrapper from "@/components/PageWrapper";
-import ReviewHeader from "@/components/ReviewPage/ReviewHeader";
-import ReviewFilter from "@/components/ReviewPage/ReviewFilter";
+import ReviewPage from "@/components/ReviewPage/ReviewPage";
 
-const Discussions = () => {
+const Reviews = () => {
     return (
         <PageWrapper>
-            <ReviewHeader />
-            <ReviewFilter />
+            <ReviewPage />
         </PageWrapper>
     );
 };
 
-export default Discussions;
+export default Reviews;

@@ -1,24 +1,24 @@
-import React from "react";
 import CreatedByTheAuthor from "../CreatedByTheAuthor";
+import React from "react";
 
-interface IDiscussionAuthor {
+interface IReviewAuthor {
     author: string;
     createdAt: string;
 }
 
-const DiscussionAuthor = ({ author, createdAt }: IDiscussionAuthor) => {
+const ReviewAuthor = ({ author, createdAt }: IReviewAuthor) => {
     return (
         <CreatedByTheAuthor
-            gap="10px"
+            gap="24.26px"
             color="gray.400"
             fontSize="text4"
             lineHeight="lh24"
             fontWeight="400"
-            imageSize="28px"
-            author={`By ${author}`}
+            imageSize="76px"
+            author={author}
             createdAt={createdAt}
         />
     );
 };
 
-export default DiscussionAuthor;
+export default ReviewAuthor;

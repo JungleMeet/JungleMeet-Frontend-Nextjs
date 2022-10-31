@@ -21,7 +21,7 @@ const ReviewFilter = () => {
                 </Flex>
                 <DiscussionSort />
             </Flex>
-            <Divider orientation="horizontal" mt="13px" />
+            <Divider orientation="horizontal" mt="13px" borderColor="grey.200" />
         </>
     );
 };
