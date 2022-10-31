@@ -2,8 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import Discussion from "./Discussion";
 import { discussionsDate } from "./discussionsData";
 import Pagination from "./Pagination";
-import DiscussionHeader from "./DiscussionHeader"
-import DiscussionFilter from "./DiscussionFilter"
 
 const DiscussionsPage = () => {
     const [posts, setPosts] = useState(discussionsDate);
@@ -35,8 +33,6 @@ const DiscussionsPage = () => {
 
     return (
         <>
-            <DiscussionHeader />
-            <DiscussionFilter />
             {currentPostsMemo}
             <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
         </>

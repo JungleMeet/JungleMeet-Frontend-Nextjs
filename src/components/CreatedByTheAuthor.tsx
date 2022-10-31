@@ -36,7 +36,7 @@ const CreatedByTheAuthor = ({
             <Image src="/noun-user-circle-1918168.svg" width={imageSize} />
             <Text>
                 {" "}
-                {author} {dateCreatedAt(createdAt)}
+        By {author} {dateCreatedAt(createdAt)}
             </Text>
         </Flex>
     );
