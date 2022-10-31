@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Discussion from "./Discussion";
+import DiscussionHeader from "./DiscussionHeader";
+import DiscussionFilter from "./DiscussionFilter";
 import { discussionsDate } from "./discussionsData";
 import Pagination from "./Pagination";
 
@@ -23,6 +25,8 @@ const DiscussionsPage = () => {
     const currentPostsMemo = useMemo(
         () => (
             <>
+                <DiscussionHeader />
+                <DiscussionFilter />
                 {currentPosts.map(({ id, ...rest }) => (
                     <Discussion key={id} {...rest} />
                 ))}

@@ -15,7 +15,7 @@ const DiscussionAuthor = ({ author, createdAt }: IDiscussionAuthor) => {
             lineHeight="lh24"
             fontWeight="400"
             imageSize="28px"
-            author={author}
+            author={`By ${author}`}
             createdAt={createdAt}
         />
     );

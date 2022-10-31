@@ -15,6 +15,7 @@ const DiscussionSort = () => {
                 width="176px"
                 variant="outline"
                 fontSize={"text2"}
+                borderColor="grey.300"
             >
                 <option>Most Recent</option>
             </Select>
