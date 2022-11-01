@@ -5,7 +5,7 @@ import CarouselSlide, { ICarouselSlideProps } from "./CarouselSlide";
 import { Carousel } from "@mantine/carousel";
 import { useState, useEffect, useRef } from "react";
 import { default as autoPlay } from "embla-carousel-autoplay";
-import { getHeroBannerMovies } from "@/utils/axiosApi";
+import { getHeroBannerMovies } from "@/utils/axiosMovieApi";
 
 const useStyles = createStyles((_theme, _params, getRef) => ({
     controls: {

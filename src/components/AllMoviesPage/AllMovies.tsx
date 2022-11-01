@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect, useMemo } from "react";
-import { getUpcoming } from "@/utils/axiosApi";
+import { getUpcoming } from "@/utils/axiosMovieApi";
 import { Grid } from "@chakra-ui/react";
 import MovieCardThumbnail from "@/components/MainPage/UpcomingMovies/MovieCardThumbnail";
 import MovieCardInfo from "@/components/MainPage/UpcomingMovies/MovieCardInfo";
