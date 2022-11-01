@@ -7,7 +7,7 @@ interface IMovieThumbnailProps {
     title: string;
     tmdb: number;
     key: number;
-    youtubeLink: string;
+    youtubeLink?: string;
 }
 
 const MovieThumbnail = ({ src, title, tmdb, youtubeLink }: IMovieThumbnailProps): JSX.Element => {

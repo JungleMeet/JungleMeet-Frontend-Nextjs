@@ -44,23 +44,21 @@ const HeroBanner = () => {
         };
         fetchMovies();
     }, []);
-    console.log(secondfetch);
-    // console.log(topRatedMovies);
 
     useEffect(() => {
-        const fetchYoutubeLink = async () => {
-            console.log(topRatedMovies);
-            const testlink = await getYoutubeLinkById(238);
-            console.log(testlink);
+        const fetchYoutubeLinks = async () => {
             const youtubeLinks = await Promise.all(
-                topRatedMovies.map(({ id }) => {
-                    getYoutubeLinkById(id);
+                topRatedMovies.map(async ({ id, ...rest }) => {
+                    return {
+                        id,
+                        ...rest,
+                        youtubeLink: (await getYoutubeLinkById(id)).data,
+                    };
                 })
             );
-            console.log(youtubeLinks);
-            return youtubeLinks;
+            setTopRatedMovies(youtubeLinks);
         };
-        fetchYoutubeLink();
+        fetchYoutubeLinks();
     }, [secondfetch]);
 
     const { classes } = useStyles();
