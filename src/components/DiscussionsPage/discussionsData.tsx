@@ -1,4 +1,4 @@
-export const discussionsDate: {
+export const discussionsData: {
     id: number;
     image: string;
     alt: string;

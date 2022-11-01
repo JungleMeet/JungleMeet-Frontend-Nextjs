@@ -5,7 +5,6 @@ import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 
 interface ICarouselContainerProps {
     children: React.ReactNode;
-    loop: boolean;
     slideSize: string;
 }
 
@@ -25,11 +24,11 @@ const useStyles = createStyles((_theme, _params, getRef) => ({
     },
 }));
 
-const CarouselContainer = ({ children, slideSize, loop }: ICarouselContainerProps): JSX.Element => {
+const CarouselContainer = ({ children, slideSize }: ICarouselContainerProps): JSX.Element => {
     const { classes } = useStyles();
     return (
         <Carousel
-            loop={loop}
+            loop
             classNames={classes}
             controlsOffset="xl"
             nextControlIcon={<AiOutlineRight fill="gray.900" size="40" />}

@@ -24,4 +24,13 @@ export const getTopRated = async () => {
     return await axiosApi.get("/movies/list?tag=top_rated");
 
 }
+
+export const getHeroBannerMovies = async () => {
+    return await axiosApi.get("/movies/tops");
+}
+
+export const getYoutubeLinkById = async (id:number) => {
+    return await axiosApi.get(`/trailers/${id}`);
+}
+
 export default axiosApi;

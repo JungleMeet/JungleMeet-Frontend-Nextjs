@@ -25,7 +25,7 @@ interface ImovieListItem {
     }[];
 }
 
-interface ImovieList {
+export interface ImovieListProps {
     movieList: {
         poster: string;
         title: string;
@@ -38,19 +38,16 @@ interface ImovieList {
     }[];
 }
 
-const MovieCards = ({ movieList }: ImovieList) => {
+const MovieCards = ({ movieList }: ImovieListProps) => {
     return (
-        <CarouselContainer loop={true} slideSize="160px">
+        <CarouselContainer slideSize="160px">
             {movieList?.map(({ poster, title, resourceId, voteAverage, genreNames }: ImovieListItem) => {
                 return (
                     <Carousel.Slide gap={31} key={resourceId}>
-                        <>
-                            {console.log("in movie cards", movieList)}
-                            <MovieCardContainer>
-                                <MovieCardThumbnail src={poster} title={title} id={resourceId} />
-                                <MovieCardInfo title={title} tmdb={voteAverage} type={genreNames} />
-                            </MovieCardContainer>
-                        </>
+                        <MovieCardContainer>
+                            <MovieCardThumbnail src={poster} title={title} id={resourceId} />
+                            <MovieCardInfo title={title} tmdb={voteAverage} type={genreNames} />
+                        </MovieCardContainer>
                     </Carousel.Slide>
                 );
             })}
