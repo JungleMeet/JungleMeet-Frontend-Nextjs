@@ -2,15 +2,20 @@ import { Flex, Heading, Divider, IconButton, Image } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import React from "react";
 
-const ReviewHeader = () => {
+interface IReviewHeader {
+    title: string;
+    image: string;
+    alt: string;
+}
+const ReviewHeader = ({ title, image, alt }: IReviewHeader) => {
     return (
         <>
             <Flex alignItems="center" justifyContent="space-between" pt="70px">
                 <Flex alignItems="center">
-                    <Image src="/Dune.jpg" height="106px" width="72px"></Image>
+                    <Image src={image} alt={alt} height="106px" width="72px"></Image>
                     <Flex direction="column" pl="36px">
                         <Heading fontSize="h4" pr="11px" color={"blue.500"}>
-              Dune: Part One (2021)
+                            {title}
                         </Heading>
                         <Heading fontSize={"h1"} fontFamily="heading">
               User Review
@@ -31,7 +36,7 @@ const ReviewHeader = () => {
                     />
                 </Flex>
             </Flex>
-            <Divider orientation="horizontal" mb="12px" mt="44px" />
+            <Divider orientation="horizontal" mb="12px" mt="28px" borderColor="grey.200" />
         </>
     );
 };
