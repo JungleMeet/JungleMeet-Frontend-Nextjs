@@ -7,6 +7,7 @@ interface IDiscussionProps {
     title: string;
     image: string;
     alt: string;
+    authorId: string;
     author: string;
     createdAt: string;
     likes: number;
@@ -19,6 +20,7 @@ const Discussion = ({
     title,
     image,
     alt,
+    authorId,
     author,
     createdAt,
     likes,
@@ -34,7 +36,7 @@ const Discussion = ({
                     {title}
                 </Link>
                 <Flex alignItems="center" justifyContent="space-between">
-                    <DiscussionAuthor author={author} createdAt={createdAt} />
+                    <DiscussionAuthor author={author} createdAt={createdAt} authorId={authorId} />
                     <Flex>
                         <Text color="red">{likes} liked</Text>
                         <Text color="gray.400">&nbsp; &bull; {views} views </Text>

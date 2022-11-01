@@ -11,6 +11,7 @@ interface ICreatedByTheAuthorProps {
     imageSize: string;
     author: string;
     createdAt: string;
+    avatar?: string;
 }
 
 const CreatedByTheAuthor = ({
@@ -22,6 +23,7 @@ const CreatedByTheAuthor = ({
     imageSize,
     author,
     createdAt,
+    avatar,
 }: ICreatedByTheAuthorProps) => {
     return (
         <Flex
@@ -33,7 +35,7 @@ const CreatedByTheAuthor = ({
             margin="12px 0"
             alignItems="center"
         >
-            <Image src="/noun-user-circle-1918168.svg" width={imageSize} />
+            <Image src={avatar || "/noun-user-circle-1918168.svg"} width={imageSize} />
             <Text>
                 {" "}
         By {author} {dateCreatedAt(createdAt)}

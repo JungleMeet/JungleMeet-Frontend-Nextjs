@@ -23,7 +23,6 @@ const UpcomingMovies = () => {
         const fetchMovies = async () => {
             try {
                 const { data } = await getUpcoming();
-                // console.log(data);
 
                 setUpcomingMovies(data.slice(0, 10));
             } catch (err) {
@@ -32,7 +31,6 @@ const UpcomingMovies = () => {
         };
         fetchMovies();
     }, []);
-    console.log(upcomingMovies);
     const upcomingMoviesMemo = useMemo(() => upcomingMovies, [upcomingMovies]);
 
     return (

@@ -45,7 +45,6 @@ const MovieCards = ({ movieList }: ImovieList) => {
                 return (
                     <Carousel.Slide gap={31} key={resourceId}>
                         <>
-                            {console.log("in movie cards", movieList)}
                             <MovieCardContainer>
                                 <MovieCardThumbnail src={poster} title={title} id={resourceId} />
                                 <MovieCardInfo title={title} tmdb={voteAverage} type={genreNames} />
