@@ -75,6 +75,6 @@ const HeroBanner = () => {
             )}
         </Box>
     );
-}
+};
 
 export default HeroBanner;
