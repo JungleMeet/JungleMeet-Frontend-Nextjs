@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Movie from "./MovieThumbnail";
 // import axiosApi from "@/utils/axiosApi";
-import { getNowPlaying } from "@/utils/axiosApi";
+import { getNowPlaying } from "@/utils/axiosMovieApi";
 import { useState, useEffect, useMemo } from "react";
 
 const MoviesContainer = styled.div`

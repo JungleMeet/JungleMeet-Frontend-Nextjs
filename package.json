@@ -41,6 +41,7 @@
     "@mantine/next": "^5.5.5",
     "@reduxjs/toolkit": "^1.8.1",
     "axios": "^0.27.2",
+    "buffer": "^6.0.3",
     "embla-carousel-autoplay": "^7.0.3",
     "embla-carousel-react": "^7.0.3",
     "formik": "^2.2.9",

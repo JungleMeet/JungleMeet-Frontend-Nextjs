@@ -1,6 +1,6 @@
 import MovieCards from "./MovieCards";
 import { Tabs, TabPanels } from "@chakra-ui/react";
-import { getUpcoming } from "@/utils/axiosApi";
+import { getUpcoming } from "@/utils/axiosMovieApi";
 import { useState, useEffect, useMemo } from "react";
 import { SectionContainer } from "../Containers";
 import UpcomingTabs from "./UpcomingTabs";

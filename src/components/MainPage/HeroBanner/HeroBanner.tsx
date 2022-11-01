@@ -5,7 +5,7 @@ import CarouselSlide from "./CarouselSlide";
 import { Carousel } from "@mantine/carousel";
 import { useState, useEffect, useRef, useMemo } from "react";
 import { default as autoPlay } from "embla-carousel-autoplay";
-import axiosApi from "@/utils/axiosApi";
+import axiosApi from "@/utils/axiosMovieApi";
 
 const useStyles = createStyles((_theme, _params, getRef) => ({
     controls: {
@@ -37,7 +37,7 @@ const HeroBanner = () => {
     useEffect(() => {
         const fetchMovies = async () => {
             setLoading(true);
-            const { data } = await axiosApi.get("/movies/tops");
+            const { data } = await axiosApi.get("/tops");
             setTopRatedMovies(data);
         };
         fetchMovies();

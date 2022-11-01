@@ -1,4 +1,4 @@
-import axiosApi from "@/utils/axiosApi";
+import axiosApi from "@/utils/axiosMovieApi";
 import { Box, Button, Image } from "@chakra-ui/react";
 
 interface IButtonWatchTrailer {
@@ -8,7 +8,7 @@ interface IButtonWatchTrailer {
 
 const ButtonWatchTrailer = ({ onClick, value }: IButtonWatchTrailer): JSX.Element => {
     const handleMovieTrailer = async () => {
-        const { data } = await axiosApi.get(`/movies/trailers/${value}`);
+        const { data } = await axiosApi.get(`trailers/${value}`);
         document.location.href = `https://www.youtube.com/watch?v=${data}`;
     };
 

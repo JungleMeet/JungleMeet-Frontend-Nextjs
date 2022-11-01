@@ -89,7 +89,7 @@ const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
                         </TabList>
                         <TabPanels mb="50px">
                             <TabPanel p="0">
-                                <LoginForm></LoginForm>
+                                <LoginForm closeModal={onClose}></LoginForm>
                                 <LoginModalFooter>Log in with</LoginModalFooter>
                             </TabPanel>
                             <TabPanel p="0">
