@@ -1,21 +1,23 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Discussion from "./Discussion";
-import { discussionsDate } from "./discussionsData";
+import DiscussionHeader from "./DiscussionHeader";
+import DiscussionFilter from "./DiscussionFilter";
+import { discussionsData } from "./discussionsData";
 import Pagination from "./Pagination";
 
 const DiscussionsPage = () => {
-    const [posts, setPosts] = useState(discussionsDate);
+    const [posts, setPosts] = useState(discussionsData);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(5);
 
     useEffect(() => {
-        return setPosts(discussionsDate);
+        return setPosts(discussionsData);
     });
 
     // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = discussionsDate.slice(indexOfFirstPost, indexOfLastPost);
+    const currentPosts = discussionsData.slice(indexOfFirstPost, indexOfLastPost);
 
     // Change page
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
@@ -23,12 +25,14 @@ const DiscussionsPage = () => {
     const currentPostsMemo = useMemo(
         () => (
             <>
+                <DiscussionHeader />
+                <DiscussionFilter />
                 {currentPosts.map(({ id, ...rest }) => (
                     <Discussion key={id} {...rest} />
                 ))}
             </>
         ),
-        [discussionsDate]
+        [discussionsData]
     );
 
     return (

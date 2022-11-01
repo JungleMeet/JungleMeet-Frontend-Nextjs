@@ -1,7 +1,7 @@
 import { TabList, Tab } from "@chakra-ui/react";
 import { SectionSubTitleSeeMore } from "../Containers";
 import SeeMore from "../SeeMore";
-import { getPopular, getUpcoming, getTopRated } from "@/utils/axiosApi";
+import { getPopular, getUpcoming, getTopRated } from "@/utils/axiosMovieApi";
 
 const tabTitles = ["Upcoming Movies", "Popular", "Top 10"];
 

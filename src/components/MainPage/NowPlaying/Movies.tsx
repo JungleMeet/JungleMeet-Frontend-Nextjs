@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Movie from "./MovieThumbnail";
 // import axiosApi from "@/utils/axiosApi";
-import { getNowPlaying } from "@/utils/axiosApi";
+import { getNowPlaying } from "@/utils/axiosMovieApi";
 import { useState, useEffect, useMemo } from "react";
 
 const MoviesContainer = styled.div`
@@ -13,6 +13,7 @@ interface ImovieList {
     poster: string;
     title: string;
     voteAverage: number;
+    youtubeLink: string;
 }
 const Movies = () => {
     const [movieList, setMovieList] = useState([]);
@@ -21,7 +22,6 @@ const Movies = () => {
         const fetchMovies = async () => {
             try {
                 const { data } = await getNowPlaying();
-                // console.log(data);
 
                 setMovieList(data.slice(0, 4));
             } catch (err) {
@@ -30,12 +30,22 @@ const Movies = () => {
         };
         fetchMovies();
     }, []);
-    // console.log(nowPlayingMoviesMemo);
+
     return (
         <MoviesContainer>
-            {nowPlayingMoviesMemo?.map(({ resourceId, poster, title, voteAverage }: ImovieList) => {
-                return <Movie src={poster} title={title} tmdb={voteAverage} key={resourceId} />;
-            })}
+            {nowPlayingMoviesMemo?.map(
+                ({ resourceId, poster, title, voteAverage, youtubeLink }: ImovieList) => {
+                    return (
+                        <Movie
+                            src={poster}
+                            title={title}
+                            tmdb={voteAverage}
+                            key={resourceId}
+                            youtubeLink={youtubeLink}
+                        />
+                    );
+                }
+            )}
         </MoviesContainer>
     );
 };

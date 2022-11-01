@@ -1,11 +1,11 @@
 import { Box } from "@chakra-ui/react";
 import { createStyles } from "@mantine/core";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
-import CarouselSlide from "./CarouselSlide";
+import CarouselSlide, { ICarouselSlideProps } from "./CarouselSlide";
 import { Carousel } from "@mantine/carousel";
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import { default as autoPlay } from "embla-carousel-autoplay";
-import axiosApi from "@/utils/axiosApi";
+import { getHeroBannerMovies } from "@/utils/axiosMovieApi";
 
 const useStyles = createStyles((_theme, _params, getRef) => ({
     controls: {
@@ -30,14 +30,14 @@ const useStyles = createStyles((_theme, _params, getRef) => ({
 }));
 
 const HeroBanner = () => {
-    const [topRatedMovies, setTopRatedMovies] = useState([]);
+    const [topRatedMovies, setTopRatedMovies] = useState<ICarouselSlideProps[]>([]);
     // eslint-disable-next-line no-unused-vars
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchMovies = async () => {
             setLoading(true);
-            const { data } = await axiosApi.get("/movies/tops");
+            const { data } = await getHeroBannerMovies();
             setTopRatedMovies(data);
         };
         fetchMovies();
@@ -46,32 +46,33 @@ const HeroBanner = () => {
     const { classes } = useStyles();
     const autoplay = useRef(autoPlay({ delay: 4000 }));
 
-    const topRatedMoviesMemo = useMemo(() => topRatedMovies, [topRatedMovies]);
-
     return (
         <Box w="100%" maxWidth="1440px" pos="relative" m="auto" paddingTop="76px">
-            <Carousel
-                withIndicators
-                // loop
-                classNames={classes}
-                controlsOffset="lg"
-                nextControlIcon={<AiOutlineRight fill="#ffffff" size="50" />}
-                previousControlIcon={<AiOutlineLeft fill="#ffffff" size="50" />}
-                plugins={[autoplay.current]}
-                onMouseEnter={autoplay.current.stop}
-                onMouseLeave={autoplay.current.reset}
-            >
-                {topRatedMoviesMemo?.map(({ id, title, voteAverage, overview, heroBanner }) => (
-                    <CarouselSlide
-                        key={id}
-                        title={title}
-                        voteAverage={voteAverage}
-                        overview={overview}
-                        heroBanner={heroBanner}
-                        id={id}
-                    />
-                ))}
-            </Carousel>
+            {topRatedMovies.length > 0 && (
+                <Carousel
+                    withIndicators
+                    loop
+                    classNames={classes}
+                    controlsOffset="lg"
+                    nextControlIcon={<AiOutlineRight fill="#ffffff" size="50" />}
+                    previousControlIcon={<AiOutlineLeft fill="#ffffff" size="50" />}
+                    plugins={[autoplay.current]}
+                    onMouseEnter={autoplay.current.stop}
+                    onMouseLeave={autoplay.current.reset}
+                >
+                    {topRatedMovies?.map(({ id, title, voteAverage, overview, heroBanner, youtubeLink }) => (
+                        <CarouselSlide
+                            key={id}
+                            title={title}
+                            voteAverage={voteAverage}
+                            overview={overview}
+                            heroBanner={heroBanner}
+                            id={id}
+                            youtubeLink={youtubeLink}
+                        />
+                    ))}
+                </Carousel>
+            )}
         </Box>
     );
 };
