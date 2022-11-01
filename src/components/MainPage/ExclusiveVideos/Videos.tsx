@@ -20,13 +20,17 @@ const Videos = () => {
     }, []);
 
     return (
-        <CarouselContainer loop={false} slideSize="33.333%">
-            {videoList.map(({ id, src, title }) => (
-                <Carousel.Slide gap={48} key={id}>
-                    <VideoThumbnail src={src} title={title} />
-                </Carousel.Slide>
-            ))}
-        </CarouselContainer>
+        <>
+            {videoList.length > 0 && (
+                <CarouselContainer slideSize="33.333%">
+                    {videoList?.map(({ id, src, title }) => (
+                        <Carousel.Slide gap={48} key={id}>
+                            <VideoThumbnail src={src} title={title} />
+                        </Carousel.Slide>
+                    ))}
+                </CarouselContainer>
+            )}
+        </>
     );
 };
 

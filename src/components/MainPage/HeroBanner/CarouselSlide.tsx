@@ -1,15 +1,17 @@
 import React from "react";
 import ButtonWatchTrailer from "./ButtonWatchTrailer";
-import { Heading, Text, Flex, Image } from "@chakra-ui/react";
+import { Heading, Text, Flex, Image, useDisclosure } from "@chakra-ui/react";
 import { Carousel } from "@mantine/carousel";
 import TMDBRanking from "../TMDBRanking";
+import PlayingMovieTrailerModel from "@/components/PlayingMovieTrailerModel";
 
-interface ICarouselSlideProps {
+export interface ICarouselSlideProps {
     title: string;
-    voteAverage: string;
+    voteAverage: number;
     overview: string;
     heroBanner: string;
     id: number;
+    youtubeLink: string;
 }
 
 const CarouselSlide = ({
@@ -18,7 +20,10 @@ const CarouselSlide = ({
     overview,
     heroBanner,
     id,
+    youtubeLink,
 }: ICarouselSlideProps): JSX.Element => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
     return (
         <Carousel.Slide key={title}>
             <Flex
@@ -35,11 +40,12 @@ const CarouselSlide = ({
                 <Heading as="h1" fontSize="h1" fontWeight="800" color="white" display="inline-block">
                     {title}
                 </Heading>
-                <TMDBRanking gap="72.25px" tmdb={+voteAverage} color="white" />
+                <TMDBRanking gap="72.25px" tmdb={voteAverage} color="white" />
                 <Text color="white" textStyle="myText">
                     {overview}
                 </Text>
-                <ButtonWatchTrailer value={id} />
+                <ButtonWatchTrailer value={id} onClick={onOpen} />
+                <PlayingMovieTrailerModel isOpen={isOpen} onClose={onClose} src={youtubeLink} />
             </Flex>
             <Image src={heroBanner} boxSize="100%" objectFit="cover" alt="hero image" />
         </Carousel.Slide>
