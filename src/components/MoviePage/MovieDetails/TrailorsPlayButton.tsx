@@ -19,12 +19,12 @@ const TrailorsPlayButton = ({ onClick, value }: ITrailorsPlayButton): JSX.Elemen
                 onClick={handleMovieTrailer}
                 // width="169px"
                 // height="36px"
-                // bg="rose.700"
+                bg="transparent"
                 // color="red"
                 // fontSize="text"
                 // fontFamily="secondary"
                 _hover={{
-                    background: "rose.900",
+                    background: "transparent",
                 }}
             >
                 <Image src="/redPlayIcon.svg" />
