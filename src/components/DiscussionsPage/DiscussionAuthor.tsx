@@ -5,9 +5,11 @@ interface IDiscussionAuthor {
     id: string;
     author: string;
     createdAt: string;
+    avatar?: string;
+    authorId: string;
 }
 
-const DiscussionAuthor = ({ author, createdAt }: IDiscussionAuthor) => {
+const DiscussionAuthor = ({ author, createdAt, avatar, authorId }: IDiscussionAuthor) => {
     return (
         <CreatedByTheAuthor
             gap="10px"
@@ -18,6 +20,7 @@ const DiscussionAuthor = ({ author, createdAt }: IDiscussionAuthor) => {
             imageSize="28px"
             author={`By ${author}`}
             createdAt={createdAt}
+            avatar={avatar}
         />
     );
 };
