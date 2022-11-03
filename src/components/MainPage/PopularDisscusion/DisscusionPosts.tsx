@@ -20,33 +20,34 @@ const DisscusionPosts = () => {
     }, []);
     return (
         <>
-            {postList.length > 0 && postList?.map(
-                ({
-                    _id,
-                    title,
-                    content,
-                    releaseDateRightFormat,
-                    bgImg,
-                    author,
-                    likeCount,
-                    viewNumber,
-                    commentCount,
-                }) => {
-                    return (
-                        <PostCardInfo
-                            key={_id}
-                            src={bgImg}
-                            title={title}
-                            name={author}
-                            date={releaseDateRightFormat}
-                            like={likeCount}
-                            views={viewNumber}
-                            comments={commentCount}
-                            description={content}
-                        />
-                    );
-                }
-            )}
+            {postList.length > 0 &&
+        postList?.map(
+            ({
+                _id,
+                title,
+                content,
+                releaseDateRightFormat,
+                bgImg,
+                author,
+                likeCount,
+                viewNumber,
+                commentCount,
+            }) => {
+                return (
+                    <PostCardInfo
+                        key={_id}
+                        src={bgImg}
+                        title={title}
+                        name={author}
+                        date={releaseDateRightFormat}
+                        like={likeCount}
+                        views={viewNumber}
+                        comments={commentCount}
+                        description={content}
+                    />
+                );
+            }
+        )}
         </>
     );
 };
