@@ -28,7 +28,7 @@ const UpcomingMovies = () => {
                 setIsLoading(false);
                 setUpcomingMovies(data.slice(0, 10));
             } catch (err) {
-                console.log(err);
+                return err;
             }
         };
         fetchMovies();
