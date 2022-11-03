@@ -120,8 +120,8 @@ const MovieSection = () => {
           Movie Description
                 </Heading>
                 <Text fontSize="24px" color="#000" fontWeight="400" lineHeight="32px">
-          A noble family becomes embroiled in a war for control over the galaxy most valuable
-          asset while its heir becomes troubled by visions of a dark future.
+          A noble family becomes embroiled in a war for control over the galaxy most valuable asset
+          while its heir becomes troubled by visions of a dark future.
                 </Text>
             </Box>
         </SectionContainer>
