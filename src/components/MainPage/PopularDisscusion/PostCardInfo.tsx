@@ -6,15 +6,18 @@ import ExpandableTextComponent from "./ExpandableTextComponent";
 interface PostCardInfoProps {
     title: string;
     src: string;
-    date: Date;
-    name: string;
+    date: string;
+    name: {
+        _id: string;
+        name: string;
+    };
     like: number;
     views: number;
     comments: number;
     description: string;
 }
 
-const PostCardInfoProps: React.FC<PostCardInfoProps> = (props) => {
+const PostCardInfo: React.FC<PostCardInfoProps> = (props) => {
     return (
         <PostsContainer>
             <Box>
@@ -41,14 +44,14 @@ const PostCardInfoProps: React.FC<PostCardInfoProps> = (props) => {
                         <Box pb="13px" fontSize="text5" lineHeight="lh32" textColor="gray.400">
                             <Flex alignItems="center">
                                 <Box display="flex">
-                                    <Text>
+                                    <Text id={props.name._id}>
                     By&nbsp;
                                         <Link _hover={{ textColor: "black" }} mr="5px">
-                                            {props.name}
+                                            {props.name.name}
                                         </Link>
                                     </Text>
 
-                                    <Text>{props.date.toLocaleDateString("en-AU")}</Text>
+                                    <Text>{props.date}</Text>
                                 </Box>
                                 <Spacer />
                                 <Box
@@ -80,4 +83,4 @@ const PostCardInfoProps: React.FC<PostCardInfoProps> = (props) => {
     );
 };
 
-export default PostCardInfoProps;
+export default PostCardInfo;

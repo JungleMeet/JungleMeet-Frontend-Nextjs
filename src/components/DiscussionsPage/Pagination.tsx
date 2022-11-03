@@ -4,17 +4,19 @@ import { Flex, Text, Input, HStack } from "@chakra-ui/react";
 import React from "react";
 import PageButton from "./PageButton";
 import PageNumber from "./PageNumber";
-import Link from "next/link";
+// import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { setCurrentPage } from "@/app/reducer/pageSlice";
 
 interface IPaginationProps {
     postsPerPage: number;
     totalPosts: number;
-    paginate: (number: number) => void;
+    // paginate: (number: number) => void;
 }
 
-const Pagination = ({ postsPerPage, totalPosts, paginate }: IPaginationProps) => {
+const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
     const pageNumbers = [];
-
+    const dispatch = useDispatch();
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
         pageNumbers.push(i);
     }
@@ -28,9 +30,9 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }: IPaginationProps) =>
                 <HStack spacing="14px">
                     {pageNumbers.length > 0 &&
             pageNumbers.map((number) => (
-                <Link href="#" key={number}>
-                    <PageNumber onClick={() => paginate(number)}>{number}</PageNumber>
-                </Link>
+                <PageNumber key={number} onClick={() => dispatch(setCurrentPage(number))}>
+                    {number}
+                </PageNumber>
             ))}
                 </HStack>
                 <PageButton>
@@ -41,7 +43,11 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }: IPaginationProps) =>
                 <Text fontSize="text2" lineHeight="lh32">
           Jump To
                 </Text>
-                <Input width="45px" marginLeft="16px" />
+                <Input
+                    width="45px"
+                    marginLeft="16px"
+                    onBlur={(e) => dispatch(setCurrentPage(parseInt(e.target.value)))}
+                />
             </Flex>
         </Flex>
     );
