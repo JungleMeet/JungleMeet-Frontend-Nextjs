@@ -15,7 +15,7 @@ interface IDiscussionProps {
     views: number;
     comments: number;
     description: string;
-    postId: string
+    postId: string;
 }
 
 const Discussion = ({
@@ -27,7 +27,7 @@ const Discussion = ({
     views,
     comments,
     description,
-    postId
+    postId,
 }: IDiscussionProps) => {
     return (
         <Flex direction={"column"} id={postId}>

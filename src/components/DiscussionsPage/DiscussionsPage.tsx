@@ -72,7 +72,7 @@ const DiscussionsPage = () => {
                     }: CurrentPagePostProps) => (
                         <Discussion
                             key={_id}
-                            postId = {_id}
+                            postId={_id}
                             src={bgImg}
                             title={title}
                             name={author}
