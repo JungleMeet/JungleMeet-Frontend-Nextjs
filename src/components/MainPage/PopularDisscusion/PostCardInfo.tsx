@@ -1,4 +1,4 @@
-import { Flex, Text, Link, Spacer, Stack, Heading, Box, Image, Divider } from "@chakra-ui/react";
+import { Flex, Text, Link, Spacer, Stack, Heading, Box, Divider, Avatar } from "@chakra-ui/react";
 import { PostsContainer } from "./PostsContainer";
 import React from "react";
 import ExpandableTextComponent from "./ExpandableTextComponent";
@@ -6,20 +6,24 @@ import ExpandableTextComponent from "./ExpandableTextComponent";
 interface PostCardInfoProps {
     title: string;
     src: string;
-    date: Date;
-    name: string;
+    date: string;
+    name: {
+        _id: string;
+        name: string;
+        avatar: string;
+    };
     like: number;
     views: number;
     comments: number;
     description: string;
 }
 
-const PostCardInfoProps: React.FC<PostCardInfoProps> = (props) => {
+const PostCardInfo: React.FC<PostCardInfoProps> = (props) => {
     return (
         <PostsContainer>
             <Box>
                 <Flex flex="1" flexDirection="row" justifyContent="flex-start">
-                    <Image
+                    {/* <Image
                         src={props.src}
                         alt="Post Thumbnail"
                         width="89px"
@@ -30,8 +34,13 @@ const PostCardInfoProps: React.FC<PostCardInfoProps> = (props) => {
                         _hover={{
                             transform: "scale(1.05)",
                         }}
-                    />
-
+                    /> */}
+                    <Avatar
+                        name={props.name.name}
+                        src={props.name.avatar}
+                        borderRadius="10px"
+                        mr="10px"
+                    ></Avatar>
                     <Box w="100%">
                         <Stack pb="4px">
                             <Link textUnderlineOffset="5px">
@@ -41,14 +50,14 @@ const PostCardInfoProps: React.FC<PostCardInfoProps> = (props) => {
                         <Box pb="13px" fontSize="text5" lineHeight="lh32" textColor="gray.400">
                             <Flex alignItems="center">
                                 <Box display="flex">
-                                    <Text>
+                                    <Text id={props.name._id}>
                     By&nbsp;
                                         <Link _hover={{ textColor: "black" }} mr="5px">
-                                            {props.name}
+                                            {props.name.name}
                                         </Link>
                                     </Text>
 
-                                    <Text>{props.date.toLocaleDateString("en-AU")}</Text>
+                                    <Text>{props.date}</Text>
                                 </Box>
                                 <Spacer />
                                 <Box
@@ -80,4 +89,4 @@ const PostCardInfoProps: React.FC<PostCardInfoProps> = (props) => {
     );
 };
 
-export default PostCardInfoProps;
+export default PostCardInfo;

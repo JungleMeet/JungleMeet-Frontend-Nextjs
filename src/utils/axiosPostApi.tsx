@@ -14,3 +14,6 @@ export const getPosts = async () => {
 export const getPostById = async (id: string) => {
     return await axiosApi.get(`/${id}`);
 };
+export const getPostsByCondition = async (nPerPage: number, pageNumber: number, sortBy: string) => {
+    return await axiosApi.get(`/?nPerPage=${nPerPage}&pageNumber=${pageNumber}&sortBy=${sortBy}`);
+};
