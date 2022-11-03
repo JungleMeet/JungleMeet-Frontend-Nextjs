@@ -13,27 +13,18 @@ export const pageSlice = createSlice({
     reducers: {
         setTotalPosts: (state, {payload}) => {
             state.totalPosts = payload;
-            console.log(state.totalPosts);
         },
         setCurrentPagePost: (state, {payload}) => {
             state.currentPagePost = payload;
-            console.log(state.currentPagePost);
-
         },
         setCurrentPage: (state, {payload}) => {
             state.currentPage = payload;
-            console.log(state.currentPage);
-            
         },
         setSortBy: (state, {payload}) => {
             state.sortBy = payload;
-            console.log(state.sortBy);
-
         },
         setPostsPerPage: (state, {payload})=> {
             state.postsPerPage = payload;
-            console.log(state.postsPerPage);
-
         }
     }
 });

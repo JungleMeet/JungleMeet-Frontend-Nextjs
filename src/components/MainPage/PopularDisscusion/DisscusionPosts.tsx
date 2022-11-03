@@ -10,7 +10,7 @@ const DisscusionPosts = () => {
         const fetchPosts = async () => {
             try {
                 const res = await getPostsByCondition(3, 0, "createdAt");
-                setPostList(res.data);
+                setPostList(res.data.data);
                 console.log("discussionInfo", res.data);
             } catch (err) {
                 return err;
@@ -20,7 +20,7 @@ const DisscusionPosts = () => {
     }, []);
     return (
         <>
-            {postList.map(
+            {postList.length > 0 && postList?.map(
                 ({
                     _id,
                     title,

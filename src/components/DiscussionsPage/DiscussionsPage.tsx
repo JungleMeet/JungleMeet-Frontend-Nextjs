@@ -20,7 +20,7 @@ const DiscussionsPage = () => {
         const fetchPosts = async () => {
             try {
                 console.log(postsPerPage, currentPage, sortBy);
-                const res = await getPostsByCondition(postsPerPage, currentPage, sortBy);
+                const res = await getPostsByCondition(postsPerPage, currentPage-1, sortBy);
                 const { data, length } = res.data;
                 dispatch(setCurrentPagePost(data));
                 dispatch(setTotalPosts(length));

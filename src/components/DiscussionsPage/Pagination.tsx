@@ -46,7 +46,7 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
                 <Input
                     width="45px"
                     marginLeft="16px"
-                    onBlur={(e) => dispatch(setCurrentPage(parseInt(e.target.value)))}
+                    onBlur={(e) => dispatch(setCurrentPage(parseInt(e.target.value)-1))}
                 />
             </Flex>
         </Flex>
