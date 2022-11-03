@@ -1,8 +1,9 @@
-import { Flex, Image, Text } from "@chakra-ui/react";
+import { Flex, Text, Avatar } from "@chakra-ui/react";
 import React from "react";
 // import { dateCreatedAt } from "../utils/dateCreateAt";
 
 interface ICreatedByTheAuthorProps {
+    id: string;
     gap: string;
     color: string;
     fontSize: string;
@@ -15,6 +16,7 @@ interface ICreatedByTheAuthorProps {
 }
 
 const CreatedByTheAuthor = ({
+    id,
     gap,
     color,
     fontSize,
@@ -25,8 +27,10 @@ const CreatedByTheAuthor = ({
     createdAt,
     avatar,
 }: ICreatedByTheAuthorProps) => {
+    const authorName = author.split(" ")[1];
     return (
         <Flex
+            id={id}
             gap={gap}
             color={color}
             fontSize={fontSize}
@@ -35,7 +39,14 @@ const CreatedByTheAuthor = ({
             margin="12px 0"
             alignItems="center"
         >
-            <Image src={avatar || "/noun-user-circle-1918168.svg"} width={imageSize} />
+            <Avatar
+                name={authorName}
+                src={authorName}
+                borderRadius="10px"
+                width="40px"
+                height="40px"
+            ></Avatar>
+            {/* <Image src= {avatar ? avatar :"/noun-user-circle-1918168.svg"} width={imageSize} /> */}
             <Text>
                 {" "}
                 {author} {createdAt}
