@@ -1,15 +1,15 @@
 import React from "react";
-import CreatedByTheAuthor from "../CreatedByTheAuthor";
+import CreatedByTheAuthor from "../../CreatedByTheAuthor";
 
-interface IDiscussionAuthor {
+interface IDiscussionsCommentAuthor {
     author: string;
     createdAt: string;
 }
 
-const DiscussionAuthor = ({ author, createdAt }: IDiscussionAuthor) => {
+const DiscussionsCommentAuthor = ({ author, createdAt }: IDiscussionsCommentAuthor) => {
     return (
         <CreatedByTheAuthor
-            gap="10px"
+            gap="20px"
             color="gray.400"
             fontSize="text4"
             lineHeight="lh24"
@@ -21,4 +21,4 @@ const DiscussionAuthor = ({ author, createdAt }: IDiscussionAuthor) => {
     );
 };
 
-export default DiscussionAuthor;
+export default DiscussionsCommentAuthor;
