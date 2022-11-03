@@ -11,7 +11,7 @@ interface IDiscussionAuthor {
 const DiscussionAuthor = ({ author, createdAt, avatar, id }: IDiscussionAuthor) => {
     return (
         <CreatedByTheAuthor
-            id = {id}
+            id={id}
             gap="10px"
             color="gray.400"
             fontSize="text4"

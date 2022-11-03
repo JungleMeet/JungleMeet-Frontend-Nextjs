@@ -30,7 +30,7 @@ const CreatedByTheAuthor = ({
     const authorName = author.split(" ")[1];
     return (
         <Flex
-            id = {id}
+            id={id}
             gap={gap}
             color={color}
             fontSize={fontSize}
