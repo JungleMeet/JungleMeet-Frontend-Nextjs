@@ -1,23 +1,19 @@
 import { Button } from "@chakra-ui/react";
 import React from "react";
-interface IPageButton {
-    children:React.ReactChild, 
-    onBtnClick: () => void;
-}
-const PageButton = ({ children,onBtnClick }:IPageButton) => {
+
+const MovieDetailsButton = ({ children }: { children: React.ReactNode }) => {
     return (
         <Button
-            bg="transparent"
+            bg="#D9D9D9"
             _hover={{
                 background: "transparent",
                 border: "none",
             }}
             _focus={{ border: "none" }}
-            onClick={onBtnClick}
         >
             {children}
         </Button>
     );
 };
 
-export default PageButton;
+export default MovieDetailsButton;
