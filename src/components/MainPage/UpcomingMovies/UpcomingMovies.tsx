@@ -28,7 +28,7 @@ const UpcomingMovies = () => {
                 setIsLoading(false);
                 setUpcomingMovies(data.slice(0, 10));
             } catch (err) {
-                console.log(err);
+                return err;
             }
         };
         fetchMovies();
@@ -37,7 +37,11 @@ const UpcomingMovies = () => {
     return (
         <SectionContainer>
             <Tabs>
-                <UpcomingTabs changeMovieListMethod={setUpcomingMovies} isLoading={isLoading} setIsLoading={setIsLoading}/>
+                <UpcomingTabs
+                    changeMovieListMethod={setUpcomingMovies}
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading}
+                />
                 <TabPanels>
                     {upcomingMovies.length > 0 && <MovieCards movieList={upcomingMovies} />}
                 </TabPanels>
