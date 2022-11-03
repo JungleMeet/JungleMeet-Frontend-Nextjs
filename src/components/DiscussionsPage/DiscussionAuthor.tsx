@@ -2,12 +2,13 @@ import React from "react";
 import CreatedByTheAuthor from "../CreatedByTheAuthor";
 
 interface IDiscussionAuthor {
-    id: string;
+    // id: string;
     author: string;
     createdAt: string;
+    avatar: string;
 }
 
-const DiscussionAuthor = ({ author, createdAt }: IDiscussionAuthor) => {
+const DiscussionAuthor = ({ author, createdAt, avatar }: IDiscussionAuthor) => {
     return (
         <CreatedByTheAuthor
             gap="10px"
@@ -18,6 +19,7 @@ const DiscussionAuthor = ({ author, createdAt }: IDiscussionAuthor) => {
             imageSize="28px"
             author={`By ${author}`}
             createdAt={createdAt}
+            avatar={avatar}
         />
     );
 };

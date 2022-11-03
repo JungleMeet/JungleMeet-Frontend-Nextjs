@@ -46,6 +46,7 @@ const DiscussionsPage = () => {
         author: {
             _id: string;
             name: string;
+            avatar: string;
         };
         likeCount: number;
         viewNumber: number;

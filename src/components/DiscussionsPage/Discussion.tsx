@@ -35,7 +35,12 @@ const Discussion = ({
                     {title}
                 </Link>
                 <Flex alignItems="center" justifyContent="space-between">
-                    <DiscussionAuthor id={name?._id} author={name?.name} createdAt={date} />
+                    <DiscussionAuthor
+                        id={name?._id}
+                        author={name?.name}
+                        createdAt={date}
+                        avatar={name?.avatar}
+                    />
                     <Flex>
                         <Text color="red">{like} liked</Text>
                         <Text color="gray.400">&nbsp; &bull; {views} views </Text>
