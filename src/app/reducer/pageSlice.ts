@@ -19,7 +19,6 @@ export const pageSlice = createSlice({
         },
         setCurrentPage: (state, {payload}) => {
             state.currentPage = payload;
-            console.log(state.currentPage);
         },
         setSortBy: (state, {payload}) => {
             state.sortBy = payload;
