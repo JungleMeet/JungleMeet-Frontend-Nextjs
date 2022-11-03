@@ -5,7 +5,7 @@ import React from "react";
 import PageButton from "./PageButton";
 import PageNumber from "./PageNumber";
 // import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "@/app/reducer/pageSlice";
 
 interface IPaginationProps {
@@ -17,6 +17,7 @@ interface IPaginationProps {
 const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
     const pageNumbers = [];
     const dispatch = useDispatch();
+    const currentPage = useSelector((state: any) => state.page.currentPage);
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
         pageNumbers.push(i);
     }
@@ -24,7 +25,7 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
     return (
         <Flex justifyContent="center" gap="30px" marginTop="55px">
             <Flex alignItems="center">
-                <PageButton>
+                <PageButton onBtnClick={() => dispatch(setCurrentPage(currentPage-1))}>
                     <ArrowLeftSVG fill="#000" />
                 </PageButton>
                 <HStack spacing="14px">
@@ -35,7 +36,7 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
                 </PageNumber>
             ))}
                 </HStack>
-                <PageButton>
+                <PageButton onBtnClick={() => dispatch(setCurrentPage(currentPage+1))}>
                     <ArrowRightSVG fill="#000" />
                 </PageButton>
             </Flex>
