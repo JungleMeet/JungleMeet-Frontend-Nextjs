@@ -1,4 +1,5 @@
-import { Box, Button, Image, Text } from "@chakra-ui/react";
+import PlayingMovieTrailerModel from "@/components/PlayingMovieTrailerModel";
+import { Box, Button, Image, Text, useDisclosure } from "@chakra-ui/react";
 import TMDBRanking from "../TMDBRanking";
 
 interface IMovieThumbnailProps {
@@ -6,9 +7,12 @@ interface IMovieThumbnailProps {
     title: string;
     tmdb: number;
     key: number;
+    youtubeLink?: string;
 }
 
-const MovieThumbnail = ({ src, title, tmdb }: IMovieThumbnailProps): JSX.Element => {
+const MovieThumbnail = ({ src, title, tmdb, youtubeLink }: IMovieThumbnailProps): JSX.Element => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
     return (
         <Box pos="relative" height="436px" width="194px" bg="rgba(0, 0, 0, 0.9)" borderRadius="5px">
             <Image src={src} width="194px" height="277px" objectFit="fill" />
@@ -61,10 +65,12 @@ const MovieThumbnail = ({ src, title, tmdb }: IMovieThumbnailProps): JSX.Element
                     _hover={{
                         backgroundColor: "gray.600",
                     }}
+                    onClick={onOpen}
                 >
                     <Image src="/watchoptions.svg" marginRight="8.84px"></Image>
           Watch options
                 </Button>
+                <PlayingMovieTrailerModel onClose={onClose} isOpen={isOpen} src={youtubeLink} />
             </Box>
         </Box>
     );

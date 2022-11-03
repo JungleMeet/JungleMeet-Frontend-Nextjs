@@ -26,4 +26,14 @@ export const getTopRated = async () => {
 export const searchMovieName = async (name: string, page = 1) => {
     return await axiosApi.get(`/search?name=${name}&page=${page}`);
 };
+
+
+export const getHeroBannerMovies = async () => {
+    return await axiosApi.get("/tops");
+}
+
+export const getYoutubeLinkById = async (id:number) => {
+    return await axiosApi.get(`/trailers/${id}`);
+}
+
 export default axiosApi;
