@@ -45,7 +45,6 @@ const Search = () => {
     const [loadingPost, setLoadingPost] = useState(true);
     const [postResult, setPostResult] = useState<IPostResultItemProps[]>([]);
 
-
     // new search, everytime the name changes
     useEffect(() => {
         setLoadingMovie(true);

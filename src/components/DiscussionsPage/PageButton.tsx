@@ -1,7 +1,10 @@
 import { Button } from "@chakra-ui/react";
 import React from "react";
-
-const PageButton = ({ children }: { children: React.ReactNode }) => {
+interface IPageButton {
+    children:React.ReactChild, 
+    onBtnClick: () => void;
+}
+const PageButton = ({ children,onBtnClick }:IPageButton) => {
     return (
         <Button
             bg="transparent"
@@ -10,6 +13,7 @@ const PageButton = ({ children }: { children: React.ReactNode }) => {
                 border: "none",
             }}
             _focus={{ border: "none" }}
+            onClick={onBtnClick}
         >
             {children}
         </Button>

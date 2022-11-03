@@ -5,47 +5,46 @@ import DiscussionAuthor from "./DiscussionAuthor";
 
 interface IDiscussionProps {
     title: string;
-    image: string;
-    alt: string;
-    authorId: string;
-    author: string;
-    createdAt: string;
-    likes: number;
+    src: string;
+    date: string;
+    name: {
+        _id: string;
+        name: string;
+    };
+    like: number;
     views: number;
     comments: number;
-    content: string;
+    description: string;
 }
 
 const Discussion = ({
     title,
-    image,
-    alt,
-    authorId,
-    author,
-    createdAt,
-    likes,
+    src,
+    name,
+    date,
+    like,
     views,
     comments,
-    content,
+    description,
 }: IDiscussionProps) => {
     return (
         <Flex direction={"column"}>
-            <Image src={image} alt={alt} paddingTop="45px" />
+            <Image src={src} paddingTop="45px" />
             <Box padding="19px">
                 <Link fontSize="text3" color="blue.500" fontWeight="700" lineHeight="lh28">
                     {title}
                 </Link>
                 <Flex alignItems="center" justifyContent="space-between">
-                    <DiscussionAuthor author={author} createdAt={createdAt} authorId={authorId} />
+                    <DiscussionAuthor id={name?._id} author={name?.name} createdAt={date} />
                     <Flex>
-                        <Text color="red">{likes} liked</Text>
+                        <Text color="red">{like} liked</Text>
                         <Text color="gray.400">&nbsp; &bull; {views} views </Text>
                         <Text color="gray.400">&nbsp; &bull; {comments} comments</Text>
                     </Flex>
                 </Flex>
                 <ExpandableTextComponent noOfLines={2}>
                     <Text fontSize="text5" lineHeight="lh32">
-                        {content}
+                        {description}
                     </Text>
                 </ExpandableTextComponent>
             </Box>

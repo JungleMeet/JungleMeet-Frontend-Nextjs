@@ -1,6 +1,6 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
-import { dateCreatedAt } from "../utils/dateCreateAt";
+// import { dateCreatedAt } from "../utils/dateCreateAt";
 
 interface ICreatedByTheAuthorProps {
     gap: string;
@@ -38,7 +38,7 @@ const CreatedByTheAuthor = ({
             <Image src={avatar || "/noun-user-circle-1918168.svg"} width={imageSize} />
             <Text>
                 {" "}
-                {author} {dateCreatedAt(createdAt)}
+                {author} {createdAt}
             </Text>
         </Flex>
     );
