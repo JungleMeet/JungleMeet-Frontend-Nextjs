@@ -2,7 +2,7 @@ import { MenuItem } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 
 interface ItemProps {
-    key: string;
+    // key: string;
     Icon: IconType;
     command: string;
     content: string;

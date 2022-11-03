@@ -19,7 +19,7 @@ const PageNumber = React.forwardRef<HTMLDivElement, IPageNumberProps>(
                 border="3px solid"
                 borderColor="transparent"
                 borderRadius="3px"
-                _active={{
+                _visited={{
                     borderBottom: "3px solid #000",
                     color: "#000",
                 }}
