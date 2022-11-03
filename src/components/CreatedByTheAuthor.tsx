@@ -3,6 +3,7 @@ import React from "react";
 // import { dateCreatedAt } from "../utils/dateCreateAt";
 
 interface ICreatedByTheAuthorProps {
+    id: string;
     gap: string;
     color: string;
     fontSize: string;
@@ -11,10 +12,11 @@ interface ICreatedByTheAuthorProps {
     imageSize: string;
     author: string;
     createdAt: string;
-    avatar: string;
+    avatar?: string;
 }
 
 const CreatedByTheAuthor = ({
+    id,
     gap,
     color,
     fontSize,
@@ -28,6 +30,7 @@ const CreatedByTheAuthor = ({
     const authorName = author.split(" ")[1];
     return (
         <Flex
+            id = {id}
             gap={gap}
             color={color}
             fontSize={fontSize}
