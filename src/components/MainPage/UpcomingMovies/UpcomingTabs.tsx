@@ -11,7 +11,6 @@ interface IUpcomingTabs {
     setIsLoading: (value: boolean) => void;
 }
 const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcomingTabs) => {
-    
     const fetchMovies = async (tabTitle: string) => {
         if (tabTitle === "Upcoming Movies") {
             try {
@@ -68,12 +67,15 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
                     }}
                     _focus={{ border: "none" }}
                     p="0"
-                    onClick={() => {setIsLoading(true); fetchMovies(tabTitle)}}
+                    onClick={() => {
+                        setIsLoading(true);
+                        fetchMovies(tabTitle);
+                    }}
                 >
                     {tabTitle}
                 </Tab>
             ))}
-            {isLoading && <Spinner/>}
+            {isLoading && <Spinner />}
             <SectionSubTitleSeeMore>
                 <SeeMore href="/allmovies" />
             </SectionSubTitleSeeMore>

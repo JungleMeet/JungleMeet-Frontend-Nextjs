@@ -37,7 +37,11 @@ const UpcomingMovies = () => {
     return (
         <SectionContainer>
             <Tabs>
-                <UpcomingTabs changeMovieListMethod={setUpcomingMovies} isLoading={isLoading} setIsLoading={setIsLoading}/>
+                <UpcomingTabs
+                    changeMovieListMethod={setUpcomingMovies}
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading}
+                />
                 <TabPanels>
                     {upcomingMovies.length > 0 && <MovieCards movieList={upcomingMovies} />}
                 </TabPanels>
