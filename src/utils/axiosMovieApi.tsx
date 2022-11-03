@@ -9,19 +9,21 @@ const axiosApi = axios.create({
 
 export const getNowPlaying = async () => {
     return await axiosApi.get("/list?tag=now_playing");
-}
+};
 
 export const getUpcoming = async () => {
     return await axiosApi.get("/list?tag=upcoming");
-}
+};
 
 export const getPopular = async () => {
     return await axiosApi.get("/list?tag=popular");
-
-}
+};
 
 export const getTopRated = async () => {
     return await axiosApi.get("/list?tag=top_rated");
+};
 
-}
+export const searchMovieName = async (name: string, page = 1) => {
+    return await axiosApi.get(`/search?name=${name}&page=${page}`);
+};
 export default axiosApi;

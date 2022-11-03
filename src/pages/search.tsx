@@ -2,11 +2,14 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import PageWrapper from "@/components/PageWrapper";
-import { Box, Spinner } from "@chakra-ui/react";
+import { Box, Button, Spinner } from "@chakra-ui/react";
 import MovieResultItem from "@/components/Search/MovieResultItem";
 import { IMovieResultItemProps } from "@/components/Search/MovieResultItem";
 import PostResultItem, { IPostResultItemProps } from "@/components/Search/PostResultItem";
 import ResultContainer from "@/components/Search/ResultContainer";
+import { searchMovieName } from "@/utils/axiosMovieApi";
+import { isEmpty } from "lodash";
+import { ViewIcon } from "@chakra-ui/icons";
 
 export const PageTitle = styled.div`
   font-size: 30px;
@@ -25,70 +28,108 @@ const postData = [
     },
 ];
 
-const movieData = [
-    {
-        resourceId: 12345,
-        title: "finding nemo",
-        poster: "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/53P8oHo9cfOsgb1cLxBi4pFY0ja.jpg",
-        year: "2005",
-        voteAverage: 3.4,
-        genreNames: [
-            {
-                id: 18,
-                name: "comedy",
-            },
-        ],
-        overview:
-      "Nemo, an adventurous young clownfish, is unexpectedly taken from his Great Barrier Reef home to a dentist's office aquarium. It's up to his worrisome father Marlin and a friendly but forgetful fish Dory to bring Nemo home -- meeting vegetarian sharks, surfer dude turtles, hypnotic jellyfish, hungry seagulls, and more along the way.",
-    },
-];
+const INITIAL_DISP_ITEMS = 3;
 
 const Search = () => {
     const router = useRouter();
     const { name } = router.query;
-    const [movieResult, setMovieResult] = useState<IMovieResultItemProps[]>([]);
-    const [postResult, setPostResult] = useState<IPostResultItemProps[]>([]);
-    const [loadingMovie, setLoadingMovie] = useState(false);
-    const [loadingPost, setLoadingPost] = useState(false);
+    if (typeof name !== "string" || !name) return <div>must provide a keyword</div>;
 
+    const [movieResult, setMovieResult] = useState<IMovieResultItemProps[]>([]);
+    const [loadingMovie, setLoadingMovie] = useState(true);
+    const [isCollapsed, setIsCollapsed] = useState(true);
+    const [moviePage, setMoviePage] = useState(1);
+    const [haveMoreMovieResults, setHaveMoreMovieResults] = useState(true);
+    const [subsequentMovieLoading, setSubsequentMovieLoading] = useState(false);
+
+    const [loadingPost, setLoadingPost] = useState(true);
+    const [postResult, setPostResult] = useState<IPostResultItemProps[]>([]);
+
+    console.log(movieResult);
+
+    // new search, everytime the name changes
     useEffect(() => {
-        setMovieResult(movieData);
         setLoadingMovie(true);
-    }, []);
+        setIsCollapsed(true);
+        setMoviePage(1);
+        setHaveMoreMovieResults(true);
+
+        searchMovieName(name).then(({ data }) => {
+            if (isEmpty(data)) {
+                setMovieResult([]);
+                setHaveMoreMovieResults(false);
+            }
+            if (!isEmpty(data)) setMovieResult(data);
+            setLoadingMovie(false);
+        });
+    }, [name]);
+
+    // subsequent search, trigger by page change
+    useEffect(() => {
+        if (moviePage !== 1) {
+            setSubsequentMovieLoading(true);
+            searchMovieName(name, moviePage).then(({ data }) => {
+                if (isEmpty(data)) setHaveMoreMovieResults(false);
+
+                if (!isEmpty(data)) setMovieResult((currentData) => currentData.concat(data));
+                setSubsequentMovieLoading(false);
+            });
+        }
+    }, [moviePage]);
+
+    const viewMoreMovies = () => {
+        if (!haveMoreMovieResults) return;
+        if (isCollapsed) {
+            setIsCollapsed(false);
+            if (movieRenderData.length === movieResult.length) {
+                setMoviePage((currentPage) => currentPage + 1);
+            }
+            return;
+        }
+        setMoviePage((currentPage) => currentPage + 1);
+    };
+
+    const movieRenderData = isCollapsed ? movieResult.slice(0, INITIAL_DISP_ITEMS) : movieResult;
+
+    const movieResults = isEmpty(movieResult) ? (
+        <div>no result</div>
+    ) : (
+        movieRenderData?.map((result) => <MovieResultItem key={result.resourceId} {...result} />)
+    );
 
     useEffect(() => {
         setPostResult(postData);
         setLoadingPost(true);
     }, []);
-
-    const viewMoreMovies = () => {};
     const viewMorePosts = () => {};
-
-    const movieResults = movieResult.map((result) => (
-        <MovieResultItem key={result.resourceId} {...result} />
-    ));
 
     const postResults = postResult.map((result) => <PostResultItem key={result._id} {...result} />);
 
     return (
         <PageWrapper>
-            {/* <PageTitle>Search Results for: {name}</PageTitle>
-
-      <SectionTitle>Movies</SectionTitle> */}
-
-            {/* <Box fontSize="h3" fontWeight={700} lineHeight="h4">
-        Search Results for: {name}
-      </Box> */}
-
             <PageTitle>Search Results for: {name}</PageTitle>
-
             <Box fontSize="h4" fontWeight={700} lineHeight="1h32" color={"#B91C1C"}>
         Movies
             </Box>
-
-            <ResultContainer viewMoreResult={viewMoreMovies}>
+            <Box bg="gray.200" borderRadius={"5px"} pt={"13px"} pl={"25px"} pr="25px">
                 {loadingMovie ? <Spinner /> : movieResults}
-            </ResultContainer>
+
+                <Box mt={0}>
+                    <Button
+                        leftIcon={
+                            loadingMovie || subsequentMovieLoading ? <Spinner /> : <ViewIcon color="blue.500" />
+                        }
+                        color="blue.500"
+                        fontSize="h6"
+                        fontWeight="700"
+                        background={"transparent"}
+                        _hover={{ background: "gray.300" }}
+                        onClick={viewMoreMovies}
+                    >
+                        {haveMoreMovieResults ? "More results..." : "No more movies"}
+                    </Button>
+                </Box>
+            </Box>
 
             <Box fontSize="h4" fontWeight={700} lineHeight="1h32" color={"#B91C1C"}>
         Posts
