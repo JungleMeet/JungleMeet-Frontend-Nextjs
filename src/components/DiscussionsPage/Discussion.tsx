@@ -15,6 +15,7 @@ interface IDiscussionProps {
     views: number;
     comments: number;
     description: string;
+    postId: string;
 }
 
 const Discussion = ({
@@ -26,16 +27,22 @@ const Discussion = ({
     views,
     comments,
     description,
+    postId,
 }: IDiscussionProps) => {
     return (
-        <Flex direction={"column"}>
+        <Flex direction={"column"} id={postId}>
             <Image src={src} paddingTop="45px" />
             <Box padding="19px">
                 <Link fontSize="text3" color="blue.500" fontWeight="700" lineHeight="lh28">
                     {title}
                 </Link>
                 <Flex alignItems="center" justifyContent="space-between">
-                    <DiscussionAuthor id={name?._id} author={name?.name} createdAt={date} />
+                    <DiscussionAuthor
+                        id={name?._id}
+                        author={name?.name}
+                        createdAt={date}
+                        avatar={name?.avatar}
+                    />
                     <Flex>
                         <Text color="red">{like} liked</Text>
                         <Text color="gray.400">&nbsp; &bull; {views} views </Text>

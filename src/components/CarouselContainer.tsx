@@ -40,6 +40,7 @@ const CarouselContainer = ({
             previousControlIcon={<AiOutlineLeft fill="gray.900" size="40" />}
             height="100%"
             slideSize={slideSize}
+            slideGap="xl"
             align="start"
             slidesToScroll={slidesToScroll}
         >
