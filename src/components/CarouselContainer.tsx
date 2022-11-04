@@ -6,6 +6,7 @@ import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 interface ICarouselContainerProps {
     children: React.ReactNode;
     slideSize: string;
+    slidesToScroll: number;
 }
 
 const useStyles = createStyles((_theme, _params, getRef) => ({
@@ -24,11 +25,15 @@ const useStyles = createStyles((_theme, _params, getRef) => ({
     },
 }));
 
-const CarouselContainer = ({ children, slideSize }: ICarouselContainerProps): JSX.Element => {
+const CarouselContainer = ({
+    children,
+    slideSize,
+    slidesToScroll,
+}: ICarouselContainerProps): JSX.Element => {
     const { classes } = useStyles();
     return (
         <Carousel
-            loop
+            // loop
             classNames={classes}
             controlsOffset="xl"
             nextControlIcon={<AiOutlineRight fill="gray.900" size="40" />}
@@ -36,6 +41,7 @@ const CarouselContainer = ({ children, slideSize }: ICarouselContainerProps): JS
             height="100%"
             slideSize={slideSize}
             align="start"
+            slidesToScroll={slidesToScroll}
         >
             {children}
         </Carousel>

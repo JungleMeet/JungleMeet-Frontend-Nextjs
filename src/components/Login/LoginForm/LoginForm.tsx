@@ -75,7 +75,7 @@ const LoginForm = ({ closeModal }: ILoginForm) => {
                     setIsLoading(false);
                     closeModal();
                     const { token, user_info: userInfo } = res.data;
-                    dispatch(loginSuccess(userInfo));
+                    dispatch(loginSuccess(res.data));
                     // console.log(isLogged);
                     const bufferToken = Buffer.from(token).toString("hex");
                     localStorage.setItem("token", bufferToken);

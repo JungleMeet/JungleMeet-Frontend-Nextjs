@@ -10,6 +10,7 @@ select,
 textarea {
   width: 20px;
   height: 20px;
+  color: #000;
 }
 
 button.is-active {
@@ -25,6 +26,7 @@ button.is-active {
 
 .ProseMirror > * + * {
   margin-top: 0.75em;
+  color: #000;
 }
 
 .ProseMirror ul,

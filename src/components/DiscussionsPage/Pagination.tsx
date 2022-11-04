@@ -25,7 +25,7 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
     return (
         <Flex justifyContent="center" gap="30px" marginTop="55px">
             <Flex alignItems="center">
-                <PageButton onBtnClick={() => dispatch(setCurrentPage(currentPage-1))}>
+                <PageButton onBtnClick={() => dispatch(setCurrentPage(currentPage - 1))}>
                     <ArrowLeftSVG fill="#000" />
                 </PageButton>
                 <HStack spacing="14px">
@@ -36,7 +36,7 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
                 </PageNumber>
             ))}
                 </HStack>
-                <PageButton onBtnClick={() => dispatch(setCurrentPage(currentPage+1))}>
+                <PageButton onBtnClick={() => dispatch(setCurrentPage(currentPage + 1))}>
                     <ArrowRightSVG fill="#000" />
                 </PageButton>
             </Flex>
