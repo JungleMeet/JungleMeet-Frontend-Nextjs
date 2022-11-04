@@ -1,10 +1,10 @@
 import { Button } from "@chakra-ui/react";
 import React from "react";
 interface IPageButton {
-    children:React.ReactChild, 
+    children: React.ReactChild;
     onBtnClick: () => void;
 }
-const PageButton = ({ children,onBtnClick }:IPageButton) => {
+const PageButton = ({ children, onBtnClick }: IPageButton) => {
     return (
         <Button
             bg="transparent"

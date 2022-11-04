@@ -3,7 +3,7 @@ import React from "react";
 import DiscussionSort from "../DiscussionsPage/DiscussionSort";
 
 interface IReviewFilterProps {
-    reviews: string;
+    reviews: number;
 }
 
 const ReviewFilter = ({ reviews }: IReviewFilterProps) => {

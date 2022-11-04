@@ -4,15 +4,15 @@ import React from "react";
 
 interface IReviewHeader {
     title: string;
-    image: string;
+    bgImg: string;
     alt: string;
 }
-const ReviewHeader = ({ title, image, alt }: IReviewHeader) => {
+const ReviewHeader = ({ title, bgImg, alt }: IReviewHeader) => {
     return (
         <>
             <Flex alignItems="center" justifyContent="space-between" pt="70px">
                 <Flex alignItems="center">
-                    <Image src={image} alt={alt} height="106px" width="72px"></Image>
+                    <Image src={bgImg} alt={alt} height="106px" width="72px"></Image>
                     <Flex direction="column" pl="36px">
                         <Heading fontSize="h4" pr="11px" color={"blue.500"}>
                             {title}
@@ -29,8 +29,8 @@ const ReviewHeader = ({ title, image, alt }: IReviewHeader) => {
                     </Heading>
                     <IconButton
                         variant="outline"
-                        colorScheme="teal"
-                        aria-label="create discussion"
+                        colorScheme="#BE123C"
+                        aria-label="create comment"
                         size="sm"
                         icon={<EditIcon />}
                     />

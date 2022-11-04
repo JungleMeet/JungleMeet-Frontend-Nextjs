@@ -4,7 +4,7 @@ import ReviewPage from "@/components/ReviewPage/ReviewPage";
 const Reviews = () => {
     return (
         <PageWrapper>
-            <ReviewPage />
+            <ReviewPage/>
         </PageWrapper>
     );
 };

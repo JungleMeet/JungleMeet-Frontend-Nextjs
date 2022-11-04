@@ -1,16 +1,14 @@
 import React from "react";
-import ReviewNReplies from "./ReviewsNReplies";
 import ReviewFilter from "./ReviewFilter";
 import ReviewHeader from "./ReviewHeader";
+import Review from "./Review";
 
 const ReviewPage = () => {
     return (
         <>
-            <ReviewHeader title="abc" image="/dune.jpg" alt="alt" />
-            <ReviewFilter reviews="109" />
-            <ReviewNReplies />
-            <ReviewNReplies />
-            <ReviewNReplies />
+            <ReviewHeader title={"Dune"} bgImg={"/dune.jpg"} alt={"alt"} />
+            <ReviewFilter reviews={109} />
+            <Review />
         </>
     );
 };
