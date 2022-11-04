@@ -52,6 +52,7 @@ const DiscussionsPage = () => {
         viewNumber: number;
         commentCount: number;
         content: string;
+        postId: string;
     }
     const currentPostsMemo = useMemo(
         () => (
@@ -71,6 +72,7 @@ const DiscussionsPage = () => {
                     }: CurrentPagePostProps) => (
                         <Discussion
                             key={_id}
+                            postId={_id}
                             src={bgImg}
                             title={title}
                             name={author}

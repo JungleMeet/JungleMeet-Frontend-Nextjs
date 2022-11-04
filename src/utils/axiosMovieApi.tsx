@@ -3,7 +3,7 @@ import axios from "axios";
 const REQUEST_TIMEOUT = 10000;
 
 const axiosApi = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_SERVER_ADD + "/v1/movies",
+    baseURL: process.env.NEXT_PUBLIC_SERVER ? process.env.NEXT_PUBLIC_SERVER + "/v1/movies" : process.env.NEXT_PUBLIC_SERVER_ADD + "/v1/movies",
     timeout: REQUEST_TIMEOUT,
 });
 
