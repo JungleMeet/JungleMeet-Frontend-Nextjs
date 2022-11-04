@@ -1,4 +1,4 @@
-import { Flex, Divider, Box, Text, Grid, Button, Image, HStack } from "@chakra-ui/react";
+import { Flex, Divider, Box, Text, Grid, Button, HStack } from "@chakra-ui/react";
 import React from "react";
 import { useState, useEffect, useMemo } from "react";
 import { getComments } from "@/utils/axiosCommentApi";
@@ -6,6 +6,7 @@ import { dateCreatedAt } from "../../../utils/dateCreateAt";
 import { getPosts } from "@/utils/axiosPostApi";
 import { getUserById } from "@/utils/axiosUserApi";
 import { AxiosResponse } from "axios";
+import DiscussionsCommentAvatar from "./DiscussionsCommentAvatar";
 
 interface ICommentProps {
     _id: string;
@@ -24,17 +25,24 @@ const DiscussionsDetailComments = () => {
         const getCommentDetail = async () => {
             try {
                 const { data } = await getPosts();
+                const allPost = data.data;
 
-                const currentPosts = data.slice(1, 2);
-
-                const [id] = currentPosts.map((item: any) => {
+                const [id] = allPost.slice(0, 1).map((item: any) => {
                     return item._id;
                 });
+
                 const comment: AxiosResponse<any> = await getComments();
 
                 const currentComments = comment.data.filter((post: any) => {
                     return id == post.postId;
                 });
+                const name = postComment.map((item: any) => {
+                    return item.author;
+                });
+
+                const user = await getUserById(name.toString());
+
+                setCommentAuthor(user.data.name);
 
                 setPostComment(currentComments);
             } catch (err) {
@@ -42,24 +50,7 @@ const DiscussionsDetailComments = () => {
             }
         };
         getCommentDetail();
-    }, []);
-
-    useEffect(() => {
-        const getCommentAuthor = async () => {
-            try {
-                const name = postComment.map((item: any) => {
-                    return item.author;
-                });
-
-                const author: AxiosResponse<any> = await getUserById(name);
-
-                setCommentAuthor(author.data.name);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        getCommentAuthor();
-    }, []);
+    }, [commentAuthor]);
 
     return (
         <Grid>
@@ -68,8 +59,8 @@ const DiscussionsDetailComments = () => {
                     <Flex key={_id} direction={"column"}>
                         <Box mt="56px">
                             <Flex alignContent="center">
-                                <Image src="/noun-user-circle-1918168.svg" width="35px" mr="20px" />
-                                <Flex flexDirection="column" mt="0px">
+                                <DiscussionsCommentAvatar />
+                                <Flex flexDirection="column">
                                     <HStack lineHeight="lh20" fontSize="text5">
                                         <Text color="blue.500" mt="0px">
                                             {commentAuthor}

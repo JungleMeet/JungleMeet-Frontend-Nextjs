@@ -19,13 +19,9 @@ const DiscussionsDetailContent = () => {
         const getContentDetail = async () => {
             try {
                 const { data } = await getPosts();
+                const allPost = data.data;
 
-                const currentPosts = data.slice(1, 2);
-
-                // Post did not connect with user id
-                // const { name } = await getUsers(data[0]._id);
-                // console.log(name);
-                setPostContent(currentPosts);
+                setPostContent(allPost.slice(0, 1));
             } catch (err) {
                 console.log(err);
             }
