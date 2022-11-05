@@ -25,11 +25,7 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
     return (
         <Flex justifyContent="center" gap="30px" marginTop="55px">
             <Flex alignItems="center">
-                <PageButton
-                    onBtnClick={() => {
-                        currentPage > 1 && dispatch(setCurrentPage(currentPage - 1));
-                    }}
-                >
+                <PageButton onBtnClick={() => dispatch(setCurrentPage(currentPage - 1))}>
                     <ArrowLeftSVG fill="#000" />
                 </PageButton>
                 <HStack spacing="14px">
@@ -40,12 +36,7 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
                 </PageNumber>
             ))}
                 </HStack>
-                <PageButton
-                    onBtnClick={() => {
-                        currentPage < Math.ceil(totalPosts / postsPerPage) &&
-              dispatch(setCurrentPage(currentPage + 1));
-                    }}
-                >
+                <PageButton onBtnClick={() => dispatch(setCurrentPage(currentPage + 1))}>
                     <ArrowRightSVG fill="#000" />
                 </PageButton>
             </Flex>
@@ -54,16 +45,9 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
           Jump To
                 </Text>
                 <Input
-                    type="number"
                     width="45px"
                     marginLeft="16px"
-                    onBlur={(e) => {
-                        parseInt(e.target.value) >= 1 ||
-              (parseInt(e.target.value) <= Math.ceil(totalPosts / postsPerPage) &&
-                dispatch(setCurrentPage(parseInt(e.target.value))));
-                    }}
-                    // value={currentPage}
-                    // type='submit'
+                    onBlur={(e) => dispatch(setCurrentPage(parseInt(e.target.value) - 1))}
                 />
             </Flex>
         </Flex>

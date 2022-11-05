@@ -3,7 +3,6 @@ export const discussionsData: {
     image: string;
     alt: string;
     title: string;
-    authorId: string;
     author: string;
     createdAt: string;
     likes: number;
@@ -16,7 +15,6 @@ export const discussionsData: {
         image: "/dune-discussion.jpg",
         alt: "dune",
         title: "1 - is the Dune worth watching?",
-        authorId: "001",
         author: "meilssatz",
         createdAt: "2022-09-27T23:44:36.251Z",
         likes: 10,
@@ -30,7 +28,6 @@ export const discussionsData: {
         image: "/dune-discussion.jpg",
         alt: "dune",
         title: "2 - is the Dune worth watching?",
-        authorId: "001",
         author: "meilssatz",
         createdAt: "2022-09-27T23:44:36.251Z",
         likes: 10,
@@ -44,7 +41,6 @@ export const discussionsData: {
         image: "/dune-discussion.jpg",
         alt: "dune",
         title: "3 - is the Dune worth watching?",
-        authorId: "001",
         author: "meilssatz",
         createdAt: "2022-09-27T23:44:36.251Z",
         likes: 10,
@@ -58,7 +54,6 @@ export const discussionsData: {
         image: "/dune-discussion.jpg",
         alt: "dune",
         title: "4 - is the Dune worth watching?",
-        authorId: "001",
         author: "meilssatz",
         createdAt: "2022-09-27T23:44:36.251Z",
         likes: 10,
@@ -73,7 +68,6 @@ export const discussionsData: {
         alt: "dune",
         title: "5 - is the Dune worth watching?",
         author: "meilssatz",
-        authorId: "001",
         createdAt: "2022-09-27T23:44:36.251Z",
         likes: 10,
         views: 23,
@@ -87,7 +81,6 @@ export const discussionsData: {
         alt: "dune",
         title: "6 - is the Dune worth watching?",
         author: "meilssatz",
-        authorId: "001",
         createdAt: "2022-09-27T23:44:36.251Z",
         likes: 10,
         views: 23,
@@ -101,7 +94,6 @@ export const discussionsData: {
         alt: "dune",
         title: "7 - is the Dune worth watching?",
         author: "meilssatz",
-        authorId: "001",
         createdAt: "2022-09-27T23:44:36.251Z",
         likes: 10,
         views: 23,
@@ -115,7 +107,6 @@ export const discussionsData: {
         alt: "dune",
         title: "8 - is the Dune worth watching?",
         author: "meilssatz",
-        authorId: "001",
         createdAt: "2022-09-27T23:44:36.251Z",
         likes: 10,
         views: 23,
@@ -129,7 +120,6 @@ export const discussionsData: {
         alt: "dune",
         title: "9 - is the Dune worth watching?",
         author: "meilssatz",
-        authorId: "001",
         createdAt: "2022-09-27T23:44:36.251Z",
         likes: 10,
         views: 23,
@@ -143,7 +133,6 @@ export const discussionsData: {
         alt: "dune",
         title: "10 - is the Dune worth watching?",
         author: "meilssatz",
-        authorId: "001",
         createdAt: "2022-09-27T23:44:36.251Z",
         likes: 10,
         views: 23,
@@ -157,7 +146,6 @@ export const discussionsData: {
         alt: "dune",
         title: "11 - is the Dune worth watching?",
         author: "meilssatz",
-        authorId: "001",
         createdAt: "2022-09-27T23:44:36.251Z",
         likes: 10,
         views: 23,
@@ -171,7 +159,6 @@ export const discussionsData: {
         alt: "dune",
         title: "12 - is the Dune worth watching?",
         author: "meilssatz",
-        authorId: "001",
         createdAt: "2022-09-27T23:44:36.251Z",
         likes: 10,
         views: 23,
