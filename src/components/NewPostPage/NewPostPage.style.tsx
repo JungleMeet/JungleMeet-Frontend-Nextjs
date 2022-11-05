@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   max-width: 1280px;
   width: 100%;
   margin: auto;
+  margin-top: 30px;
 `;
 export const MenuBarWrapper = styled.div`
   display: flex;
@@ -19,13 +20,12 @@ export const MenuBarWrapper = styled.div`
 `;
 
 export const TitleInput = styled.input`
+  margin-top: 3px;
   color: #000;
   border: 3px solid #000;
   border-radius: 8px;
   max-width: 600px;
   width: 100%;
-  margin: auto;
-  margin-bottom: 36px;
   height: 48px;
   padding: 10px 20px;
   font-size: 1.3rem;

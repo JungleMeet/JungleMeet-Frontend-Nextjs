@@ -1,4 +1,4 @@
-import PostContentEditor from "@/components/NewPostPage/PostContentEditor";
+import NewPostEditor from "@/components/NewPostPage/NewPostEditor";
 import PageWrapper from "@/components/PageWrapper";
 import { Heading } from "@chakra-ui/react";
 import React from "react";
@@ -16,7 +16,7 @@ const newpost = () => {
             >
         Create Your Post in Discussion
             </Heading>
-            <PostContentEditor />
+            <NewPostEditor />
         </PageWrapper>
     );
 };

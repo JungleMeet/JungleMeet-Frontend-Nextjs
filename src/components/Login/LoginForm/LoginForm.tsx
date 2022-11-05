@@ -76,8 +76,7 @@ const LoginForm = ({ closeModal }: ILoginForm) => {
                     closeModal();
                     const { token, user_info: userInfo } = res.data;
                     dispatch(loginSuccess(res.data));
-                    // console.log(isLogged);
-                    const bufferToken = Buffer.from(token).toString("hex");
+                    const bufferToken = Buffer.from(token, 'base64').toString('ascii');
                     localStorage.setItem("token", bufferToken);
                     localStorage.setItem("userInfo", JSON.stringify(userInfo));
                 } catch (error: any) {

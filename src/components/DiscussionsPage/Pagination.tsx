@@ -15,6 +15,7 @@ interface IPaginationProps {
 }
 
 const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
+
     const pageNumbers = [];
     const dispatch = useDispatch();
     const currentPage = useSelector((state: any) => state.page.currentPage);
@@ -35,7 +36,10 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
                 <HStack spacing="14px">
                     {pageNumbers.length > 0 &&
             pageNumbers.map((number) => (
-                <PageNumber key={number} onClick={() => dispatch(setCurrentPage(number))}>
+                <PageNumber
+                    key={number}
+                    onClick={() => dispatch(setCurrentPage(number))}
+                >
                     {number}
                 </PageNumber>
             ))}

@@ -5,10 +5,9 @@ interface IDiscussionAuthor {
     id: string;
     author: string;
     createdAt: string;
-    avatar: string;
 }
 
-const DiscussionAuthor = ({ author, createdAt, avatar, id }: IDiscussionAuthor) => {
+const DiscussionAuthor = ({ author, createdAt, id }: IDiscussionAuthor) => {
     return (
         <CreatedByTheAuthor
             id={id}
@@ -20,7 +19,6 @@ const DiscussionAuthor = ({ author, createdAt, avatar, id }: IDiscussionAuthor) 
             imageSize="28px"
             author={`By ${author}`}
             createdAt={createdAt}
-            avatar={avatar}
         />
     );
 };

@@ -12,7 +12,6 @@ interface ICreatedByTheAuthorProps {
     imageSize: string;
     author: string;
     createdAt: string;
-    avatar?: string;
 }
 
 const CreatedByTheAuthor = ({
@@ -22,10 +21,8 @@ const CreatedByTheAuthor = ({
     fontSize,
     lineHeight,
     fontWeight,
-    imageSize,
     author,
     createdAt,
-    avatar,
 }: ICreatedByTheAuthorProps) => {
     const authorName = author.split(" ")[1];
     return (

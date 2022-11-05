@@ -1,15 +1,16 @@
 import React from "react";
 import { TitleInput } from "./NewPostPage.style";
 
-interface IPostTitleInput {
+interface IPostSingleLineInputProps {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     value: string;
+    placeholder: string;
 }
 
-const PostTitleInput = ({ onChange, value }: IPostTitleInput) => {
+const PostSingleLineInput = ({ onChange, value, placeholder }: IPostSingleLineInputProps) => {
     return (
         <TitleInput
-            placeholder="Post Title"
+            placeholder={placeholder}
             name="title"
             type="text"
             onChange={onChange}
@@ -18,4 +19,4 @@ const PostTitleInput = ({ onChange, value }: IPostTitleInput) => {
     );
 };
 
-export default PostTitleInput;
+export default PostSingleLineInput;

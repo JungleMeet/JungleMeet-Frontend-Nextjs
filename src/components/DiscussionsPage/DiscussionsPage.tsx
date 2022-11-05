@@ -2,7 +2,6 @@ import React, { useEffect, useMemo } from "react";
 import Discussion from "./Discussion";
 import DiscussionHeader from "./DiscussionHeader";
 import DiscussionFilter from "./DiscussionFilter";
-// import { discussionsData } from "./discussionsData";
 import { getPostsByCondition } from "@/utils/axiosPostApi";
 import Pagination from "./Pagination";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +22,7 @@ const DiscussionsPage = () => {
                 const { data, length } = res.data;
                 dispatch(setCurrentPagePost(data));
                 dispatch(setTotalPosts(length));
-                // console.log("discussionInfo", data);
+                console.log("discussionInfo", data);
             } catch (err) {
                 return err;
             }
@@ -31,13 +30,6 @@ const DiscussionsPage = () => {
         fetchPosts();
     }, [sortBy, currentPage]);
 
-    // Get current posts
-    // const indexOfLastPost = currentPage * postsPerPage;
-    // const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    // const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-
-    // Change page
-    // const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
     interface CurrentPagePostProps {
         _id: string;
         title: string;
@@ -46,7 +38,6 @@ const DiscussionsPage = () => {
         author: {
             _id: string;
             name: string;
-            avatar: string;
         };
         likeCount: number;
         viewNumber: number;
@@ -57,7 +48,6 @@ const DiscussionsPage = () => {
     const currentPostsMemo = useMemo(
         () => (
             <>
-                {console.log(currentPagePost)}
                 {currentPagePost?.map(
                     ({
                         _id,

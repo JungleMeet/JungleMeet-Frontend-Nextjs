@@ -2,6 +2,7 @@ import { Flex, Image, Link, Box, Divider, Text } from "@chakra-ui/react";
 import React from "react";
 import ExpandableTextComponent from "../MainPage/PopularDisscusion/ExpandableTextComponent";
 import DiscussionAuthor from "./DiscussionAuthor";
+import parser from "html-react-parser";
 
 interface IDiscussionProps {
     title: string;
@@ -37,12 +38,7 @@ const Discussion = ({
                     {title}
                 </Link>
                 <Flex alignItems="center" justifyContent="space-between">
-                    <DiscussionAuthor
-                        id={name?._id}
-                        author={name?.name}
-                        createdAt={date}
-                        avatar={name?.avatar}
-                    />
+                    <DiscussionAuthor id={name?._id} author={name?.name} createdAt={date} />
                     <Flex>
                         <Text color="red">{like} liked</Text>
                         <Text color="gray.400">&nbsp; &bull; {views} views </Text>
@@ -51,7 +47,7 @@ const Discussion = ({
                 </Flex>
                 <ExpandableTextComponent noOfLines={2}>
                     <Text fontSize="text5" lineHeight="lh32">
-                        {description}
+                        {parser(description)}
                     </Text>
                 </ExpandableTextComponent>
             </Box>
