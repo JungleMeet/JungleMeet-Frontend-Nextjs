@@ -35,8 +35,8 @@ const NewPostEditor = () => {
         }
         setIsLoading(true);
         try {
-            const decodeToken = Buffer.from(token, 'ascii').toString('base64');
-            console.log(decodeToken)
+            const decodeToken = Buffer.from(token, "ascii").toString("base64");
+            console.log(decodeToken);
             await addNewPost(postTitle, postContent, hashtag, decodeToken);
             Router.push("/discussions");
             setIsLoading(false);

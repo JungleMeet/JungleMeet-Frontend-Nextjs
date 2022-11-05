@@ -33,12 +33,7 @@ const PostContentEditor = ({
     const [cancelContent, setCancelContent] = useState(false);
 
     const editor = useEditor({
-        extensions: [
-            StarterKit,
-            Underline,
-            TextStyle,
-            Color,
-        ],
+        extensions: [StarterKit, Underline, TextStyle, Color],
         content: "",
         onUpdate: ({ editor }) => {
             const data = editor.getHTML();
