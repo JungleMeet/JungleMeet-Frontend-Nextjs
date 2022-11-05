@@ -5,7 +5,6 @@ import { getComments } from "@/utils/axiosCommentApi";
 import { dateCreatedAt } from "../../../utils/dateCreateAt";
 import { getPosts } from "@/utils/axiosPostApi";
 import { getUserById } from "@/utils/axiosUserApi";
-import { AxiosResponse } from "axios";
 import DiscussionsCommentAvatar from "./DiscussionsCommentAvatar";
 
 interface ICommentProps {
@@ -24,18 +23,15 @@ const DiscussionsDetailComments = () => {
     useEffect(() => {
         const getCommentDetail = async () => {
             try {
-                const { data } = await getPosts();
-                const allPost = data.data;
+                const { data: post } = await getPosts();
+                const allPost = post.data;
 
                 const [id] = allPost.slice(0, 1).map((item: any) => {
                     return item._id;
                 });
 
-                const comment: AxiosResponse<any> = await getComments();
+                const { data: comment } = await getComments(id);
 
-                const currentComments = comment.data.filter((post: any) => {
-                    return id == post.postId;
-                });
                 const name = postComment.map((item: any) => {
                     return item.author;
                 });
@@ -43,8 +39,7 @@ const DiscussionsDetailComments = () => {
                 const user = await getUserById(name.toString());
 
                 setCommentAuthor(user.data.name);
-
-                setPostComment(currentComments);
+                setPostComment(comment);
             } catch (err) {
                 console.log(err);
             }
