@@ -16,7 +16,6 @@ interface IDiscussionProps {
     views: number;
     comments: number;
     description: string;
-    postId: string;
 }
 
 const Discussion = ({
@@ -28,10 +27,9 @@ const Discussion = ({
     views,
     comments,
     description,
-    postId,
 }: IDiscussionProps) => {
     return (
-        <Flex direction={"column"} id={postId}>
+        <Flex direction={"column"}>
             <Image src={src} paddingTop="45px" />
             <Box padding="19px">
                 <Link fontSize="text3" color="blue.500" fontWeight="700" lineHeight="lh28">

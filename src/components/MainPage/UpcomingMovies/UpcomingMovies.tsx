@@ -18,17 +18,15 @@ const UpcomingMovies = () => {
         }[];
     }[]
     >([]);
-    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchMovies = async () => {
             try {
-                setIsLoading(true);
                 const { data } = await getUpcoming();
-                setIsLoading(false);
+
                 setUpcomingMovies(data.slice(0, 10));
             } catch (err) {
-                return err;
+                console.log(err);
             }
         };
         fetchMovies();
@@ -37,11 +35,7 @@ const UpcomingMovies = () => {
     return (
         <SectionContainer>
             <Tabs>
-                <UpcomingTabs
-                    changeMovieListMethod={setUpcomingMovies}
-                    isLoading={isLoading}
-                    setIsLoading={setIsLoading}
-                />
+                <UpcomingTabs changeMovieListMethod={setUpcomingMovies} />
                 <TabPanels>
                     {upcomingMovies.length > 0 && <MovieCards movieList={upcomingMovies} />}
                 </TabPanels>

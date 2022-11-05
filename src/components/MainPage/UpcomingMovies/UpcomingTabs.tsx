@@ -1,4 +1,4 @@
-import { TabList, Tab, Spinner } from "@chakra-ui/react";
+import { TabList, Tab } from "@chakra-ui/react";
 import { SectionSubTitleSeeMore } from "../Containers";
 import SeeMore from "../SeeMore";
 import { getPopular, getUpcoming, getTopRated } from "@/utils/axiosMovieApi";
@@ -7,15 +7,12 @@ const tabTitles = ["Upcoming Movies", "Popular", "Top 10"];
 
 interface IUpcomingTabs {
     changeMovieListMethod: any;
-    isLoading: boolean;
-    setIsLoading: (value: boolean) => void;
 }
-const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcomingTabs) => {
+const UpcomingTabs = ({ changeMovieListMethod }: IUpcomingTabs) => {
     const fetchMovies = async (tabTitle: string) => {
         if (tabTitle === "Upcoming Movies") {
             try {
                 const { data } = await getUpcoming();
-                setIsLoading(false);
                 // console.log(data);
                 changeMovieListMethod(data.slice(0, 10));
             } catch (err) {
@@ -24,7 +21,6 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
         } else if (tabTitle === "Popular") {
             try {
                 const { data } = await getPopular();
-                setIsLoading(false);
                 // console.log(data);
                 changeMovieListMethod(data.slice(0, 10));
             } catch (err) {
@@ -33,7 +29,6 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
         } else {
             try {
                 const { data } = await getTopRated();
-                setIsLoading(false);
                 // console.log(data);
                 changeMovieListMethod(data.slice(0, 10));
             } catch (err) {
@@ -67,15 +62,11 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
                     }}
                     _focus={{ border: "none" }}
                     p="0"
-                    onClick={() => {
-                        setIsLoading(true);
-                        fetchMovies(tabTitle);
-                    }}
+                    onClick={() => fetchMovies(tabTitle)}
                 >
                     {tabTitle}
                 </Tab>
             ))}
-            {isLoading && <Spinner />}
             <SectionSubTitleSeeMore>
                 <SeeMore href="/allmovies" />
             </SectionSubTitleSeeMore>
