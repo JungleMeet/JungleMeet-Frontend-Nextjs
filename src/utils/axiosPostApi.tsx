@@ -8,6 +8,13 @@ const axiosApi = axios.create({
     timeout: REQUEST_TIMEOUT,
 });
 
-export const getPostsByCondition = async ( nPerPage: number, pageNumber: number, sortBy: string) => {
+export const getPosts = async () => {
+    return await axiosApi.get("/");
+};
+
+export const getPostById = async (id: string) => {
+    return await axiosApi.get(`/${id}`);
+};
+export const getPostsByCondition = async (nPerPage: number, pageNumber: number, sortBy: string) => {
     return await axiosApi.get(`/?nPerPage=${nPerPage}&pageNumber=${pageNumber}&sortBy=${sortBy}`);
-}
+};
