@@ -1,14 +1,4 @@
-import {
-    Flex,
-    Text,
-    Link,
-    Spacer,
-    Stack,
-    Heading,
-    Box,
-    Divider,
-    Avatar,
-} from "@chakra-ui/react";
+import { Flex, Text, Link, Spacer, Stack, Heading, Box, Divider, Avatar } from "@chakra-ui/react";
 import { PostsContainer } from "./PostsContainer";
 import React from "react";
 import ExpandableTextComponent from "./ExpandableTextComponent";
