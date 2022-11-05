@@ -5,7 +5,7 @@ import CarouselSlide, { ICarouselSlideProps } from "./CarouselSlide";
 import { Carousel } from "@mantine/carousel";
 import { useState, useEffect, useRef } from "react";
 import { default as autoPlay } from "embla-carousel-autoplay";
-import { getHeroBannerMovies } from "@/utils/axiosMovieApi";
+import { getHeroBannerMovies, getYoutubeLinkById } from "@/utils/axiosMovieApi";
 
 const useStyles = createStyles((_theme, _params, getRef) => ({
     controls: {
@@ -33,15 +33,33 @@ const HeroBanner = () => {
     const [topRatedMovies, setTopRatedMovies] = useState<ICarouselSlideProps[]>([]);
     // eslint-disable-next-line no-unused-vars
     const [loading, setLoading] = useState(false);
+    const [secondfetch, setSecondfetch] = useState(false);
 
     useEffect(() => {
         const fetchMovies = async () => {
             setLoading(true);
             const { data } = await getHeroBannerMovies();
             setTopRatedMovies(data);
+            setSecondfetch(true);
         };
         fetchMovies();
     }, []);
+
+    useEffect(() => {
+        const fetchYoutubeLinks = async () => {
+            const youtubeLinks = await Promise.all(
+                topRatedMovies.map(async ({ id, ...rest }) => {
+                    return {
+                        id,
+                        ...rest,
+                        youtubeLink: (await getYoutubeLinkById(id)).data,
+                    };
+                })
+            );
+            setTopRatedMovies(youtubeLinks);
+        };
+        fetchYoutubeLinks();
+    }, [secondfetch]);
 
     const { classes } = useStyles();
     const autoplay = useRef(autoPlay({ delay: 4000 }));

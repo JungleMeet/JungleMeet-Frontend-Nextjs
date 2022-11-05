@@ -11,7 +11,7 @@ export interface ICarouselSlideProps {
     overview: string;
     heroBanner: string;
     id: number;
-    youtubeLink: string;
+    youtubeLink?: string;
 }
 
 const CarouselSlide = ({

@@ -28,13 +28,14 @@ const CarouselContainer = ({ children, slideSize }: ICarouselContainerProps): JS
     const { classes } = useStyles();
     return (
         <Carousel
-            loop
+            // loop
             classNames={classes}
             controlsOffset="xl"
             nextControlIcon={<AiOutlineRight fill="gray.900" size="40" />}
             previousControlIcon={<AiOutlineLeft fill="gray.900" size="40" />}
             height="100%"
             slideSize={slideSize}
+            slideGap="xl"
             align="start"
         >
             {children}
