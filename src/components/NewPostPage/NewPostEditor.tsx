@@ -17,8 +17,9 @@ const NewPostEditor = () => {
     const toast = useToast();
 
     useEffect(() => {
-        const localStorageToken = localStorage.getItem("token");
-        setToken(localStorageToken);
+        const localtoken = localStorage.getItem("token");
+        // const stringifyBufferToken = JSON.stringify(bufferToken)
+        setToken(localtoken);
     }, []);
 
     const handleSumble = async (e: any) => {
@@ -35,9 +36,9 @@ const NewPostEditor = () => {
         }
         setIsLoading(true);
         try {
-            const decodeToken = Buffer.from(token, "ascii").toString("base64");
-            console.log(decodeToken);
-            await addNewPost(postTitle, postContent, hashtag, decodeToken);
+            // const decodeToken = Buffer.from(token, "ascii").toString("base64");
+
+            await addNewPost(postTitle, postContent, hashtag, token);
             Router.push("/discussions");
             setIsLoading(false);
             toast({

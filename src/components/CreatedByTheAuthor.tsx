@@ -24,7 +24,7 @@ const CreatedByTheAuthor = ({
     createdAt,
 }: ICreatedByTheAuthorProps) => {
     const authorName = author.split(" ")[1];
-    
+
     return (
         <Flex
             id={id}
