@@ -7,10 +7,10 @@ const axiosApi = axios.create({
     timeout: REQUEST_TIMEOUT,
 });
 
-export const getComments = async () =>{
+export const getComments = async () => {
     return await axiosApi.get("/");
 };
 
-export const getCommentById = async (id:string) => {
+export const getCommentById = async (id: string) => {
     return await axiosApi.get(`/${id}`);
 };
