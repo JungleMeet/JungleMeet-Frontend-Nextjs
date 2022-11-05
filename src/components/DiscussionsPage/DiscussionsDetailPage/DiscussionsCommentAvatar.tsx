@@ -3,7 +3,6 @@ import { Avatar } from "@chakra-ui/react";
 import { useState, useEffect, useMemo } from "react";
 import { getPosts } from "@/utils/axiosPostApi";
 import { getUserById } from "@/utils/axiosUserApi";
-import { AxiosResponse } from "axios";
 import { getComments } from "@/utils/axiosCommentApi";
 
 interface IDiscussionsCommentAvatar {
@@ -27,17 +26,13 @@ const DiscussionsCommentAvatar = () => {
                     return item._id;
                 });
 
-                const comment: AxiosResponse<any> = await getComments();
+                const { data: comment } = await getComments(id);
 
-                const name = comment.data
-                    .filter((post: any) => {
-                        return id == post.postId;
-                    })
-                    .map((item: any) => {
-                        return item.author;
-                    });
+                const name = comment.map((item: any) => {
+                    return item.author;
+                });
 
-                const author = await getUserById(name);
+                const author = await getUserById(name.toString());
 
                 const result = [];
                 result.push(author.data);
