@@ -1,7 +1,8 @@
-import { Flex, Text, Link, Spacer, Stack, Heading, Box, Image, Divider } from "@chakra-ui/react";
+import { Flex, Text, Link, Spacer, Stack, Heading, Box, Divider, Avatar } from "@chakra-ui/react";
 import { PostsContainer } from "./PostsContainer";
 import React from "react";
 import ExpandableTextComponent from "./ExpandableTextComponent";
+import parser from "html-react-parser";
 
 interface PostCardInfoProps {
     title: string;
@@ -10,6 +11,7 @@ interface PostCardInfoProps {
     name: {
         _id: string;
         name: string;
+        avatar: string;
     };
     like: number;
     views: number;
@@ -22,19 +24,7 @@ const PostCardInfo: React.FC<PostCardInfoProps> = (props) => {
         <PostsContainer>
             <Box>
                 <Flex flex="1" flexDirection="row" justifyContent="flex-start">
-                    <Image
-                        src={props.src}
-                        alt="Post Thumbnail"
-                        width="89px"
-                        height="129px"
-                        mr="17px"
-                        transform="scale(1.0)"
-                        transition="0.3s ease-in-out"
-                        _hover={{
-                            transform: "scale(1.05)",
-                        }}
-                    />
-
+                    <Avatar name={props.name.name} src={props.name.avatar} borderRadius="10px" mr="10px" />
                     <Box w="100%">
                         <Stack pb="4px">
                             <Link textUnderlineOffset="5px">
@@ -72,7 +62,7 @@ const PostCardInfo: React.FC<PostCardInfoProps> = (props) => {
 
                         <ExpandableTextComponent noOfLines={2}>
                             <Text fontSize="text5" lineHeight="lh32">
-                                {props.description}
+                                {parser(props.description)}
                             </Text>
                         </ExpandableTextComponent>
                     </Box>

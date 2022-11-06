@@ -22,7 +22,7 @@ const Videos = () => {
     return (
         <>
             {videoList.length > 0 && (
-                <CarouselContainer slideSize="33.333%">
+                <CarouselContainer slideSize="33.333%" slidesToScroll={2}>
                     {videoList?.map(({ id, src, title }) => (
                         <Carousel.Slide gap={48} key={id}>
                             <VideoThumbnail src={src} title={title} />

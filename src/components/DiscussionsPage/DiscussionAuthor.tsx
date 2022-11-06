@@ -7,16 +7,17 @@ interface IDiscussionAuthor {
     createdAt: string;
 }
 
-const DiscussionAuthor = ({ author, createdAt }: IDiscussionAuthor) => {
+const DiscussionAuthor = ({ author, createdAt, id }: IDiscussionAuthor) => {
     return (
         <CreatedByTheAuthor
+            id={id}
             gap="10px"
             color="gray.400"
             fontSize="text4"
             lineHeight="lh24"
             fontWeight="400"
             imageSize="28px"
-            author={author}
+            author={`By ${author}`}
             createdAt={createdAt}
         />
     );

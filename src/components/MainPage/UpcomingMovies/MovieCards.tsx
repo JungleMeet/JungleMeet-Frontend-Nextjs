@@ -40,7 +40,7 @@ export interface ImovieListProps {
 
 const MovieCards = ({ movieList }: ImovieListProps) => {
     return (
-        <CarouselContainer slideSize="160px">
+        <CarouselContainer slideSize="222px" slidesToScroll={5}>
             {movieList?.map(({ poster, title, resourceId, voteAverage, genreNames }: ImovieListItem) => {
                 return (
                     <Carousel.Slide gap={31} key={resourceId}>
