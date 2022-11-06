@@ -13,6 +13,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import LoginModal from "../../Login/LoginModal";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import {useState} from "react";
 
 const IconContainerStyles = styled.div`
   display: flex;
@@ -83,7 +84,7 @@ const IconContainer = () => {
                         value="ZH"
                         onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                             setLanguage((e.target as HTMLButtonElement).value);
-                            onToggleLanguageClick("zh-Hansen");
+                            onToggleLanguageClick("zh-Hans");
                             i18n.changeLanguage("zh-Hans");
                         }}
                     >
@@ -99,7 +100,7 @@ const IconContainer = () => {
                             i18n.changeLanguage("lad");
                         }}
                     >
-            ZH
+            ESP
                     </MenuItem>
                 </MenuList>
             </Menu>

@@ -1,5 +1,24 @@
 {
     "searchPlaceholder": "What do you want to watch?",
     "loginAndRegister": "Log in/ Sign up",
-    "nowPlayingTitle": "NowPlaying"
+    "nowPlayingTitle": "NowPlaying",
+    "weeklyTop10": "Weekly Top 10 Post",
+    "more": "More",
+    "seeMore": "See more",
+    "upcomingTitle": "Upcoming",
+    "popularTitle": "Popular",
+    "top10Title": "Top 10",
+    "exclusiveVideosTitle": "Exclusive Videos",
+    "popularDiscussionTitle": "Popular Discussion",
+
+    "discussionListTitle": "Discussion",
+    "createDiscussionTitle": "Create Discussion",
+    "displaySetting": "Display Setting",
+    "coverOption": "Cover",
+    "abstractOption": "Abstract",
+    "sortedByTitle": "Sorted By",
+    "mostRecentOption": "Most Recent",
+    "mostViewedOption": "Most Viewed",
+    "jumpTo": "Jump To"
+
 }

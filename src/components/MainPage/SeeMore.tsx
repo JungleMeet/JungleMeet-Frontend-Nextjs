@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
+
 
 const Container = styled.div`
   font-family: sans-serif;
@@ -15,9 +17,11 @@ interface ISeemore {
 }
 
 const SeeMore = ({ href }: ISeemore): JSX.Element => {
+    const { t } = useTranslation("home");
+
     return (
         <Link href={href} style={{ cursor: "pointer" }}>
-            <Container>See more &gt;</Container>
+            <Container>{t("home:seeMore")} &gt;</Container>
         </Link>
     );
 };

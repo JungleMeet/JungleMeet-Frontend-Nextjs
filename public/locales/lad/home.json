@@ -1,5 +1,27 @@
 {
     "searchPlaceholder": "¿Qué quieres ver?",
     "loginAndRegister": "Iniciar sesión Registrarse",
-    "nowPlayingTitle": "Jugandoahora"
+    "nowPlayingTitle": "Jugandoahora",
+    "weeklyTop10": "Top 10 semanal de publicaciones",
+    "more": "Más",
+    "seeMore": "Ver más",
+    "upcomingTitle": "Próxima",
+    "popularTitle": "Popular",
+    "top10Title": "10 mejores",
+    "exclusiveVideosTitle": "Vídeos exclusivos",
+    "popularDiscussionTitle": "Discusión popular",
+
+    "discussionListTitle": "Discusión",
+    "createDiscussionTitle": "Crear discusión",
+    "displaySetting": "Configuración de pantalla",
+    "coverOption": "Cubrir",
+    "abstractOption": "Abstracta",
+    "sortedByTitle": "Ordenado por",
+    "mostRecentOption": "Más reciente",
+    "mostViewedOption": "Mas visto",
+    "jumpTo": "Salta a"
+
+
+
+
 }
