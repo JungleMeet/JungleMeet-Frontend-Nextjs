@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { setSortBy } from "@/app/reducer/pageSlice";
 import { useTranslation } from "next-i18next";
 
-
 const DiscussionSort = () => {
     const dispatch = useDispatch();
     const { t } = useTranslation("home");

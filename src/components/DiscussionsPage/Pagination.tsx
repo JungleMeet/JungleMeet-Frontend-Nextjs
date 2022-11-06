@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "@/app/reducer/pageSlice";
 import { useTranslation } from "next-i18next";
 
-
 interface IPaginationProps {
     postsPerPage: number;
     totalPosts: number;

@@ -3,7 +3,6 @@ import { SectionContainer, SectionHeaderContainer, SectionTitle } from "../Conta
 import DisscusionPosts from "./DisscusionPosts";
 import { useTranslation } from "next-i18next";
 
-
 const PopularDisscusion = () => {
     const { t } = useTranslation("home");
 

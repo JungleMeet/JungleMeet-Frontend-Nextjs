@@ -3,7 +3,6 @@ import React from "react";
 import DiscussionSort from "./DiscussionSort";
 import { useTranslation } from "next-i18next";
 
-
 const DiscussionFilter = () => {
     const { t } = useTranslation("home");
 

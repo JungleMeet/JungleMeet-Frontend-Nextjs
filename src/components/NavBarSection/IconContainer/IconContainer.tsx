@@ -13,7 +13,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import LoginModal from "../../Login/LoginModal";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import {useState} from "react";
+import { useState } from "react";
 
 const IconContainerStyles = styled.div`
   display: flex;

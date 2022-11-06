@@ -4,8 +4,6 @@ import SeeMore from "../SeeMore";
 import { getPopular, getUpcoming, getTopRated } from "@/utils/axiosMovieApi";
 import { useTranslation } from "next-i18next";
 
-
-
 interface IUpcomingTabs {
     changeMovieListMethod: any;
     isLoading: boolean;

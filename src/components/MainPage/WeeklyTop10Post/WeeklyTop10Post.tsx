@@ -4,7 +4,6 @@ import More from "../More";
 import WeeklyLists from "./WeeklyLists";
 import { useTranslation } from "next-i18next";
 
-
 const SectionContainer = styled.div`
   width: 600px;
   padding-left: 56px;
