@@ -39,13 +39,7 @@ const CreatedByTheAuthor = ({
             margin="12px 0"
             alignItems="center"
         >
-            <Avatar
-                name={author}
-                src={avatar}
-                borderRadius="10px"
-                width="40px"
-                height="40px"
-            ></Avatar>
+            <Avatar name={author} src={avatar} borderRadius="10px" width="40px" height="40px"></Avatar>
             {/* <Image src= {avatar ? avatar :"/noun-user-circle-1918168.svg"} width={imageSize} /> */}
             <Text>
                 {" "}

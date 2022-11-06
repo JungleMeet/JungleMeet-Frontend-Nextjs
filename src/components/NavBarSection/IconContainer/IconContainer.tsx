@@ -13,7 +13,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import LoginModal from "../../Login/LoginModal";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const IconContainerStyles = styled.div`
   display: flex;
@@ -32,6 +32,11 @@ const IconContainer = () => {
         const { pathname, query } = router;
         router.push({ pathname, query }, router.asPath, { locale: newLocale });
     };
+
+    useEffect(() => {
+        const defaultLng = localStorage.getItem("lauguage");
+        setLanguage(defaultLng ? defaultLng : "EN");
+    }, []);
 
     return (
         <IconContainerStyles>
@@ -63,7 +68,7 @@ const IconContainer = () => {
                     _hover={{ backgroundColor: "none" }}
                     _active={{ backgroundColor: "none" }}
                 >
-                    {language}
+                    {language ? language : "EN"}
                 </MenuButton>
                 <MenuList w="100%" minW="100px">
                     <MenuItem
@@ -73,6 +78,7 @@ const IconContainer = () => {
                         onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                             setLanguage((e.target as HTMLButtonElement).value);
                             onToggleLanguageClick("en");
+                            localStorage.setItem("lauguage", "EN");
                             i18n.changeLanguage("en");
                         }}
                     >
@@ -85,6 +91,7 @@ const IconContainer = () => {
                         onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                             setLanguage((e.target as HTMLButtonElement).value);
                             onToggleLanguageClick("zh-Hans");
+                            localStorage.setItem("lauguage", "ZH");
                             i18n.changeLanguage("zh-Hans");
                         }}
                     >
@@ -97,6 +104,7 @@ const IconContainer = () => {
                         onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                             setLanguage((e.target as HTMLButtonElement).value);
                             onToggleLanguageClick("lad");
+                            localStorage.setItem("lauguage", "ESP");
                             i18n.changeLanguage("lad");
                         }}
                     >
