@@ -58,7 +58,7 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
                     width="45px"
                     marginLeft="16px"
                     onBlur={(e) => {
-                        parseInt(e.target.value) >= 1 ||
+                        parseInt(e.target.value) >= 1 &&
               (parseInt(e.target.value) <= Math.ceil(totalPosts / postsPerPage) &&
                 dispatch(setCurrentPage(parseInt(e.target.value))));
                     }}
