@@ -27,7 +27,7 @@ const CreatedByTheAuthor = ({
     createdAt,
     avatar,
 }: ICreatedByTheAuthorProps) => {
-    const authorName = author.split(" ")[1];
+    // const authorName = author.split(" ")[1];
     return (
         <Flex
             id={id}
@@ -40,8 +40,8 @@ const CreatedByTheAuthor = ({
             alignItems="center"
         >
             <Avatar
-                name={authorName}
-                src={authorName}
+                name={author}
+                src={avatar}
                 borderRadius="10px"
                 width="40px"
                 height="40px"
