@@ -2,15 +2,17 @@ import { TabList, Tab } from "@chakra-ui/react";
 import { SectionSubTitleSeeMore } from "../Containers";
 import SeeMore from "../SeeMore";
 import { getPopular, getUpcoming, getTopRated } from "@/utils/axiosMovieApi";
-
-const tabTitles = ["Upcoming Movies", "Popular", "Top 10"];
+import { useTranslation } from "next-i18next";
 
 interface IUpcomingTabs {
     changeMovieListMethod: any;
 }
-const UpcomingTabs = ({ changeMovieListMethod }: IUpcomingTabs) => {
+const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcomingTabs) => {
+    const { t } = useTranslation("home");
+    const tabTitles = [t("home:upcomingTitle"), t("home:popularTitle"), t("home:top10Title")];
+
     const fetchMovies = async (tabTitle: string) => {
-        if (tabTitle === "Upcoming Movies") {
+        if (tabTitle === t("home:upcomingTitle")) {
             try {
                 const { data } = await getUpcoming();
                 // console.log(data);
@@ -18,7 +20,7 @@ const UpcomingTabs = ({ changeMovieListMethod }: IUpcomingTabs) => {
             } catch (err) {
                 console.log(err);
             }
-        } else if (tabTitle === "Popular") {
+        } else if (tabTitle === t("home:popularTitle")) {
             try {
                 const { data } = await getPopular();
                 // console.log(data);

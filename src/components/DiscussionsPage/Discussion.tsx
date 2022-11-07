@@ -11,6 +11,7 @@ interface IDiscussionProps {
     name: {
         _id: string;
         name: string;
+        avatar: string;
     };
     like: number;
     views: number;

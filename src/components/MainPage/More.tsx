@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
+import { useTranslation } from "next-i18next";
 
 const Container = styled.span`
   left: 1373px;
@@ -18,9 +19,11 @@ interface IMore {
 }
 
 const More = ({ href }: IMore): JSX.Element => {
+    const { t } = useTranslation("home");
+
     return (
         <Link href={href} style={{ cursor: "pointer" }}>
-            <Container>More &gt;&gt;</Container>
+            <Container>{t("home:more")} &gt;&gt;</Container>
         </Link>
     );
 };

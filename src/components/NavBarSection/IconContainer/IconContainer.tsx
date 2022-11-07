@@ -11,6 +11,9 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import LoginModal from "../../Login/LoginModal";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
 const IconContainerStyles = styled.div`
   display: flex;
@@ -21,6 +24,20 @@ const IconContainerStyles = styled.div`
 
 const IconContainer = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [language, setLanguage] = useState("EN");
+    const { i18n, t } = useTranslation("home");
+    const router = useRouter();
+
+    const onToggleLanguageClick = (newLocale: any) => {
+        const { pathname, query } = router;
+        router.push({ pathname, query }, router.asPath, { locale: newLocale });
+    };
+
+    useEffect(() => {
+        const defaultLng = localStorage.getItem("lauguage");
+        setLanguage(defaultLng ? defaultLng : "EN");
+    }, []);
+
     return (
         <IconContainerStyles>
             <Link
@@ -31,7 +48,7 @@ const IconContainer = () => {
                 fontFamily="secondary"
                 onClick={onOpen}
             >
-        Log in/ Sign up
+                {t("home:loginAndRegister")}
             </Link>
             <LoginModal isOpen={isOpen} onClose={onClose} />
             <Hamburger />
@@ -51,11 +68,47 @@ const IconContainer = () => {
                     _hover={{ backgroundColor: "none" }}
                     _active={{ backgroundColor: "none" }}
                 >
-          EN
+                    {language ? language : "EN"}
                 </MenuButton>
                 <MenuList w="100%" minW="100px">
-                    <MenuItem h="20px" justifyContent="center">
-            Chinese
+                    <MenuItem
+                        h="20px"
+                        justifyContent="center"
+                        value="EN"
+                        onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                            setLanguage((e.target as HTMLButtonElement).value);
+                            onToggleLanguageClick("en");
+                            localStorage.setItem("lauguage", "EN");
+                            i18n.changeLanguage("en");
+                        }}
+                    >
+            EN
+                    </MenuItem>
+                    <MenuItem
+                        h="20px"
+                        justifyContent="center"
+                        value="ZH"
+                        onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                            setLanguage((e.target as HTMLButtonElement).value);
+                            onToggleLanguageClick("zh-Hans");
+                            localStorage.setItem("lauguage", "ZH");
+                            i18n.changeLanguage("zh-Hans");
+                        }}
+                    >
+            ZH
+                    </MenuItem>
+                    <MenuItem
+                        h="20px"
+                        justifyContent="center"
+                        value="ESP"
+                        onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                            setLanguage((e.target as HTMLButtonElement).value);
+                            onToggleLanguageClick("lad");
+                            localStorage.setItem("lauguage", "ESP");
+                            i18n.changeLanguage("lad");
+                        }}
+                    >
+            ESP
                     </MenuItem>
                 </MenuList>
             </Menu>
