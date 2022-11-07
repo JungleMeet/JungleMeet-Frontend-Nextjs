@@ -34,6 +34,7 @@ const PostContentEditor = ({
 
     const editor = useEditor({
         extensions: [StarterKit, Underline, TextStyle, Color],
+        autofocus: true,
         content: "",
         onUpdate: ({ editor }) => {
             const data = editor.getHTML();
