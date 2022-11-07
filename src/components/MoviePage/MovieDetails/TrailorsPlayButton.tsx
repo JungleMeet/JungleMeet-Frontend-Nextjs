@@ -1,4 +1,4 @@
-import axiosApi from "@/utils/axiosApi";
+import axiosApi from "@/utils/axiosMovieApi";
 import { Box, Button, Image } from "@chakra-ui/react";
 
 interface ITrailorsPlayButton {

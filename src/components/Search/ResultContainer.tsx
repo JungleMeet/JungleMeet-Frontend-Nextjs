@@ -7,7 +7,7 @@ interface ISearchResultContainer {
     viewMoreResult: () => void;
 }
 
-const ResultContainer = ({ children, viewMoreResult }: ISearchResultContainer) => {
+const ResultContainer = ({ children, viewMoreResult }: ISearchResultContainer):JSX.Element => {
     return (
         <Box bg="gray.200" borderRadius={"5px"} pt={"13px"} pl={"25px"} pr="25px">
             {children}
