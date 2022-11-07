@@ -10,6 +10,15 @@ import ResultContainer from "@/components/Search/ResultContainer";
 import { searchMovieName } from "@/utils/axiosMovieApi";
 import { isEmpty } from "lodash";
 import { ViewIcon } from "@chakra-ui/icons";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+export async function getStaticProps({ locale }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ["home"])),
+        },
+    };
+}
 
 export const PageTitle = styled.div`
   font-size: 30px;
