@@ -33,14 +33,14 @@ const SearchBar = () => {
     const [query, setQuery] = useState("");
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>) => setQuery(e.target.value);
-    const detectEsc=(event:KeyboardEvent<HTMLInputElement>)=>{
-        if (event.key==='Escape') setQuery("")
-    }
+    const detectEsc = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Escape") setQuery("");
+    };
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         router.push(`/search?name=${query}`);
-        setQuery("")
+        setQuery("");
     };
 
     return (
