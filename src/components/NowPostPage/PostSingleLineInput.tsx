@@ -3,7 +3,7 @@ import { TitleInput } from "./NewPostPage.style";
 
 interface IPostSingleLineInputProps {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    onKeyUp: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+    onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     value: string;
     placeholder: string;
 }

@@ -48,10 +48,6 @@ const PostContentEditor = ({
         setCancelContent(true);
     };
 
-    const handleHashtagSymbolCheck = (e: any) => {
-        console.log(e.currentTarget.value);
-    };
-
     useEffect(() => {
         setPostContent("");
         setCancelContent(false);
@@ -74,7 +70,6 @@ const PostContentEditor = ({
                         placeholder="Add your Hashtag here with #..."
                         value={value}
                         onChange={onChange}
-                        onKeyUp={handleHashtagSymbolCheck}
                     />
                 </Flex>
             </Box>

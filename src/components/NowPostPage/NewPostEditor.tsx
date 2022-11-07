@@ -21,8 +21,6 @@ const NewPostEditor = () => {
         setToken(localtoken);
     }, []);
 
-    console.log(token);
-
     const handleSumble = async (e: any) => {
         e.preventDefault();
         if (!postTitle || !postContent) {
@@ -48,7 +46,6 @@ const NewPostEditor = () => {
         setIsLoading(true);
         try {
             // const decodeToken = Buffer.from(token, "ascii").toString("base64");
-
             await addNewPost(postTitle, postContent, hashtag, token);
             Router.push("/discussions");
             setIsLoading(false);
