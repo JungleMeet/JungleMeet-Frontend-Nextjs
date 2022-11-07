@@ -5,6 +5,7 @@ import DiscussionAuthor from "./DiscussionAuthor";
 
 interface IDiscussionProps {
     title: string;
+    hashtag: string;
     src: string;
     date: string;
     name: {
@@ -21,6 +22,7 @@ interface IDiscussionProps {
 
 const Discussion = ({
     title,
+    hashtag,
     src,
     name,
     date,
@@ -55,6 +57,7 @@ const Discussion = ({
                         {description}
                     </Text>
                 </ExpandableTextComponent>
+                <Text as="i" color="blue.500" fontSize="text4" lineHeight="lh28" >{hashtag}</Text>
             </Box>
             <Divider />
         </Flex>
