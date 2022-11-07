@@ -57,7 +57,9 @@ const Discussion = ({
                         {description}
                     </Text>
                 </ExpandableTextComponent>
-                <Text as="i" color="blue.500" fontSize="text4" lineHeight="lh28" >{hashtag}</Text>
+                <Text as="i" color="blue.500" fontSize="text4" lineHeight="lh28">
+                    {hashtag}
+                </Text>
             </Box>
             <Divider />
         </Flex>

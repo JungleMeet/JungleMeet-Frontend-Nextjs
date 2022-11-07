@@ -82,7 +82,9 @@ const PostCardInfo: React.FC<PostCardInfoProps> = (props) => {
                                 {props.description}
                             </Text>
                         </ExpandableTextComponent>
-                        <Text as="i" color="blue.500" fontSize="text4" lineHeight="lh28" >{props.hashtag}</Text>
+                        <Text as="i" color="blue.500" fontSize="text4" lineHeight="lh28">
+                            {props.hashtag}
+                        </Text>
                     </Box>
                 </Flex>
                 <Divider marginTop="18px" />
