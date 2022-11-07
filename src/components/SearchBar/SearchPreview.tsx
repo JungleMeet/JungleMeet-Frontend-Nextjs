@@ -13,8 +13,12 @@ const PreviewContainer = styled.div`
   background-color: #e5e7e8;
   border-radius: 5px;
   transform: translateY(8px);
-  max-height: 570px;
-  overflow: hidden;
+  max-height: 560px;
+  overflow-y: scroll;
+  ::-webkit-scrollbar{
+    width:10px;
+  }
+
 `;
 
 const LoaderContainer = styled.div`
@@ -38,7 +42,7 @@ const SearchPreview = ({ query }: ISearchPreviewProps): JSX.Element => {
         if (query.length > 2) {
             setLoading(true);
             searchMovieName(query).then(({ data }) => {
-                isEmpty(data) ? setSearchResult([]) : setSearchResult(data.slice(0, 4));
+                isEmpty(data) ? setSearchResult([]) : setSearchResult(data);
                 setLoading(false);
             });
         }
