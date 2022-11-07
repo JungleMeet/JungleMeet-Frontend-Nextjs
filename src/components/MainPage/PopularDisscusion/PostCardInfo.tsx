@@ -2,7 +2,7 @@ import { Flex, Text, Link, Spacer, Stack, Heading, Box, Divider, Avatar } from "
 import { PostsContainer } from "./PostsContainer";
 import React from "react";
 import ExpandableTextComponent from "./ExpandableTextComponent";
-import parser from "html-react-parser"
+import parser from "html-react-parser";
 
 interface PostCardInfoProps {
     title: string;

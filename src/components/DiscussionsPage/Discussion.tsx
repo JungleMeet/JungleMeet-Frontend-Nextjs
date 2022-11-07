@@ -2,7 +2,7 @@ import { Flex, Image, Link, Box, Divider, Text } from "@chakra-ui/react";
 import React from "react";
 import ExpandableTextComponent from "../MainPage/PopularDisscusion/ExpandableTextComponent";
 import DiscussionAuthor from "./DiscussionAuthor";
-import parser from "html-react-parser"
+import parser from "html-react-parser";
 
 interface IDiscussionProps {
     title: string;

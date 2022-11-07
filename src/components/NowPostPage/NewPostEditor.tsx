@@ -21,7 +21,7 @@ const NewPostEditor = () => {
         setToken(localtoken);
     }, []);
 
-    console.log(token)
+    console.log(token);
 
     const handleSumble = async (e: any) => {
         e.preventDefault();

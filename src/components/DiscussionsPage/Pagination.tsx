@@ -13,8 +13,6 @@ interface IPaginationProps {
     totalPosts: number;
 }
 
-
-
 const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
     const pageNumbers = [];
     const dispatch = useDispatch();
@@ -26,12 +24,12 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
     }
 
     const jumpToHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
+        if (e.key === "Enter") {
             parseInt(e.currentTarget.value) >= 1 &&
-            parseInt(e.currentTarget.value) <= Math.ceil(totalPosts / postsPerPage) &&
-            dispatch(setCurrentPage(parseInt(e.currentTarget.value)));
+        parseInt(e.currentTarget.value) <= Math.ceil(totalPosts / postsPerPage) &&
+        dispatch(setCurrentPage(parseInt(e.currentTarget.value)));
         }
-    }
+    };
 
     return (
         <Flex justifyContent="center" gap="30px" marginTop="55px">
@@ -45,16 +43,16 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
                 </PageButton>
                 <HStack spacing="14px">
                     {pageNumbers.length > 0 &&
-                        pageNumbers.map((number) => (
-                            <PageNumber key={number} onClick={() => dispatch(setCurrentPage(number))}>
-                                {number}
-                            </PageNumber>
-                        ))}
+            pageNumbers.map((number) => (
+                <PageNumber key={number} onClick={() => dispatch(setCurrentPage(number))}>
+                    {number}
+                </PageNumber>
+            ))}
                 </HStack>
                 <PageButton
                     onBtnClick={() => {
                         currentPage < Math.ceil(totalPosts / postsPerPage) &&
-                            dispatch(setCurrentPage(currentPage + 1));
+              dispatch(setCurrentPage(currentPage + 1));
                     }}
                 >
                     <ArrowRightSVG fill="#000" />
@@ -64,12 +62,7 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
                 <Text fontSize="text2" lineHeight="lh32">
                     {t("home:jumpTo")}
                 </Text>
-                <Input
-                    type="number"
-                    width="45px"
-                    marginLeft="16px"
-                    onKeyDown={jumpToHandler}
-                />
+                <Input type="number" width="45px" marginLeft="16px" onKeyDown={jumpToHandler} />
             </Flex>
         </Flex>
     );
