@@ -15,10 +15,9 @@ const PreviewContainer = styled.div`
   transform: translateY(8px);
   max-height: 560px;
   overflow-y: scroll;
-  ::-webkit-scrollbar{
-    width:10px;
+  ::-webkit-scrollbar {
+    width: 10px;
   }
-
 `;
 
 const LoaderContainer = styled.div`
