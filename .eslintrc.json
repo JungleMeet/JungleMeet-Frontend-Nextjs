@@ -15,7 +15,7 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "no-console": "warn",
-    "indent": "off",
+    // "indent": "off",
     // do not require JSDoc for your functions
     "require-jsdoc": "off",
     // suppress errors for missing 'import React' in files
