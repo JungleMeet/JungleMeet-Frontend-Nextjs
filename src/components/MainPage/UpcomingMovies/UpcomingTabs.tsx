@@ -2,8 +2,7 @@ import { TabList, Tab, Spinner } from "@chakra-ui/react";
 import { SectionSubTitleSeeMore } from "../Containers";
 import SeeMore from "../SeeMore";
 import { getPopular, getUpcoming, getTopRated } from "@/utils/axiosMovieApi";
-
-const tabTitles = ["Upcoming Movies", "Popular", "Top 10"];
+import { useTranslation } from "next-i18next";
 
 interface IUpcomingTabs {
     changeMovieListMethod: any;
@@ -11,8 +10,11 @@ interface IUpcomingTabs {
     setIsLoading: (value: boolean) => void;
 }
 const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcomingTabs) => {
+    const { t } = useTranslation("home");
+    const tabTitles = [t("home:upcomingTitle"), t("home:popularTitle"), t("home:top10Title")];
+
     const fetchMovies = async (tabTitle: string) => {
-        if (tabTitle === "Upcoming Movies") {
+        if (tabTitle === t("home:upcomingTitle")) {
             try {
                 const { data } = await getUpcoming();
                 setIsLoading(false);
@@ -21,7 +23,7 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
             } catch (err) {
                 console.log(err);
             }
-        } else if (tabTitle === "Popular") {
+        } else if (tabTitle === t("home:popularTitle")) {
             try {
                 const { data } = await getPopular();
                 setIsLoading(false);
