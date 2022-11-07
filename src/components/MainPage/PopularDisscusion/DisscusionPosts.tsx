@@ -11,7 +11,7 @@ const DisscusionPosts = () => {
             try {
                 const res = await getPostsByCondition(3, 0, "createdAt");
                 setPostList(res.data.data);
-                console.log("discussionInfo", res.data);
+                // console.log("discussionInfo", res.data);
             } catch (err) {
                 return err;
             }

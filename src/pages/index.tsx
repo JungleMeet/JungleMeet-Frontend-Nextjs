@@ -8,6 +8,7 @@ import NowPlaying from "@/components/MainPage/NowPlaying/NowPlaying";
 import PopularDisscusion from "@/components/MainPage/PopularDisscusion/PopularDisscusion";
 import WeeklyTop10Post from "@/components/MainPage/WeeklyTop10Post/WeeklyTop10Post";
 import { Flex } from "@chakra-ui/react";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export const PageContainer = styled.div`
   max-width: 1440px;
@@ -18,6 +19,14 @@ export const ContentWrapper = styled.div`
   padding: 98px;
   padding-bottom: 0;
 `;
+
+export async function getStaticProps({ locale }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ["home"])),
+        },
+    };
+}
 
 const HomePage = (): JSX.Element => {
     return (

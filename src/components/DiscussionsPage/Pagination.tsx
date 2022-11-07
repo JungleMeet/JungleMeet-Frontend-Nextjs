@@ -7,6 +7,7 @@ import PageNumber from "./PageNumber";
 // import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "@/app/reducer/pageSlice";
+import { useTranslation } from "next-i18next";
 
 interface IPaginationProps {
     postsPerPage: number;
@@ -18,6 +19,8 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
     const pageNumbers = [];
     const dispatch = useDispatch();
     const currentPage = useSelector((state: any) => state.page.currentPage);
+    const { t } = useTranslation("home");
+
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
         pageNumbers.push(i);
     }
@@ -51,7 +54,7 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
             </Flex>
             <Flex alignItems="center">
                 <Text fontSize="text2" lineHeight="lh32">
-          Jump To
+                    {t("home:jumpTo")}
                 </Text>
                 <Input
                     type="number"
@@ -59,8 +62,8 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
                     marginLeft="16px"
                     onBlur={(e) => {
                         parseInt(e.target.value) >= 1 &&
-              (parseInt(e.target.value) <= Math.ceil(totalPosts / postsPerPage) &&
-                dispatch(setCurrentPage(parseInt(e.target.value))));
+              parseInt(e.target.value) <= Math.ceil(totalPosts / postsPerPage) &&
+              dispatch(setCurrentPage(parseInt(e.target.value)));
                     }}
                     // value={currentPage}
                     // type='submit'

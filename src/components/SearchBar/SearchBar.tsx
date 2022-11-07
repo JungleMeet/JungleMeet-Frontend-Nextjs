@@ -3,6 +3,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import styled from "styled-components";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 const SearchButton = styled.button`
   position: relative;
@@ -13,6 +14,7 @@ const SearchButton = styled.button`
 
 const SearchBar = () => {
     const router = useRouter();
+    const { t } = useTranslation("home");
     const [query, setQuery] = useState("");
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>) => setQuery(e.target.value);
@@ -32,7 +34,7 @@ const SearchBar = () => {
                         fontWeight: "400",
                         lineHeight: "lh24",
                     }}
-                    placeholder="What do you want to watch?"
+                    placeholder={t("home:searchPlaceholder")}
                     borderRadius="6px"
                     fontFamily="secondary"
                     color="#FFFFFF"
