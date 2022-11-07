@@ -18,3 +18,17 @@ export const getPostById = async (id: string) => {
 export const getPostsByCondition = async (nPerPage: number, pageNumber: number, sortBy: string) => {
     return await axiosApi.get(`/?nPerPage=${nPerPage}&pageNumber=${pageNumber}&sortBy=${sortBy}`);
 };
+
+export const addNewPost = async (title: string, content: string, hashtag: string, token: string | null) => {
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+
+    const reqBody = {
+        title,
+        content,
+        hashtag,
+    };
+    
+    return await axiosApi.post("/post/", reqBody, config)
+}
