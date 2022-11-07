@@ -2,6 +2,7 @@ import { Flex, Text, Link, Spacer, Stack, Heading, Box, Divider, Avatar } from "
 import { PostsContainer } from "./PostsContainer";
 import React from "react";
 import ExpandableTextComponent from "./ExpandableTextComponent";
+import parser from "html-react-parser"
 
 interface PostCardInfoProps {
     title: string;
@@ -78,7 +79,7 @@ const PostCardInfo: React.FC<PostCardInfoProps> = (props) => {
 
                         <ExpandableTextComponent noOfLines={2}>
                             <Text fontSize="text5" lineHeight="lh32">
-                                {props.description}
+                                {parser(props.description)}
                             </Text>
                         </ExpandableTextComponent>
                     </Box>
