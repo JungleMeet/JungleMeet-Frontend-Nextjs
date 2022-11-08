@@ -1,6 +1,5 @@
 import PageWrapper from "@/components/PageWrapper";
-import ReviewHeader from "@/components/ReviewPage/ReviewHeader";
-import ReviewFilter from "@/components/ReviewPage/ReviewFilter";
+import ReviewPage from "@/components/ReviewPage/ReviewPage";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export async function getStaticProps({ locale }) {
@@ -11,13 +10,12 @@ export async function getStaticProps({ locale }) {
     };
 }
 
-const Discussions = () => {
+const Reviews = () => {
     return (
         <PageWrapper>
-            <ReviewHeader />
-            <ReviewFilter />
+            <ReviewPage/>
         </PageWrapper>
     );
 };
 
-export default Discussions;
+export default Reviews;
