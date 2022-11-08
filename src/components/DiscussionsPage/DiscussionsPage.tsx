@@ -57,7 +57,6 @@ const DiscussionsPage = () => {
     const currentPostsMemo = useMemo(
         () => (
             <>
-                {console.log(currentPagePost)}
                 {currentPagePost?.map(
                     ({
                         _id,

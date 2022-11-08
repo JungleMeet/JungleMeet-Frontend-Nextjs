@@ -34,9 +34,17 @@ const Discussion = ({
         <Flex direction={"column"} id={postId}>
             <Image src={src} paddingTop="45px" />
             <Box padding="19px">
-                <Link fontSize="text3" color="blue.500" fontWeight="700" lineHeight="lh28">
+                <Link
+                    href={`/discussions/${postId}`}
+                    fontSize="text3"
+                    color="blue.500"
+                    fontWeight="700"
+                    lineHeight="lh28"
+                    key={postId}
+                >
                     {title}
                 </Link>
+
                 <Flex alignItems="center" justifyContent="space-between">
                     <DiscussionAuthor
                         id={name?._id}
