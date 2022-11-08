@@ -4,7 +4,6 @@ import { Flex, Text, Input, HStack } from "@chakra-ui/react";
 import React from "react";
 import PageButton from "./PageButton";
 import PageNumber from "./PageNumber";
-// import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "@/app/reducer/pageSlice";
 import { useTranslation } from "next-i18next";
@@ -12,7 +11,6 @@ import { useTranslation } from "next-i18next";
 interface IPaginationProps {
     postsPerPage: number;
     totalPosts: number;
-    // paginate: (number: number) => void;
 }
 
 const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
@@ -24,6 +22,14 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
         pageNumbers.push(i);
     }
+
+    const jumpToHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            parseInt(e.currentTarget.value) >= 1 &&
+        parseInt(e.currentTarget.value) <= Math.ceil(totalPosts / postsPerPage) &&
+        dispatch(setCurrentPage(parseInt(e.currentTarget.value)));
+        }
+    };
 
     return (
         <Flex justifyContent="center" gap="30px" marginTop="55px">
@@ -56,18 +62,7 @@ const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps) => {
                 <Text fontSize="text2" lineHeight="lh32">
                     {t("home:jumpTo")}
                 </Text>
-                <Input
-                    type="number"
-                    width="45px"
-                    marginLeft="16px"
-                    onBlur={(e) => {
-                        parseInt(e.target.value) >= 1 &&
-              parseInt(e.target.value) <= Math.ceil(totalPosts / postsPerPage) &&
-              dispatch(setCurrentPage(parseInt(e.target.value)));
-                    }}
-                    // value={currentPage}
-                    // type='submit'
-                />
+                <Input type="number" width="45px" marginLeft="16px" onKeyDown={jumpToHandler} />
             </Flex>
         </Flex>
     );

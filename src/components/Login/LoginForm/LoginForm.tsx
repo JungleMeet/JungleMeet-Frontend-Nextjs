@@ -10,7 +10,7 @@ import FormInput from "./FormInput";
 import { useState } from "react";
 import { login } from "@/utils/axiosUserApi";
 import styled from "styled-components";
-import { Buffer } from "buffer";
+// import { Buffer } from "buffer";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { loginSuccess, loginError } from "@/app/reducer/loginSlice";
@@ -77,8 +77,8 @@ const LoginForm = ({ closeModal }: ILoginForm) => {
                     const { token, user_info: userInfo } = res.data;
                     dispatch(loginSuccess(userInfo));
                     // console.log(isLogged);
-                    const bufferToken = Buffer.from(token).toString("hex");
-                    localStorage.setItem("token", bufferToken);
+                    // const bufferToken = Buffer.from(token).toString("hex");
+                    localStorage.setItem("token", token);
                     localStorage.setItem("userInfo", JSON.stringify(userInfo));
                 } catch (error: any) {
                     setIsLoading(false);
