@@ -31,6 +31,8 @@ const DiscussionsPage = () => {
         fetchPosts();
     }, [sortBy, currentPage]);
 
+    console.log(currentPagePost);
+
     // Get current posts
     // const indexOfLastPost = currentPage * postsPerPage;
     // const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -41,6 +43,7 @@ const DiscussionsPage = () => {
     interface CurrentPagePostProps {
         _id: string;
         title: string;
+        hashtag: string;
         bgImg: string;
         releaseDateRightFormat: string;
         author: {
@@ -63,6 +66,7 @@ const DiscussionsPage = () => {
                         title,
                         content,
                         releaseDateRightFormat,
+                        hashtag,
                         bgImg,
                         author,
                         likeCount,
@@ -72,6 +76,7 @@ const DiscussionsPage = () => {
                         <Discussion
                             key={_id}
                             postId={_id}
+                            hashtag={hashtag}
                             src={bgImg}
                             title={title}
                             name={author}
