@@ -3,19 +3,19 @@ import React from "react";
 import { useState, useEffect, useMemo } from "react";
 import { getComments } from "@/utils/axiosCommentApi";
 import { dateCreatedAt } from "../../../utils/dateCreateAt";
-import { getPosts } from "@/utils/axiosPostApi";
 import { getUserById } from "@/utils/axiosUserApi";
-import { AxiosResponse } from "axios";
 import DiscussionsCommentAvatar from "./DiscussionsCommentAvatar";
 
 interface ICommentProps {
-    _id: string;
+    postId: string;
     content: string;
-    author: string;
+
     createdAt: string;
+    author: string;
+    _id: string;
 }
 
-const DiscussionsDetailComments = () => {
+const DiscussionsDetailComments = ({ postId }: any) => {
     const [postComment, setPostComment] = useState([]);
     const [commentAuthor, setCommentAuthor] = useState("");
 
@@ -24,18 +24,8 @@ const DiscussionsDetailComments = () => {
     useEffect(() => {
         const getCommentDetail = async () => {
             try {
-                const { data } = await getPosts();
-                const allPost = data.data;
+                const { data } = await getComments(postId);
 
-                const [id] = allPost.slice(0, 1).map((item: any) => {
-                    return item._id;
-                });
-
-                const comment: AxiosResponse<any> = await getComments();
-
-                const currentComments = comment.data.filter((post: any) => {
-                    return id == post.postId;
-                });
                 const name = postComment.map((item: any) => {
                     return item.author;
                 });
@@ -43,8 +33,7 @@ const DiscussionsDetailComments = () => {
                 const user = await getUserById(name.toString());
 
                 setCommentAuthor(user.data.name);
-
-                setPostComment(currentComments);
+                setPostComment(data);
             } catch (err) {
                 console.log(err);
             }
@@ -54,12 +43,12 @@ const DiscussionsDetailComments = () => {
 
     return (
         <Grid>
-            {postCommentMemo?.map(({ _id, content, createdAt }: ICommentProps) => {
+            {postCommentMemo?.map(({ _id, content, createdAt, author }: ICommentProps) => {
                 return (
                     <Flex key={_id} direction={"column"}>
                         <Box mt="56px">
                             <Flex alignContent="center">
-                                <DiscussionsCommentAvatar />
+                                <DiscussionsCommentAvatar authorId={author} />
                                 <Flex flexDirection="column">
                                     <HStack lineHeight="lh20" fontSize="text5">
                                         <Text color="blue.500" mt="0px">

@@ -1,18 +1,16 @@
 import React from "react";
 import { Avatar } from "@chakra-ui/react";
 import { useState, useEffect, useMemo } from "react";
-import { getPosts } from "@/utils/axiosPostApi";
 import { getUserById } from "@/utils/axiosUserApi";
-import { AxiosResponse } from "axios";
-import { getComments } from "@/utils/axiosCommentApi";
 
 interface IDiscussionsCommentAvatar {
+    commentId: string;
     _id: string;
     name: string;
     avatar: string;
 }
 
-const DiscussionsCommentAvatar = () => {
+const DiscussionsCommentAvatar = ({ authorId }: any) => {
     const [commentAuthor, setCommentAuthor] = useState([]);
 
     const commentAuthorMemo = useMemo(() => commentAuthor, [commentAuthor]);
@@ -20,27 +18,10 @@ const DiscussionsCommentAvatar = () => {
     useEffect(() => {
         const getCommentAvatar = async () => {
             try {
-                const { data } = await getPosts();
-                const allPost = data.data;
-
-                const [id] = allPost.slice(0, 1).map((item: any) => {
-                    return item._id;
-                });
-
-                const comment: AxiosResponse<any> = await getComments();
-
-                const name = comment.data
-                    .filter((post: any) => {
-                        return id == post.postId;
-                    })
-                    .map((item: any) => {
-                        return item.author;
-                    });
-
-                const author = await getUserById(name);
+                const { data: author } = await getUserById(authorId);
 
                 const result = [];
-                result.push(author.data);
+                result.push(author);
 
                 setCommentAuthor(result);
             } catch (err) {
@@ -56,7 +37,7 @@ const DiscussionsCommentAvatar = () => {
                     <Avatar
                         key={_id}
                         name={name}
-                        src={name}
+                        src={avatar}
                         borderRadius="10px"
                         width="35px"
                         height="35px"
