@@ -4,7 +4,10 @@ import { Heading } from "@chakra-ui/react";
 import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-export async function getStaticProps({ locale }) {
+interface IgetStaticProps {
+    locale: string;
+}
+export async function getStaticProps({ locale }:IgetStaticProps) {
     return {
         props: {
             ...(await serverSideTranslations(locale, ["home"])),

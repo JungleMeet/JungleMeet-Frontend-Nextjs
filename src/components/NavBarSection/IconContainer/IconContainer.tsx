@@ -14,6 +14,11 @@ import LoginModal from "../../Login/LoginModal";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import UserNameAndMessage from './UserNameAndMessage';
+import {useSelector, useDispatch} from "react-redux";
+import {verifyToken} from '@/utils/axiosUserApi';
+import { tokenValid } from "@/app/reducer/loginSlice";
+
 
 const IconContainerStyles = styled.div`
   display: flex;
@@ -23,6 +28,8 @@ const IconContainerStyles = styled.div`
 `;
 
 const IconContainer = () => {
+    const isLogged = useSelector((state: any) => state.login.isLogged); 
+    const dispatch = useDispatch();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [language, setLanguage] = useState("EN");
     const { i18n, t } = useTranslation("home");
@@ -36,20 +43,42 @@ const IconContainer = () => {
     useEffect(() => {
         const defaultLng = localStorage.getItem("lauguage");
         setLanguage(defaultLng ? defaultLng : "EN");
+
+        const token = localStorage.getItem("token");
+        const userInfo = JSON.parse(localStorage.getItem("userInfo") || '{}');
+        const verify = async() => {
+            try{
+                const res = await verifyToken(token);
+                console.log(res.data);
+                if (res.data) {
+                    dispatch(tokenValid(userInfo));
+                }
+
+            }catch(e){
+                console.log(e);
+            }
+        }
+        verify();
     }, []);
 
     return (
         <IconContainerStyles>
-            <Link
-                color="#FFFFFF"
-                fontSize="text4"
-                fontWeight="700"
-                lineHeight="lh24"
-                fontFamily="secondary"
-                onClick={onOpen}
-            >
-                {t("home:loginAndRegister")}
-            </Link>
+            {
+                isLogged 
+                    ? 
+                    <UserNameAndMessage></UserNameAndMessage>
+                    :
+                    <Link
+                        color="#FFFFFF"
+                        fontSize="text4"
+                        fontWeight="700"
+                        lineHeight="lh24"
+                        fontFamily="secondary"
+                        onClick={onOpen}
+                    >
+                        {t("home:loginAndRegister")}
+                    </Link>
+            }
             <LoginModal isOpen={isOpen} onClose={onClose} />
             <Hamburger />
             <Menu offset={[-30, 10]}>

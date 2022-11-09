@@ -9,7 +9,12 @@ import {
 import PageWrapper from "@/components/PageWrapper";
 import MovieSection from "@/components/MoviePage/MovieDetails/MovieSection";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-export async function getStaticProps({ locale }) {
+import { GetStaticPaths } from "next";
+
+interface IgetStaticProps {
+    locale: string;
+}
+export async function getStaticProps({ locale }:IgetStaticProps) {
     return {
         props: {
             ...(await serverSideTranslations(locale, ["home"])),

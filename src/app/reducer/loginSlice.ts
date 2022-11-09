@@ -18,10 +18,14 @@ export const loginSlice = createSlice({
             // console.log(state.isLogged);
             state.userInfo = undefined;
         },
+        tokenValid: (state, {payload}) => {
+            state.isLogged = true;
+            state.userInfo = payload;
+        }
     }
 });
 
-export const { loginSuccess, loginError} = loginSlice.actions;
+export const { loginSuccess, loginError, tokenValid} = loginSlice.actions;
 
 // export const changeCounter = (state: RootState) => state.counter.value;
 

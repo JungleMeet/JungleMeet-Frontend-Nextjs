@@ -20,7 +20,10 @@ export const ContentWrapper = styled.div`
   padding-bottom: 0;
 `;
 
-export async function getStaticProps({ locale }) {
+interface IgetStaticProps {
+    locale: string;
+}
+export async function getStaticProps({ locale }:IgetStaticProps) {
     return {
         props: {
             ...(await serverSideTranslations(locale, ["home"])),

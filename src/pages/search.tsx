@@ -12,7 +12,10 @@ import { isEmpty } from "lodash";
 import { ViewIcon } from "@chakra-ui/icons";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-export async function getStaticProps({ locale }) {
+interface IgetStaticProps {
+    locale: string;
+}
+export async function getStaticProps({ locale }:IgetStaticProps) {
     return {
         props: {
             ...(await serverSideTranslations(locale, ["home"])),

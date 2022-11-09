@@ -3,7 +3,10 @@ import ReviewHeader from "@/components/ReviewPage/ReviewHeader";
 import ReviewFilter from "@/components/ReviewPage/ReviewFilter";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-export async function getStaticProps({ locale }) {
+interface IgetStaticProps {
+    locale: string;
+}
+export async function getStaticProps({ locale }:IgetStaticProps) {
     return {
         props: {
             ...(await serverSideTranslations(locale, ["home"])),
