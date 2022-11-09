@@ -28,13 +28,13 @@ const IconContainerStyles = styled.div`
 
 const MenuListTitle = styled.div`
   // margin-left: 21px;
-    margin-top: 13px;
-    margin-bottom: 14px;
-    font-family: "DM Sans";
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 24px;
-    color: #9ca3af;
+  margin-top: 13px;
+  margin-bottom: 14px;
+  font-family: "DM Sans";
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 24px;
+  color: #9ca3af;
 `;
 
 const IconContainer = () => {
@@ -99,35 +99,39 @@ const IconContainer = () => {
                     h="24px"
                     fontSize="text4"
                     fontFamily="secondary"
-                    p='0'
+                    p="0"
                     _focus={{ border: "none" }}
                     _hover={{ backgroundColor: "none" }}
                     _active={{ backgroundColor: "none" }}
                 >
                     {language ? language : "EN"}
                 </MenuButton>
-                <MenuList w="100%" minW="100px" _before={{
-                    position: "absolute",
-                    content: "''",
-                    width: "0",
-                    height: "0px",
-                    borderBottom: "15px solid white",
-                    borderRight: " 15px solid transparent",
-                    borderLeft: "15px solid transparent",
-                    top: "-5px",
-                    right: "5px",
-                }}
-                p="0"
-                pl="21px"
-                pr="21px">
+                <MenuList
+                    w="100%"
+                    minW="100px"
+                    _before={{
+                        position: "absolute",
+                        content: "''",
+                        width: "0",
+                        height: "0px",
+                        borderBottom: "15px solid white",
+                        borderRight: " 15px solid transparent",
+                        borderLeft: "15px solid transparent",
+                        top: "-5px",
+                        right: "5px",
+                    }}
+                    p="0"
+                    pl="21px"
+                    pr="21px"
+                >
                     <MenuListTitle>Language</MenuListTitle>
                     <MenuItem
                         h="20px"
                         justifyContent="center"
                         value="EN"
-                        p='0'
-                        pl='36px'
-                        pr='36px'
+                        p="0"
+                        pl="36px"
+                        pr="36px"
                         mb="18px"
                         onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                             setLanguage((e.target as HTMLButtonElement).value);
@@ -139,10 +143,10 @@ const IconContainer = () => {
             EN
                     </MenuItem>
                     <MenuItem
-                        p='0'
+                        p="0"
                         h="20px"
-                        pl='36px'
-                        pr='36px'
+                        pl="36px"
+                        pr="36px"
                         justifyContent="center"
                         value="ZH"
                         mb="18px"
@@ -156,9 +160,9 @@ const IconContainer = () => {
             ZH
                     </MenuItem>
                     <MenuItem
-                        p='0'
-                        pl='36px'
-                        pr='36px'
+                        p="0"
+                        pl="36px"
+                        pr="36px"
                         h="20px"
                         justifyContent="center"
                         value="ESP"
