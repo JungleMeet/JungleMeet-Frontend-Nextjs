@@ -15,7 +15,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 interface IgetStaticProps {
     locale: string;
 }
-export async function getStaticProps({ locale }:IgetStaticProps) {
+export async function getStaticProps({ locale }: IgetStaticProps) {
     return {
         props: {
             ...(await serverSideTranslations(locale, ["home"])),

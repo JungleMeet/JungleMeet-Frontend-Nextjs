@@ -14,7 +14,7 @@ import { GetStaticPaths } from "next";
 interface IgetStaticProps {
     locale: string;
 }
-export async function getStaticProps({ locale }:IgetStaticProps) {
+export async function getStaticProps({ locale }: IgetStaticProps) {
     return {
         props: {
             ...(await serverSideTranslations(locale, ["home"])),
