@@ -16,13 +16,13 @@ const PreviewContainer = styled.div`
   max-height: 500px;
   overflow-y: scroll;
   ::-webkit-scrollbar {
-    width:6px;
+    width: 6px;
   }
   ::-webkit-scrollbar-thumb {
-  background-color: #ababac;    /* color of the scroll thumb */
-  border-radius: 20px;       /* roundness of the scroll thumb */
-  /* border: 3px solid orange;  creates padding around scroll thumb */
-}
+    background-color: #ababac; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    /* border: 3px solid orange;  creates padding around scroll thumb */
+  }
 `;
 
 const LoaderContainer = styled.div`
@@ -43,7 +43,7 @@ const SearchPreview = ({ query }: ISearchPreviewProps): JSX.Element => {
     const [searchResult, setSearchResult] = useState<PreviewItemProps[]>([]);
 
     useEffect(() => {
-        // only search when user types in more than one character
+    // only search when user types in more than one character
         if (query.length > 1) {
             setLoading(true);
             searchMovieName(query).then(({ data }) => {
