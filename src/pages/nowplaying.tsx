@@ -4,7 +4,10 @@ import NowPlayingMovieFilter from "@/components/NowPlayingPage/NowPlayingMovieFi
 import NowPlayingMovies from "@/components/NowPlayingPage/NowPlayingMovies";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-export async function getStaticProps({ locale }) {
+interface IgetStaticProps {
+    locale: string;
+}
+export async function getStaticProps({ locale }: IgetStaticProps) {
     return {
         props: {
             ...(await serverSideTranslations(locale, ["home"])),

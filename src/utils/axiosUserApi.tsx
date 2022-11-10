@@ -19,3 +19,10 @@ export const login = async (email: string, password: string) => {
 export const getUserById = async (id: string) => {
     return await axiosApi.get(`/${id}`);
 };
+
+export const verifyToken = async (token: string | null) => {
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    }
+    return await axiosApi.get('/verify', config);
+}

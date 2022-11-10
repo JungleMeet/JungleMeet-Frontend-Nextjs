@@ -1,6 +1,6 @@
 import PageWrapper from "@/components/PageWrapper";
-import ReviewPage from "@/components/ReviewPage/ReviewPage";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import AboutPage from "@/components/AboutPage/AboutPage";
 
 interface IgetStaticProps {
     locale: string;
@@ -12,13 +12,12 @@ export async function getStaticProps({ locale }: IgetStaticProps) {
         },
     };
 }
-
-const Reviews = () => {
+const aboutJungleMeet = () => {
     return (
         <PageWrapper>
-            <ReviewPage/>
+            <AboutPage />
         </PageWrapper>
     );
 };
 
-export default Reviews;
+export default aboutJungleMeet;

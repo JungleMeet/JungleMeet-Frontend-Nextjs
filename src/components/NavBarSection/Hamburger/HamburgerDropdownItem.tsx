@@ -10,7 +10,7 @@ interface ItemProps {
 
 const HamburgerDropdownItem = ({ Icon, command, content }: ItemProps) => {
     return (
-        <MenuItem icon={<Icon />} command={command}>
+        <MenuItem icon={<Icon />} command={command} mb="18px" p="0">
             {content}
         </MenuItem>
     );
