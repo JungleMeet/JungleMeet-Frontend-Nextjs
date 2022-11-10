@@ -2,8 +2,12 @@ import PageWrapper from "@/components/PageWrapper";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import DiscussionsDetailPage from "@/components/DiscussionsPage/DiscussionsDetailPage/DiscussionsDetailPage";
+import { GetStaticPaths } from "next";
 
-export async function getStaticProps({ locale }) {
+interface IgetStaticProps {
+    locale: string;
+}
+export async function getStaticProps({ locale }: IgetStaticProps) {
     return {
         props: {
             ...(await serverSideTranslations(locale, ["home"])),

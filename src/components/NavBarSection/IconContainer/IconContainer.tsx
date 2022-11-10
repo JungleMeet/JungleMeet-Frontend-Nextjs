@@ -14,6 +14,10 @@ import LoginModal from "../../Login/LoginModal";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import UserNameAndMessage from "./UserNameAndMessage";
+import { useSelector, useDispatch } from "react-redux";
+import { verifyToken } from "@/utils/axiosUserApi";
+import { tokenValid } from "@/app/reducer/loginSlice";
 
 const IconContainerStyles = styled.div`
   display: flex;
@@ -22,7 +26,20 @@ const IconContainerStyles = styled.div`
   margin-right: 84.75px;
 `;
 
+const MenuListTitle = styled.div`
+  // margin-left: 21px;
+  margin-top: 13px;
+  margin-bottom: 14px;
+  font-family: "DM Sans";
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 24px;
+  color: #9ca3af;
+`;
+
 const IconContainer = () => {
+    const isLogged = useSelector((state: any) => state.login.isLogged);
+    const dispatch = useDispatch();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [language, setLanguage] = useState("EN");
     const { i18n, t } = useTranslation("home");
@@ -36,30 +53,49 @@ const IconContainer = () => {
     useEffect(() => {
         const defaultLng = localStorage.getItem("lauguage");
         setLanguage(defaultLng ? defaultLng : "EN");
+
+        const token = localStorage.getItem("token");
+        const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
+        const verify = async () => {
+            try {
+                const res = await verifyToken(token);
+                console.log(res.data);
+                if (res.data) {
+                    dispatch(tokenValid(userInfo));
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        };
+        verify();
     }, []);
 
     return (
         <IconContainerStyles>
-            <Link
-                color="#FFFFFF"
-                fontSize="text4"
-                fontWeight="700"
-                lineHeight="lh24"
-                fontFamily="secondary"
-                onClick={onOpen}
-            >
-                {t("home:loginAndRegister")}
-            </Link>
+            {isLogged ? (
+                <UserNameAndMessage></UserNameAndMessage>
+            ) : (
+                <Link
+                    color="#FFFFFF"
+                    fontSize="text4"
+                    fontWeight="700"
+                    lineHeight="lh24"
+                    fontFamily="secondary"
+                    onClick={onOpen}
+                >
+                    {t("home:loginAndRegister")}
+                </Link>
+            )}
             <LoginModal isOpen={isOpen} onClose={onClose} />
             <Hamburger />
-            <Menu offset={[-30, 10]}>
+            <Menu offset={[-86, 10]}>
                 <MenuButton
                     as={Button}
                     rightIcon={<ChevronDownIcon />}
                     border="none"
                     bgColor="transparent"
                     color="#FFFFFF"
-                    w="42px"
+                    w="48px"
                     h="24px"
                     fontSize="text4"
                     fontFamily="secondary"
@@ -70,11 +106,33 @@ const IconContainer = () => {
                 >
                     {language ? language : "EN"}
                 </MenuButton>
-                <MenuList w="100%" minW="100px">
+                <MenuList
+                    w="100%"
+                    minW="100px"
+                    _before={{
+                        position: "absolute",
+                        content: "''",
+                        width: "0",
+                        height: "0px",
+                        borderBottom: "15px solid white",
+                        borderRight: " 15px solid transparent",
+                        borderLeft: "15px solid transparent",
+                        top: "-5px",
+                        right: "5px",
+                    }}
+                    p="0"
+                    pl="21px"
+                    pr="21px"
+                >
+                    <MenuListTitle>Language</MenuListTitle>
                     <MenuItem
                         h="20px"
                         justifyContent="center"
                         value="EN"
+                        p="0"
+                        pl="36px"
+                        pr="36px"
+                        mb="18px"
                         onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                             setLanguage((e.target as HTMLButtonElement).value);
                             onToggleLanguageClick("en");
@@ -85,9 +143,13 @@ const IconContainer = () => {
             EN
                     </MenuItem>
                     <MenuItem
+                        p="0"
                         h="20px"
+                        pl="36px"
+                        pr="36px"
                         justifyContent="center"
                         value="ZH"
+                        mb="18px"
                         onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                             setLanguage((e.target as HTMLButtonElement).value);
                             onToggleLanguageClick("zh-Hans");
@@ -98,9 +160,13 @@ const IconContainer = () => {
             ZH
                     </MenuItem>
                     <MenuItem
+                        p="0"
+                        pl="36px"
+                        pr="36px"
                         h="20px"
                         justifyContent="center"
                         value="ESP"
+                        mb="18px"
                         onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                             setLanguage((e.target as HTMLButtonElement).value);
                             onToggleLanguageClick("lad");
