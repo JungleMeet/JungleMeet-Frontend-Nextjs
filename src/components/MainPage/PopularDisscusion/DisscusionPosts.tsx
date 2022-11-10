@@ -19,7 +19,6 @@ const DisscusionPosts = () => {
         fetchPosts();
     }, []);
 
-    console.log(postList);
     return (
         <>
             {postList.length > 0 &&

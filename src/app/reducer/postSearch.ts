@@ -1,46 +1,60 @@
+import { IPostResultItemProps } from "@/components/Search/PostResultItem";
+
+type PostSearchResultType = Omit<IPostResultItemProps, "keyword">;
+
 interface postState {
-    postResult:Array<T>;
-    isPostCollapsed:boolean;
+    postResult: Array<PostSearchResultType>;
+    isPostCollapsed: boolean;
     postPage: number;
     haveMorePostResults: boolean;
     subsequentPostLoading: boolean;
+    pageLimit: number;
 }
 
-export const initialPostState={
-    postResult:[],
-    isPostCollapsed:true,
-    postPage:1,
-    haveMorePostResults:true,
-    subsequentPostLoading:false,
-}
+export const initialPostState = {
+    postResult: [],
+    isPostCollapsed: true,
+    postPage: 1,
+    haveMorePostResults: true,
+    subsequentPostLoading: false,
+    pageLimit: 10,
+};
 
-
-export const postReducer=(state:postState, action:{type:string, payload?:any}):postState=>{
-    const {payload}=action
-    switch (action.type){
-        case 'initializaion':
-            return {...initialPostState}
-            
-        case 'emptyResult':{
-            return {...state, haveMorePostResults:false}
-        };
-        case 'getPostData':{
-            const newResult=state.postResult.concat(payload)
-            return {...state,postResult:newResult}
-        };
-        case "setSubsequentLoading":{
-            return {...state, subsequentPostLoading: payload}
+export const postReducer = (
+    state: postState,
+    action: { type: string; payload?: any }
+): postState => {
+    const { payload } = action;
+    switch (action.type) {
+        case "initialization":
+            return { ...initialPostState };
+        case "noResult": {
+            return { ...state, haveMorePostResults: false };
         }
-        case "noMorePostResults":{
-            return {...state, haveMorePostResults:payload}
+        case "setinitialPostData": {
+            const haveMoreResult = payload.length >3;
+            return { ...state, postResult: payload, haveMorePostResults: haveMoreResult };
         }
-        case "expandSearchResult":{
-            return {...state, isPostCollapsed:false}
+        case "setPostData": {
+            const newResult = state.postResult.concat(payload);
+            const haveMoreResult = !(payload.length < 10);
+            return { ...state, postResult: newResult, haveMorePostResults: haveMoreResult };
         }
-        case "fetchNextPostPage":{
-            return {...state, postPage: state.postPage+1}
+        case "startSubsequentLoading": {
+            return { ...state, subsequentPostLoading: true };
+        }
+        case "completeSubsequentLoading": {
+            return { ...state, subsequentPostLoading: false };
+        }
+        case "expandSearchResult": {
+            // a bit risky here, because there is no new payload here. it use the initial result's payload
+            const haveMoreResult = !(state.postResult.length <10)
+            return { ...state, isPostCollapsed: false, haveMorePostResults:haveMoreResult };
+        }
+        case "fetchNextPostPage": {
+            return { ...state, postPage: state.postPage + 1 };
         }
         default:
-            return state
+            return state;
     }
-}
+};
