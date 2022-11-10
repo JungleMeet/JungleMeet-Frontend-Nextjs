@@ -1,6 +1,7 @@
 import { Box, Flex } from "@chakra-ui/react";
 import TMDBRanking from "../MainPage/TMDBRanking";
 import { useRouter } from "next/router";
+import { createMoviePost } from "@/utils/axiosPostApi";
 
 export interface IMovieResultItemProps {
     resourceId: number;
@@ -32,7 +33,7 @@ const MovieResultItem = (props: IMovieResultItemProps) => {
     // const href = `/movies/${resourceId}`;
     return (
         <Flex justifyContent={"space-between"} pl={"15px"} pr={"38px"} pt={"25px"}>
-            <Box width={"77px"} onClick={() => createMoviePostByResourceId(resourceId)}>
+            <Box width={"77px"} cursor="pointer" onClick={() => createMoviePostByResourceId(resourceId)}>
                 {/* <a href={href}> */}
                 <img width="77px" src={poster} alt="poster" />
                 {/* </a> */}
@@ -41,6 +42,7 @@ const MovieResultItem = (props: IMovieResultItemProps) => {
                 <Box
                     fontSize={"18px"}
                     color="blue.600"
+                    cursor="pointer"
                     onClick={() => createMoviePostByResourceId(resourceId)}
                 >
                     {`${title}(${year})`}

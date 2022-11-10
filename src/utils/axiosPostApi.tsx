@@ -33,6 +33,13 @@ export const addNewPost = async (title: string, content: string, hashtag: string
     return await axiosApi.post("/post/", reqBody, config)
 }
 
+export const createMoviePost = async (resourceId:number) => {
+    const reqBody = {
+        resourceId
+    }
+    return await axiosApi.post("/movie", reqBody);
+}
+
 export const searchPost= ({keyword,page,limit}:{keyword:string, page:number, limit:number})=>{
     return axiosApi.get(`/search/all?keyword=${keyword}&page=${page}&limit=${limit}`)
 }
