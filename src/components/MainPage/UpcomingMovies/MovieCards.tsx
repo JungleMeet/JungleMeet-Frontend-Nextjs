@@ -44,7 +44,7 @@ const MovieCards = ({ movieList }: ImovieListProps) => {
             {movieList?.map(({ poster, title, resourceId, voteAverage, genreNames }: ImovieListItem) => {
                 return (
                     <Carousel.Slide gap={31} key={resourceId}>
-                        <MovieCardContainer >
+                        <MovieCardContainer>
                             <MovieCardThumbnail src={poster} title={title} id={resourceId} />
                             <MovieCardInfo title={title} tmdb={voteAverage} type={genreNames} />
                         </MovieCardContainer>

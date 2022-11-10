@@ -41,7 +41,7 @@ const Movies = () => {
                             title={title}
                             tmdb={voteAverage}
                             key={resourceId}
-                            id = {resourceId}
+                            id={resourceId}
                             youtubeLink={youtubeLink}
                         />
                     );
