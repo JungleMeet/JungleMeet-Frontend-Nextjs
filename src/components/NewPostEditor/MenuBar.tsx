@@ -7,6 +7,7 @@ import { VscHorizontalRule } from "react-icons/vsc";
 import { BiUndo, BiRedo } from "react-icons/bi";
 import { MenuBarWrapper } from "./NewPostPage.style";
 import { MdOutlineColorize } from "react-icons/md";
+import EmojiPicker from "./EmojiPicker";
 
 type IMenuBarProps = {
     editor: Editor | null;
@@ -83,7 +84,7 @@ const MenuBar = ({ editor }: IMenuBarProps) => {
                 <div>
                     <input
                         type="color"
-                        onInput={(event) => editor.chain().focus().setColor(event.target.value).run()}
+                        onInput={(event: any) => editor.chain().focus().setColor(event.target.value).run()}
                         value={editor.getAttributes("textStyle").color}
                     />
                     <Icon as={MdOutlineColorize} />
@@ -134,6 +135,7 @@ const MenuBar = ({ editor }: IMenuBarProps) => {
             >
                 <Icon as={BiRedo} />
             </button>
+            <EmojiPicker editor={editor} />
         </MenuBarWrapper>
     );
 };

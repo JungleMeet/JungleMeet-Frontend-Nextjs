@@ -33,19 +33,8 @@ const NewPostEditor = () => {
             });
             return;
         }
-        if (hashtag) {
-            toast({
-                position: "top",
-                title: "Post title and content can't be empty",
-                status: "error",
-                duration: 2000,
-                isClosable: true,
-            });
-            return;
-        }
         setIsLoading(true);
         try {
-            // const decodeToken = Buffer.from(token, "ascii").toString("base64");
             await addNewPost(postTitle, postContent, hashtag, token);
             Router.push("/discussions");
             setIsLoading(false);
@@ -60,6 +49,9 @@ const NewPostEditor = () => {
             setIsLoading(false);
         }
     };
+
+    console.log(postTitle);
+    console.log(postContent);
 
     return (
         <form onSubmit={handleSumble}>
