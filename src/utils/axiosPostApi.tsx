@@ -32,3 +32,10 @@ export const addNewPost = async (title: string, content: string, hashtag: string
     
     return await axiosApi.post("/post/", reqBody, config)
 }
+
+export const createMoviePost = async (resourceId:number) => {
+    const reqBody = {
+        resourceId
+    }
+    return await axiosApi.post("/movie", reqBody);
+}
