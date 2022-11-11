@@ -15,17 +15,26 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { loginSuccess, loginError } from "@/app/reducer/loginSlice";
 
-const Form = styled.form`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 31px;
 `;
 
+const ButtonContainer = styled.div`
+    margin-top: -25px;
+    margin-bottom: -15px;
+    display: flex;
+    justify-content: flex-end;
+    width: 359px;
+`
+
 interface ILoginForm {
     closeModal: () => void;
+    showForgotPassword: (value: boolean) => void;
 }
-const LoginForm = ({ closeModal }: ILoginForm) => {
+const LoginForm = ({ closeModal, showForgotPassword }: ILoginForm) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -125,6 +134,9 @@ const LoginForm = ({ closeModal }: ILoginForm) => {
                 </InputRightElement>
                 <FormErrorMessage>{pwdErrorMsg}</FormErrorMessage>
             </FormControl>
+            <ButtonContainer>
+                <Button variant='link' fontSize="text5" lineHeight="32px" fontWeight="400" color='blue.500' onClick={() => showForgotPassword(true)}>Forgot password?</Button>
+            </ButtonContainer>
             <Button w="359px" h="50px" backgroundColor="lightBlue.600" type="submit" color="gray.50">
                 {isLoading ? <CircularProgress isIndeterminate size="24px" color="teal" /> : "Log in"}
             </Button>
