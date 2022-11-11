@@ -23,12 +23,12 @@ export const Form = styled.form`
 `;
 
 const ButtonContainer = styled.div`
-    margin-top: -25px;
-    margin-bottom: -15px;
-    display: flex;
-    justify-content: flex-end;
-    width: 359px;
-`
+  margin-top: -25px;
+  margin-bottom: -15px;
+  display: flex;
+  justify-content: flex-end;
+  width: 359px;
+`;
 
 interface ILoginForm {
     closeModal: () => void;
@@ -135,7 +135,16 @@ const LoginForm = ({ closeModal, showForgotPassword }: ILoginForm) => {
                 <FormErrorMessage>{pwdErrorMsg}</FormErrorMessage>
             </FormControl>
             <ButtonContainer>
-                <Button variant='link' fontSize="text5" lineHeight="32px" fontWeight="400" color='blue.500' onClick={() => showForgotPassword(true)}>Forgot password?</Button>
+                <Button
+                    variant="link"
+                    fontSize="text5"
+                    lineHeight="32px"
+                    fontWeight="400"
+                    color="blue.500"
+                    onClick={() => showForgotPassword(true)}
+                >
+          Forgot password?
+                </Button>
             </ButtonContainer>
             <Button w="359px" h="50px" backgroundColor="lightBlue.600" type="submit" color="gray.50">
                 {isLoading ? <CircularProgress isIndeterminate size="24px" color="teal" /> : "Log in"}

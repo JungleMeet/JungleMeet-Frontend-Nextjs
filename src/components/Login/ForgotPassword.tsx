@@ -1,20 +1,13 @@
-import { 
-    FormControl,
-    FormErrorMessage,
-    Text,
-    Button,
-    CircularProgress
-} from '@chakra-ui/react'
+import { FormControl, FormErrorMessage, Text, Button, CircularProgress } from "@chakra-ui/react";
 // import styled from "styled-components";
-import {Form} from './LoginForm/LoginForm';
-import FormInput from './LoginForm/FormInput';
-import {useState} from 'react';
+import { Form } from "./LoginForm/LoginForm";
+import FormInput from "./LoginForm/FormInput";
+import { useState } from "react";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
     const [emailErrorMsg, setEmailErrorMsg] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-
 
     const validateEmailInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -27,12 +20,15 @@ const ForgotPassword = () => {
     };
 
     return (
-        <Form onSubmit={async (event) => {
-            event.preventDefault();
-            setIsLoading(true);
-                
-        }}>
-            <Text fontFamily="secondary" fontSize='text2' fontWeight='700' lineHeight='28px' mt='43px'>Reset your password via email address</Text>
+        <Form
+            onSubmit={async (event) => {
+                event.preventDefault();
+                setIsLoading(true);
+            }}
+        >
+            <Text fontFamily="secondary" fontSize="text2" fontWeight="700" lineHeight="28px" mt="43px">
+        Reset your password via email address
+            </Text>
             <FormControl width="auto" p="0" isRequired isInvalid={emailErrorMsg ? true : false}>
                 <FormInput
                     name="email"
@@ -50,7 +46,7 @@ const ForgotPassword = () => {
                 {isLoading ? <CircularProgress isIndeterminate size="24px" color="teal" /> : "Send"}
             </Button>
         </Form>
-    )
-}
+    );
+};
 
 export default ForgotPassword;

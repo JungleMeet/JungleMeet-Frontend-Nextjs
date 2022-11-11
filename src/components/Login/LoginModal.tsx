@@ -16,8 +16,8 @@ import styled from "styled-components";
 import LoginForm from "./LoginForm/LoginForm";
 import SignupForm from "./SignupForm/SignupForm";
 import LoginModalFooter from "./LoginModalFooter";
-import {useState} from 'react';
-import ForgotPassword from './ForgotPassword';
+import { useState } from "react";
+import ForgotPassword from "./ForgotPassword";
 
 interface ILoginModal {
     isOpen: boolean;
@@ -57,58 +57,58 @@ const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
                     <LoginTitleContainer>Where the Exploration Begins</LoginTitleContainer>
                 </ModalHeader>
                 <ModalCloseButton />
-                <ModalBody >
-                    {
-                        isShowForgotPassword
-                            ?
-                            <ForgotPassword></ForgotPassword>
-                            :
-                            <Tabs display="flex" flexDirection="column" alignItems="center">
-                                <TabList borderBottom="none" display="flex" gap="93px" mb="48px" mt="26px">
-                                    <Tab
-                                        fontFamily="secondary"
-                                        w="119px"
-                                        h="32px"
-                                        fontSize="20px"
-                                        p="0"
-                                        color="gray.400"
-                                        lineHeight="28px"
-                                        borderBottom="1px solid"
-                                        borderColor="gray.400"
-                                        _selected={selectedTabStyle}
-                                        _focus={{ boxShadow: "none" }}
-                                    >
-                        Log in
-                                    </Tab>
-                                    <Tab
-                                        fontFamily="secondary"
-                                        w="119px"
-                                        h="32px"
-                                        fontSize="20px"
-                                        p="0"
-                                        color="gray.400"
-                                        lineHeight="28px"
-                                        borderBottom="1px solid"
-                                        borderColor="gray.400"
-                                        _selected={selectedTabStyle}
-                                        _focus={{ boxShadow: "none" }}
-                                    >
-                        Sign up
-                                    </Tab>
-                                </TabList>
-                                <TabPanels mb="50px">
-                                    <TabPanel p="0">
-                                        <LoginForm closeModal={onClose} showForgotPassword={setIsShowForgotPassword}></LoginForm>
-                                        <LoginModalFooter>Log in with</LoginModalFooter>
-                                    </TabPanel>
-                                    <TabPanel p="0">
-                                        <SignupForm></SignupForm>
-                                        <LoginModalFooter>Sign up with</LoginModalFooter>
-                                    </TabPanel>
-                                </TabPanels>
-                            </Tabs>
-                    }
-                    
+                <ModalBody>
+                    {isShowForgotPassword ? (
+                        <ForgotPassword></ForgotPassword>
+                    ) : (
+                        <Tabs display="flex" flexDirection="column" alignItems="center">
+                            <TabList borderBottom="none" display="flex" gap="93px" mb="48px" mt="26px">
+                                <Tab
+                                    fontFamily="secondary"
+                                    w="119px"
+                                    h="32px"
+                                    fontSize="20px"
+                                    p="0"
+                                    color="gray.400"
+                                    lineHeight="28px"
+                                    borderBottom="1px solid"
+                                    borderColor="gray.400"
+                                    _selected={selectedTabStyle}
+                                    _focus={{ boxShadow: "none" }}
+                                >
+                  Log in
+                                </Tab>
+                                <Tab
+                                    fontFamily="secondary"
+                                    w="119px"
+                                    h="32px"
+                                    fontSize="20px"
+                                    p="0"
+                                    color="gray.400"
+                                    lineHeight="28px"
+                                    borderBottom="1px solid"
+                                    borderColor="gray.400"
+                                    _selected={selectedTabStyle}
+                                    _focus={{ boxShadow: "none" }}
+                                >
+                  Sign up
+                                </Tab>
+                            </TabList>
+                            <TabPanels mb="50px">
+                                <TabPanel p="0">
+                                    <LoginForm
+                                        closeModal={onClose}
+                                        showForgotPassword={setIsShowForgotPassword}
+                                    ></LoginForm>
+                                    <LoginModalFooter>Log in with</LoginModalFooter>
+                                </TabPanel>
+                                <TabPanel p="0">
+                                    <SignupForm></SignupForm>
+                                    <LoginModalFooter>Sign up with</LoginModalFooter>
+                                </TabPanel>
+                            </TabPanels>
+                        </Tabs>
+                    )}
                 </ModalBody>
             </ModalContent>
         </Modal>
