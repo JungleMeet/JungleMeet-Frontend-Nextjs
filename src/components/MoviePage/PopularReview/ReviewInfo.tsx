@@ -1,9 +1,13 @@
+import { Tag, TagLabel, TagLeftIcon, HStack } from "@chakra-ui/react";
 import { Flex, Text, Link, Spacer, Box, Divider, Image } from "@chakra-ui/react";
 import { ReviewsContainer } from "./ReviewsContainer";
 import React from "react";
 import parser from "html-react-parser";
+import { dateCreatedAt } from "@/utils/dateCreateAt";
+import { ChatIcon } from "@chakra-ui/icons";
 
 interface ReviewInfoProps {
+    id: string;
     date: string;
     author: [
         {
@@ -36,7 +40,7 @@ const ReviewInfo: React.FC<ReviewInfoProps> = (props) => {
                 &nbsp;
                             </Text>
                             <Text textColor="gray.400" fontSize="16px" fontWeight="400">
-                                <Text>{props.date}</Text>
+                                <Text>{dateCreatedAt(props.date)}</Text>
                             </Text>
                         </Box>
                         <Spacer />
@@ -61,16 +65,15 @@ const ReviewInfo: React.FC<ReviewInfoProps> = (props) => {
                         <Text>{parser(props.description)}</Text>
                     </Box>
                     <Box display="flex" textColor="gray.600" marginTop="18.67px">
-                        <Image
-                            src="/commentsIcon.svg"
-                            width="16.5px"
-                            height="15.58px"
-                            color="gray.900"
-                            marginTop="5px "
-                            marginRight="9.75px"
-                        />
                         <Link _hover={{ textColor: "black" }} mr="5px">
-                            <Text> &nbsp;{props.comments} Replies</Text>
+                            <HStack spacing={4}>
+                                {["md"].map((size) => (
+                                    <Tag size={size} key={size} variant="subtle" colorScheme="white">
+                                        <TagLeftIcon boxSize="12px" as={ChatIcon} />
+                                        <TagLabel>Replies</TagLabel>
+                                    </Tag>
+                                ))}
+                            </HStack>
                         </Link>
                     </Box>
 
