@@ -5,7 +5,7 @@ interface IDiscussionAuthor {
     id: string;
     author: string;
     createdAt: string;
-    avatar: string;
+    avatar?: string;
 }
 
 const DiscussionAuthor = ({ author, createdAt, avatar, id }: IDiscussionAuthor) => {
