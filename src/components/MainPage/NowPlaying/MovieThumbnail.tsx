@@ -1,21 +1,52 @@
 import PlayingMovieTrailerModel from "@/components/PlayingMovieTrailerModel";
 import { Box, Button, Image, Text, useDisclosure } from "@chakra-ui/react";
 import TMDBRanking from "../TMDBRanking";
+// import Link from "next/link";
+import { useRouter } from "next/router";
+import { createMoviePost } from "@/utils/axiosPostApi";
 
 interface IMovieThumbnailProps {
     src: string;
     title: string;
     tmdb: number;
-    key: number;
     youtubeLink?: string;
+    id: number;
 }
 
-const MovieThumbnail = ({ src, title, tmdb, youtubeLink }: IMovieThumbnailProps): JSX.Element => {
+const MovieThumbnail = ({
+    id,
+    src,
+    title,
+    tmdb,
+    youtubeLink,
+}: IMovieThumbnailProps): JSX.Element => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const router = useRouter();
 
     return (
         <Box pos="relative" height="436px" width="194px" bg="rgba(0, 0, 0, 0.9)" borderRadius="5px">
-            <Image src={src} width="194px" height="277px" objectFit="fill" />
+            {/* <Link href={`/movies/${id}`}> */}
+            <Image
+                src={src}
+                width="194px"
+                height="277px"
+                objectFit="fill"
+                cursor="pointer"
+                onClick={() => {
+                    const createMoviePostByResourceId = async () => {
+                        try {
+                            const res = await createMoviePost(id);
+                            const { _id } = res.data;
+                            // console.log(_id);
+                            router.push(`/movies/${_id}`);
+                        } catch (e) {
+                            return e;
+                        }
+                    };
+                    createMoviePostByResourceId();
+                }}
+            />
+            {/* </Link> */}
             {/* <Box
                 bg="rgba(156, 163, 175, 0.5)"
                 width="30px"

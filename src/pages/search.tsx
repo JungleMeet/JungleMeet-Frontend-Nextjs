@@ -1,16 +1,17 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
 import { useRouter } from "next/router";
 import PageWrapper from "@/components/PageWrapper";
 import { Box, Button, Spinner } from "@chakra-ui/react";
 import MovieResultItem from "@/components/Search/MovieResultItem";
 import { IMovieResultItemProps } from "@/components/Search/MovieResultItem";
-import PostResultItem, { IPostResultItemProps } from "@/components/Search/PostResultItem";
-import ResultContainer from "@/components/Search/ResultContainer";
+import PostResultItem from "@/components/Search/PostResultItem";
 import { searchMovieName } from "@/utils/axiosMovieApi";
 import { isEmpty } from "lodash";
 import { ViewIcon } from "@chakra-ui/icons";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { initialPostState, postReducer } from "@/app/reducer/postSearch";
+import { searchPost } from "@/utils/axiosPostApi";
 
 interface IgetStaticProps {
     locale: string;
@@ -28,18 +29,6 @@ export const PageTitle = styled.div`
   font-weight: 700;
 `;
 
-const postData = [
-    {
-        _id: "123",
-        title: "what is the matter",
-        author: { _id: "123456", name: "James" },
-        createdAt: "2022-09-27T23:44:36.251Z",
-        likeCount: 5,
-        viewCount: 10,
-        commentCount: 25,
-    },
-];
-
 const INITIAL_DISP_ITEMS = 3;
 
 const Search = () => {
@@ -55,22 +44,37 @@ const Search = () => {
     const [subsequentMovieLoading, setSubsequentMovieLoading] = useState(false);
 
     const [loadingPost, setLoadingPost] = useState(true);
-    const [postResult, setPostResult] = useState<IPostResultItemProps[]>([]);
+    const [postState, dispatch] = useReducer(postReducer, initialPostState);
+    const {
+        postResult,
+        isPostCollapsed,
+        postPage,
+        haveMorePostResults,
+        subsequentPostLoading,
+        pageLimit,
+    } = postState;
 
     // new search, everytime the name changes
     useEffect(() => {
         setLoadingMovie(true);
+        setLoadingPost(true);
+
+        setMovieResult([]);
         setIsCollapsed(true);
         setMoviePage(1);
         setHaveMoreMovieResults(true);
+        dispatch({ type: "initialization" });
 
         searchMovieName(name).then(({ data }) => {
-            if (isEmpty(data)) {
-                setMovieResult([]);
-                setHaveMoreMovieResults(false);
-            }
+            if (isEmpty(data)) setHaveMoreMovieResults(false);
             if (!isEmpty(data)) setMovieResult(data);
             setLoadingMovie(false);
+        });
+
+        searchPost({ keyword: name, page: 1, limit: pageLimit }).then(({ data }) => {
+            if (isEmpty(data)) dispatch({ type: "noResult" });
+            if (!isEmpty(data)) dispatch({ type: "setinitialPostData", payload: data });
+            setLoadingPost(false);
         });
     }, [name]);
 
@@ -80,14 +84,13 @@ const Search = () => {
             setSubsequentMovieLoading(true);
             searchMovieName(name, moviePage).then(({ data }) => {
                 if (isEmpty(data)) setHaveMoreMovieResults(false);
-
                 if (!isEmpty(data)) setMovieResult((currentData) => currentData.concat(data));
                 setSubsequentMovieLoading(false);
             });
         }
     }, [moviePage]);
 
-    const viewMoreMovies = () => {
+    const handleViewMoreMovies = () => {
         if (!haveMoreMovieResults) return;
         if (isCollapsed) {
             setIsCollapsed(false);
@@ -107,14 +110,38 @@ const Search = () => {
         movieRenderData?.map((result) => <MovieResultItem key={result.resourceId} {...result} />)
     );
 
+    // subsequent post search, trigger by page change
     useEffect(() => {
-        setPostResult(postData);
-        setLoadingPost(true);
-    }, []);
-    const viewMorePosts = () => {};
+        if (postPage !== 1) {
+            dispatch({ type: "startSubsequentLoading" });
+            searchPost({ keyword: name, page: postPage, limit: pageLimit }).then(({ data }) => {
+                if (isEmpty(data)) dispatch({ type: "noResult" });
+                if (!isEmpty(data)) dispatch({ type: "setPostData", payload: data });
+                dispatch({ type: "completeSubsequentLoading" });
+            });
+        }
+    }, [postPage]);
 
-    const postResults = postResult.map((result) => <PostResultItem key={result._id} {...result} />);
+    const handleViewMorePosts = () => {
+        if (!haveMorePostResults) return;
+        if (isPostCollapsed) {
+            dispatch({ type: "expandSearchResult" });
+            if (postRenderData.length === postResult.length) {
+                dispatch({ type: "fetchNextPostPage" });
+            }
+            return;
+        }
+        dispatch({ type: "fetchNextPostPage" });
+    };
 
+    const postRenderData = isPostCollapsed ? postResult.slice(0, INITIAL_DISP_ITEMS) : postResult;
+
+    const postResults = isEmpty(postResult) ? (
+        <div>no result</div>
+    ) : (
+    // work to here
+        postRenderData?.map((result) => <PostResultItem key={result._id} {...result} keyword={name} />)
+    );
     return (
         <PageWrapper>
             <PageTitle>Search Results for: {name}</PageTitle>
@@ -134,7 +161,7 @@ const Search = () => {
                         fontWeight="700"
                         background={"transparent"}
                         _hover={{ background: "gray.300" }}
-                        onClick={viewMoreMovies}
+                        onClick={handleViewMoreMovies}
                     >
                         {haveMoreMovieResults ? "More results..." : "No more movies"}
                     </Button>
@@ -143,10 +170,27 @@ const Search = () => {
 
             <Box fontSize="h4" fontWeight={700} lineHeight="1h32" color={"#B91C1C"}>
         Posts
-                {loadingPost}
             </Box>
 
-            <ResultContainer viewMoreResult={viewMorePosts}>{postResults}</ResultContainer>
+            <Box bg="gray.200" borderRadius={"5px"} pt={"13px"} pl={"25px"} pr="25px">
+                {loadingPost ? <Spinner /> : postResults}
+
+                <Box mt={0}>
+                    <Button
+                        leftIcon={
+                            loadingPost || subsequentPostLoading ? <Spinner /> : <ViewIcon color="blue.500" />
+                        }
+                        color="blue.500"
+                        fontSize="h6"
+                        fontWeight="700"
+                        background={"transparent"}
+                        _hover={{ background: "gray.300" }}
+                        onClick={handleViewMorePosts}
+                    >
+                        {haveMorePostResults ? "More results..." : "No more posts"}
+                    </Button>
+                </Box>
+            </Box>
         </PageWrapper>
     );
 };
