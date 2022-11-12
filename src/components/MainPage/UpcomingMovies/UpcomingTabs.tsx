@@ -1,8 +1,9 @@
-import { TabList, Tab, Spinner } from "@chakra-ui/react";
+import { TabList, Tab } from "@chakra-ui/react";
 import { SectionSubTitleSeeMore } from "../Containers";
 import SeeMore from "../SeeMore";
 import { getPopular, getUpcoming, getTopRated } from "@/utils/axiosMovieApi";
 import { useTranslation } from "next-i18next";
+import { useState } from "react";
 
 interface IUpcomingTabs {
     changeMovieListMethod: any;
@@ -18,7 +19,6 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
             try {
                 const { data } = await getUpcoming();
                 setIsLoading(false);
-                // console.log(data);
                 changeMovieListMethod(data.slice(0, 10));
             } catch (err) {
                 console.log(err);
@@ -27,7 +27,6 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
             try {
                 const { data } = await getPopular();
                 setIsLoading(false);
-                // console.log(data);
                 changeMovieListMethod(data.slice(0, 10));
             } catch (err) {
                 console.log(err);
@@ -42,6 +41,14 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
                 console.log(err);
             }
         }
+    };
+    const [showRunning, setShowRunning] = useState(false);
+
+    const showElementForOneSec = () => {
+        setShowRunning(true);
+        setTimeout(() => {
+            setShowRunning(false);
+        }, 1000);
     };
 
     return (
@@ -72,12 +79,20 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
                     onClick={() => {
                         setIsLoading(true);
                         fetchMovies(tabTitle);
+                        showElementForOneSec();
                     }}
                 >
                     {tabTitle}
                 </Tab>
             ))}
-            {isLoading && <Spinner />}
+            {/* {isLoading && <Spinner />} */}
+            {showRunning && (
+                <img
+                    src="/pikachu_running.gif"
+                    width={"80px"}
+                    style={{ position: "absolute", left: "620px" }}
+                />
+            )}
             <SectionSubTitleSeeMore>
                 <SeeMore href="/allmovies" />
             </SectionSubTitleSeeMore>
