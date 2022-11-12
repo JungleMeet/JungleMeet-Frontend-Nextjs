@@ -1,14 +1,15 @@
 import React from "react";
 import { Box, Flex, Text, Image} from "@chakra-ui/react";
+import Members from "./Members";
 
 const aboutPage = () => {
     return (
         <Flex gap="20px">
-            < Flex flexDirection="column" width="945px" height="1544px" padding="none" bgColor="gray.100">
-                <Box ml="28px" mt="34px" gap="30.13px">
+            < Flex flexDirection="column" width="945px" height="auto" padding="none" bgColor="gray.100">
+                <Box ml="28px" mt="34px">
                     <Image fill="black" src="/JungleMeetLogoBlackText.svg" alt="logo of jungle meet" />
                 </Box>
-                <Box ml="28px" mr="71px" mt="34px" height="86px">
+                <Box ml="28px" mr="71px" mt="30px">
                     <Text
                         color="#000" 
                         fontFamily="Inter" 
@@ -18,7 +19,7 @@ const aboutPage = () => {
                         lineHeight="28px"
                     >Jungle Meet is a place for people to watch movie discussion, where people come together to share their opinion. We're also a community pushing for positive change for people. </Text>
                 </Box>
-                <Box ml="28px">
+                <Box ml="28px" mt="40px">
                     <Text 
                         color="#881337" 
                         fontFamily="Inter" 
@@ -36,9 +37,10 @@ const aboutPage = () => {
                         fontSize="18px"
                         lineHeight="28px"
                     >
-                    Jungle Meet is designed and developed by group of 9 developers in two months and deployed by 4 Devops. Our vision is: "Have fun while sharing movies!"
+                    Jungle Meet is designed and developed by group of 9 developers in two months and deployed by 4 Devops. <br/> Our vision is: &quot;Have fun while sharing movies!&quot;
                     </Text>
                 </Box>
+                <Members/>
             </Flex>
             <Flex>
                 <Box width="279px" height="271px" bgColor="gray.100">
