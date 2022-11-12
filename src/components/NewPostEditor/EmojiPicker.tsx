@@ -27,12 +27,13 @@ const EmojiPicker = ({ editor }: IEmojiPickerProps) => {
         editor?.chain().focus().insertContent(emojiObject.emoji).run();
     };
 
-    const toggleEmojiPicker = (event: any) => {
+    const toggleEmojiPicker = () => {
         !showEmojiPicker ? setShowEmojiPicker(true) : setShowEmojiPicker(false);
     };
 
     const pickerRef = useRef<HTMLDivElement>(null);
 
+    // close emoji picker when clicking ouside of the div
     useEffect(() => {
         const handler = (event: any) => {
             if (!pickerRef.current?.contains(event.target as HTMLDivElement)) {
