@@ -12,7 +12,7 @@ const MovieCardContainer = styled.div`
   background-color: rgba(0, 0, 0, 90%);
   color: #faf9f9;
   border-radius: 5px;
-  :hover{
+  :hover {
     box-shadow: 5px 5px 5px #ebb513, -5px -5px 5px #ebb513;
   }
 `;

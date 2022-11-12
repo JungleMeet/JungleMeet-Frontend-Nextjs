@@ -15,7 +15,7 @@ const WatchVideoButton = ({ movieId, src }: IWatchVideoButtonProps) => {
     const { t } = useTranslation("home");
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-    const [disableButton, setDisableButton] = useState(false)
+    const [disableButton, setDisableButton] = useState(false);
 
     const getVideoLinkThenOpenModal = () => {
         if (src) dispatch(setVideoAddAndOpenModal(src));
@@ -24,7 +24,7 @@ const WatchVideoButton = ({ movieId, src }: IWatchVideoButtonProps) => {
             setLoading(true);
             getYoutubeLinkById(movieId).then(({ data }) => {
                 setLoading(false);
-                if (isEmpty(data)) return setDisableButton(true)
+                if (isEmpty(data)) return setDisableButton(true);
                 dispatch(setVideoAddAndOpenModal(data));
             });
         }
