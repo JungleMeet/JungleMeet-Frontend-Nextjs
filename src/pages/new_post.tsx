@@ -3,6 +3,7 @@ import PageWrapper from "@/components/PageWrapper";
 import { Heading } from "@chakra-ui/react";
 import React from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import ImageUploader from "@/components/NewPostEditor/ImageUploader";
 
 interface IgetStaticProps {
     locale: string;
@@ -28,6 +29,7 @@ const newpost = () => {
             >
         Create Your Post in Discussion
             </Heading>
+            <ImageUploader />
             <NewPostEditor />
         </PageWrapper>
     );

@@ -31,3 +31,33 @@ export const TitleInput = styled.input`
   font-size: 1.3rem;
   background-color: #e5e7eb;
 `;
+
+export const ImageInputWrapper = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 3px dashed #000;
+  height: 240px;
+  gap: 40px;
+  cursor: pointer;
+`;
+
+export const ImageWrapper = styled.div`
+  position: relative;
+`;
+
+export const ImagePlus = styled.div`
+  ::after {
+    content: "+";
+    position: absolute;
+    font-size: 55px;
+    font-weight: 700;
+    top: 5px;
+    left: 35px;
+  }
+`;
+
+export const ImageInput = styled.input`
+  display: none;
+`;
