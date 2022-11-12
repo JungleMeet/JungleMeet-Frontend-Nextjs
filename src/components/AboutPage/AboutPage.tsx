@@ -17,7 +17,7 @@ const aboutPage = () => {
                         fontWeight="400" 
                         fontSize="18px"
                         lineHeight="28px"
-                    >Jungle Meet is a place for people to watch movie discussion, where people come together to share their opinion. We're also a community pushing for positive change for people. </Text>
+                    >Jungle Meet is a place for people to watch movie discussion, where people come together to share their opinion. We&apos;re also a community pushing for positive change for people. </Text>
                 </Box>
                 <Box ml="28px" mt="40px">
                     <Text 
