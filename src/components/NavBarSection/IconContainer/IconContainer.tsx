@@ -59,7 +59,6 @@ const IconContainer = () => {
         const verify = async () => {
             try {
                 const res = await verifyToken(token);
-                console.log(res.data);
                 if (res.data) {
                     dispatch(tokenValid(userInfo));
                 }

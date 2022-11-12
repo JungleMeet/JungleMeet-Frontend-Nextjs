@@ -23,8 +23,10 @@ const MovieThumbnail = ({
     const router = useRouter();
 
     return (
-        <Box pos="relative" height="436px" width="194px" bg="rgba(0, 0, 0, 0.9)" borderRadius="5px">
-            {/* <Link href={`/movies/${id}`}> */}
+        <Box pos="relative" height="436px" width="194px" bg="rgba(0, 0, 0, 0.9)" 
+            borderRadius="5px" 
+            // transition="all 0.3s" 
+            _hover={{boxShadow:"5px 5px 5px #ebb513, -5px -5px 5px #ebb513, 5px -5px 5px #ebb513, -5px 5px 5px #ebb513"}}>
             <Image
                 src={src}
                 width="194px"
@@ -63,7 +65,6 @@ const MovieThumbnail = ({
             </Box>
             <Box marginTop="31.5px" display="flex" alignItems="center" justifyContent="center">
                 <WatchVideoButton movieId={id} src={youtubeLink} />
-                {/* <PlayingMovieTrailerModel onClose={()=>setIsModalOpen(false)} isOpen={isModalOpen} src={youtubeLink} /> */}
             </Box>
         </Box>
     );

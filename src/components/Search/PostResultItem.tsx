@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import DiscussionAuthor from "../DiscussionsPage/DiscussionAuthor";
+import parser from "html-react-parser";
 
 export interface IPostResultItemProps {
     _id: string;
@@ -12,8 +13,9 @@ export interface IPostResultItemProps {
     };
     createdAt: string;
     likeCount: number;
-    viewCount: number;
+    viewNumber: number;
     commentCount: number;
+    keyword: string;
 }
 
 const PostResultItem: React.FC<IPostResultItemProps> = ({
@@ -22,19 +24,22 @@ const PostResultItem: React.FC<IPostResultItemProps> = ({
     author: { _id: authorId, name, avatar },
     createdAt,
     likeCount,
-    viewCount,
+    viewNumber,
     commentCount,
+    keyword,
 }) => {
+    const regExp = new RegExp(keyword, "gi");
+    const markedTitle = String(title).replace(regExp, "<mark>$&</mark>");
     return (
         <Box>
             <Box color="blue.500" fontWeight="700" fontSize="text3">
-                {title}
+                <a href={`/discussions/${_id}`}> {parser(markedTitle)} </a>
             </Box>
             <Flex alignItems="center" justifyContent="space-between" pl={"20px"} pr={"20px"}>
-                <DiscussionAuthor author={name} createdAt={createdAt} authorId={authorId} avatar={avatar} />
+                <DiscussionAuthor author={name} createdAt={createdAt} id={authorId} avatar={avatar} />
                 <Flex>
                     <Text color="red">{likeCount} liked</Text>
-                    <Text color="gray.400">&nbsp; &bull; {viewCount} views </Text>
+                    <Text color="gray.400">&nbsp; &bull; {viewNumber} views </Text>
                     <Text color="gray.400">&nbsp; &bull; {commentCount} comments</Text>
                 </Flex>
             </Flex>

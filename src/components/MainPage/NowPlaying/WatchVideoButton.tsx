@@ -1,6 +1,7 @@
 import { setVideoAddAndOpenModal } from "@/app/reducer/modalSlice";
 import { getYoutubeLinkById } from "@/utils/axiosMovieApi";
 import { Button, Image } from "@chakra-ui/react";
+import { isEmpty } from "lodash";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -14,6 +15,7 @@ const WatchVideoButton = ({ movieId, src }: IWatchVideoButtonProps) => {
     const { t } = useTranslation("home");
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
+    const [disableButton, setDisableButton] = useState(false)
 
     const getVideoLinkThenOpenModal = () => {
         if (src) dispatch(setVideoAddAndOpenModal(src));
@@ -21,8 +23,9 @@ const WatchVideoButton = ({ movieId, src }: IWatchVideoButtonProps) => {
         if (!src) {
             setLoading(true);
             getYoutubeLinkById(movieId).then(({ data }) => {
-                dispatch(setVideoAddAndOpenModal(data));
                 setLoading(false);
+                if (isEmpty(data)) return setDisableButton(true)
+                dispatch(setVideoAddAndOpenModal(data));
             });
         }
     };
@@ -42,6 +45,7 @@ const WatchVideoButton = ({ movieId, src }: IWatchVideoButtonProps) => {
             _hover={{
                 backgroundColor: "gray.600",
             }}
+            disabled={disableButton}
             isLoading={loading}
             onClick={getVideoLinkThenOpenModal}
         >
