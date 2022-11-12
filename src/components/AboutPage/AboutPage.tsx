@@ -18,7 +18,8 @@ const aboutPage = () => {
                         lineHeight="28px"
                     >
             Jungle Meet is a place for people to watch movie discussion, where people come together
-            to share their opinion. We are also a community pushing for positive change for people.
+            to share their opinion. We&apos;re also a community pushing for positive change for
+            people.
                     </Text>
                 </Box>
                 <Box ml="28px">
@@ -42,7 +43,7 @@ const aboutPage = () => {
                         lineHeight="28px"
                     >
             Jungle Meet is designed and developed by group of 9 developers in two months and
-            deployed by 4 Devops. Our vision is: Have fun while sharing movies!
+            deployed by 4 Devops. Our vision is: {`"Have fun while sharing movies!"`}
                     </Text>
                 </Box>
             </Flex>
