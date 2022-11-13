@@ -1,20 +1,14 @@
-import React from "react";
-import { Text } from "@chakra-ui/react";
-import commentData from "./commentData";
+import React, { useState, useEffect } from "react";
+import commentData from "./commentData.json";
 import Comment from "./Comment";
+import { ICommentProps } from "./Comment";
+
 function ReviewPageTest() {
-    return (
-        <>
-            {commentData.map((comment) => {
-                return (
-                    <div key={comment._id}>
-                        <Text>{comment.content}</Text>
-                        <Comment key={comment._id} comment={comment} />
-                    </div>
-                );
-            })}
-        </>
-    );
+    const [comments, setComments] = useState<ICommentProps[]>([]);
+    useEffect(() => {
+        setComments(commentData);
+    }, []);
+    return <Comment comments={comments} />;
 }
 
 export default ReviewPageTest;

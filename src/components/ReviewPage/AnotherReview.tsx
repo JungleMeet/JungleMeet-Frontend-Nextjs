@@ -6,9 +6,6 @@ import { getCommentsByCondition } from "@/utils/axiosCommentApi";
 import { dateCreatedAt } from "@/utils/dateCreateAt";
 import { useRouter } from "next/router";
 
-// import { CommentData } from "./CommentData";
-import Comment from "./Comment";
-
 interface IReviewProps {
     postId: string;
     author: [
@@ -117,13 +114,13 @@ const AnotherReview = () => {
                                           See more replies (3 Replies)
                                 </Button>
                                 <Divider borderColor="grey.200" pt="30px" /> */}
-                                {comments.map((comment) => {
+                                {/* {comments.map((comment) => {
                                     return (
-                                        <Stack>
-                                            <Comment key={comment._id} content={content} />
+                                        <Stack key={comment._id}>
+                                            <Comment  content={content} />
                                         </Stack>
                                     );
-                                })}
+                                })} */}
                 )
                             </Stack>
                         </>

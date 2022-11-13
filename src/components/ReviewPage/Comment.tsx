@@ -1,23 +1,54 @@
-// import { Text } from "@chakra-ui/react";
-// import commentData from "./CommentData";
-// import { useState } from "react";
+import React from "react";
+import { isEmpty } from "lodash";
 
-function Comment({ comment }) {
-    const nestedComments = commentData.map((comment) => {
-        return comment.children.map((item) => {
-            console.log(item.content);
-            return <Comment key={item._id} comment={comment} />;
-        });
-    });
-
+export interface ICommentProps {
+    _id: string;
+    content: string;
+    visible: boolean;
+    author: {
+        _id: string;
+        name: string;
+        avatar: string;
+    };
+    mentionedUserId: string[];
+    postId: string;
+    parentCommentId: string;
+    like: string[];
+    createdAt: string;
+    updatedAt: string;
+    level: number;
+    __V: number;
+    children: ICommentProps[];
+    // [key: string]: string | boolean | Array<any> | Object|null;
+}
+const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
     return (
         <>
-            <div style={{ marginLeft: "25px", marginTop: "10px" }}>
-                {/* <div>{comment.content}</div> */}
-                {nestedComments}
-            </div>
+            {comments.map((item: any) => {
+                const {
+                    _id,
+                    content,
+                    // visible,
+                    // postId,
+                    // createdAt,
+                    // like,
+                    author: {
+                        name: authorName,
+                        // _id: authorId,
+                        // avatar
+                    },
+                } = item;
+                return (
+                    <div style={{ marginLeft: "25px", marginTop: "10px" }} key={_id}>
+            Author: {`${authorName}`}
+                        <br></br>
+                        {`--- ${content}`}
+                        {!isEmpty(item.children) ? <Comment comments={item.children} /> : null}
+                    </div>
+                );
+            })}
         </>
     );
-}
+};
 
 export default Comment;
