@@ -6,7 +6,7 @@ import PostContentEditor from "./PostContentEditor";
 import PostSingleLineInput from "./PostSingleLineInput";
 
 interface INewEditorProps {
-    bgImg: string;
+    bgImg: string | undefined;
 }
 
 const NewPostEditor = ({ bgImg }: INewEditorProps) => {

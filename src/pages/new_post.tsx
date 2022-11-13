@@ -17,7 +17,7 @@ export async function getStaticProps({ locale }: IgetStaticProps) {
 }
 
 const newpost = () => {
-    const [bgImg, setBgImg] = useState<string>("");
+    const [bgImg, setBgImg] = useState<string | undefined>(undefined);
 
     return (
         <PageWrapper>
