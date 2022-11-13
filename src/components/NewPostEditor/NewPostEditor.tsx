@@ -4,9 +4,12 @@ import { addNewPost } from "@/utils/axiosPostApi";
 import Router from "next/router";
 import PostContentEditor from "./PostContentEditor";
 import PostSingleLineInput from "./PostSingleLineInput";
-// const reverse = require("buffer-reverse");
 
-const NewPostEditor = () => {
+interface INewEditorProps {
+    bgImg: string;
+}
+
+const NewPostEditor = ({ bgImg }: INewEditorProps) => {
     const [postTitle, setPostTitle] = useState("");
     const [postContent, setPostContent] = useState("");
     const [hashtag, setHashtag] = useState("");
@@ -20,7 +23,7 @@ const NewPostEditor = () => {
         const localtoken = localStorage.getItem("token");
         setToken(localtoken);
     }, []);
-
+    console.log(bgImg);
     const handleSumble = async (e: any) => {
         e.preventDefault();
         if (!postTitle || !postContent) {
@@ -35,7 +38,7 @@ const NewPostEditor = () => {
         }
         setIsLoading(true);
         try {
-            await addNewPost(postTitle, postContent, hashtag, token);
+            await addNewPost(postTitle, postContent, hashtag, token, bgImg);
             Router.push("/discussions");
             setIsLoading(false);
             toast({
@@ -49,9 +52,6 @@ const NewPostEditor = () => {
             setIsLoading(false);
         }
     };
-
-    console.log(postTitle);
-    console.log(postContent);
 
     return (
         <form onSubmit={handleSumble}>

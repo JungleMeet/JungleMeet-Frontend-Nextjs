@@ -1,7 +1,7 @@
 import NewPostEditor from "@/components/NewPostEditor/NewPostEditor";
 import PageWrapper from "@/components/PageWrapper";
 import { Heading } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ImageUploader from "@/components/NewPostEditor/ImageUploader";
 
@@ -17,6 +17,8 @@ export async function getStaticProps({ locale }: IgetStaticProps) {
 }
 
 const newpost = () => {
+    const [bgImg, setBgImg] = useState<string>("");
+
     return (
         <PageWrapper>
             <Heading
@@ -29,8 +31,8 @@ const newpost = () => {
             >
         Create Your Post in Discussion
             </Heading>
-            <ImageUploader />
-            <NewPostEditor />
+            <ImageUploader setBgImg={setBgImg} />
+            <NewPostEditor bgImg={bgImg} />
         </PageWrapper>
     );
 };

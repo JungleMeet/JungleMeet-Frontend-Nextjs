@@ -41,6 +41,7 @@ export const ImageInputWrapper = styled.label`
   height: 240px;
   gap: 40px;
   cursor: pointer;
+  margin-bottom: 25px;
 `;
 
 export const ImageWrapper = styled.div`
