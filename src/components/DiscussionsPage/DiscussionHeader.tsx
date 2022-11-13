@@ -2,8 +2,7 @@ import { Flex, Heading, Divider, IconButton } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import React from "react";
 import { useTranslation } from "next-i18next";
-
-// import AddDiscussionBtn from "./AddDiscussionBtn";
+import Router from "next/router";
 
 const DiscussionHeader = () => {
     const { t } = useTranslation("home");
@@ -24,6 +23,7 @@ const DiscussionHeader = () => {
                         aria-label="create discussion"
                         size="sm"
                         icon={<AddIcon />}
+                        onClick={() => Router.push("/new_post")}
                     />
                 </Flex>
             </Flex>

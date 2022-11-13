@@ -1,4 +1,6 @@
-import { Text, Image } from "@chakra-ui/react";
+import { FaPen } from "react-icons/fa";
+import { Button, Stack } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import React from "react";
 import ReviewPosts from "@/components/MoviePage/PopularReview/ReviewPosts";
 import {
@@ -10,6 +12,8 @@ import PageWrapper from "@/components/PageWrapper";
 import MovieSection from "@/components/MoviePage/MovieDetails/MovieSection";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPaths } from "next";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface IgetStaticProps {
     locale: string;
@@ -29,12 +33,16 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
     };
 };
 const PopularReview = (): JSX.Element => {
+    const router = useRouter();
+    const { id } = router.query;
     return (
         <PageWrapper>
             <MovieSection />
             <SectionContainer>
                 <SectionHeaderContainer>
-                    <SectionTitle>Popular Review</SectionTitle>
+                    <Link href={`/movies/reviews/${id}`}>
+                        <SectionTitle>Popular Review</SectionTitle>
+                    </Link>
                     <div>
                         <Text
                             fontWeight="400"
@@ -42,13 +50,16 @@ const PopularReview = (): JSX.Element => {
                             color="rose.700"
                             marginRight="800px"
                             lineHeight="24px"
-                        >
-              106 reviews &nbsp; &gt;
-                        </Text>
+                        ></Text>
                     </div>
-                    {/* write a new review part  */}
+                    {/* write a new review part using chakra-ui component */}
                     <div>
-                        <Image
+                        <Stack direction="row" spacing={4}>
+                            <Button leftIcon={<FaPen />} colorScheme="twitter" variant="solid">
+                Review
+                            </Button>
+                        </Stack>
+                        {/* <Image
                             src="/Review.svg"
                             width="145px"
                             height="37px"
@@ -69,14 +80,22 @@ const PopularReview = (): JSX.Element => {
                         ></Image>
                         <Text fontWeight="700" fontSize="18px" color="blue.500">
               Review
-                        </Text>
+                        </Text> */}
                     </div>
                     {/* write a new review part END */}
                 </SectionHeaderContainer>
                 <ReviewPosts />
-                <Text fontWeight="400" fontSize="18px" color="rose.700" lineHeight="24px">
-          See more Reviews (106 reviews) &nbsp; &gt;
-                </Text>
+                <Link href={`/movies/reviews/${id}`}>
+                    <Text
+                        fontWeight="400"
+                        fontSize="18px"
+                        color="rose.700"
+                        lineHeight="24px"
+                        cursor={"pointer"}
+                    >
+            See more Reviews&nbsp; &gt; (109 reviews)
+                    </Text>
+                </Link>
             </SectionContainer>
         </PageWrapper>
     );

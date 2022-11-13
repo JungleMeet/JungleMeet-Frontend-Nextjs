@@ -18,6 +18,7 @@ const DisscusionPosts = () => {
         };
         fetchPosts();
     }, []);
+
     return (
         <>
             {postList.length > 0 &&
@@ -27,6 +28,7 @@ const DisscusionPosts = () => {
                 title,
                 content,
                 releaseDateRightFormat,
+                hashtag,
                 bgImg,
                 author,
                 likeCount,
@@ -37,6 +39,7 @@ const DisscusionPosts = () => {
                     <PostCardInfo
                         key={_id}
                         src={bgImg}
+                        hashtag={hashtag}
                         title={title}
                         name={author}
                         date={releaseDateRightFormat}

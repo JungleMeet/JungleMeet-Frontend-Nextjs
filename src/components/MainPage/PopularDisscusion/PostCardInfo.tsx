@@ -6,6 +6,7 @@ import parser from "html-react-parser";
 
 interface PostCardInfoProps {
     title: string;
+    hashtag: string;
     src: string;
     date: string;
     name: {
@@ -82,6 +83,9 @@ const PostCardInfo: React.FC<PostCardInfoProps> = (props) => {
                                 {parser(props.description)}
                             </Text>
                         </ExpandableTextComponent>
+                        <Text as="i" color="blue.500" fontSize="text4" lineHeight="lh28">
+                            {props.hashtag}
+                        </Text>
                     </Box>
                 </Flex>
                 <Divider marginTop="18px" />
