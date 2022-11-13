@@ -26,3 +26,11 @@ export const verifyToken = async (token: string | null) => {
     }
     return await axiosApi.get('/verify', config);
 }
+
+export const emailResetPwd = async (code:string, email:string, newPwd:string) => {
+    const reqBody = {
+        email, 
+        newPwd, 
+    }
+    return await axiosApi.patch(`/email?code=${code}`, reqBody)
+}

@@ -54,7 +54,6 @@ const MovieThumbnail = ({
                     createMoviePostByResourceId();
                 }}
             />
-
             <Box width="194px" height="40px">
                 <Text
                     fontWeight="700"
