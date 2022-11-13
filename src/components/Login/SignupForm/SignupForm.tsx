@@ -1,8 +1,19 @@
-import { Button, FormControl, FormErrorMessage, InputRightElement } from "@chakra-ui/react";
+import {
+    Button,
+    FormControl,
+    FormErrorMessage,
+    InputRightElement,
+    CircularProgress,
+    useToast,
+} from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import SignupFormInput from "./SignupFormInput";
 import { useState } from "react";
 import styled from "styled-components";
+import { login, signup } from "@/utils/axiosUserApi";
+import { useDispatch } from "react-redux";
+import { signupError, signupSuccess } from "@/app/reducer/signupSlice";
+import { loginError, loginSuccess } from "@/app/reducer/loginSlice";
 
 const Form = styled.form`
   display: flex;
@@ -11,8 +22,15 @@ const Form = styled.form`
   gap: 23px;
 `;
 
-const SignupForm = () => {
+interface ISignupForm {
+    closeModal: () => void;
+}
+
+const SignupForm = ({ closeModal }: ISignupForm) => {
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const toast = useToast();
+    const dispatch = useDispatch();
 
     const [input, setInput] = useState({
         username: "",
@@ -86,8 +104,40 @@ const SignupForm = () => {
 
     return (
         <Form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
                 e.preventDefault();
+                setIsLoading(true);
+                try {
+                    const res = await signup(input.email, input.username, input.password);
+
+                    toast({
+                        position: "top",
+                        title: "Signup Success!",
+                        status: "success",
+                        duration: 2000,
+                        isClosable: true,
+                    });
+                    setIsLoading(false);
+                    closeModal();
+                    dispatch(signupSuccess(res.data));
+                    // Login the user after signup
+                    const re = await login(input.email, input.password);
+                    const { token, user_info: userInfo } = re.data;
+                    dispatch(loginSuccess(userInfo));
+                    localStorage.setItem("token", token);
+                    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+                } catch (error: any) {
+                    setIsLoading(false);
+                    toast({
+                        position: "top",
+                        title: "Email or username already existed",
+                        status: "error",
+                        duration: 2000,
+                        isClosable: true,
+                    });
+                    dispatch(signupError());
+                    dispatch(loginError());
+                }
             }}
         >
             <FormControl width="auto" p="0" isInvalid={error.email ? true : false} isRequired>
@@ -158,7 +208,7 @@ const SignupForm = () => {
                 type="submit"
                 color="gray.50"
             >
-        Sign up
+                {isLoading ? <CircularProgress isIndeterminate size="24px" color="teal" /> : "Sign up"}
             </Button>
         </Form>
     );

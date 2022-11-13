@@ -24,6 +24,7 @@ const DiscussionsDetailComments = ({ postId }: any) => {
     useEffect(() => {
         const getCommentDetail = async () => {
             try {
+                console.log(postId);
                 const { data } = await getComments(postId);
 
                 const name = postComment.map((item: any) => {

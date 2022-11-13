@@ -39,7 +39,7 @@ const selectedTabStyle = {
 const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px) " />
+            <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
             <ModalContent mt="30px" mb="10px" maxW="583px" minH="583px">
                 <ModalHeader
                     display="flex"
@@ -93,7 +93,7 @@ const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
                                 <LoginModalFooter>Log in with</LoginModalFooter>
                             </TabPanel>
                             <TabPanel p="0">
-                                <SignupForm></SignupForm>
+                                <SignupForm closeModal={onClose}></SignupForm>
                                 <LoginModalFooter>Sign up with</LoginModalFooter>
                             </TabPanel>
                         </TabPanels>
