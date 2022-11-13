@@ -16,7 +16,7 @@ export async function getStaticProps({ locale }: IgetStaticProps) {
 const Reviews = () => {
     return (
         <PageWrapper>
-            <ReviewPage/>
+            <ReviewPage />
         </PageWrapper>
     );
 };

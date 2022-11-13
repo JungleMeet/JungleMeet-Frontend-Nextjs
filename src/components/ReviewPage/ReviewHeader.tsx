@@ -8,6 +8,8 @@ interface IReviewHeader {
     alt: string;
 }
 const ReviewHeader = ({ title, bgImg, alt }: IReviewHeader) => {
+    // const [childrenHidden, setChildrenHidden] = useState(false);
+
     return (
         <>
             <Flex alignItems="center" justifyContent="space-between" pt="70px">

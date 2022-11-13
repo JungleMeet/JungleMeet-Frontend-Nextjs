@@ -6,8 +6,8 @@ import Review from "./Review";
 const ReviewPage = () => {
     return (
         <>
-            <ReviewHeader title={"Dune"} bgImg={"/dune.jpg"} alt={"alt"} />
-            <ReviewFilter reviews={109} />
+            <ReviewHeader title={"Dune"} bgImg={"/dune.png"} alt={"movie image"} />
+            <ReviewFilter reviews={106} />
             <Review />
         </>
     );
