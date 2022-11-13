@@ -23,7 +23,7 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
         const localtoken = localStorage.getItem("token");
         setToken(localtoken);
     }, []);
-    console.log(bgImg);
+
     const handleSumble = async (e: any) => {
         e.preventDefault();
         if (!postTitle || !postContent) {

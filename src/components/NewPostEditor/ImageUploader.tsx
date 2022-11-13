@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Box, Text, Flex, Image, Button, useToast, Progress } from "@chakra-ui/react";
 import { ImageInput, ImageInputWrapper, ImagePlus, ImageWrapper } from "./NewPostPage.style";
+import axios from "axios";
 
 interface IImageUploaderProps {
     setBgImg: (value: string) => void;
@@ -27,11 +28,15 @@ const ImageUploader = ({ setBgImg }: IImageUploaderProps) => {
 
     async function handleOnSubmit(event: React.FormEvent) {
         event.preventDefault();
+        console.log(event.currentTarget);
+
         setLoading(true);
 
         const formCollection = event.currentTarget;
+        console.log(formCollection);
+
         const formArray = Array.from((formCollection as HTMLFormElement).elements);
-        const fileInput = formArray.find((i: any) => i.name === "file");
+        const fileInput = formArray.find((i: any) => i.name === "file") as HTMLFormElement;
 
         const formData = new FormData();
 
@@ -41,10 +46,10 @@ const ImageUploader = ({ setBgImg }: IImageUploaderProps) => {
 
         formData.append("upload_preset", "uploads");
 
-        const data = await fetch("https://api.cloudinary.com/v1_1/junglemeet/image/upload", {
-            method: "POST",
-            body: formData,
-        }).then((r) => r.json());
+        const { data } = await axios.post(
+            "https://api.cloudinary.com/v1_1/junglemeet/image/upload",
+            formData
+        );
 
         setImageSrc(data.secure_url);
         setUploadData(data);
@@ -79,10 +84,8 @@ const ImageUploader = ({ setBgImg }: IImageUploaderProps) => {
                     </Flex>
                     <ImageInput type="file" name="file" />
                 </ImageInputWrapper>
-
                 <Image src={imageSrc} objectFit="cover" width="100%" />
                 {loading && <Progress size="sm" isIndeterminate backgroundColor="inherit" />}
-
                 {imageSrc && !uploadData && (
                     <Flex justifyContent="center">
                         <Button
