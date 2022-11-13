@@ -2,12 +2,14 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
 import LoginReducer from "./reducer/loginSlice";
 import PageReducer from './reducer/pageSlice';
+import loginModalReducer from './reducer/loginModalSlice';
 
 export const makeStore = () => {
     return configureStore({
         reducer: {
             login: LoginReducer,
-            page: PageReducer
+            page: PageReducer,
+            loginModal: loginModalReducer
         },
     });
 };

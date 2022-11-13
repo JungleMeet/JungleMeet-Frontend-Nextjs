@@ -16,8 +16,9 @@ import styled from "styled-components";
 import LoginForm from "./LoginForm/LoginForm";
 import SignupForm from "./SignupForm/SignupForm";
 import LoginModalFooter from "./LoginModalFooter";
-import { useState } from "react";
 import ForgotPassword from "./ForgotPassword";
+import { useDispatch, useSelector } from "react-redux";
+import { closeForgotPasswordModal } from "@/app/reducer/loginModalSlice";
 
 interface ILoginModal {
     isOpen: boolean;
@@ -39,7 +40,8 @@ const selectedTabStyle = {
 };
 
 const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
-    const [isShowForgotPassword, setIsShowForgotPassword] = useState(false);
+    const isShowForgotPassword = useSelector((state: any) => state.loginModal.isShowForgotPassword);
+    const dispatch = useDispatch();
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
@@ -59,7 +61,9 @@ const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
                 <ModalCloseButton />
                 <ModalBody>
                     {isShowForgotPassword ? (
-                        <ForgotPassword closeModal={onClose}></ForgotPassword>
+                        <ForgotPassword
+                            closeModal={() => dispatch(closeForgotPasswordModal())}
+                        ></ForgotPassword>
                     ) : (
                         <Tabs display="flex" flexDirection="column" alignItems="center">
                             <TabList borderBottom="none" display="flex" gap="93px" mb="48px" mt="26px">
@@ -96,10 +100,7 @@ const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
                             </TabList>
                             <TabPanels mb="50px">
                                 <TabPanel p="0">
-                                    <LoginForm
-                                        closeModal={onClose}
-                                        showForgotPassword={setIsShowForgotPassword}
-                                    ></LoginForm>
+                                    <LoginForm closeModal={onClose}></LoginForm>
                                     <LoginModalFooter>Log in with</LoginModalFooter>
                                 </TabPanel>
                                 <TabPanel p="0">

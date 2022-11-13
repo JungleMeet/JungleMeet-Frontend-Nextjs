@@ -9,7 +9,7 @@ import {
 // import styled from "styled-components";
 import { Form } from "./LoginForm/LoginForm";
 import FormInput from "./LoginForm/FormInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { sendResetPwdEmail } from "@/utils/axiosEmailApi";
 
 interface IForgotPassword {
@@ -30,6 +30,10 @@ const ForgotPassword = ({ closeModal }: IForgotPassword) => {
             setEmailErrorMsg("Invalid email address");
         }
     };
+
+    useEffect(() => {
+        console.log("forgot password");
+    }, []);
 
     return (
         <Form

@@ -14,6 +14,7 @@ import styled from "styled-components";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { loginSuccess, loginError } from "@/app/reducer/loginSlice";
+import { openForgotPassword } from "@/app/reducer/loginModalSlice";
 
 export const Form = styled.form`
   display: flex;
@@ -32,9 +33,8 @@ const ButtonContainer = styled.div`
 
 interface ILoginForm {
     closeModal: () => void;
-    showForgotPassword: (value: boolean) => void;
 }
-const LoginForm = ({ closeModal, showForgotPassword }: ILoginForm) => {
+const LoginForm = ({ closeModal }: ILoginForm) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -141,7 +141,7 @@ const LoginForm = ({ closeModal, showForgotPassword }: ILoginForm) => {
                     lineHeight="32px"
                     fontWeight="400"
                     color="blue.500"
-                    onClick={() => showForgotPassword(true)}
+                    onClick={() => dispatch(openForgotPassword())}
                 >
           Forgot password?
                 </Button>

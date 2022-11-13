@@ -109,6 +109,7 @@ const ResetPassword = () => {
                                 isClosable: true,
                             });
                             setIsLoading(false);
+                            router.push("/");
                         } catch (error: any) {
                             setIsLoading(false);
                             const status = error.response.status;
