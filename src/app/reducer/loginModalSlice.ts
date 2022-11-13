@@ -9,18 +9,16 @@ export const loginModalSlice = createSlice({
     reducers: {
         closeForgotPasswordModal: (state) => {
             state.isLoginModalOpen = false;
-            // console.log(state.isLoginModalOpen);
             state.isShowForgotPassword = false;
-            console.log(state.isShowForgotPassword);
+            // console.log(state.isShowForgotPassword);
         },
         openForgotPassword: (state) => {
-            // console.log(state.isLoginModalOpen);
             state.isShowForgotPassword = true;
-            console.log(state.isShowForgotPassword);
+            // console.log(state.isShowForgotPassword);
         },
         openLoginModal: (state) => {
             state.isLoginModalOpen = true;
-            console.log(state.isLoginModalOpen);
+            // console.log(state.isLoginModalOpen);
         }
     }
 });
