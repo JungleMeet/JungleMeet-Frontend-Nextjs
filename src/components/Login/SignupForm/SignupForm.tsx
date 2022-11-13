@@ -122,8 +122,11 @@ const SignupForm = ({ closeModal }: ISignupForm) => {
                     dispatch(signupSuccess(res.data));
                     // Login the user after signup
                     const re = await login(input.email, input.password);
-                    const { token, user_info: userInfo } = re.data;
+                    const { token, userInfo } = re.data;
                     dispatch(loginSuccess(userInfo));
+                    console.log(userInfo);
+                    console.log(token);
+
                     localStorage.setItem("token", token);
                     localStorage.setItem("userInfo", JSON.stringify(userInfo));
                 } catch (error: any) {

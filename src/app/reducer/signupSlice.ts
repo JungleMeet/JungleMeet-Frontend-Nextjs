@@ -10,7 +10,7 @@ export const signupSlice = createSlice({
     reducers:{
         signupSuccess: (state,{payload}) =>{
             state.isSaved = true;    
-            console.log(state.isSaved);
+            
             state.data = payload;
         
         },
