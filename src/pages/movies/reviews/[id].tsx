@@ -1,12 +1,33 @@
-// import PageWrapper from "@/components/PageWrapper";
+import PageWrapper from "@/components/PageWrapper";
 // import ReviewPage from "@/components/ReviewPage/ReviewPage";
+import ReviewPageTest from "@/components/ReviewPage/ReviewPageTest";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { GetStaticPaths } from "next";
 
-// const Reviews = () => {
-//     return (
-//         <PageWrapper>
-//             <ReviewPage />
-//         </PageWrapper>
-//     );
-// };
+interface IgetStaticProps {
+    locale: string;
+}
 
-// export default Reviews;
+export async function getStaticProps({ locale }: IgetStaticProps) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ["home"])),
+        },
+    };
+}
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+    return {
+        paths: [], // indicates that no page needs be created at build time
+        fallback: "blocking", // indicates the type of fallback
+    };
+};
+
+const Reviews = () => {
+    return (
+        <PageWrapper>
+            <ReviewPageTest />
+        </PageWrapper>
+    );
+};
+
+export default Reviews;
