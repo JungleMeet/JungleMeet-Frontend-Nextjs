@@ -67,7 +67,9 @@ const IconContainer = () => {
                 console.log(e);
             }
         };
-        verify();
+        if (token) {
+            verify();
+        }
     }, []);
 
     return (

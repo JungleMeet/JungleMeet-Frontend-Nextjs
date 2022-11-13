@@ -1,13 +1,25 @@
-import { FormControl, FormErrorMessage, Text, Button, CircularProgress } from "@chakra-ui/react";
+import {
+    FormControl,
+    FormErrorMessage,
+    Text,
+    Button,
+    CircularProgress,
+    useToast,
+} from "@chakra-ui/react";
 // import styled from "styled-components";
 import { Form } from "./LoginForm/LoginForm";
 import FormInput from "./LoginForm/FormInput";
 import { useState } from "react";
+import { sendResetPwdEmail } from "@/utils/axiosEmailApi";
 
-const ForgotPassword = () => {
+interface IForgotPassword {
+    closeModal: () => void;
+}
+const ForgotPassword = ({ closeModal }: IForgotPassword) => {
     const [email, setEmail] = useState("");
     const [emailErrorMsg, setEmailErrorMsg] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const toast = useToast();
 
     const validateEmailInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -24,6 +36,37 @@ const ForgotPassword = () => {
             onSubmit={async (event) => {
                 event.preventDefault();
                 setIsLoading(true);
+                try {
+                    await sendResetPwdEmail(email);
+                    toast({
+                        position: "top",
+                        title: "Check your email for a reset link!",
+                        status: "success",
+                        duration: 2000,
+                        isClosable: true,
+                    });
+                    setIsLoading(false);
+                    closeModal();
+                } catch (error: any) {
+                    console.log(error);
+                    setIsLoading(false);
+                    const status = error.response.status;
+                    status === 401
+                        ? toast({
+                            position: "top",
+                            title: "No account with that email has been found",
+                            status: "error",
+                            duration: 2000,
+                            isClosable: true,
+                        })
+                        : toast({
+                            position: "top",
+                            title: "Send email failed, please enter a valid email address",
+                            status: "error",
+                            duration: 2000,
+                            isClosable: true,
+                        });
+                }
             }}
         >
             <Text fontFamily="secondary" fontSize="text2" fontWeight="700" lineHeight="28px" mt="43px">

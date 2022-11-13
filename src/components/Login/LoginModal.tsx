@@ -59,7 +59,7 @@ const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
                 <ModalCloseButton />
                 <ModalBody>
                     {isShowForgotPassword ? (
-                        <ForgotPassword></ForgotPassword>
+                        <ForgotPassword closeModal={onClose}></ForgotPassword>
                     ) : (
                         <Tabs display="flex" flexDirection="column" alignItems="center">
                             <TabList borderBottom="none" display="flex" gap="93px" mb="48px" mt="26px">
