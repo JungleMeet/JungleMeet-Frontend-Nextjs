@@ -38,22 +38,32 @@ const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
                     author,
                 } = item;
                 return (
-                    <Stack bg="rgba(243, 244, 246)" pl="0px" mb="5px" pb="15px" key={_id}>
-                        <Stack pt="25px" pl="54.4px" pb="15px">
+                    <Stack bg="rgba(243, 244, 246)" pl="0px" mb="5px" pb="30px" key={_id}>
+                        <Stack pt="25px" pl="54.4px" pb="4.25px">
                             <ReviewAvatar
                                 id={author?._id}
                                 author={`${author?.name}`}
                                 createdAt={dateCreatedAt(createdAt)}
                                 avatar={author?.avatar}
                             />
-                            {/* Author {`${authorName}`} */}
-                            <Text fontSize={"text4"} fontWeight="500">
-                                {`${content}`}
-                            </Text>
-                            <Button size="sl" color="blue.500" fontSize={"text5"} width="70px" variant="unstyled">
-                REPLY
-                            </Button>
-                            {!isEmpty(item.children[0]?.children) ? <Comment comments={item.children} /> : null}
+                            <Stack pl="67px">
+                                <Text fontSize={"text4"} fontWeight="500">
+                                    {`${content}`}
+                                    {!isEmpty(item.children[0]?.children) ? (
+                                        <Comment comments={item.children} />
+                                    ) : null}
+                                </Text>
+                                <Button
+                                    mt="15px"
+                                    size="sl"
+                                    color="blue.500"
+                                    fontSize={"text5"}
+                                    width="45px"
+                                    variant="unstyled"
+                                >
+                  REPLY
+                                </Button>
+                            </Stack>
                         </Stack>
                     </Stack>
                 );
