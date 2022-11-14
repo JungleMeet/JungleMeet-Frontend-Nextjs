@@ -1,22 +1,3 @@
-// eslint-disable no-unused-vars
-// let cloudinary: {
-//     applyUploadWidget: (
-//         element: unknown,
-//         options: CloudinaryWidgetOptions,
-//         widgetCallback?: Function
-//     ) => void;
-//     createUploadWidget: (
-//         options: CloudinaryWidgetOptions,
-//         widgetCallback?: Function
-//     ) => CloudinaryWidget;
-//     openUploadWidget: (options: CloudinaryWidgetOptions, widgetCallback?: Function) => void;
-// };
-
-// interface CloudinaryWidgetOptions {
-//     cloudName: string;
-//     cropping: boolean;
-//     uploadPreset: string;
-// }
 export interface CloudinaryWidget {
     close: (t?: unknown) => void;
     destroy: (t?: unknown) => void;

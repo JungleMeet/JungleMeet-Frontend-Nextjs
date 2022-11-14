@@ -14,6 +14,8 @@ interface CloudinaryUploadWidgetProps {
     callback: (image: CloudinaryCallbackImage) => void;
 }
 
+declare const window: any;
+
 const UploadWidget = ({ callback, children }: CloudinaryUploadWidgetProps) => {
     function showWidget() {
         const widget: CloudinaryWidget = window.cloudinary.createUploadWidget(
