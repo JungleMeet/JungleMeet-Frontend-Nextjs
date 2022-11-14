@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface IWrapperProps {
+    height: string;
+}
+
 export const Wrapper = styled.div`
   border: 3px solid #000;
   border-radius: 10px;
@@ -7,7 +11,9 @@ export const Wrapper = styled.div`
   width: 100%;
   margin: auto;
   margin-top: 30px;
+  min-height: ${({ height }: IWrapperProps) => height};
 `;
+
 export const MenuBarWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
