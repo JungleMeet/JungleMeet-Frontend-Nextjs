@@ -1,6 +1,6 @@
 import PageWrapper from "@/components/PageWrapper";
-// import ReviewPage from "@/components/ReviewPage/ReviewPage";
-import ReviewPageTest from "@/components/ReviewPage/ReviewPageTest";
+import Review from "@/components/ReviewPage/Review";
+// import ReviewPageTest from "@/components/ReviewPage/ReviewPageTest";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPaths } from "next";
 
@@ -25,7 +25,7 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
 const Reviews = () => {
     return (
         <PageWrapper>
-            <ReviewPageTest />
+            <Review />
         </PageWrapper>
     );
 };
