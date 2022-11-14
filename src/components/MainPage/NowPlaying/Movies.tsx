@@ -1,8 +1,11 @@
 import styled from "styled-components";
-import Movie from "./MovieThumbnail";
+import MovieThumbnail from "./MovieThumbnail";
 // import axiosApi from "@/utils/axiosApi";
 import { getNowPlaying } from "@/utils/axiosMovieApi";
 import { useState, useEffect, useMemo } from "react";
+import PlayingMovieTrailerModel from "@/components/PlayingMovieTrailerModel";
+import { useSelector, useDispatch } from "react-redux";
+import { closeMovieTrailerModel } from "@/app/reducer/modalSlice";
 
 const MoviesContainer = styled.div`
   display: flex;
@@ -16,6 +19,9 @@ interface ImovieList {
     youtubeLink: string;
 }
 const Movies = () => {
+    const dispatch = useDispatch();
+    const videoLink = useSelector((state: any) => state.modal.videoLink);
+    const isModalOpen = useSelector((state: any) => state.modal.isModalOpen);
     const [movieList, setMovieList] = useState([]);
     const nowPlayingMoviesMemo = useMemo(() => movieList, [movieList]);
     useEffect(() => {
@@ -25,7 +31,7 @@ const Movies = () => {
 
                 setMovieList(data.slice(0, 4));
             } catch (err) {
-                console.log(err);
+                console.error(err);
             }
         };
         fetchMovies();
@@ -36,7 +42,7 @@ const Movies = () => {
             {nowPlayingMoviesMemo?.map(
                 ({ resourceId, poster, title, voteAverage, youtubeLink }: ImovieList) => {
                     return (
-                        <Movie
+                        <MovieThumbnail
                             src={poster}
                             title={title}
                             tmdb={voteAverage}
@@ -47,6 +53,11 @@ const Movies = () => {
                     );
                 }
             )}
+            <PlayingMovieTrailerModel
+                isOpen={isModalOpen}
+                onClose={() => dispatch(closeMovieTrailerModel())}
+                src={videoLink}
+            />
         </MoviesContainer>
     );
 };

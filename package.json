@@ -51,6 +51,7 @@
     "buffer": "^6.0.3",
     "embla-carousel-autoplay": "^7.0.3",
     "embla-carousel-react": "^7.0.3",
+    "emoji-picker-react": "^4.4.4",
     "formik": "^2.2.9",
     "framer-motion": "^6",
     "html-react-parser": "^3.0.4",
