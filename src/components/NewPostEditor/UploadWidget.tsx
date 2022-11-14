@@ -77,7 +77,7 @@ const UploadWidget = ({ callback, children }: CloudinaryUploadWidgetProps) => {
         widget.open();
     }
 
-    function open(e: MouseEvent) {
+    const open = (e: MouseEvent) => {
         e?.preventDefault();
         showWidget();
     }
