@@ -5,6 +5,7 @@ interface IWrapperProps {
 }
 
 export const Wrapper = styled.div`
+  border: 3px solid #000;
   border-radius: 10px;
   max-width: 1280px;
   width: 100%;
