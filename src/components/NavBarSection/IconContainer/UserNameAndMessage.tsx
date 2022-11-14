@@ -6,6 +6,8 @@ import HamburgerDropdown from "../Hamburger/HamburgerDropdown";
 import { CgProfile } from "react-icons/cg";
 import { FiEdit } from "react-icons/fi";
 import { useSelector } from "react-redux";
+import io from "socket.io-client";
+import { useEffect } from "react";
 
 const MessageContainer = styled.div`
   position: relative;
@@ -29,6 +31,8 @@ const BadgeContainer = styled.div`
   align-items: center;
 `;
 
+const socket = io("http://localhost:3000", { transports: ["websocket"] });
+
 const UserNameAndMessage = () => {
     const userInfo = useSelector((state: any) => state.login.userInfo);
     const { userName, userRole } = userInfo;
@@ -46,9 +50,22 @@ const UserNameAndMessage = () => {
             content: "Write a Post",
         },
     ];
+
+    const handleClick = (e) => {
+        socket.emit("roomsatu", { post: userName });
+    };
+    useEffect(() => {
+        socket.on("kirim", (data) => {
+            console.log(data);
+        });
+        return () => {
+            socket.off("connect");
+        };
+    }, []);
+
     return (
         <>
-            <MessageContainer>
+            <MessageContainer onClick={(e) => handleClick(e)}>
                 <Image src="/message.svg" />
                 <BadgeContainer>1</BadgeContainer>
             </MessageContainer>
