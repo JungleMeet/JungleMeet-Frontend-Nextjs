@@ -20,7 +20,7 @@ const ReviewHeader = ({ title, bgImg, alt }: IReviewHeader) => {
                             {title}
                         </Heading>
                         <Heading fontSize={"h1"} fontFamily="heading">
-              User Review
+              Movie Review
                         </Heading>
                     </Flex>
                 </Flex>

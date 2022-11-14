@@ -2,7 +2,7 @@ import React from "react";
 import { isEmpty } from "lodash";
 import ReviewAvatar from "./ReviewAvatar";
 import { dateCreatedAt } from "@/utils/dateCreateAt";
-import { Stack,Text, Button } from "@chakra-ui/react";
+import { Stack, Text, Button } from "@chakra-ui/react";
 
 export interface ICommentProps {
     _id: string;
@@ -25,7 +25,6 @@ export interface ICommentProps {
     // [key: string]: string | boolean | Array<any> | Object|null;
 }
 const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
-      
     return (
         <>
             {comments?.map((item: any) => {
@@ -48,18 +47,13 @@ const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
                                 avatar={author?.avatar}
                             />
                             {/* Author {`${authorName}`} */}
-                            <Text fontSize={"text4"} fontWeight="500" >
+                            <Text fontSize={"text4"} fontWeight="500">
                                 {`${content}`}
                             </Text>
-                            <Button
-                                size="sl"
-                                color="blue.500"
-                                fontSize={"text5"}
-                                width="70px"
-                                variant="unstyled">
-                                          REPLY
+                            <Button size="sl" color="blue.500" fontSize={"text5"} width="70px" variant="unstyled">
+                REPLY
                             </Button>
-                            {!isEmpty(item.children[0]?.children) ? <Comment comments={item.children} />:null}
+                            {!isEmpty(item.children[0]?.children) ? <Comment comments={item.children} /> : null}
                         </Stack>
                     </Stack>
                 );

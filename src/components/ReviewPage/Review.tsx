@@ -5,17 +5,16 @@ import { useRouter } from "next/router";
 import ReviewFilter from "./ReviewFilter";
 import ReviewHeader from "./ReviewHeader";
 
-
 const Review = () => {
     const [comments, setComments] = useState([]);
     const router = useRouter();
-    const { id }:any = router.query;
+    const { id }: any = router.query;
 
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const res= await getCommentsByCondition(id, "createdAt",999, 0);
-                const data: any = res.data
+                const res = await getCommentsByCondition(id, "createdAt", 999, 0);
+                const data: any = res.data;
                 setComments(data);
             } catch (err) {
                 return err;
@@ -28,9 +27,8 @@ const Review = () => {
         <>
             <ReviewHeader title={"Dune"} bgImg={"/dune.png"} alt={"movie image"} />
             <ReviewFilter reviews={106} />
-            <Comment comments={comments}/>
+            <Comment comments={comments} />
         </>
-                 
     );
 };
 
