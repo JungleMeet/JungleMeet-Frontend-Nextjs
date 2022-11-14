@@ -1,4 +1,4 @@
-import NewPostEditor from "@/components/NowPostPage/NewPostEditor";
+import NewPostEditor from "@/components/NewPostEditor/NewPostEditor";
 import PageWrapper from "@/components/PageWrapper";
 import { Heading } from "@chakra-ui/react";
 import React from "react";

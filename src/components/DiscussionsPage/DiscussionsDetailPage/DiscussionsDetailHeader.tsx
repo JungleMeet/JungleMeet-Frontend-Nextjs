@@ -2,21 +2,33 @@ import { Flex, Heading, Box, Text, Grid, HStack } from "@chakra-ui/react";
 import React from "react";
 import DiscussionsFollowButton from "./DiscussionsFollowButton";
 import { DiscussionsLikeButton } from "./DiscussionsFollowButton";
+import { dateCreatedAt } from "../../../utils/dateCreateAt";
 import DiscussionPostAuthor from "./DiscussionPostAuthor";
 
 interface IDetailProps {
-    name: {
-        _id: string;
-        name: string;
-        avatar: string;
-    };
+    //   name: {
+    //     _id: string;
+    //     name: string;
+    //     avatar: string;
+    //   };
+    avatar: string;
+    userId: string;
+    name: string;
     title: string;
     postId: string;
     date: string;
     like: number;
 }
 
-const DiscussionsDetailHeader = ({ postId, name, title, date, like }: IDetailProps) => {
+const DiscussionsDetailHeader = ({
+    postId,
+    userId,
+    avatar,
+    name,
+    title,
+    date,
+    like,
+}: IDetailProps) => {
     return (
         <Grid>
             <Flex key={postId} direction={"column"}>
@@ -26,10 +38,10 @@ const DiscussionsDetailHeader = ({ postId, name, title, date, like }: IDetailPro
                     </Heading>
                     <Flex alignItems="center" mt="40px">
                         <DiscussionPostAuthor
-                            id={name?._id}
-                            avatar={name?.avatar}
-                            author={name?.name}
-                            createdAt={date}
+                            id={userId}
+                            avatar={avatar}
+                            author={name}
+                            createdAt={dateCreatedAt(date)}
                         />
                         <HStack ml="15px" align="center" textColor="blue.500" _hover={{ color: "gray.50" }}>
                             <DiscussionsFollowButton>

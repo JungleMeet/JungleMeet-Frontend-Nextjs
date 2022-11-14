@@ -17,6 +17,11 @@ textarea {
   color: #000;
 }
 
+input,
+input::placeholder {
+  font-size: 18px;
+}
+
 button.is-active {
   background: #d1d5db;
   border-radius: 5px;
@@ -74,15 +79,17 @@ body hr {
 
 div input {
   border-radius: 2px;
-  background: #e5e7eb;
+  background: inherit;
   width: 25px;
   height: 24px;
   margin-top: -3px;
 }
 
 .ProseMirror {
-  min-height: 300px;
   padding: 0.6rem 1rem;
+  outline: none;
+  min-height: 100px;
+  tabindex: 99999999999999999999999999999999999;
 }
 
 .ProseMirror > * + * {
