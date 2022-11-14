@@ -3,7 +3,7 @@ import PageWrapper from "@/components/PageWrapper";
 import { Heading } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import ImageUploader from "@/components/NewPostEditor/ImageUploader";
+import CloudinaryUploader from "@/components/NewPostEditor/CloudinaryUploader";
 
 interface IgetStaticProps {
     locale: string;
@@ -31,7 +31,7 @@ const newpost = () => {
             >
         Create Your Post in Discussion
             </Heading>
-            <ImageUploader setBgImg={setBgImg} />
+            <CloudinaryUploader setBgImg={setBgImg} bgImg={bgImg} />
             <NewPostEditor bgImg={bgImg} />
         </PageWrapper>
     );

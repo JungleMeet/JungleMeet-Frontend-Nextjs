@@ -32,7 +32,7 @@ export const TitleInput = styled.input`
   background-color: #e5e7eb;
 `;
 
-export const ImageInputWrapper = styled.label`
+export const ImageButtonWrapper = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,6 +42,7 @@ export const ImageInputWrapper = styled.label`
   gap: 40px;
   cursor: pointer;
   margin-bottom: 25px;
+  width: 100%;
 `;
 
 export const ImageWrapper = styled.div`

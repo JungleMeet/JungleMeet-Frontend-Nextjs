@@ -32,5 +32,5 @@
     "src/assets/thumbsUp.tsx",
     "src/custom.d.ts",
     "src/components/NavBarSection/IconContainer"
-  ]
+, "src/components/NewPostEditor/UploadWidget.tsx"  ]
 }
