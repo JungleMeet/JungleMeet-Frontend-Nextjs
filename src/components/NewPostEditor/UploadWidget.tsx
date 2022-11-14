@@ -80,7 +80,7 @@ const UploadWidget = ({ callback, children }: CloudinaryUploadWidgetProps) => {
     const open = (e: MouseEvent) => {
         e?.preventDefault();
         showWidget();
-    }
+    };
 
     return (
         <>
