@@ -1,77 +1,55 @@
-import React, { useEffect, useState, useMemo } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import DiscussionDetailHeader from "./DiscussionsDetailHeader";
-import { getPosts } from "@/utils/axiosPostApi";
+import { getPostById } from "@/utils/axiosPostApi";
+import { getUserById } from "@/utils/axiosUserApi";
 import { Box } from "@chakra-ui/react";
 import DiscussionsDetailContent from "./DiscussionsDetailContent";
 import DiscussionsDetailComments from "./DiscussionsDetailComments";
 
 const DiscussionsDetailPage = () => {
-    const [postDetail, setPostDetail] = useState([]);
+    const [postDetail, setPostDetail] = useState("" as any);
+    const [userDetail, setUserDetail] = useState("" as any);
+    const router = useRouter();
+    const { id } = router.query;
 
-    const currentPagePost = useMemo(() => postDetail, [postDetail]);
+    // const currentPagePost = useMemo(() => postDetail, [postDetail]);
     useEffect(() => {
-        const getPostsDetail = async () => {
+        const getDetail = async () => {
             try {
-                const { data } = await getPosts();
+                const { data } = await getPostById(id?.toString());
 
-                const allPost = data.data;
+                const { data: user } = await getUserById(data.author);
 
-                setPostDetail(allPost.slice(0, 1));
+                setUserDetail(user);
+                setPostDetail(data);
             } catch (err) {
                 console.log(err);
             }
         };
-        getPostsDetail();
+        getDetail();
     }, []);
+    console.log(postDetail.like);
 
-    interface CurrentDetailProps {
-        _id: string;
-        title: string;
-        bgImg: string;
-        releaseDateRightFormat: string;
-        author: {
-            _id: string;
-            name: string;
-            avatar: string;
-        };
-        likeCount: number;
-        content: string;
-        postId: string;
-    }
-    const currentDetailMemo = useMemo(
-        () => (
-            <>
-                {currentPagePost?.map(
-                    ({
-                        _id,
-                        title,
-                        content,
-                        releaseDateRightFormat,
-                        bgImg,
-                        author,
-
-                        likeCount,
-                    }: CurrentDetailProps) => (
-                        <Box key={_id}>
-                            <DiscussionDetailHeader
-                                postId={_id}
-                                title={title}
-                                name={author}
-                                date={releaseDateRightFormat}
-                                like={likeCount}
-                            />
-                            <DiscussionsDetailContent postId={_id} content={content} bgImg={bgImg} />
-                            <DiscussionsDetailComments postId={_id} />
-                        </Box>
-                    )
-                )}
-            </>
-        ),
-        [currentPagePost]
+    return (
+        <Box key={postDetail._id}>
+            <DiscussionDetailHeader
+                postId={postDetail?._id}
+                title={postDetail.title}
+                name={userDetail.name}
+                avatar={userDetail.avatar}
+                userId={userDetail._id}
+                date={postDetail.createdAt}
+                like={postDetail.like?.length}
+            />
+            <DiscussionsDetailContent
+                postId={postDetail._id}
+                content={postDetail.content}
+                bgImg={postDetail.bgImg}
+            />
+            <DiscussionsDetailComments postId={postDetail._id} />
+        </Box>
     );
-
-    return <>{currentDetailMemo}</>;
 };
 
 export default DiscussionsDetailPage;

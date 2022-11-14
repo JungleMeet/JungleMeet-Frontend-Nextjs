@@ -1,6 +1,7 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
 import LoginReducer from "./reducer/loginSlice";
+import SignupReducer from './reducer/signupSlice';
 import PageReducer from './reducer/pageSlice';
 import loginModalReducer from './reducer/loginModalSlice';
 import ModalReducer from './reducer/modalSlice'
@@ -9,6 +10,7 @@ export const makeStore = () => {
     return configureStore({
         reducer: {
             login: LoginReducer,
+            signup: SignupReducer,
             page: PageReducer,
             loginModal: loginModalReducer,
             modal: ModalReducer
