@@ -35,35 +35,37 @@ export const TitleInput = styled.input`
   height: 48px;
   padding: 10px 20px;
   font-size: 1.3rem;
+  background-color: #e5e7eb;
 `;
 
-export const UploadInput = styled.input`
-  display: none;
-`;
-export const InputLabel = styled.label`
-  width: 100%;
-  height: 240px;
-  border: 3px dashed #000;
+export const ImageButtonWrapper = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  border: 3px dashed #000;
+  height: 240px;
+  gap: 40px;
   cursor: pointer;
+  margin-bottom: 25px;
+  width: 100%;
 `;
+
 export const ImageWrapper = styled.div`
+  position: relative;
+`;
+
+export const ImagePlus = styled.div`
   ::after {
     content: "+";
+    position: absolute;
     font-size: 55px;
     font-weight: 700;
-    position: absolute;
     top: 5px;
     left: 35px;
   }
 `;
 
-export const ImageDisplay = styled.image`
-  margin-top: 25px;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
+export const ImageInput = styled.input`
+  display: none;
 `;

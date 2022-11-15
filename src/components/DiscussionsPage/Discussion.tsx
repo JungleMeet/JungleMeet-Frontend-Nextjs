@@ -35,7 +35,13 @@ const Discussion = ({
 }: IDiscussionProps) => {
     return (
         <Flex direction={"column"} id={postId}>
-            <Image src={src} paddingTop="45px" />
+            <Image
+                src={src}
+                alt="cover image for the post"
+                paddingTop="45px"
+                height="250px"
+                objectFit="cover"
+            />
             <Box padding="19px">
                 <Link
                     href={`/discussions/${postId}`}
