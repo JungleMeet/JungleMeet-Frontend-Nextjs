@@ -24,7 +24,7 @@ export interface CloudinaryWidget {
     croppingCoordinatesMode: string;
     multiple: boolean;
     defaultSource: string;
-    styles: {};
+    styles: object;
 }
 
 export interface CloudinaryWidgetResult {
