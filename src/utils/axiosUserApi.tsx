@@ -21,7 +21,6 @@ export const getUserById = async (id: string) => {
 };
 
 export const getUserProfile = async (userId: string) =>{
-    console.log(await axiosApi.get(`/${userId}/profile`))
     return await axiosApi.get(`/${userId}/profile`);
 };
 

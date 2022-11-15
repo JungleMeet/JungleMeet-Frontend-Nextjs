@@ -1,48 +1,56 @@
 import { Icon, Text, Flex, Button } from "@chakra-ui/react";
-import { EditIcon } from "@chakra-ui/icons";
-import { AiOutlineMessage, AiOutlineNotification } from "react-icons/ai";
-
+import { HiPencilAlt, HiOutlineSpeakerphone } from "react-icons/hi";
+import MessageSVG from "@/assets/MessageSVG";
 const UserProfileContent = () => {
     return (
-        <Flex color="gray.100" w="816px" h="97px" backgroundColor="gray.100">
-            <Button h="100%">
+        <Flex color="gray.100" w="100%" h="97px" backgroundColor="gray.100">
+            <Button h="100%" _focus={{ border: "none" }} _active={{ backgroundColor: "none" }}>
                 <Flex
                     pos="relative"
                     flexDirection="row"
-                    pl={5}
+                    pl={3}
+                    pr={3}
                     color="black"
                     fontSize="text2"
                     lineHeight="lh32"
                 >
-                    <EditIcon mt={2} w={4} h={4} />
+                    <Icon as={HiPencilAlt} mt={0} w={"25px"} h={"25px"} />
                     <Text pl={2}> My Posts </Text>
                 </Flex>
             </Button>
 
-            <Button h="100%">
+            <Button
+                h="100%"
+                border={0}
+                outline="none"
+                _focus={{ border: "none" }}
+                _active={{ backgroundColor: "none" }}
+            >
                 <Flex
                     pos="relative"
                     flexDirection="row"
-                    pl={5}
+                    pl={3}
+                    pr={3}
                     color="black"
                     fontSize="text2"
                     lineHeight="lh32"
                 >
-                    <Icon mt={2} as={AiOutlineMessage} w={4} h={4} />
+                    <Icon mt={3} as={MessageSVG} />
                     <Text pl={2}> Message </Text>
                 </Flex>
             </Button>
 
-            <Button h="100%">
+            <Button h="100%" _focus={{ border: "none" }} _active={{ backgroundColor: "none" }}>
                 <Flex
                     pos="relative"
                     flexDirection="row"
-                    pl={5}
+                    pl={3}
+                    pr={3}
                     color="black"
                     fontSize="text2"
                     lineHeight="lh32"
                 >
-                    <Icon mt={2} as={AiOutlineNotification} w={5} h={5} />
+                    <Icon mt={0} as={HiOutlineSpeakerphone} w={"25px"} h={"25px"} />
                     <Text pl={2}> Notification </Text>
                 </Flex>
             </Button>
