@@ -64,9 +64,9 @@ const UserNameAndMessage = () => {
     };
     useEffect(() => {
         socket = io("http://localhost:3000", { query: { userId: userId }, transports: ["websocket"] });
-        socket.on('connect', () => {
-            console.log('connect client')
-        })
+        socket.on("connect", () => {
+            console.log("connect client");
+        });
         socket.on("kirim", (data) => {
             console.log(data);
         });
