@@ -14,8 +14,8 @@ const Review = () => {
         const fetchComments = async () => {
             try {
                 const res = await getCommentsByCondition(id, "createdAt", 999, 0);
-                const data: any = res.data;
-                setComments(data);
+                const topComments: any = res.data.topComments;
+                setComments(topComments);
             } catch (err) {
                 return err;
             }
