@@ -5,7 +5,7 @@ import Router from "next/router";
 import PostSingleLineInput from "./PostSingleLineInput";
 import ButtonCancel from "./ButtonCancel";
 import ButtonPost from "./ButtonPost";
-import useEditorController from "../Editor/EditorController";
+import useEditorController from "../Editor/useEditorController";
 import ContentEditor from "../Editor/ContentEditor";
 
 const NewPostEditor = () => {
@@ -70,7 +70,7 @@ const NewPostEditor = () => {
                     value={postTitle}
                     onChange={(event) => setPostTitle(event.target.value)}
                 />
-                <ContentEditor editor={editor} />
+                <ContentEditor editor={editor} height="350px"/>
                 <Flex paddingTop="20px" marginLeft="8px" gap="25px" alignItems="center">
                     <Text fontSize="text3" fontWeight="700" lineHeight="lh28">
             #Hashtag
