@@ -7,6 +7,7 @@ import ReviewHeader from "./ReviewHeader";
 
 const Review = () => {
     const [comments, setComments] = useState([]);
+    const [reviews, setReviews] = useState(0);
     const router = useRouter();
     const { id }: any = router.query;
 
@@ -14,9 +15,9 @@ const Review = () => {
         const fetchComments = async () => {
             try {
                 const res = await getCommentsByCondition(id, "createdAt", 9999, 0);
-                const topComments: any = res.data.topComments;
-                setComments(topComments);
-                console.log(topComments)
+                const data: any = res.data;
+                setComments(data.topComments);
+                setReviews(data.length)
             } catch (err) {
                 return err;
             }
@@ -27,7 +28,7 @@ const Review = () => {
     return (
         <>
             <ReviewHeader title={"Dune"} bgImg={"/dune.png"} alt={"movie image"} />
-            <ReviewFilter reviews={106} />
+            <ReviewFilter reviews={reviews} />
             <Comment comments={comments} />
         </>
     );

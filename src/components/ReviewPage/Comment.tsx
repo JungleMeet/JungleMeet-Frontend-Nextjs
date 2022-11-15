@@ -5,23 +5,24 @@ import { dateCreatedAt } from "@/utils/dateCreateAt";
 import { Stack, Text, Button } from "@chakra-ui/react";
 
 export interface ICommentProps {
-    _id: string;
-    content: string;
-    visible: boolean;
-    author: {
-        _id: string;
-        name: string;
-        avatar: string;
-    };
-    mentionedUserId: string[];
-    postId: string;
-    parentCommentId: string;
-    like: string[];
-    createdAt: string;
-    updatedAt: string;
-    level: number;
-    __V: number;
-    children: ICommentProps[];
+    topComments:
+    {_id: string;
+        content: string;
+        visible: boolean;
+        author: {
+            _id: string;
+            name: string;
+            avatar: string;
+        };
+        mentionedUserId: string[];
+        postId: string;
+        parentCommentId: string;
+        like: string[];
+        createdAt: string;
+        updatedAt: string;
+        level: number;
+        __V: number;
+        children: ICommentProps[];}
     // [key: string]: string | boolean | Array<any> | Object|null;
 }
 const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
@@ -38,7 +39,7 @@ const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
                     author,
                 } = item;
                 return (
-                    <Stack pl="0px" mb="5px" pb="30px" key={_id} bg="rgba(243, 244, 246,0.5)">
+                    <Stack pl="0px" mb="5px" pb="30px" key={_id} bg="rgba(243, 244, 246)">
                         <Stack pt="25px" pl="54.4px" pb="4.25px">
                             <ReviewAvatar
                                 id={author?._id}
@@ -57,11 +58,9 @@ const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
                                 width="45px"
                                 variant="unstyled"
                             >
-                  REPLY
+                REPLY
                             </Button>
-                            {!isEmpty(item.children[0]?._id) ? (
-                                <Comment comments={item.children} />
-                            ) : null}
+                            {!isEmpty(item.children[0]?._id) ? <Comment comments={item.children} /> : null}
                         </Stack>
                     </Stack>
                 );
