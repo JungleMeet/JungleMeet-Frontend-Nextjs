@@ -2,7 +2,11 @@ import { Flex, Heading, Divider, Stack, Switch, Text } from "@chakra-ui/react";
 import React from "react";
 import DiscussionSort from "../DiscussionsPage/DiscussionSort";
 
-const ReviewFilter = () => {
+interface IReviewFilterProps {
+    reviews: number;
+}
+
+const ReviewFilter = ({ reviews }: IReviewFilterProps) => {
     return (
         <>
             <Flex alignItems="center" justifyContent="space-between">
@@ -10,18 +14,20 @@ const ReviewFilter = () => {
                     <Heading fontSize={"text1"}>Display Setting:</Heading>
                     <Stack align="center" direction="row">
                         <Switch size="md" pl="21px" />
-                        <Text fontSize={"text2"}>Hide Reply</Text>
+                        <Text fontSize={"text2"} fontWeight="400">
+              Hide Reply
+                        </Text>
                     </Stack>
-                    <Heading fontSize={"text1"} pl="30px">
+                    <Heading fontSize={"text1"} pl="40px">
             Total:
                     </Heading>
                     <Text fontSize={"text3"} pl="16px">
-            231 Reviews
+                        {reviews} Reviews
                     </Text>
                 </Flex>
                 <DiscussionSort />
             </Flex>
-            <Divider orientation="horizontal" mt="13px" />
+            <Divider orientation="horizontal" mt="13px" mb="16.71px" borderColor="grey.200" />
         </>
     );
 };

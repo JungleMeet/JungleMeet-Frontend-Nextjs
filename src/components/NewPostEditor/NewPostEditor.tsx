@@ -7,7 +7,11 @@ import PostSingleLineInput from "./PostSingleLineInput";
 import ButtonCancel from "./ButtonCancel";
 import ButtonPost from "./ButtonPost";
 
-const NewPostEditor = () => {
+interface INewEditorProps {
+    bgImg: string | undefined;
+}
+
+const NewPostEditor = ({ bgImg }: INewEditorProps) => {
     const [postTitle, setPostTitle] = useState("");
     const [postContent, setPostContent] = useState("");
     const [hashtag, setHashtag] = useState("");
@@ -36,7 +40,7 @@ const NewPostEditor = () => {
         }
         setIsLoading(true);
         try {
-            await addNewPost(postTitle, postContent, hashtag, token);
+            await addNewPost(postTitle, postContent, hashtag, token, bgImg);
             Router.push("/discussions");
             setIsLoading(false);
             toast({
