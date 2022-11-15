@@ -7,7 +7,7 @@ import {
     MenuList,
     MenuItem,
     Button,
-    useDisclosure,
+    // useDisclosure,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import LoginModal from "../../Login/LoginModal";
@@ -18,6 +18,7 @@ import UserNameAndMessage from "./UserNameAndMessage";
 import { useSelector, useDispatch } from "react-redux";
 import { verifyToken } from "@/utils/axiosUserApi";
 import { tokenValid } from "@/app/reducer/loginSlice";
+import { openLoginModal, closeForgotPasswordModal } from "@/app/reducer/loginModalSlice";
 
 const IconContainerStyles = styled.div`
   display: flex;
@@ -40,7 +41,8 @@ const MenuListTitle = styled.div`
 const IconContainer = () => {
     const isLogged = useSelector((state: any) => state.login.isLogged);
     const dispatch = useDispatch();
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const isLoginModalOpen = useSelector((state: any) => state.loginModal.isLoginModalOpen);
+    // const { isOpen, onOpen, onClose } = useDisclosure();
     const [language, setLanguage] = useState("EN");
     const { i18n, t } = useTranslation("home");
     const router = useRouter();
@@ -67,7 +69,9 @@ const IconContainer = () => {
                 console.log(e);
             }
         };
-        verify();
+        if (token) {
+            verify();
+        }
     }, []);
 
     return (
@@ -81,12 +85,12 @@ const IconContainer = () => {
                     fontWeight="700"
                     lineHeight="lh24"
                     fontFamily="secondary"
-                    onClick={onOpen}
+                    onClick={() => dispatch(openLoginModal())}
                 >
                     {t("home:loginAndRegister")}
                 </Link>
             )}
-            <LoginModal isOpen={isOpen} onClose={onClose} />
+            <LoginModal isOpen={isLoginModalOpen} onClose={() => dispatch(closeForgotPasswordModal())} />
             <Hamburger />
             <Menu offset={[-86, 10]}>
                 <MenuButton

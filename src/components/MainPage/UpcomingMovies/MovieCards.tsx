@@ -10,8 +10,11 @@ const MovieCardContainer = styled.div`
   width: 222px;
   height: 454px;
   background-color: rgba(0, 0, 0, 90%);
-  color: #ffffff;
+  color: #faf9f9;
   border-radius: 5px;
+  :hover {
+    box-shadow: 5px 5px 5px #ebb513, -5px -5px 5px #ebb513;
+  }
 `;
 
 interface ImovieListItem {
