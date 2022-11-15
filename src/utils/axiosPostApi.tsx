@@ -19,7 +19,13 @@ export const getPostsByCondition = async (nPerPage: number, pageNumber: number, 
     return await axiosApi.get(`/?nPerPage=${nPerPage}&pageNumber=${pageNumber}&sortBy=${sortBy}`);
 };
 
-export const addNewPost = async (title: string, content: string, hashtag: string, token: string | null) => {
+export const addNewPost = async (
+    title: string, 
+    content: string, 
+    hashtag: string, 
+    token: string | null, 
+    bgImg: string | undefined
+) => {
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
@@ -28,6 +34,7 @@ export const addNewPost = async (title: string, content: string, hashtag: string
         title,
         content,
         hashtag,
+        bgImg,
     };
     
     return await axiosApi.post("/post/", reqBody, config)
