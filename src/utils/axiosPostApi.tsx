@@ -3,7 +3,9 @@ import axios from "axios";
 const REQUEST_TIMEOUT = 10000;
 
 const axiosApi = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_SERVER ? process.env.NEXT_PUBLIC_SERVER + "/v1/posts" : process.env.NEXT_PUBLIC_SERVER_ADD + "/v1/posts",
+    baseURL: process.env.NEXT_PUBLIC_SERVER
+        ? process.env.NEXT_PUBLIC_SERVER + "/v1/posts"
+        : process.env.NEXT_PUBLIC_SERVER_ADD + "/v1/posts",
     // baseURL: "http://localhost:3000/v1/posts",
     timeout: REQUEST_TIMEOUT,
 });
@@ -18,10 +20,17 @@ export const getPostById = async (id: string) => {
 export const getPostsByCondition = async (nPerPage: number, pageNumber: number, sortBy: string) => {
     return await axiosApi.get(`/?nPerPage=${nPerPage}&pageNumber=${pageNumber}&sortBy=${sortBy}`);
 };
-
-export const addNewPost = async (title: string, content: string, hashtag: string, token: string | null) => {
+export const getPostsByView = async (sortBy: string) => {
+    return await axiosApi.get(`/?sortBy=${sortBy}`);
+};
+export const addNewPost = async (
+    title: string,
+    content: string,
+    hashtag: string,
+    token: string | null
+) => {
     const config = {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
     };
 
     const reqBody = {
@@ -29,17 +38,25 @@ export const addNewPost = async (title: string, content: string, hashtag: string
         content,
         hashtag,
     };
-    
-    return await axiosApi.post("/post/", reqBody, config)
-}
 
-export const createMoviePost = async (resourceId:number) => {
+    return await axiosApi.post("/post/", reqBody, config);
+};
+
+export const createMoviePost = async (resourceId: number) => {
     const reqBody = {
-        resourceId
-    }
+        resourceId,
+    };
     return await axiosApi.post("/movie", reqBody);
-}
+};
 
-export const searchPost= ({keyword,page,limit}:{keyword:string, page:number, limit:number})=>{
-    return axiosApi.get(`/search/all?keyword=${keyword}&page=${page}&limit=${limit}`)
-}
+export const searchPost = ({
+    keyword,
+    page,
+    limit,
+}: {
+    keyword: string;
+    page: number;
+    limit: number;
+}) => {
+    return axiosApi.get(`/search/all?keyword=${keyword}&page=${page}&limit=${limit}`);
+};
