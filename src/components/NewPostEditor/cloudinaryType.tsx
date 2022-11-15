@@ -15,7 +15,7 @@ export interface CloudinaryWidget {
     cloudName: string;
     cropping: boolean;
     uploadPreset: string;
-    sources: string[];
+    sources: Array<string>;
     googleApiKey: string;
     showAdvancedOptions: boolean;
     croppingAspectRatio: string;
