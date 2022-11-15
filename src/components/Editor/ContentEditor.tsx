@@ -4,7 +4,7 @@ import { Wrapper } from "../NewPostEditor/NewPostPage.style";
 
 interface IContentEditorProps {
     editor: Editor | null;
-    height:string;
+    height: string;
 }
 
 // use contentEditor togher with useEditorControler hook

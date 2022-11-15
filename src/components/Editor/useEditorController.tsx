@@ -11,12 +11,12 @@ const useEditorController = () => {
 
     const editor = useEditor({
         extensions: [
-            StarterKit, 
-            Underline, 
-            TextStyle, 
-            Color, 
+            StarterKit,
+            Underline,
+            TextStyle,
+            Color,
             Placeholder.configure({
-                placeholder:'start writing nice words...',
+                placeholder: "start writing nice words...",
             }),
         ],
         autofocus: true,

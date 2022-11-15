@@ -9,11 +9,18 @@ interface IContentProps {
     content: string;
     bgImg: string;
     toggleShowEditor: () => void;
-    isEditorVisible:boolean;
-    isLogged:boolean;
+    isEditorVisible: boolean;
+    isLogged: boolean;
 }
 
-const DiscussionsDetailContent = ({ postId, content, bgImg, toggleShowEditor,isEditorVisible, isLogged }: IContentProps) => {
+const DiscussionsDetailContent = ({
+    postId,
+    content,
+    bgImg,
+    toggleShowEditor,
+    isEditorVisible,
+    isLogged,
+}: IContentProps) => {
     return (
         <Grid>
             <Flex key={postId} direction={"column"}>
@@ -27,7 +34,7 @@ const DiscussionsDetailContent = ({ postId, content, bgImg, toggleShowEditor,isE
                             </DiscussionsFollowButton>
                         </HStack>
 
-                        <Flex alignItems="center"> 
+                        <Flex alignItems="center">
                             <HStack align="center" textColor="red.500" _hover={{ color: "gray.50" }}>
                                 <DiscussionsLikeButton>
                                     <Text>Like this post</Text>
@@ -35,10 +42,15 @@ const DiscussionsDetailContent = ({ postId, content, bgImg, toggleShowEditor,isE
                             </HStack>
                         </Flex>
                     </Flex>
-                    <Button onClick={toggleShowEditor} colorScheme='blue'
-                        leftIcon={isEditorVisible?<TriangleUpIcon/>:<TriangleDownIcon/>}
-                        position={"absolute"} bottom="60px" right={"0"}>
-                        {isEditorVisible?"Hide Editor":"Add Comment"}
+                    <Button
+                        onClick={toggleShowEditor}
+                        colorScheme="blue"
+                        leftIcon={isEditorVisible ? <TriangleUpIcon /> : <TriangleDownIcon />}
+                        position={"absolute"}
+                        bottom="60px"
+                        right={"0"}
+                    >
+                        {isEditorVisible ? "Hide Editor" : "Add Comment"}
                     </Button>
                     <Divider mt="30px" color="gray.200" />
                 </Box>
