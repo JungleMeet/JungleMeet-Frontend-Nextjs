@@ -8,7 +8,11 @@ import ButtonPost from "./ButtonPost";
 import useEditorController from "../Editor/useEditorController";
 import ContentEditor from "../Editor/ContentEditor";
 
-const NewPostEditor = () => {
+interface INewEditorProps {
+    bgImg: string | undefined;
+}
+
+const NewPostEditor = ({ bgImg }: INewEditorProps) => {
     const [postTitle, setPostTitle] = useState("");
     const [hashtag, setHashtag] = useState("");
     const [token, setToken] = useState<any | null>("");
@@ -38,7 +42,7 @@ const NewPostEditor = () => {
         }
         setIsLoading(true);
         try {
-            await addNewPost(postTitle, content, hashtag, token);
+            await addNewPost(postTitle, content, hashtag, token, bgImg);
             Router.push("/discussions");
             setIsLoading(false);
             toast({

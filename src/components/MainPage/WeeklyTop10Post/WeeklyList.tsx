@@ -1,28 +1,31 @@
-import { Image, Flex, Text } from "@chakra-ui/react";
+import { Image, Flex, Link } from "@chakra-ui/react";
 
 interface IWeeklyListProps {
-    ranking: number;
     title: string;
     icon: string;
+    postId: string;
 }
 
-const WeeklyList = ({ ranking, title, icon }: IWeeklyListProps) => {
+const WeeklyList = ({ title, icon, postId }: IWeeklyListProps) => {
     return (
         <Flex
             justifyContent="space-between"
             borderBottom="1px"
-            borderBottomColor="#DFDFDF"
+            borderBottomColor="gray.200"
             alignItems="center"
         >
-            <Flex gap="22" paddingBottom="8px">
-                <Text fontSize="14px" fontWeight="500" lineHeight="20px">
-                    {ranking}
-                </Text>
-                <Text color="#3B82F6" fontSize="14px" fontWeight="500" lineHeight="20px">
+            <Flex paddingBottom="8px">
+                <Link
+                    href={`/discussions/${postId}`}
+                    color="#3B82F6"
+                    fontSize="text5"
+                    fontWeight="500"
+                    lineHeight="20px"
+                >
                     {title}
-                </Text>
+                </Link>
             </Flex>
-            <Image src={icon} alignItems="end" />
+            <Image paddingBottom="10px" src={icon} alignItems="end" />
         </Flex>
     );
 };
