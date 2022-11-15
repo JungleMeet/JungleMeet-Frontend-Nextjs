@@ -8,7 +8,6 @@ import ButtonPost from "./ButtonPost";
 import useEditorController from "../Editor/EditorController";
 import ContentEditor from "../Editor/ContentEditor";
 
-
 const NewPostEditor = () => {
     const [postTitle, setPostTitle] = useState("");
     const [hashtag, setHashtag] = useState("");
@@ -18,7 +17,7 @@ const NewPostEditor = () => {
 
     const toast = useToast();
 
-    const {editor, clearContent, content}=useEditorController()
+    const { editor, clearContent, content } = useEditorController();
 
     useEffect(() => {
         const localtoken = localStorage.getItem("token");
@@ -57,7 +56,7 @@ const NewPostEditor = () => {
     const handleCancel = () => {
         setPostTitle("");
         setHashtag("");
-        clearContent()
+        clearContent();
     };
 
     return (
@@ -71,9 +70,7 @@ const NewPostEditor = () => {
                     value={postTitle}
                     onChange={(event) => setPostTitle(event.target.value)}
                 />
-                <ContentEditor
-                    editor={editor}
-                />
+                <ContentEditor editor={editor} />
                 <Flex paddingTop="20px" marginLeft="8px" gap="25px" alignItems="center">
                     <Text fontSize="text3" fontWeight="700" lineHeight="lh28">
             #Hashtag
