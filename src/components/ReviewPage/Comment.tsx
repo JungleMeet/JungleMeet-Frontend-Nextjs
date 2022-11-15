@@ -38,7 +38,7 @@ const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
                     author,
                 } = item;
                 return (
-                    <Stack bg="rgba(243, 244, 246)" pl="0px" mb="5px" pb="30px" key={_id}>
+                    <Stack pl="0px" mb="5px" pb="30px" key={_id} bg="rgba(243, 244, 246,0.5)">
                         <Stack pt="25px" pl="54.4px" pb="4.25px">
                             <ReviewAvatar
                                 id={author?._id}
@@ -46,24 +46,22 @@ const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
                                 createdAt={dateCreatedAt(createdAt)}
                                 avatar={author?.avatar}
                             />
-                            <Stack pl="67px">
-                                <Text fontSize={"text4"} fontWeight="500">
-                                    {`${content}`}
-                                    {!isEmpty(item.children[0]?.children) ? (
-                                        <Comment comments={item.children} />
-                                    ) : null}
-                                </Text>
-                                <Button
-                                    mt="15px"
-                                    size="sl"
-                                    color="blue.500"
-                                    fontSize={"text5"}
-                                    width="45px"
-                                    variant="unstyled"
-                                >
+                            <Text fontSize={"text4"} fontWeight="500">
+                                {`${content}`}
+                            </Text>
+                            <Button
+                                mt="15px"
+                                size="sl"
+                                color="blue.500"
+                                fontSize={"text5"}
+                                width="45px"
+                                variant="unstyled"
+                            >
                   REPLY
-                                </Button>
-                            </Stack>
+                            </Button>
+                            {!isEmpty(item.children[0]?._id) ? (
+                                <Comment comments={item.children} />
+                            ) : null}
                         </Stack>
                     </Stack>
                 );

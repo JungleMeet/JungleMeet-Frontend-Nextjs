@@ -13,9 +13,10 @@ const Review = () => {
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const res = await getCommentsByCondition(id, "createdAt", 999, 0);
+                const res = await getCommentsByCondition(id, "createdAt", 9999, 0);
                 const topComments: any = res.data.topComments;
                 setComments(topComments);
+                console.log(topComments)
             } catch (err) {
                 return err;
             }
