@@ -1,7 +1,10 @@
-import { MenuList } from "@chakra-ui/react";
+import { MenuItem, MenuList } from "@chakra-ui/react";
 import HamburgerDropdownItem from "./HamburgerDropdownItem";
 import styled from "styled-components";
 import { IconType } from "react-icons";
+import { GoSignOut } from "react-icons/go";
+import { useDispatch } from "react-redux";
+import { logout } from "@/app/reducer/loginSlice";
 
 const MenuListTitle = styled.div`
   // margin-left: 21px;
@@ -24,6 +27,14 @@ interface IHamburgerDropdown {
     menuTitle: string;
 }
 const HamburgerDropdown = ({ menuList, menuTitle }: IHamburgerDropdown) => {
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(logout());
+        localStorage.removeItem("userInfo");
+        localStorage.removeItem("token");
+    };
+
     return (
         <>
             <MenuList
@@ -47,6 +58,9 @@ const HamburgerDropdown = ({ menuList, menuTitle }: IHamburgerDropdown) => {
                 {menuList.map(({ itemIcon, ...rest }) => (
                     <HamburgerDropdownItem key={rest.content} Icon={itemIcon} {...rest} />
                 ))}
+                <MenuItem onClick={handleLogout} icon={<GoSignOut />} mb="18px" p="0" color={"red"}>
+          Log out
+                </MenuItem>
             </MenuList>
         </>
     );

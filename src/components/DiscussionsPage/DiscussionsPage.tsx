@@ -8,7 +8,9 @@ import Pagination from "./Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { setTotalPosts, setCurrentPagePost } from "@/app/reducer/pageSlice";
 
+
 export interface CurrentPagePostProps {
+
     _id: string;
     title: string;
     hashtag: string;
@@ -41,21 +43,12 @@ const DiscussionsPage = () => {
                 const { data, length } = res.data;
                 dispatch(setCurrentPagePost(data));
                 dispatch(setTotalPosts(length));
-                // console.log("discussionInfo", data);
             } catch (err) {
                 return err;
             }
         };
         fetchPosts();
     }, [sortBy, currentPage]);
-
-    // Get current posts
-    // const indexOfLastPost = currentPage * postsPerPage;
-    // const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    // const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-
-    // Change page
-    // const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
     const currentPostsMemo = useMemo(
         () => (
