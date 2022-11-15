@@ -1,4 +1,4 @@
-import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
+import { EditIcon, TriangleUpIcon } from "@chakra-ui/icons";
 import { Flex, Divider, Image, Box, Text, Grid, HStack, Button } from "@chakra-ui/react";
 import React from "react";
 import DiscussionsFollowButton from "./DiscussionsFollowButton";
@@ -45,12 +45,12 @@ const DiscussionsDetailContent = ({
                     <Button
                         onClick={toggleShowEditor}
                         colorScheme="blue"
-                        leftIcon={isEditorVisible ? <TriangleUpIcon /> : <TriangleDownIcon />}
+                        leftIcon={isEditorVisible ? <TriangleUpIcon /> : <EditIcon />}
                         position={"absolute"}
                         bottom="60px"
                         right={"0"}
                     >
-                        {isEditorVisible ? "Hide Editor" : "Add Comment"}
+                        {isEditorVisible ? "Hide Comment" : " Add Comment"}
                     </Button>
                     <Divider mt="30px" color="gray.200" />
                 </Box>

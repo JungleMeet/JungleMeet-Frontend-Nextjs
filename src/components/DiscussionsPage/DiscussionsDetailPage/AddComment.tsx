@@ -23,7 +23,7 @@ const AddComment = ({ isEditorVisible, postId }: IAddCommentProps) => {
             clearContent();
             toast({
                 title: "SUCCESS",
-                description: "Your comment has been created to this post.",
+                description: "Your comment has been created.",
                 status: "success",
                 duration: 5000,
                 isClosable: true,

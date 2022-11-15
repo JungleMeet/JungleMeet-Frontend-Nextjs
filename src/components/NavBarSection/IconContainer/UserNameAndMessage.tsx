@@ -45,6 +45,7 @@ const UserNameAndMessage = () => {
             command: "",
             content: "Write a Post",
         },
+        
     ];
     return (
         <>
