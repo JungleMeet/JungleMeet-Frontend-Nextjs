@@ -6,7 +6,7 @@ import HamburgerDropdown from "../Hamburger/HamburgerDropdown";
 import { CgProfile } from "react-icons/cg";
 import { FiEdit } from "react-icons/fi";
 import { useSelector } from "react-redux";
-import io from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 import { useEffect } from "react";
 
 const MessageContainer = styled.div`
@@ -31,11 +31,19 @@ const BadgeContainer = styled.div`
   align-items: center;
 `;
 
-const socket = io("http://localhost:3000", { transports: ["websocket"] });
+interface ServerToClientEvents {
+    kirim: (callback: (e: number) => void) => void;
+}
+
+interface ClientToServerEvents {
+    roomsatu: (value: {}) => void;
+}
+
+let socket: Socket<ServerToClientEvents, ClientToServerEvents>;
 
 const UserNameAndMessage = () => {
     const userInfo = useSelector((state: any) => state.login.userInfo);
-    const { userName, userRole } = userInfo;
+    const { userName, userRole, userId } = userInfo;
     const firstName = userName.split(" ")[0];
 
     const MENU_ITEMS = [
@@ -51,10 +59,11 @@ const UserNameAndMessage = () => {
         },
     ];
 
-    const handleClick = (e) => {
-        socket.emit("roomsatu", { post: userName });
+    const handleClick = () => {
+        socket.emit("roomsatu", { userId });
     };
     useEffect(() => {
+        socket = io("http://localhost:3000", { query: { userId: userId }, transports: ["websocket"] });
         socket.on("kirim", (data) => {
             console.log(data);
         });
@@ -65,7 +74,7 @@ const UserNameAndMessage = () => {
 
     return (
         <>
-            <MessageContainer onClick={(e) => handleClick(e)}>
+            <MessageContainer onClick={() => handleClick()}>
                 <Image src="/message.svg" />
                 <BadgeContainer>1</BadgeContainer>
             </MessageContainer>
