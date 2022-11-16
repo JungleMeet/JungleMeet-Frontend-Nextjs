@@ -18,6 +18,9 @@ const ContentEditor = ({ editor, height }: IContentEditorProps) => {
         <Wrapper height={height}>
             <MenuBar editor={editor} />
             <EditorContent editor={editor} />
+            <div className="character-count">
+                {`${editor?.storage.characterCount.characters()} characters, ${editor?.storage.characterCount.words()}`} words
+            </div>
         </Wrapper>
     );
 };

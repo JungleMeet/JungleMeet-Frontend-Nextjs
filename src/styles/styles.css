@@ -157,3 +157,16 @@ div input {
   border: 1px solid #d1d5db;
   margin: 2rem 0;
 }
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  height: 0;
+}
+
+.character-count {
+  color: #868e96;
+  margin-top: 1rem;
+}
