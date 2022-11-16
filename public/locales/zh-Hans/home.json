@@ -1,34 +1,25 @@
 {
-    "searchPlaceholder": "你想看什么?",
-    "loginAndRegister": "登录/ 注册",
-    "nowPlayingTitle": "正在热映",
-    "weeklyTop10": "本周前十",
-    "more": "更多",
-    "seeMore": "更多",
-    "upcomingTitle": "即将上映",
-    "popularTitle": "流行",
-    "top10Title": "前十",
-    "exclusiveVideosTitle": "独家视频",
-    "popularDiscussionTitle": "正在热议",
-    "watchTrailer":"观看预告",
+  "searchPlaceholder": "你想看什么?",
+  "loginAndRegister": "登录/ 注册",
+  "nowPlayingTitle": "正在热映",
+  "weeklyTop10": "本周前十",
+  "more": "更多",
+  "seeMore": "更多",
+  "seeMoreReviews": "更多评论",
+  "upcomingTitle": "即将上映",
+  "popularTitle": "流行",
+  "top10Title": "前十",
+  "exclusiveVideosTitle": "独家视频",
+  "popularDiscussionTitle": "正在热议",
+  "watchTrailer": "观看预告",
 
-
-    "discussionListTitle": "讨论",
-    "createDiscussionTitle": "新建帖子",
-    "displaySetting": "显示选项",
-    "coverOption": "封面",
-    "abstractOption": "大纲",
-    "sortedByTitle": "排序",
-    "mostRecentOption": "最新",
-    "mostViewedOption": "最热",
-    "jumpTo": "跳转至"
-
-    
-
-
-
-
-
-
-
+  "discussionListTitle": "讨论",
+  "createDiscussionTitle": "新建帖子",
+  "displaySetting": "显示选项",
+  "coverOption": "封面",
+  "abstractOption": "大纲",
+  "sortedByTitle": "排序",
+  "mostRecentOption": "最新",
+  "mostViewedOption": "最热",
+  "jumpTo": "跳转至"
 }
