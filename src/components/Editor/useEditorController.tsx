@@ -5,7 +5,7 @@ import Underline from "@tiptap/extension-underline";
 import TextStyle from "@tiptap/extension-text-style";
 import { Color } from "@tiptap/extension-color";
 import Placeholder from "@tiptap/extension-placeholder";
-import CharacterCount from '@tiptap/extension-character-count'
+import CharacterCount from "@tiptap/extension-character-count";
 
 const useEditorController = () => {
     const [content, setContent] = useState<string>("");
