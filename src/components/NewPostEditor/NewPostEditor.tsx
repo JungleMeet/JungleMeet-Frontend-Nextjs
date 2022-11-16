@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Box, Flex, Text, useToast } from "@chakra-ui/react";
 import { addNewPost } from "@/utils/axiosPostApi";
 import Router from "next/router";
-import PostContentEditor from "../PostContentEditor";
 import PostSingleLineInput from "./PostSingleLineInput";
 import ButtonCancel from "./ButtonCancel";
 import ButtonPost from "./ButtonPost";
+import useEditorController from "../Editor/useEditorController";
+import ContentEditor from "../Editor/ContentEditor";
 
 interface INewEditorProps {
     bgImg: string | undefined;
@@ -13,13 +14,14 @@ interface INewEditorProps {
 
 const NewPostEditor = ({ bgImg }: INewEditorProps) => {
     const [postTitle, setPostTitle] = useState("");
-    const [postContent, setPostContent] = useState("");
     const [hashtag, setHashtag] = useState("");
     const [token, setToken] = useState<any | null>("");
     // eslint-disable-next-line no-unused-vars
     const [isLoading, setIsLoading] = useState(false);
 
     const toast = useToast();
+
+    const { editor, clearContent, content } = useEditorController();
 
     useEffect(() => {
         const localtoken = localStorage.getItem("token");
@@ -28,7 +30,7 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
 
     const handleSumble = async (e: any) => {
         e.preventDefault();
-        if (!postTitle || !postContent) {
+        if (!postTitle || !content) {
             toast({
                 position: "top",
                 title: "Post title and content can't be empty",
@@ -40,7 +42,7 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
         }
         setIsLoading(true);
         try {
-            await addNewPost(postTitle, postContent, hashtag, token, bgImg);
+            await addNewPost(postTitle, content, hashtag, token, bgImg);
             Router.push("/discussions");
             setIsLoading(false);
             toast({
@@ -58,7 +60,7 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
     const handleCancel = () => {
         setPostTitle("");
         setHashtag("");
-        setPostContent("");
+        clearContent();
     };
 
     return (
@@ -72,11 +74,7 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
                     value={postTitle}
                     onChange={(event) => setPostTitle(event.target.value)}
                 />
-                <PostContentEditor
-                    setPostContent={setPostContent}
-                    postTitle={postTitle}
-                    hashtag={hashtag}
-                />
+                <ContentEditor editor={editor} height="350px" />
                 <Flex paddingTop="20px" marginLeft="8px" gap="25px" alignItems="center">
                     <Text fontSize="text3" fontWeight="700" lineHeight="lh28">
             #Hashtag
