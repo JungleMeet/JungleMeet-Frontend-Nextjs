@@ -72,7 +72,7 @@ const IconContainer = () => {
         if (token) {
             verify();
         }
-    }, []);
+    }, [isLogged]);
 
     return (
         <IconContainerStyles>
