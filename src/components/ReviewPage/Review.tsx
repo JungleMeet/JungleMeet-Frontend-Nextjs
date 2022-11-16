@@ -4,10 +4,12 @@ import { getCommentsByCondition } from "@/utils/axiosCommentApi";
 import { useRouter } from "next/router";
 import ReviewFilter from "./ReviewFilter";
 import ReviewHeader from "./ReviewHeader";
+import { getMovieDetails } from "@/utils/axiosMovieApi";
 
 const Review = () => {
     const [comments, setComments] = useState([]);
     const [reviews, setReviews] = useState(0);
+    const [headerInfo, setHeaderInfo] = useState([]);
     const router = useRouter();
     const { id }: any = router.query;
 
@@ -25,9 +27,22 @@ const Review = () => {
         fetchComments();
     }, []);
 
+    useEffect(()=>{
+        const fetchHeader = async()=>{
+            try{
+                const headerRes = await getMovieDetails(id);
+                const headerData: any = headerRes.data;
+                setHeaderInfo(headerData)
+            }catch(err){
+                return err
+            };
+        };
+        fetchHeader();
+    },[]);
+
     return (
         <>
-            <ReviewHeader title={"Dune"} bgImg={"/dune.png"} alt={"movie image"} />
+            <ReviewHeader headerInfo={headerInfo}/>
             <ReviewFilter reviews={reviews} />
             <Comment comments={comments} />
         </>

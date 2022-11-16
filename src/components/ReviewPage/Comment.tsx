@@ -25,10 +25,19 @@ export interface ICommentProps {
         children: ICommentProps[];}
     // [key: string]: string | boolean | Array<any> | Object|null;
 }
-const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
+
+function replyComments (item:any) {
+    if(!isEmpty(item.children[0]?._id)){
+        return <Comment comments={item.children} />
+    }else{
+        return null
+    }
+}
+
+const Comment = ({ comments}: { comments: ICommentProps[] }): JSX.Element => {
     return (
         <>
-            {comments?.map((item: any) => {
+            {comments && comments?.map((item: any) => {
                 const {
                     _id,
                     content,
@@ -60,7 +69,7 @@ const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
                             >
                 REPLY
                             </Button>
-                            {!isEmpty(item.children[0]?._id) ? <Comment comments={item.children} /> : null}
+                            {replyComments(item)}
                         </Stack>
                     </Stack>
                 );
