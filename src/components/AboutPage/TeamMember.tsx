@@ -1,7 +1,14 @@
 import { Box, Text, Flex} from "@chakra-ui/react";
 import React from "react";
 
-function TeamMember(props:any) { 
+interface ITeamMemberProps {
+    memberName: string;
+    title: string;
+    email: string;
+    linkedin: string;
+}
+
+function TeamMember({memberName, title, email, linkedin}:ITeamMemberProps) { 
     return (
         <Box mt="55px" ml="28px" mr="2px" alignItems="center" mb="40px">
             <Flex gap="5px">
@@ -13,7 +20,7 @@ function TeamMember(props:any) {
                     fontSize="20px"
                     lineHeight="28px"
                 >
-                    {props.memberName} -
+                    {memberName} -
                 </Text>
                 <Text
                     color="rose.900" 
@@ -23,7 +30,7 @@ function TeamMember(props:any) {
                     fontSize="20px"
                     lineHeight="28px"
                 >
-                    {props.title}
+                    {title}
                 </Text>
             </Flex>
             <Text
@@ -35,9 +42,9 @@ function TeamMember(props:any) {
                 fontSize="16px"
                 lineHeight="20px"
             >
-                Email: {props.Email}
+                Email: {email}
                 <br/>
-                LinkedIn: {props.LinkedIn}   
+                LinkedIn: {linkedin}   
                 {/* How to make it a link? */}
             </Text>
         </Box>
