@@ -6,8 +6,8 @@ interface IReviewHeaderProps {
     resourceId: number;
     poster: string;
     title: string;
-};
-const ReviewHeader = ({ resourceId,poster,title }:IReviewHeaderProps) => {
+}
+const ReviewHeader = ({ resourceId, poster, title }: IReviewHeaderProps) => {
     return (
         <>
             <Flex alignItems="center" justifyContent="space-between" pt="70px">

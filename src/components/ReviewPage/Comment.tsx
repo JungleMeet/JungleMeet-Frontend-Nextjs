@@ -51,7 +51,7 @@ const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
                 mentionedUserId,
             } = item;
             return (
-                <Stack mb="5px" pb="30px" bg="#F9FAFB" key={_id} >
+                <Stack mb="5px" pb="30px" bg="#F9FAFB" key={_id}>
                     <Stack pt="25px" pl="54.4px" pb="4.25px">
                         <ReviewAvatar
                             id={author?._id}
@@ -70,7 +70,7 @@ const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
                                 width="45px"
                                 variant="unstyled"
                             >
-                        REPLY
+                    REPLY
                             </Button>
                         </Stack>
                         {mentionedUserId}

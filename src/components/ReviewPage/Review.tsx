@@ -6,7 +6,7 @@ import ReviewFilter from "./ReviewFilter";
 import ReviewHeader from "./ReviewHeader";
 import { getMovieDetails } from "@/utils/axiosMovieApi";
 
-interface IReviewProps{
+interface IReviewProps {
     resourceId: number;
     poster: string;
     title: string;
@@ -16,7 +16,7 @@ const Review = () => {
     const [reviews, setReviews] = useState(0);
     const [headerInfo, setHeaderInfo] = useState<IReviewProps>({
         resourceId: 0,
-        poster:"",
+        poster: "",
         title: "",
     });
     const router = useRouter();
@@ -51,13 +51,15 @@ const Review = () => {
 
     return (
         <>
-            < ReviewHeader resourceId={headerInfo.resourceId} poster={headerInfo.poster} title={headerInfo.title} />
+            <ReviewHeader
+                resourceId={headerInfo.resourceId}
+                poster={headerInfo.poster}
+                title={headerInfo.title}
+            />
             <ReviewFilter reviews={reviews} />
             <Comment comments={comments} />
         </>
     );
 };
-
-
 
 export default Review;
