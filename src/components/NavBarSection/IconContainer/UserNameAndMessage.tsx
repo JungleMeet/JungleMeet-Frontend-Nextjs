@@ -32,7 +32,7 @@ const BadgeContainer = styled.div`
 `;
 
 interface ServerToClientEvents {
-    kirim: (callback: (e: number) => void) => void;
+    message: (callback: (e: number) => void) => void;
 }
 
 interface ClientToServerEvents {
@@ -59,17 +59,13 @@ const UserNameAndMessage = () => {
         },
     ];
 
-    const handleClick = () => {
-        socket.emit("roomsatu", { userId });
-    };
+    
     useEffect(() => {
         socket = io("http://localhost:3000", { query: { userId: userId }, transports: ["websocket"] });
         socket.on("connect", () => {
             console.log("connect client");
         });
-        socket.on("kirim", (data) => {
-            console.log(data);
-        });
+        socket.on('message', (data) => console.log(data));
         return () => {
             socket.off("connect");
         };
@@ -77,7 +73,7 @@ const UserNameAndMessage = () => {
 
     return (
         <>
-            <MessageContainer onClick={() => handleClick()}>
+            <MessageContainer >
                 <Image src="/message.svg" />
                 <BadgeContainer>1</BadgeContainer>
             </MessageContainer>
