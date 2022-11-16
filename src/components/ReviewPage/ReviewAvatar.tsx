@@ -12,12 +12,12 @@ const ReviewAvatar = ({ author, createdAt, avatar, id }: IReviewAvatar) => {
     return (
         <CreatedByTheAuthor
             id={id}
-            gap="24.26px"
+            gap="19.61px"
             color="blue.500"
             fontSize="text3"
             lineHeight="lh28"
             fontWeight="700"
-            imageSize="75.58px"
+            imageSize="61.69px"
             author={author}
             createdAt={createdAt}
             avatar={avatar}

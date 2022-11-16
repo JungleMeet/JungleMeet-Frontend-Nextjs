@@ -5,8 +5,8 @@ import { dateCreatedAt } from "@/utils/dateCreateAt";
 import { Stack, Text, Button } from "@chakra-ui/react";
 
 export interface ICommentProps {
-    topComments:
-    {_id: string;
+    topComments: {
+        _id: string;
         content: string;
         visible: boolean;
         author: {
@@ -22,58 +22,63 @@ export interface ICommentProps {
         updatedAt: string;
         level: number;
         __V: number;
-        children: ICommentProps[];}
+        children: ICommentProps[];
+    };
     // [key: string]: string | boolean | Array<any> | Object|null;
 }
 
-function replyComments (item:any) {
-    if(!isEmpty(item.children[0]?._id)){
-        return <Comment comments={item.children} />
-    }else{
-        return null
+function replyComments(item: any) {
+    if (!isEmpty(item.children[0]?._id)) {
+        return <Comment comments={item.children} />;
+    } else {
+        return null;
     }
 }
 
-const Comment = ({ comments}: { comments: ICommentProps[] }): JSX.Element => {
+const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
     return (
         <>
-            {comments && comments?.map((item: any) => {
-                const {
-                    _id,
-                    content,
-                    // visible,
-                    //  postId,
-                    createdAt,
-                    // like,
-                    author,
-                } = item;
-                return (
-                    <Stack pl="0px" mb="5px" pb="30px" key={_id} bg="rgba(243, 244, 246)">
-                        <Stack pt="25px" pl="54.4px" pb="4.25px">
-                            <ReviewAvatar
-                                id={author?._id}
-                                author={`${author?.name}`}
-                                createdAt={dateCreatedAt(createdAt)}
-                                avatar={author?.avatar}
-                            />
-                            <Text fontSize={"text4"} fontWeight="500">
+            {comments &&
+        comments?.map((item: any) => {
+            const {
+                _id,
+                content,
+                // visible,
+                //  postId,
+                createdAt,
+                // like,
+                author,
+                mentionedUserId,
+            } = item;
+            return (
+                <Stack mb="5px" pb="30px" bg="#F9FAFB" key={_id} >
+                    <Stack pt="25px" pl="54.4px" pb="4.25px">
+                        <ReviewAvatar
+                            id={author?._id}
+                            author={`${author?.name}`}
+                            createdAt={dateCreatedAt(createdAt)}
+                            avatar={author?.avatar}
+                        />
+                        <Stack pl="63px">
+                            <Text fontSize={"text4"} fontWeight="500" mb="15px">
                                 {`${content}`}
                             </Text>
                             <Button
-                                mt="15px"
                                 size="sl"
                                 color="blue.500"
                                 fontSize={"text5"}
                                 width="45px"
                                 variant="unstyled"
                             >
-                REPLY
+                        REPLY
                             </Button>
-                            {replyComments(item)}
                         </Stack>
+                        {mentionedUserId}
+                        {replyComments(item)}
                     </Stack>
-                );
-            })}
+                </Stack>
+            );
+        })}
         </>
     );
 };

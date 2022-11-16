@@ -6,10 +6,19 @@ import ReviewFilter from "./ReviewFilter";
 import ReviewHeader from "./ReviewHeader";
 import { getMovieDetails } from "@/utils/axiosMovieApi";
 
+interface IReviewProps{
+    resourceId: number;
+    poster: string;
+    title: string;
+}
 const Review = () => {
     const [comments, setComments] = useState([]);
     const [reviews, setReviews] = useState(0);
-    const [headerInfo, setHeaderInfo] = useState([]);
+    const [headerInfo, setHeaderInfo] = useState<IReviewProps>({
+        resourceId: 0,
+        poster:"",
+        title: "",
+    });
     const router = useRouter();
     const { id }: any = router.query;
 
@@ -19,7 +28,7 @@ const Review = () => {
                 const res = await getCommentsByCondition(id, "createdAt", 9999, 0);
                 const data: any = res.data;
                 setComments(data.topComments);
-                setReviews(data.length)
+                setReviews(data.length);
             } catch (err) {
                 return err;
             }
@@ -27,26 +36,28 @@ const Review = () => {
         fetchComments();
     }, []);
 
-    useEffect(()=>{
-        const fetchHeader = async()=>{
-            try{
+    useEffect(() => {
+        const fetchHeader = async () => {
+            try {
                 const headerRes = await getMovieDetails(id);
                 const headerData: any = headerRes.data;
-                setHeaderInfo(headerData)
-            }catch(err){
-                return err
-            };
+                setHeaderInfo(headerData);
+            } catch (err) {
+                return err;
+            }
         };
         fetchHeader();
-    },[]);
+    }, []);
 
     return (
         <>
-            <ReviewHeader headerInfo={headerInfo}/>
+            < ReviewHeader resourceId={headerInfo.resourceId} poster={headerInfo.poster} title={headerInfo.title} />
             <ReviewFilter reviews={reviews} />
             <Comment comments={comments} />
         </>
     );
 };
+
+
 
 export default Review;
