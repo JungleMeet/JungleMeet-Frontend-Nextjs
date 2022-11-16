@@ -1,39 +1,48 @@
 import { Box, Center, Divider, Flex } from "@chakra-ui/react";
 import TeamMember from "./TeamMember";
-import {membersData, devopsData} from "./MembersData";
+import { membersData, devopsData } from "./MembersData";
 
-
-const Members= ()=> {
-    return(
+const Members = () => {
+    return (
         <Flex pb="50px">
             <Box>
-                {membersData.map(({memberName,title,email,linkedin})=>{
+                {membersData.map(({ memberName, title, email, linkedin }) => {
                     return (
-                        <TeamMember key={memberName} memberName={memberName} title={title} email={email} linkedin={linkedin} />
+                        <TeamMember
+                            key={memberName}
+                            memberName={memberName}
+                            title={title}
+                            email={email}
+                            linkedin={linkedin}
+                        />
                     );
-                }
-                )}
+                })}
             </Box>
             <Center>
-                <Divider 
+                <Divider
                     mt="55px"
                     left="569px"
                     border="2px solid"
-                    color="gray.200" 
+                    color="gray.200"
                     height="1260px"
-                    orientation="vertical" />
+                    orientation="vertical"
+                />
             </Center>
             <Box>
-                {devopsData.map(({memberName, title, email, linkedin})=>{
+                {devopsData.map(({ memberName, title, email, linkedin }) => {
                     return (
-                        <TeamMember key={memberName} memberName={memberName} title={title} email={email} linkedin={linkedin} />
+                        <TeamMember
+                            key={memberName}
+                            memberName={memberName}
+                            title={title}
+                            email={email}
+                            linkedin={linkedin}
+                        />
                     );
-                }
-                )}
+                })}
             </Box>
         </Flex>
-    )
-}
-
+    );
+};
 
 export default Members;

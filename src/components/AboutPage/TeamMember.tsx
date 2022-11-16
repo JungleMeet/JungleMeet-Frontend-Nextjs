@@ -1,4 +1,4 @@
-import { Box, Text, Flex} from "@chakra-ui/react";
+import { Box, Text, Flex } from "@chakra-ui/react";
 import React from "react";
 
 interface ITeamMemberProps {
@@ -8,25 +8,25 @@ interface ITeamMemberProps {
     linkedin: string;
 }
 
-function TeamMember({memberName, title, email, linkedin}:ITeamMemberProps) { 
+function TeamMember({ memberName, title, email, linkedin }: ITeamMemberProps) {
     return (
         <Box mt="55px" ml="28px" mr="2px" alignItems="center" mb="40px">
             <Flex gap="5px">
                 <Text
-                    color="#000"  
-                    fontFamily="Inter" 
+                    color="#000"
+                    fontFamily="Inter"
                     fontStyle="normal"
-                    fontWeight="700" 
+                    fontWeight="700"
                     fontSize="20px"
                     lineHeight="28px"
                 >
                     {memberName} -
                 </Text>
                 <Text
-                    color="rose.900" 
-                    fontFamily="Inter" 
+                    color="rose.900"
+                    fontFamily="Inter"
                     fontStyle="normal"
-                    fontWeight="700" 
+                    fontWeight="700"
                     fontSize="20px"
                     lineHeight="28px"
                 >
@@ -35,21 +35,20 @@ function TeamMember({memberName, title, email, linkedin}:ITeamMemberProps) {
             </Flex>
             <Text
                 mt="25"
-                color="#000" 
-                fontFamily="Inter" 
+                color="#000"
+                fontFamily="Inter"
                 fontStyle="normal"
-                fontWeight="400" 
+                fontWeight="400"
                 fontSize="16px"
                 lineHeight="20px"
             >
-                Email: {email}
-                <br/>
-                LinkedIn: {linkedin}   
+        Email: {email}
+                <br />
+        LinkedIn: {linkedin}
                 {/* How to make it a link? */}
             </Text>
         </Box>
-    )
+    );
 }
-
 
 export default TeamMember;
