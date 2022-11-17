@@ -11,9 +11,9 @@ import {
 import PageWrapper from "@/components/PageWrapper";
 import MovieSection from "@/components/MoviePage/MovieDetails/MovieSection";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { GetStaticPaths } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { GetStaticPaths } from "next/types";
 
 interface IgetStaticProps {
     locale: string;
@@ -59,28 +59,6 @@ const PopularReview = (): JSX.Element => {
                 Review
                             </Button>
                         </Stack>
-                        {/* <Image
-                            src="/Review.svg"
-                            width="145px"
-                            height="37px"
-                            color="blue.200"
-                            position="absolute"
-                            marginLeft="-47.5px"
-                            borderRadius="5px"
-                            margin-top="-5px"
-                        ></Image>
-                        <Image
-                            src="/writeReview.svg"
-                            width="15px"
-                            height="16px"
-                            color="blue.400"
-                            position="absolute"
-                            marginLeft="-25px"
-                            marginTop="6px"
-                        ></Image>
-                        <Text fontWeight="700" fontSize="18px" color="blue.500">
-              Review
-                        </Text> */}
                     </div>
                     {/* write a new review part END */}
                 </SectionHeaderContainer>
@@ -92,9 +70,7 @@ const PopularReview = (): JSX.Element => {
                         color="rose.700"
                         lineHeight="24px"
                         cursor={"pointer"}
-                    >
-            See more Reviews&nbsp; &gt; (109 reviews)
-                    </Text>
+                    ></Text>
                 </Link>
             </SectionContainer>
         </PageWrapper>
