@@ -17,9 +17,17 @@ export const getPosts = async () => {
 export const getPostById = async (id: string) => {
     return await axiosApi.get(`/${id}`);
 };
+
 export const getPostsByCondition = async (nPerPage: number, pageNumber: number, sortBy: string) => {
     return await axiosApi.get(`/?nPerPage=${nPerPage}&pageNumber=${pageNumber}&sortBy=${sortBy}`);
 };
+
+export const getPostsByUserId = async (nPerPage: number, pageNumber: number, sortBy: string, userId: string) => {
+    return await axiosApi.get(`/?nPerPage=${nPerPage}&pageNumber=${pageNumber}&sortBy=${sortBy}&userId=${userId}`);
+};
+
+export const addNewPost = async (title: string, content: string, hashtag: string, token: string | null) => {
+
 export const getPostsByView = async (sortBy: string) => {
     return await axiosApi.get(`/?sortBy=${sortBy}`);
 };
@@ -30,6 +38,7 @@ export const addNewPost = async (
     token: string | null,
     bgImg: string | undefined
 ) => {
+
     const config = {
         headers: { Authorization: `Bearer ${token}` },
     };
