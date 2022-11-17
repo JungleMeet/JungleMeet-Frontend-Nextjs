@@ -5,9 +5,15 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import HamburgerDropdown from "../Hamburger/HamburgerDropdown";
 import { CgProfile } from "react-icons/cg";
 import { FiEdit } from "react-icons/fi";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { io, Socket } from "socket.io-client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { GoSignOut } from "react-icons/go";
+import { logout } from "@/app/reducer/loginSlice";
+import { getNotifications } from "@/utils/axiosNotificationApi";
+import formatNotificationData from "@/utils/formatNotificationData";
+import NotificationDropdown from "./NotificationDropdown";
+import { IformatNotificationData } from "@/utils/formatNotificationData";
 
 const MessageContainer = styled.div`
   position: relative;
@@ -24,8 +30,8 @@ const BadgeContainer = styled.div`
   line-height: 24px;
   color: #ffffff;
   text-align: center;
-  top: -12px;
-  right: -10px;
+  top: -11px;
+  right: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,8 +49,21 @@ let socket: Socket<ServerToClientEvents, ClientToServerEvents>;
 
 const UserNameAndMessage = () => {
     const userInfo = useSelector((state: any) => state.login.userInfo);
+    // eslint-disable-next-line no-unused-vars
+    const [hasNewMessage, setHasNewMessage] = useState(false);
     const { userName, userRole, userId } = userInfo;
+    // eslint-disable-next-line no-unused-vars
+    const [pageNumber, setPageNumber] = useState(0);
+    // eslint-disable-next-line no-unused-vars
+    const [limit, setLimit] = useState(5);
+    const [currentPageNotice, setCurrentPageNotice] = useState([]);
     const firstName = userName.split(" ")[0];
+    const dispatch = useDispatch();
+    const handleLogout = () => {
+        dispatch(logout());
+        localStorage.removeItem("userInfo");
+        localStorage.removeItem("token");
+    };
 
     const MENU_ITEMS = [
         {
@@ -57,26 +76,76 @@ const UserNameAndMessage = () => {
             command: "",
             content: "Write a Post",
         },
+        {
+            itemIcon: GoSignOut,
+            command: "",
+            content: "Log out",
+            color: "red",
+            onClick: handleLogout,
+        },
     ];
 
-    
     useEffect(() => {
         socket = io("http://localhost:3000", { query: { userId: userId }, transports: ["websocket"] });
         socket.on("connect", () => {
             console.log("connect client");
         });
-        socket.on('message', (data) => console.log(data));
+        socket.on("message", (data) => {
+            console.log(data);
+            setHasNewMessage(true);
+        });
         return () => {
             socket.off("connect");
         };
     }, []);
 
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        const fetchNotifications = async () => {
+            try {
+                const res = await getNotifications({ pageNumber, limit, token });
+                const { data } = res;
+
+                const formatData = data.map((item: IformatNotificationData) =>
+                    formatNotificationData(item)
+                );
+                setCurrentPageNotice(formatData);
+                console.log("notice", formatData);
+            } catch (err) {
+                return err;
+            }
+        };
+        fetchNotifications();
+    }, []);
+
     return (
         <>
-            <MessageContainer >
-                <Image src="/message.svg" />
-                <BadgeContainer>1</BadgeContainer>
-            </MessageContainer>
+            <Menu offset={[-145, 10]}>
+                <MenuButton
+                    as={Button}
+                    border="none"
+                    bgColor="transparent"
+                    color="#FFFFFF"
+                    w="auto"
+                    h="24px"
+                    fontSize="text4"
+                    fontFamily="secondary"
+                    p="0"
+                    _focus={{ border: "none" }}
+                    _hover={{ backgroundColor: "none" }}
+                    _active={{ backgroundColor: "none" }}
+                >
+                    <MessageContainer>
+                        <Image src="/message.svg" />
+                        <BadgeContainer>1</BadgeContainer>
+                    </MessageContainer>
+                </MenuButton>
+                <NotificationDropdown
+                    menuList={currentPageNotice}
+                    menuTitle="Notification"
+                ></NotificationDropdown>
+            </Menu>
+
             <Menu offset={[-91, 10]}>
                 <MenuButton
                     as={Button}
