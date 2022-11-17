@@ -9,12 +9,10 @@ import { ChatIcon } from "@chakra-ui/icons";
 interface ReviewInfoProps {
     id: string;
     date: string;
-    author: [
-        {
-            _id: string;
-            name: string;
-        }
-    ];
+    author: {
+        _id: string;
+        name: string;
+    };
     likeCount: number;
     views: number;
     comments: number;
@@ -35,7 +33,7 @@ const ReviewInfo: React.FC<ReviewInfoProps> = (props) => {
                                 fontWeight="600"
                                 lineHeight="32px"
                             >
-                                {props.author[0].name}
+                                {props.author.name}
                                 <Link />
                 &nbsp;
                             </Text>

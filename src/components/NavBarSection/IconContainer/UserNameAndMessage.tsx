@@ -49,14 +49,15 @@ let socket: Socket<ServerToClientEvents, ClientToServerEvents>;
 
 const UserNameAndMessage = () => {
     const userInfo = useSelector((state: any) => state.login.userInfo);
-    // eslint-disable-next-line no-unused-vars
     const [hasNewMessage, setHasNewMessage] = useState(false);
     const { userName, userRole, userId } = userInfo;
     // eslint-disable-next-line no-unused-vars
     const [pageNumber, setPageNumber] = useState(0);
     // eslint-disable-next-line no-unused-vars
-    const [limit, setLimit] = useState(5);
+    const limit = 5;
+    const [unReadMessageLength, setUnReadMessageLength] = useState(0);
     const [currentPageNotice, setCurrentPageNotice] = useState([]);
+    const [hasRead, setHasRead] = useState(false);
     const firstName = userName.split(" ")[0];
     const dispatch = useDispatch();
     const handleLogout = () => {
@@ -94,35 +95,35 @@ const UserNameAndMessage = () => {
         });
         socket.on("message", (data) => {
             console.log(data);
-            setHasNewMessage(true);
+            setHasNewMessage(!hasNewMessage);
         });
         return () => {
             socket.off("connect");
         };
-    }, []);
+    }, [hasNewMessage, hasRead]);
 
     useEffect(() => {
+    // console.log('hasnewmessage',hasNewMessage);
         const token = localStorage.getItem("token");
         const fetchNotifications = async () => {
             try {
                 const res = await getNotifications({ pageNumber, limit, token });
                 const { data } = res;
-
-                const formatData = data.map((item: IformatNotificationData) =>
+                const formatData = data.notifications.map((item: IformatNotificationData) =>
                     formatNotificationData(item)
                 );
+                setUnReadMessageLength(data.lengthOfUnread);
                 setCurrentPageNotice(formatData);
-                console.log("notice", formatData);
             } catch (err) {
                 return err;
             }
         };
         fetchNotifications();
-    }, []);
+    }, [hasNewMessage, hasRead]);
 
     return (
         <>
-            <Menu offset={[-145, 10]}>
+            <Menu offset={[-190, 10]}>
                 <MenuButton
                     as={Button}
                     border="none"
@@ -139,12 +140,14 @@ const UserNameAndMessage = () => {
                 >
                     <MessageContainer>
                         <Image src="/message.svg" />
-                        <BadgeContainer>1</BadgeContainer>
+                        {unReadMessageLength > 0 && <BadgeContainer>{unReadMessageLength}</BadgeContainer>}
                     </MessageContainer>
                 </MenuButton>
                 <NotificationDropdown
                     menuList={currentPageNotice}
                     menuTitle="Notification"
+                    setHasRead={setHasRead}
+                    hasRead={hasRead}
                 ></NotificationDropdown>
             </Menu>
 

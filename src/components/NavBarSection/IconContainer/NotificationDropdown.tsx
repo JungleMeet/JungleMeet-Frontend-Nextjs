@@ -1,10 +1,12 @@
 import styled from "styled-components";
-import { MenuList, Icon } from "@chakra-ui/react";
+import { MenuList, MenuDivider, Text } from "@chakra-ui/react";
 import { MenuListTitle } from "../Hamburger/HamburgerDropdown";
 import NotificationDropdownItem from "./NotificationDropdownItem";
-import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 
-const NotificationTitle = styled(MenuListTitle)``;
+const NotificationTitle = styled(MenuListTitle)`
+  padding-left: 21px;
+  padding-right: 21px;
+`;
 interface INotificationDropdown {
     menuList: {
         _id: string;
@@ -15,15 +17,20 @@ interface INotificationDropdown {
         createTime: string;
     }[];
     menuTitle: string;
+    hasRead: boolean;
+    setHasRead: (value: boolean) => void;
 }
-const NotificationDropdown = ({ menuList, menuTitle }: INotificationDropdown) => {
+const NotificationDropdown = ({
+    menuList,
+    menuTitle,
+    hasRead,
+    setHasRead,
+}: INotificationDropdown) => {
     return (
         <>
             <MenuList
                 minW="180px"
                 p="0"
-                pl="21px"
-                pr="21px"
                 maxW="224px"
                 _before={{
                     position: "absolute",
@@ -38,13 +45,26 @@ const NotificationDropdown = ({ menuList, menuTitle }: INotificationDropdown) =>
                 }}
             >
                 <NotificationTitle>{menuTitle}</NotificationTitle>
-                {menuList.map(({ _id, ...rest }) => (
-                    <NotificationDropdownItem key={_id} {...rest} />
+                {menuList.map(({ ...rest }) => (
+                    <NotificationDropdownItem
+                        key={rest._id}
+                        {...rest}
+                        hasRead={hasRead}
+                        setHasRead={setHasRead}
+                    />
                 ))}
-                <div>
-                    <Icon as={ArrowLeftIcon}></Icon>
-                    <Icon as={ArrowRightIcon}></Icon>
-                </div>
+                <MenuDivider />
+                <Text
+                    color="blue.500"
+                    fontSize="text5"
+                    textAlign="center"
+                    mt="10px"
+                    mb="10px"
+                    fontWeight="400"
+                    lineHeight="lh24"
+                >
+          See all recent activity
+                </Text>
             </MenuList>
         </>
     );

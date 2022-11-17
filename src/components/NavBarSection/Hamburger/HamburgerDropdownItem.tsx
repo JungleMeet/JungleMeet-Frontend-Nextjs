@@ -10,12 +10,12 @@ interface ItemProps {
     content: string;
     color?: string;
     onClick?: MouseEventHandler<HTMLButtonElement>;
-    href: string;
+    href?: string;
 }
 
 const HamburgerDropdownItem = ({ Icon, command, content, href, ...rest }: ItemProps) => {
     return (
-        <Link href={href}>
+        <Link href={href ? href : "/"}>
             <MenuItem as="a" cursor="pointer" icon={<Icon />} command={command} {...rest} mb="18px" p="0">
                 {content}
             </MenuItem>

@@ -12,9 +12,20 @@ interface IgetNotifications{
     limit: number;
     token: string | null;
 }
+
 export const getNotifications = async ({pageNumber, limit, token}:IgetNotifications) => {
     const config = {
         headers: { Authorization: `Bearer ${token}` },
     };
     return await axiosApi.get(`/?pageNumber=${pageNumber}?limit=${limit}`, config);
+};
+
+export const readSingleNotifications = async (notificationId:string|null, token:string|null) => {
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    };
+    const reqBody = {
+        notificationId: notificationId
+    }
+    return await axiosApi.patch(`/`, reqBody, config );
 };

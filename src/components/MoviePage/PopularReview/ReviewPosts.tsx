@@ -15,7 +15,7 @@ const ReviewPosts = () => {
                 () => {};
             } else {
                 try {
-                    setReviewList(res.data);
+                    setReviewList(res.data.topComments);
                     console.log("commentInfo", res.data);
                 } catch (err) {
                     return err;

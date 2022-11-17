@@ -40,7 +40,7 @@ const formatNotificationData = ({
         case 'commented': {
             // the post author will receive "someone commented on your post"
             if(useSecondPersonNarrative){
-                content = `${triggerUserName} commented on your ${targetPostTitle}`;
+                content = `${triggerUserName} commented on ${targetPostTitle}`;
             }else{
                 // someone commented on your following post
                 content = `${triggerUserName} commented on your following post ${targetPostTitle}`;
@@ -48,14 +48,33 @@ const formatNotificationData = ({
             break;
         }
         case 'replied': {
-            // the post author will receive "someone commented on your post"
+            // the post author will receive "someone replied to your comment"
             if(useSecondPersonNarrative){
-                content = `${triggerUserName} commented on your post`;
-            }else{
-                // someone commented on your following post
-                content = `${triggerUserName} commented on your following post`;
+                content = `${triggerUserName} replied to your comment`;
             }
+            break;
         }
+        case 'published': {
+            content = `${triggerUserName} published a new post ${targetPostTitle}`;
+            break;
+        }
+        case 'followed': {
+            content = `${triggerUserName} followed you`;
+            break;
+        }
+        case 'likedComment': {
+            if(useSecondPersonNarrative){
+                content = `${triggerUserName} liked your comment`;
+            }
+            break;
+        }
+        case 'likedPost': {
+            if(useSecondPersonNarrative){
+                content = `${triggerUserName} liked your post ${targetPostTitle}`;
+            }
+            break;
+        }
+        default:
     }
 
     return {
