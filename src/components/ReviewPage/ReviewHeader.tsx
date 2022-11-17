@@ -2,19 +2,17 @@ import { Flex, Heading, Divider, IconButton, Image } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import React from "react";
 
-interface IReviewHeader {
+interface IReviewHeaderProps {
+    resourceId: number;
+    poster: string;
     title: string;
-    bgImg: string;
-    alt: string;
 }
-const ReviewHeader = ({ title, bgImg, alt }: IReviewHeader) => {
-    // const [childrenHidden, setChildrenHidden] = useState(false);
-
+const ReviewHeader = ({ resourceId, poster, title }: IReviewHeaderProps) => {
     return (
         <>
             <Flex alignItems="center" justifyContent="space-between" pt="70px">
-                <Flex alignItems="center">
-                    <Image src={bgImg} alt={alt} height="106px" width="72px"></Image>
+                <Flex alignItems="center" key={resourceId}>
+                    <Image src={poster} alt="movie poster" height="106px" width="72px"></Image>
                     <Flex direction="column" pl="36px">
                         <Heading fontSize="h4" pr="11px" color={"blue.500"}>
                             {title}
