@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import ReviewFilter from "./ReviewFilter";
 import ReviewHeader from "./ReviewHeader";
 import { getMovieDetails } from "@/utils/axiosMovieApi";
+import { Button, Flex } from "@chakra-ui/react";
 
 interface IReviewProps {
     resourceId: number;
@@ -21,7 +22,9 @@ const Review = () => {
     });
     const router = useRouter();
     const { id }: any = router.query;
-
+    const comentsPerPage = 3;
+    const [next, setNext] = useState(comentsPerPage);
+    const handleMoreComments = () => setNext(next + comentsPerPage);
     useEffect(() => {
         const fetchComments = async () => {
             try {
@@ -57,7 +60,26 @@ const Review = () => {
                 title={headerInfo.title}
             />
             <ReviewFilter reviews={reviews} />
-            <Comment comments={comments} />
+            <Comment comments={comments.slice(0, next)} />
+            <Flex justify={"center"} alignContent={"center"} pt="36px">
+                {next < reviews && (
+                    <Button
+                        bg="rose.700"
+                        borderRadius="5px"
+                        color="#fff"
+                        pt="5px"
+                        pb="5px"
+                        pl="45px"
+                        pr="45px"
+                        fontSize={"text4"}
+                        lineHeight="lh28"
+                        fontWeight="600"
+                        onClick={handleMoreComments}
+                    >
+            Load more
+                    </Button>
+                )}
+            </Flex>
         </>
     );
 };
