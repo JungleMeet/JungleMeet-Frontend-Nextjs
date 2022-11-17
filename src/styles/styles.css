@@ -122,6 +122,11 @@ div input {
   line-height: 1.1;
 }
 
+.ProseMirror p{
+  margin-top: 0;
+  padding-top:0;
+}
+
 .ProseMirror code {
   background-color: rgba(#616161, 0.1);
   color: #616161;
@@ -156,4 +161,20 @@ div input {
 .ProseMirror hr {
   border: 1px solid #d1d5db;
   margin: 2rem 0;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  height: 0;
+}
+
+.bottom-row {
+  color: #868e96;
+  margin-left: 1rem;
+  position:absolute;
+  bottom:0;
+  margin-right:1rem;
 }

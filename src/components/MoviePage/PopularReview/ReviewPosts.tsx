@@ -10,23 +10,19 @@ const ReviewPosts = () => {
     const [topCommentsLength, setTopCommentsLength] = useState(0);
     const router = useRouter();
     const { id }: any = router.query;
+
     useEffect(() => {
         const fetchComments = async () => {
-            try {
-                const res = await getCommentsByCondition(id, "createdAt", 3, 0);
-                if (res.data.length === 0) {
-                    () => {};
-                }
+            const res = await getCommentsByCondition(id, "createdAt", 3, 0);
+            if (res.data.length !== 0) {
                 setReviewList(res.data.topComments);
                 setTopCommentsLength(res.data.length);
-                console.log("commentInfo", res.data);
-            } catch (err) {
-                return err;
             }
         };
-
         fetchComments();
     }, []);
+
+    if (reviewList.length === 0) return <div>be the first one to make comments</div>;
     return (
         <>
             {(reviewList || []).length > 0 &&
