@@ -12,6 +12,8 @@ export const Wrapper = styled.div`
   margin: auto;
   margin-top: 30px;
   min-height: ${({ height }: IWrapperProps) => height};
+  position: relative;
+  padding-bottom: 1rem;
 `;
 
 export const MenuBarWrapper = styled.div`

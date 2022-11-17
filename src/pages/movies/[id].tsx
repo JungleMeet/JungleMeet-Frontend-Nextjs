@@ -55,7 +55,7 @@ const PopularReview = (): JSX.Element => {
                     {/* write a new review part using chakra-ui component */}
                     <div>
                         <Stack direction="row" spacing={4}>
-                            <Button leftIcon={<FaPen />} colorScheme="twitter" variant="solid">
+                            <Button leftIcon={<FaPen />} colorScheme="blue" variant="solid">
                 Review
                             </Button>
                         </Stack>

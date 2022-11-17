@@ -17,6 +17,7 @@ const AddComment = ({ isEditorVisible, postId }: IAddCommentProps) => {
     const submitComment = () => {
         const token = localStorage.getItem("token");
         if (!token) return;
+        if (!content) return;
         setLoading(true);
         createComment({ content, postId, token }).then(() => {
             setLoading(false);
@@ -41,8 +42,8 @@ const AddComment = ({ isEditorVisible, postId }: IAddCommentProps) => {
                         <Button
                             isLoading={loading}
                             onClick={submitComment}
-                            colorScheme="red"
-                            disabled={content?.length < 8}
+                            colorScheme="blue"
+                            disabled={content ? content?.length < 8 : true}
                         >
               Comment
                         </Button>

@@ -20,7 +20,6 @@ const DiscussionsDetailPage = () => {
     const dispatch = useDispatch();
     const toast = useToast();
 
-    // const currentPagePost = useMemo(() => postDetail, [postDetail]);
     useEffect(() => {
         const getDetail = async () => {
             try {
@@ -76,7 +75,6 @@ const DiscussionsDetailPage = () => {
                 bgImg={postDetail.bgImg}
                 toggleShowEditor={toggleShowEditor}
                 isEditorVisible={isEditorVisible}
-                isLogged={isLogged}
             />
             <AddComment isEditorVisible={isEditorVisible} postId={id} />
             <DiscussionsDetailComments postId={postDetail._id} />

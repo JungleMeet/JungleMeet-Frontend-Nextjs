@@ -21,12 +21,12 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
 
     const toast = useToast();
 
-    const { editor, clearContent, content } = useEditorController();
-
     useEffect(() => {
         const localtoken = localStorage.getItem("token");
         setToken(localtoken);
     }, []);
+
+    const { editor, clearContent, content } = useEditorController();
 
     const handleSumble = async (e: any) => {
         e.preventDefault();
@@ -43,6 +43,7 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
         setIsLoading(true);
         try {
             await addNewPost(postTitle, content, hashtag, token, bgImg);
+            clearContent();
             Router.push("/discussions");
             setIsLoading(false);
             toast({
