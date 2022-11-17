@@ -17,9 +17,15 @@ export const getPosts = async () => {
 export const getPostById = async (id: string) => {
     return await axiosApi.get(`/${id}`);
 };
+
 export const getPostsByCondition = async (nPerPage: number, pageNumber: number, sortBy: string) => {
     return await axiosApi.get(`/?nPerPage=${nPerPage}&pageNumber=${pageNumber}&sortBy=${sortBy}`);
 };
+
+export const getPostsByUserId = async (nPerPage: number, pageNumber: number, sortBy: string, userId: string) => {
+    return await axiosApi.get(`/?nPerPage=${nPerPage}&pageNumber=${pageNumber}&sortBy=${sortBy}&userId=${userId}`);
+};
+
 export const getPostsByView = async (sortBy: string) => {
     return await axiosApi.get(`/?sortBy=${sortBy}`);
 };
@@ -30,6 +36,7 @@ export const addNewPost = async (
     token: string | null,
     bgImg: string | undefined
 ) => {
+
     const config = {
         headers: { Authorization: `Bearer ${token}` },
     };
@@ -59,6 +66,5 @@ export const searchPost = ({
     keyword: string;
     page: number;
     limit: number;
-}) => {
-    return axiosApi.get(`/search/all?keyword=${keyword}&page=${page}&limit=${limit}`);
-};
+}) =>axiosApi.get(`/search/all?keyword=${keyword}&page=${page}&limit=${limit}`);
+

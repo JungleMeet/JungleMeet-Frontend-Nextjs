@@ -22,6 +22,7 @@ interface IHamburgerDropdown {
         itemIcon: IconType;
         command: string;
         content: string;
+        href: string;
     }[];
     menuTitle: string;
 }
