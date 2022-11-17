@@ -66,6 +66,5 @@ export const searchPost = ({
     keyword: string;
     page: number;
     limit: number;
-}) => {
-    return axiosApi.get(`/search/all?keyword=${keyword}&page=${page}&limit=${limit}`);
-};
+}) =>axiosApi.get(`/search/all?keyword=${keyword}&page=${page}&limit=${limit}`);
+

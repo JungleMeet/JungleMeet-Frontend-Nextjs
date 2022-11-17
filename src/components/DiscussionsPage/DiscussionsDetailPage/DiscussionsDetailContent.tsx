@@ -1,4 +1,5 @@
-import { EditIcon, TriangleUpIcon } from "@chakra-ui/icons";
+import { FaPen } from "react-icons/fa";
+import { TriangleUpIcon } from "@chakra-ui/icons";
 import { Flex, Divider, Image, Box, Text, Grid, HStack, Button } from "@chakra-ui/react";
 import React from "react";
 import DiscussionsFollowButton from "./DiscussionsFollowButton";
@@ -10,7 +11,6 @@ interface IContentProps {
     bgImg: string;
     toggleShowEditor: () => void;
     isEditorVisible: boolean;
-    isLogged: boolean;
 }
 
 const DiscussionsDetailContent = ({
@@ -19,7 +19,6 @@ const DiscussionsDetailContent = ({
     bgImg,
     toggleShowEditor,
     isEditorVisible,
-    isLogged,
 }: IContentProps) => {
     return (
         <Grid>
@@ -30,14 +29,14 @@ const DiscussionsDetailContent = ({
                     <Flex alignItems="center" mt="40px">
                         <HStack align="center" textColor="blue.500" _hover={{ color: "gray.50" }}>
                             <DiscussionsFollowButton>
-                                <Text>Follow this post</Text>
+                                <Text>Follow</Text>
                             </DiscussionsFollowButton>
                         </HStack>
 
                         <Flex alignItems="center">
                             <HStack align="center" textColor="red.500" _hover={{ color: "gray.50" }}>
                                 <DiscussionsLikeButton>
-                                    <Text>Like this post</Text>
+                                    <Text>Like</Text>
                                 </DiscussionsLikeButton>
                             </HStack>
                         </Flex>
@@ -45,12 +44,12 @@ const DiscussionsDetailContent = ({
                     <Button
                         onClick={toggleShowEditor}
                         colorScheme="blue"
-                        leftIcon={isEditorVisible ? <TriangleUpIcon /> : <EditIcon />}
+                        leftIcon={isEditorVisible ? <TriangleUpIcon /> : <FaPen />}
                         position={"absolute"}
                         bottom="60px"
                         right={"0"}
                     >
-                        {isEditorVisible ? "Hide Comment" : " Add Comment"}
+                        {isEditorVisible ? "Hide input" : " Comment"}
                     </Button>
                     <Divider mt="30px" color="gray.200" />
                 </Box>
