@@ -8,7 +8,9 @@ import Pagination from "./Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { setTotalPosts, setCurrentPagePost } from "@/app/reducer/pageSlice";
 
-interface CurrentPagePostProps {
+
+export interface CurrentPagePostProps {
+
     _id: string;
     title: string;
     hashtag: string;
