@@ -22,6 +22,7 @@ interface IHamburgerDropdown {
         content: string;
         color?: string;
         onClick?: MouseEventHandler<HTMLButtonElement>;
+        href: string;
     }[];
     menuTitle: string;
 }

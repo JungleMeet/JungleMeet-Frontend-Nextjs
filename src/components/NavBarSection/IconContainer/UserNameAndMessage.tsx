@@ -70,11 +70,13 @@ const UserNameAndMessage = () => {
             itemIcon: CgProfile,
             command: "",
             content: "My Profile",
+            href: "/userprofile",
         },
         {
             itemIcon: FiEdit,
             command: "",
             content: "Write a Post",
+            href: "",
         },
         {
             itemIcon: GoSignOut,

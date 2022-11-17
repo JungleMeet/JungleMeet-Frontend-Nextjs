@@ -10,13 +10,13 @@ const axiosApi = axios.create({
     timeout: REQUEST_TIMEOUT,
 });
 
-export const login = async (email: string, password: string) => {
+export const login = async ( email: string, password: string) => {
     const loginBody = {
         email,
-        password,
-    };
-    return await axiosApi.post("/login", loginBody);
-};
+        password
+    }
+    return await axiosApi.post("/login",loginBody);
+}
 
 export const signup = async (email: string, name: string, password: string) => {
     const signupBody = {
@@ -29,6 +29,10 @@ export const signup = async (email: string, name: string, password: string) => {
 
 export const getUserById = async (id: string) => {
     return await axiosApi.get(`/${id}`);
+};
+
+export const getUserProfile = async (userId: string) =>{
+    return await axiosApi.get(`/${userId}/profile`);
 };
 
 export const verifyToken = async (token: string | null) => {
