@@ -15,12 +15,12 @@ const ReviewPosts = () => {
         const fetchComments = async () => {
             const res = await getCommentsByCondition(id, "createdAt", 3, 0);
             if (res.data.length !== 0) {
-                setReviewList(res.data.topComments)
+                setReviewList(res.data.topComments);
                 setTopCommentsLength(res.data.length);
             }
-        }
-        fetchComments()
-    }, [])
+        };
+        fetchComments();
+    }, []);
 
     if (reviewList.length === 0) return <div>be the first one to make comments</div>;
     return (
