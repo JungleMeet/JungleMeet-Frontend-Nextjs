@@ -2,8 +2,9 @@ import { MenuList } from "@chakra-ui/react";
 import HamburgerDropdownItem from "./HamburgerDropdownItem";
 import styled from "styled-components";
 import { IconType } from "react-icons";
+import { MouseEventHandler } from "react";
 
-const MenuListTitle = styled.div`
+export const MenuListTitle = styled.div`
   // margin-left: 21px;
   margin-top: 13px;
   margin-bottom: 14px;
@@ -19,6 +20,9 @@ interface IHamburgerDropdown {
         itemIcon: IconType;
         command: string;
         content: string;
+        color?: string;
+        onClick?: MouseEventHandler<HTMLButtonElement>;
+        href?: string;
     }[];
     menuTitle: string;
 }

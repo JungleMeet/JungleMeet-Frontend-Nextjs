@@ -2,19 +2,17 @@ import { Tag, TagLabel, TagLeftIcon, HStack } from "@chakra-ui/react";
 import { Flex, Text, Link, Spacer, Box, Divider, Image } from "@chakra-ui/react";
 import { ReviewsContainer } from "./ReviewsContainer";
 import React from "react";
-import parser from "html-react-parser";
-import { dateCreatedAt } from "@/utils/dateCreateAt";
 import { ChatIcon } from "@chakra-ui/icons";
+import { dateCreatedAt } from "@/utils/dateCreateAt";
 
 interface ReviewInfoProps {
     id: string;
-    date: string;
-    author: [
-        {
-            _id: string;
-            name: string;
-        }
-    ];
+    createdAt: string;
+    author: {
+        _id: string;
+        name: string;
+        avatar: string;
+    };
     likeCount: number;
     views: number;
     comments: number;
@@ -35,12 +33,12 @@ const ReviewInfo: React.FC<ReviewInfoProps> = (props) => {
                                 fontWeight="600"
                                 lineHeight="32px"
                             >
-                                {props.author[0].name}
+                                {props.author.name}
                                 <Link />
                 &nbsp;
                             </Text>
                             <Text textColor="gray.400" fontSize="16px" fontWeight="400">
-                                <Text>{dateCreatedAt(props.date)}</Text>
+                                <Text>{dateCreatedAt(props.createdAt)}</Text>
                             </Text>
                         </Box>
                         <Spacer />
@@ -62,7 +60,7 @@ const ReviewInfo: React.FC<ReviewInfoProps> = (props) => {
                         </Box>
                     </Flex>
                     <Box fontSize="18px" lineHeight="24px" marginTop="20px">
-                        <Text>{parser(props.description)}</Text>
+                        <Text>{props.description}</Text>
                     </Box>
                     <Box display="flex" textColor="gray.600" marginTop="18.67px">
                         <Link _hover={{ textColor: "black" }} mr="5px">
@@ -76,7 +74,6 @@ const ReviewInfo: React.FC<ReviewInfoProps> = (props) => {
                             </HStack>
                         </Link>
                     </Box>
-
                     <Divider marginTop="12px" />
                 </Box>
             </Box>

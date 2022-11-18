@@ -1,6 +1,5 @@
+import ResetPassword from "@/components/Login/ResetPassword";
 import PageWrapper from "@/components/PageWrapper";
-import ReviewHeader from "@/components/ReviewPage/ReviewHeader";
-import ReviewFilter from "@/components/ReviewPage/ReviewFilter";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface IgetStaticProps {
@@ -14,13 +13,12 @@ export async function getStaticProps({ locale }: IgetStaticProps) {
     };
 }
 
-const Discussions = () => {
+const resetPassword = () => {
     return (
         <PageWrapper>
-            <ReviewHeader />
-            <ReviewFilter />
+            <ResetPassword />
         </PageWrapper>
     );
 };
 
-export default Discussions;
+export default resetPassword;

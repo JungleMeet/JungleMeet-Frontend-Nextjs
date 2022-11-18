@@ -8,6 +8,24 @@ import Pagination from "./Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { setTotalPosts, setCurrentPagePost } from "@/app/reducer/pageSlice";
 
+export interface CurrentPagePostProps {
+    _id: string;
+    title: string;
+    hashtag: string;
+    bgImg: string;
+    releaseDateRightFormat: string;
+    author: {
+        _id: string;
+        name: string;
+        avatar: string;
+    };
+    likeCount: number;
+    viewNumber: number;
+    commentCount: number;
+    content: string;
+    postId: string;
+}
+
 const DiscussionsPage = () => {
     const currentPage = useSelector((state: any) => state.page.currentPage);
     const currentPagePost = useSelector((state: any) => state.page.currentPagePost);
@@ -23,7 +41,6 @@ const DiscussionsPage = () => {
                 const { data, length } = res.data;
                 dispatch(setCurrentPagePost(data));
                 dispatch(setTotalPosts(length));
-                // console.log("discussionInfo", data);
             } catch (err) {
                 return err;
             }
@@ -31,30 +48,6 @@ const DiscussionsPage = () => {
         fetchPosts();
     }, [sortBy, currentPage]);
 
-    // Get current posts
-    // const indexOfLastPost = currentPage * postsPerPage;
-    // const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    // const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-
-    // Change page
-    // const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-    interface CurrentPagePostProps {
-        _id: string;
-        title: string;
-        hashtag: string;
-        bgImg: string;
-        releaseDateRightFormat: string;
-        author: {
-            _id: string;
-            name: string;
-            avatar: string;
-        };
-        likeCount: number;
-        viewNumber: number;
-        commentCount: number;
-        content: string;
-        postId: string;
-    }
     const currentPostsMemo = useMemo(
         () => (
             <>
