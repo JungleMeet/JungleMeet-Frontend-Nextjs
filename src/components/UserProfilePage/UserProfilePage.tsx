@@ -1,69 +1,54 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Text, Avatar, Icon } from "@chakra-ui/react";
+import { Flex, Text, Tabs, TabPanels } from "@chakra-ui/react";
 import { HiOutlineUsers, HiOutlineUserAdd, HiOutlineFlag } from "react-icons/hi";
-import { HiLightBulb } from "react-icons/hi";
 import { AxiosResponse } from "axios";
-
+import Message from "./Message";
+import ChangePassword from "./ChangePassword";
 import UserProfileHeader from "@/components/UserProfilePage/UserProfileHeader";
-import UserProfileContent from "@/components/UserProfilePage/UserProfileContent";
+import UserProfileTabs from "@/components/UserProfilePage/UserProfileTabs";
 import UserProfileSider from "@/components/UserProfilePage/UserProfileSider";
-import Discussion from "@/components/DiscussionsPage/Discussion";
-import { CurrentPagePostProps } from "@/components/DiscussionsPage/DiscussionsPage";
+import ProfileSiderDetails from "./ProfileSiderDetails";
 import { getUserProfile } from "@/utils/axiosUserApi";
-import { getPostsByUserId } from "@/utils/axiosPostApi";
+import UserPosts from "./UserPosts";
 
-const ProfileSiderDetails = (follower: { name: string; role: string; avatar: string }) => {
-    return (
-        <Flex w="40%" h="70px" flexDir={"row"} mr="5%">
-            <Avatar
-                name={follower.name}
-                src={follower.avatar}
-                borderRadius="full"
-                width="40px"
-                height="40px"
-                margin="auto"
-            ></Avatar>
-            <Flex flexDir={"column"} ml="18px" flex-grow={1} margin="auto">
-                <Text
-                    color="blue.500"
-                    fontWeight={500}
-                    fontStyle="normal"
-                    maxWidth="90px"
-                    fontSize="text5"
-                    h="20px"
-                    overflow="hidden"
-                    lineHeight="lh20"
-                    pb="5px"
-                >
-                    {follower.name}
-                </Text>
-                <Flex flexDir={"row"} mt="1px" h="23px">
-                    <Icon as={HiLightBulb} h={4} color="gray.500" mr="3px" />
-                    <Text mt="4px" color="gray.500" fontSize={"text6"} fontWeight="400" lineHeight="12px">
-                        {follower.role === "admin" ? "Admin User" : "General User"}
-                    </Text>
-                </Flex>
-            </Flex>
-        </Flex>
-    );
-};
 interface userProfileProps {
     queryUserId: string;
 }
+
+interface IUserProfile {
+    userRole: string;
+    userName: string;
+    userBgImg: string;
+    userAvatar: string;
+    followersList: {
+        name: string;
+        role: string;
+        avatar?: string;
+    }[];
+    followingsList: {
+        name: string;
+        role: string;
+        avatar?: string;
+    }[];
+    followingPostsList: {
+        title: string;
+    }[];
+}
 const UserProfilePage = ({ queryUserId }: userProfileProps) => {
     const defaultUserProfile = {
-        userRole: "Nan",
-        userName: "Nan",
-        userBgImg: "Nan",
-        userAvatar: "Nan",
-        followersList: [],
-        followingsList: [],
-        followingPostsList: [],
+        userRole: "",
+        userName: "",
+        userBgImg: "",
+        userAvatar: "",
+        followersList: [{ name: "", avatar: "", role: "" }],
+        followingsList: [{ name: "", avatar: "", role: "" }],
+        followingPostsList: [{ title: "" }],
     };
-    const [userProfile, setUserProfile] = useState(defaultUserProfile);
-    const [userPost, setUserPost] = useState<CurrentPagePostProps[]>([]);
+    const [userProfile, setUserProfile] = useState<IUserProfile>(defaultUserProfile);
     const [userId, setUserId] = useState("");
     const [token, setToken] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [currentTab, setCurrentTab] = useState("My Posts");
     useEffect(() => {
         const getUserProfileDetail = async () => {
             try {
@@ -77,21 +62,15 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                     )!;
                     setUserProfile(profileResponse.data);
                     setUserId(userInfo.userId);
-                    const postResponse: AxiosResponse = await getPostsByUserId(
-                        3,
-                        0,
-                        "createdAt",
-                        queryUserId === userInfo.userId ? userInfo.userId : queryUserId
-                    )!;
-                    setUserPost(postResponse.data.data);
                 } else {
                 }
             } catch (err) {
-                console.log(err);
+                return err;
             }
         };
         getUserProfileDetail();
     }, []);
+    console.log("userProfile", userProfile);
     return (
         <>
             <UserProfileHeader
@@ -104,48 +83,36 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                 followed={userId in userProfile.followingsList}
                 token={token}
             />
-
             <Flex flexDirection="row" pos="relative" mt="28px" w="100%">
-                <Flex w="816px" flexDirection="column">
-                    <UserProfileContent isSelf={userId === queryUserId} userName={userProfile.userName} />
-                    {userPost?.map(
-                        ({
-                            _id,
-                            title,
-                            content,
-                            releaseDateRightFormat,
-                            hashtag,
-                            bgImg,
-                            author,
-                            likeCount,
-                            viewNumber,
-                            commentCount,
-                        }: CurrentPagePostProps) => (
-                            <Discussion
-                                key={_id}
-                                postId={_id}
-                                hashtag={hashtag}
-                                src={bgImg}
-                                title={title}
-                                name={author}
-                                date={releaseDateRightFormat}
-                                like={likeCount}
-                                views={viewNumber}
-                                comments={commentCount}
-                                description={content}
-                            />
-                        )
-                    )}
+                <Flex maxW="816px" flexDirection="column">
+                    <Tabs>
+                        <UserProfileTabs isLoading={isLoading} setCurrentTab={setCurrentTab} />
+                        <TabPanels>
+                            {currentTab === "My Posts" ? (
+                                <UserPosts queryUserId={queryUserId} setIsLoading={setIsLoading} />
+                            ) : currentTab === "Message" ? (
+                                <Message setIsLoading={setIsLoading}></Message>
+                            ) : (
+                                <ChangePassword setIsLoading={setIsLoading}></ChangePassword>
+                            )}
+                        </TabPanels>
+                    </Tabs>
                 </Flex>
-                <Flex ml="auto" flexDirection="column">
+                <Flex mr="0px" ml="auto" flexDirection="column" maxW="403px">
                     <UserProfileSider
                         siderName="Follower"
                         count={userProfile.followersList.length}
                         icon={HiOutlineUsers}
-                        width={"403px"}
-                        marginTop={"0"}
+                        marginTop="0"
                     >
-                        <Flex flexDir={"row"} w="100%" flexWrap="wrap" ml="5%" mr="5%">
+                        <Flex
+                            display="grid"
+                            w="100%"
+                            flexWrap="wrap"
+                            gridTemplateColumns="1fr 1fr"
+                            columnGap="28.2px"
+                            rowGap="15px"
+                        >
                             {userProfile.followersList.length > 6
                                 ? userProfile.followersList.slice(0, 6).map(ProfileSiderDetails)
                                 : userProfile.followersList.map(ProfileSiderDetails)}
@@ -156,10 +123,16 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                         siderName="Following"
                         count={userProfile.followingsList.length}
                         icon={HiOutlineUserAdd}
-                        width={"403px"}
                         marginTop={"25px"}
                     >
-                        <Flex flexDir={"row"} w="100%" flexWrap="wrap" ml="5%" mr="5%">
+                        <Flex
+                            display="grid"
+                            w="100%"
+                            flexWrap="wrap"
+                            gridTemplateColumns="1fr 1fr"
+                            columnGap="28.2px"
+                            rowGap="15px"
+                        >
                             {userProfile.followingsList.length > 6
                                 ? userProfile.followingsList.slice(0, 6).map(ProfileSiderDetails)
                                 : userProfile.followingsList.map(ProfileSiderDetails)}
@@ -170,10 +143,16 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                         siderName="Followed Post"
                         count={userProfile.followingPostsList.length}
                         icon={HiOutlineFlag}
-                        width={"403px"}
                         marginTop={"25px"}
                     >
-                        <Flex flexDir={"row"} w="100%" flexWrap="wrap" ml="5%" mr="5%">
+                        <Flex
+                            display="grid"
+                            w="100%"
+                            flexWrap="wrap"
+                            gridTemplateColumns="1fr 1fr"
+                            columnGap="28.2px"
+                            rowGap="15px"
+                        >
                             {userProfile.followingPostsList.length > 6
                                 ? userProfile.followingPostsList
                                     .slice(0, 6)

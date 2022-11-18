@@ -46,7 +46,6 @@ const UserProfileHeader = ({
                     p="0"
                     zIndex={5}
                 />
-
                 <Flex flexDir="row">
                     <Avatar
                         key={userName}
@@ -68,7 +67,7 @@ const UserProfileHeader = ({
                                 bottom="0"
                                 fontWeight="500"
                             >
-                                {userRole === "admin" ? "Admin User" : "General User"}
+                                {userRole === "admin" ? "Admin_User" : "General_User"}
                             </Text>
                         </Flex>
                         <Text

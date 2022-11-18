@@ -36,7 +36,6 @@ const ResetPassword = () => {
     const router = useRouter();
     const { code } = router.query;
     const codeString = code as string;
-    console.log(codeString);
     const [email, setEmail] = useState("");
     const [emailErrorMsg, setEmailErrorMsg] = useState("");
     const [pwdErrorMsg, setPwdErrorMsg] = useState("");

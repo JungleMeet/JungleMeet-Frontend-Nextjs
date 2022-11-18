@@ -6,48 +6,52 @@ interface UserProfileSiderProps {
     count: number;
     icon: any;
     children: ReactNode;
-    width: string;
     marginTop: string;
 }
 const UserProfileSider = (props: UserProfileSiderProps) => {
     return (
         <Box
-            w={props.width}
+            w="100%"
             backgroundColor="gray.100"
             border-radius="5px"
-            overflow="hidden"
             marginTop={props.marginTop}
+            pl="21px"
+            pt="13px"
+            pr="21px"
+            pb="23px"
         >
             <Flex
-                mr={0}
-                h="58px"
                 w="100%"
+                h="auto"
                 flexDirection="row"
                 fontWeight={600}
                 backgroundColor="gray.100"
                 alignItems="center"
             >
-                <Icon ml="5%" w={5} h={5} as={props.icon} />
+                <Icon w="18px" h="18px" as={props.icon} />
                 <Text ml={3} lineHeight="lh32" fontSize="text2" color="black">
                     {props.siderName}
                 </Text>
-                <Text pl={2} lineHeight="lh32" fontSize="text3" color="gray.500">
+                <Text pl={2} lineHeight="lh24" fontSize="text3" color="gray.500">
                     {props.count}
                 </Text>
-                <Button right="10%" ml="auto">
-                    {" "}
-                    <Text lineHeight="lh32" fontSize="text3" color="rose.600">
-            More {">"}
-                    </Text>{" "}
+                <Button
+                    ml="auto"
+                    p="0"
+                    lineHeight="lh28"
+                    fontSize="text3"
+                    color="rose.600"
+                    fontWeight="500"
+                >
+          More {">"}
                 </Button>
             </Flex>
             <Box
-                w={8}
-                h="4px"
+                h="1px"
                 borderColor="gray.400"
                 borderTop="2px"
                 borderTopColor="gray.400"
-                width="90%"
+                width="100%"
                 margin="auto"
             />
             {props.children}

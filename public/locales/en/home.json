@@ -21,5 +21,10 @@
   "sortedByTitle": "Sorted By",
   "mostRecentOption": "Most Recent",
   "mostViewedOption": "Most Viewed",
-  "jumpTo": "Jump To"
+  "jumpTo": "Jump To",
+
+  "myPosts": "My Posts",
+  "message": "Message",
+  "changePassword": "Change Password"
+
 }
