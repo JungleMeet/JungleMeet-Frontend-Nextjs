@@ -110,7 +110,7 @@ export default function FooterUpperPart() {
                         <Link fontSize={"text4"} href={"#"}>
               Disscusion
                         </Link>
-                        <Link fontSize={"text4"} href={"#"}>
+                        <Link fontSize={"text4"} href={"/aboutpage"}>
               Contact Us
                         </Link>
                     </Stack>

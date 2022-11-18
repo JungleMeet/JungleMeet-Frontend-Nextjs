@@ -5,7 +5,7 @@ import Members from "./Members";
 const aboutPage = () => {
     return (
         <Flex gap="20px">
-            <Flex flexDirection="column" width="945px" height="auto" padding="none" bgColor="gray.100">
+            <Flex flexDirection="column" width="945px" height="auto" padding="none" bgColor="gray.100" zIndex="2">
                 <Box ml="28px" mt="34px">
                     <Image fill="black" src="/JungleMeetLogoBlackText.svg" alt="logo of jungle meet" />
                 </Box>
@@ -23,7 +23,7 @@ const aboutPage = () => {
             people.{" "}
                     </Text>
                 </Box>
-                <Box ml="28px" mt="40px">
+                <Box ml="28px" mr="10px" mt="40px">
                     <Text
                         color="#881337"
                         fontFamily="Inter"
@@ -49,7 +49,7 @@ const aboutPage = () => {
                 </Box>
                 <Members />
             </Flex>
-            <Flex>
+            <Flex flexDirection="column" position="relative">
                 <Box width="279px" height="271px" bgColor="gray.100">
                     <Text
                         mt="26px"
@@ -80,6 +80,9 @@ const aboutPage = () => {
                     >
             This product uses the TMDB API but is not endorsed or certified by TMDB.
                     </Text>
+                </Box>
+                <Box top="740px" left="-182px" position="absolute" width="679px">
+                    <Image src="/movieaction.png" alt="movie action image"/>
                 </Box>
             </Flex>
         </Flex>
