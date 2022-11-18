@@ -13,7 +13,13 @@ function TeamMember({ memberName, avatar, title, email, linkedin }: ITeamMemberP
     return (
         <Flex mb="40px" flexDirection="column" alignContent="center">
             <Flex>
-                <Image boxSize="60px" borderRadius="full" src="Avatar.jpg" alt="avatar image" marginRight="10px"/>
+                <Image
+                    boxSize="60px"
+                    borderRadius="full"
+                    src="Avatar.jpg"
+                    alt="avatar image"
+                    marginRight="10px"
+                />
                 <Box>
                     <Text
                         color="#000"
@@ -47,7 +53,7 @@ function TeamMember({ memberName, avatar, title, email, linkedin }: ITeamMemberP
                     fontSize="16px"
                     lineHeight="20px"
                 >
-            Email: {email}
+          Email: {email}
                 </Text>
                 <Text
                     color="#000"
@@ -56,8 +62,8 @@ function TeamMember({ memberName, avatar, title, email, linkedin }: ITeamMemberP
                     fontWeight="400"
                     fontSize="16px"
                     lineHeight="20px"
-                >   
-            LinkedIn: {linkedin}
+                >
+          LinkedIn: {linkedin}
                 </Text>
             </Box>
         </Flex>

@@ -5,7 +5,14 @@ import Members from "./Members";
 const aboutPage = () => {
     return (
         <Flex gap="20px">
-            <Flex flexDirection="column" width="945px" height="auto" padding="none" bgColor="gray.100" zIndex="2">
+            <Flex
+                flexDirection="column"
+                width="945px"
+                height="auto"
+                padding="none"
+                bgColor="gray.100"
+                zIndex="2"
+            >
                 <Box ml="28px" mt="34px">
                     <Image fill="black" src="/JungleMeetLogoBlackText.svg" alt="logo of jungle meet" />
                 </Box>
@@ -82,7 +89,7 @@ const aboutPage = () => {
                     </Text>
                 </Box>
                 <Box top="740px" left="-182px" position="absolute" width="679px">
-                    <Image src="/movieaction.png" alt="movie action image"/>
+                    <Image src="/movieaction.png" alt="movie action image" />
                 </Box>
             </Flex>
         </Flex>
