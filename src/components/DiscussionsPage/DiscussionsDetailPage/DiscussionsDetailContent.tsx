@@ -11,6 +11,9 @@ interface IContentProps {
     bgImg: string;
     toggleShowEditor: () => void;
     isEditorVisible: boolean;
+    userId: string;
+    isLogged: boolean;
+    currentId: string;
 }
 
 const DiscussionsDetailContent = ({
@@ -19,6 +22,9 @@ const DiscussionsDetailContent = ({
     bgImg,
     toggleShowEditor,
     isEditorVisible,
+    userId,
+    isLogged,
+    currentId,
 }: IContentProps) => {
     return (
         <Grid>
@@ -27,30 +33,58 @@ const DiscussionsDetailContent = ({
                     <Image src={bgImg}></Image>
                     <Text mt="40px">{content}</Text>
                     <Flex alignItems="center" mt="40px">
-                        <HStack align="center" textColor="blue.500" _hover={{ color: "gray.50" }}>
-                            <DiscussionsFollowButton>
-                                <Text>Follow</Text>
-                            </DiscussionsFollowButton>
-                        </HStack>
-
-                        <Flex alignItems="center">
-                            <HStack align="center" textColor="red.500" _hover={{ color: "gray.50" }}>
-                                <DiscussionsLikeButton>
-                                    <Text>Like</Text>
-                                </DiscussionsLikeButton>
-                            </HStack>
+                        {isLogged ? (
+                            <>
+                                {userId === currentId ? (
+                                    <Flex alignItems="center">
+                                        <HStack align="center" textColor="red.500" _hover={{ color: "gray.50" }}>
+                                            <DiscussionsLikeButton>
+                                                <Text>Like this post</Text>
+                                            </DiscussionsLikeButton>
+                                        </HStack>
+                                    </Flex>
+                                ) : (
+                                    <>
+                                        <HStack align="center" textColor="gray.500" _hover={{ color: "gray.50" }}>
+                                            <DiscussionsFollowButton>
+                                                <Text>Follow post</Text>
+                                            </DiscussionsFollowButton>
+                                        </HStack>
+                                        <Flex alignItems="center">
+                                            <HStack align="center" textColor="gray.500" _hover={{ color: "gray.50" }}>
+                                                <DiscussionsLikeButton>
+                                                    <Text>Like</Text>
+                                                </DiscussionsLikeButton>
+                                            </HStack>
+                                        </Flex>
+                                    </>
+                                )}
+                            </>
+                        ) : (
+                            ""
+                        )}
+                        <Flex alignItems="center" ml="10px">
+                            {isEditorVisible ? (
+                                <Button
+                                    onClick={toggleShowEditor}
+                                    leftIcon={isEditorVisible ? <TriangleUpIcon /> : <FaPen />}
+                                    height="37px"
+                                >
+                                    <Text>Hide Comment</Text>
+                                </Button>
+                            ) : (
+                                <Button
+                                    onClick={toggleShowEditor}
+                                    colorScheme="blue"
+                                    leftIcon={isEditorVisible ? <TriangleUpIcon /> : <FaPen />}
+                                    height="37px"
+                                >
+                                    <Text>Add Comment</Text>
+                                </Button>
+                            )}
                         </Flex>
                     </Flex>
-                    <Button
-                        onClick={toggleShowEditor}
-                        colorScheme="blue"
-                        leftIcon={isEditorVisible ? <TriangleUpIcon /> : <FaPen />}
-                        position={"absolute"}
-                        bottom="60px"
-                        right={"0"}
-                    >
-                        {isEditorVisible ? "Hide input" : " Comment"}
-                    </Button>
+
                     <Divider mt="30px" color="gray.200" />
                 </Box>
             </Flex>

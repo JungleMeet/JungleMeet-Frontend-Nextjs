@@ -16,10 +16,14 @@ const DiscussionsDetailPage = () => {
     const [postDetail, setPostDetail] = useState("" as any);
     const [userDetail, setUserDetail] = useState("" as any);
     const isLogged = useSelector((state: any) => state.login.isLogged);
+    const userInfo = useSelector((state: any) => state.login.userInfo);
     const [isEditorVisible, setIsEditorVisible] = useState(false);
     const dispatch = useDispatch();
     const toast = useToast();
+    const [currentId, setCurrentId] = useState("");
+    const [userRole, setUserRole] = useState("");
 
+    // const currentPagePost = useMemo(() => postDetail, [postDetail]);
     useEffect(() => {
         const getDetail = async () => {
             try {
@@ -35,6 +39,11 @@ const DiscussionsDetailPage = () => {
         };
         getDetail();
     }, []);
+
+    useEffect(() => {
+        setUserRole(userInfo?.userRole);
+        setCurrentId(userInfo?.userId);
+    }, [userInfo]);
 
     useEffect(() => {
         setIsEditorVisible(isLogged);
@@ -66,15 +75,21 @@ const DiscussionsDetailPage = () => {
                 name={userDetail.name}
                 avatar={userDetail.avatar}
                 userId={userDetail._id}
+                userRole={userRole}
+                currentId={currentId}
                 date={postDetail.createdAt}
                 like={postDetail.like?.length}
+                isLogged={isLogged}
             />
             <DiscussionsDetailContent
                 postId={postDetail._id}
                 content={postDetail.content}
                 bgImg={postDetail.bgImg}
+                currentId={currentId}
+                userId={userDetail._id}
                 toggleShowEditor={toggleShowEditor}
                 isEditorVisible={isEditorVisible}
+                isLogged={isLogged}
             />
             <AddComment isEditorVisible={isEditorVisible} postId={id} />
             <DiscussionsDetailComments postId={postDetail._id} />

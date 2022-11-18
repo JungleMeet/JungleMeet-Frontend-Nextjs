@@ -6,15 +6,14 @@ import React from "react";
 export const DiscussionsLikeButton = ({ children }: { children: React.ReactNode }) => {
     return (
         <Button
-            bg="red.200"
-            ml="10px"
+            bg="gray.200"
             _hover={{
                 background: "red.400",
 
                 border: "none",
             }}
             _focus={{ border: "none" }}
-            width="176px"
+            width="84px"
             height="37px"
         >
             <Icon as={MdOutlineFavorite} mr="5px" />
@@ -26,14 +25,15 @@ export const DiscussionsLikeButton = ({ children }: { children: React.ReactNode 
 const DiscussionsFollowButton = ({ children }: { children: React.ReactNode }) => {
     return (
         <Button
-            bg="blue.200"
+            bg="gray.200"
+            mr="10px"
             _hover={{
                 background: "blue.400",
                 color: "gray.50",
                 border: "none",
             }}
             _focus={{ border: "none" }}
-            width="176px"
+            width="140px"
             height="37px"
         >
             <Icon as={MdAssistantPhoto} mr="5px" />
