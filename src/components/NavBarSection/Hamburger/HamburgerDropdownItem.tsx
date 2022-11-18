@@ -1,4 +1,5 @@
 import { MenuItem } from "@chakra-ui/react";
+import { MouseEventHandler } from "react";
 import { IconType } from "react-icons";
 import Link from "next/link";
 
@@ -7,13 +8,15 @@ interface ItemProps {
     Icon: IconType;
     command: string;
     content: string;
-    href: string;
+    color?: string;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+    href?: string;
 }
 
-const HamburgerDropdownItem = ({ Icon, command, content, href }: ItemProps) => {
+const HamburgerDropdownItem = ({ Icon, command, content, href, ...rest }: ItemProps) => {
     return (
-        <Link href={href}>
-            <MenuItem as="a" cursor="pointer" icon={<Icon />} command={command} mb="18px" p="0">
+        <Link href={href ? href : "/"}>
+            <MenuItem as="a" cursor="pointer" icon={<Icon />} command={command} {...rest} mb="18px" p="0">
                 {content}
             </MenuItem>
         </Link>

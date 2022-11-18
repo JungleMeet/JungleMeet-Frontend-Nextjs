@@ -17,19 +17,19 @@ const Hamburger = () => {
             itemIcon: TbMovie,
             command: "",
             content: "All Movies",
-            href: "",
+            href: "/",
         },
         {
             itemIcon: HiOutlineFire,
             command: "",
             content: "Now Playing",
-            href: "",
+            href: "/",
         },
         {
             itemIcon: MdPeopleOutline,
             command: "",
             content: "Movie Discussion",
-            href: "",
+            href: "/",
         },
     ];
     return (
