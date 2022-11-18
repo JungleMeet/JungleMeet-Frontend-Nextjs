@@ -49,3 +49,8 @@ export const emailResetPwd = async (code: string, email: string, newPwd: string)
     };
     return await axiosApi.patch(`/email?code=${code}`, reqBody);
 };
+
+export const toggleFollowing = async (token: string | null, following: string) => {
+
+    return await axiosApi.put('/following/', {following}, {headers: { Authorization: `Bearer ${token}` }});
+}

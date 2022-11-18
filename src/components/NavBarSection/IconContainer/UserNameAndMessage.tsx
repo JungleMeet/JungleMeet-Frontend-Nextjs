@@ -39,7 +39,7 @@ const UserNameAndMessage = () => {
             itemIcon: CgProfile,
             command: "",
             content: "My Profile",
-            href: "/userprofile",
+            href: "/userprofile/" + userInfo.userId,
         },
         {
             itemIcon: FiEdit,

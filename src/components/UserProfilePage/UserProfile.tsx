@@ -27,7 +27,7 @@ const ProfileSiderDetails = (follower: { name: string; role: string; avatar: str
                 <Text
                     color="blue.500"
                     fontWeight={500}
-                    font-style="normal"
+                    fontStyle="normal"
                     maxWidth="90px"
                     fontSize="text5"
                     h="20px"
@@ -40,15 +40,17 @@ const ProfileSiderDetails = (follower: { name: string; role: string; avatar: str
                 <Flex flexDir={"row"} mt="1px" h="23px">
                     <Icon as={HiLightBulb} h={4} color="gray.500" mr="3px" />
                     <Text mt="4px" color="gray.500" fontSize={"text6"} fontWeight="400" lineHeight="12px">
-                        {follower.role === "admin" ? "Admin" : "General User"}
+                        {follower.role === "admin" ? "Admin User" : "General User"}
                     </Text>
                 </Flex>
             </Flex>
         </Flex>
     );
 };
-
-const UserProfilePage = () => {
+interface userProfileProps {
+    queryUserId: string;
+}
+const UserProfilePage = ({ queryUserId }: userProfileProps) => {
     const defaultUserProfile = {
         userRole: "Nan",
         userName: "Nan",
@@ -60,20 +62,26 @@ const UserProfilePage = () => {
     };
     const [userProfile, setUserProfile] = useState(defaultUserProfile);
     const [userPost, setUserPost] = useState<CurrentPagePostProps[]>([]);
-
+    const [userId, setUserId] = useState("");
+    const [token, setToken] = useState("");
     useEffect(() => {
         const getUserProfileDetail = async () => {
             try {
                 const userInfoLocalStorage = localStorage.getItem("userInfo");
                 if (userInfoLocalStorage) {
                     const userInfo = JSON.parse(userInfoLocalStorage);
-                    const profileResponse: AxiosResponse = await getUserProfile(userInfo.userId)!;
+                    const token = localStorage.getItem("token");
+                    setToken(token!);
+                    const profileResponse: AxiosResponse = await getUserProfile(
+                        queryUserId === userInfo.userId ? userInfo.userId : queryUserId
+                    )!;
                     setUserProfile(profileResponse.data);
+                    setUserId(userInfo.userId);
                     const postResponse: AxiosResponse = await getPostsByUserId(
                         3,
                         0,
                         "createdAt",
-                        userInfo.userId
+                        queryUserId === userInfo.userId ? userInfo.userId : queryUserId
                     )!;
                     setUserPost(postResponse.data.data);
                 } else {
@@ -84,7 +92,6 @@ const UserProfilePage = () => {
         };
         getUserProfileDetail();
     }, []);
-
     return (
         <>
             <UserProfileHeader
@@ -92,11 +99,15 @@ const UserProfilePage = () => {
                 userBgImg={userProfile.userBgImg}
                 userRole={userProfile.userRole}
                 userName={userProfile.userName}
+                isSelf={userId === queryUserId}
+                queryUserId={queryUserId}
+                followed={userId in userProfile.followingsList}
+                token={token}
             />
 
             <Flex flexDirection="row" pos="relative" mt="28px" w="100%">
                 <Flex w="816px" flexDirection="column">
-                    <UserProfileContent />
+                    <UserProfileContent isSelf={userId === queryUserId} userName={userProfile.userName} />
                     {userPost?.map(
                         ({
                             _id,
@@ -135,8 +146,8 @@ const UserProfilePage = () => {
                         marginTop={"0"}
                     >
                         <Flex flexDir={"row"} w="100%" flexWrap="wrap" ml="5%" mr="5%">
-                            {userProfile.followersList.length > 4
-                                ? userProfile.followersList.slice(0, 4).map(ProfileSiderDetails)
+                            {userProfile.followersList.length > 6
+                                ? userProfile.followersList.slice(0, 6).map(ProfileSiderDetails)
                                 : userProfile.followersList.map(ProfileSiderDetails)}
                         </Flex>
                     </UserProfileSider>
@@ -149,8 +160,8 @@ const UserProfilePage = () => {
                         marginTop={"25px"}
                     >
                         <Flex flexDir={"row"} w="100%" flexWrap="wrap" ml="5%" mr="5%">
-                            {userProfile.followingsList.length > 4
-                                ? userProfile.followingsList.slice(0, 4).map(ProfileSiderDetails)
+                            {userProfile.followingsList.length > 6
+                                ? userProfile.followingsList.slice(0, 6).map(ProfileSiderDetails)
                                 : userProfile.followingsList.map(ProfileSiderDetails)}
                         </Flex>
                     </UserProfileSider>
@@ -163,9 +174,9 @@ const UserProfilePage = () => {
                         marginTop={"25px"}
                     >
                         <Flex flexDir={"row"} w="100%" flexWrap="wrap" ml="5%" mr="5%">
-                            {userProfile.followingPostsList.length > 4
+                            {userProfile.followingPostsList.length > 6
                                 ? userProfile.followingPostsList
-                                    .slice(0, 4)
+                                    .slice(0, 6)
                                     .map((followingPosts: { title: string }) => (
                                         <Text
                                             key={userProfile.userName + followingPosts.title}
