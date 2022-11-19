@@ -15,7 +15,7 @@ const NowPlayingMovies = () => {
     const [movieList, setMovieList] = useState([]);
     const [moviePage, setMoviePage] = useState(2);
     const [noMore, setNoMore] = useState(true);
-    //const nowPlayingMoviesMemo = useMemo(() => movieList, [movieList]);
+    // const nowPlayingMoviesMemo = useMemo(() => movieList, [movieList]);
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -29,27 +29,27 @@ const NowPlayingMovies = () => {
         fetchMovies();
     }, []);
 
-    console.log(movieList)
+    console.log(movieList);
 
     useEffect(() => {
         return () => {
-            setMoviePage(2)
-            setMovieList([])
-        }
-    }, [setMovieList, setMoviePage])
+            setMoviePage(2);
+            setMovieList([]);
+        };
+    }, [setMovieList, setMoviePage]);
 
-    //const loadMore = () => {
+    // const loadMore = () => {
     //    setMoviePage((currentPage) => currentPage + 1);
-    //};
+    // };
 
-    //useEffect(() => {
+    // useEffect(() => {
 
     //    if (moviePage !== 1) {
     //        getNowPlaying(moviePage).then(({ data }) => {
     //            setMovieList((currentData) => currentData.concat(data));
     //        });
     //    }
-    //}, [moviePage]);
+    // }, [moviePage]);
 
     const fetchMovies = async () => {
         try {
@@ -62,14 +62,14 @@ const NowPlayingMovies = () => {
 
     const loadMore = async () => {
         const fetchMoreMovie = await fetchMovies();
-        //setMovieList([...movieList, ...fetchMoreMovie])
+        // setMovieList([...movieList, ...fetchMoreMovie])
         setMovieList((currentData) => currentData.concat(fetchMoreMovie));
         if (fetchMoreMovie.length === 0 || fetchMoreMovie.length < 20) {
-            setNoMore(false)
+            setNoMore(false);
         }
-        setMoviePage(moviePage + 1)
-        console.log(moviePage)
-    }
+        setMoviePage(moviePage + 1);
+        console.log(moviePage);
+    };
 
     return (
         <InfiniteScroll
@@ -85,8 +85,9 @@ const NowPlayingMovies = () => {
                     textAlign={"center"}
                     marginTop={"105px"}
                 >
-                    loading...
-                </Text>}
+          loading...
+                </Text>
+            }
             endMessage={
                 <Text
                     fontFamily={"body"}
@@ -96,7 +97,7 @@ const NowPlayingMovies = () => {
                     textAlign={"center"}
                     marginTop={"105px"}
                 >
-                    The end
+          The end
                 </Text>
             }
         >

@@ -39,30 +39,32 @@ const AllMovies = () => {
             getAllMovies(moviePage).then(({ data }) => {
                 setAllMovies((currentData) => currentData.concat(data));
             });
-            console.log(moviePage)
+            console.log(moviePage);
         }
     }, [moviePage]);
 
     return (
         <>
             <Grid gridTemplateColumns={"repeat(5,20%)"} gridGap={"72px 4px"}>
-                {allMoviesMemo?.map(({ poster, title, resourceId, voteAverage, genreNames }: IMovieList) => {
-                    return (
-                        <>
-                            <Flex
-                                flexDirection={"column"}
-                                width={"194px"}
-                                height={"436px"}
-                                backgroundColor={"rgba(0, 0, 0, 90%)"}
-                                color={"#ffffff"}
-                                borderRadius={"5px"}
-                            >
-                                <MovieCardThumbnail src={poster} title={title} id={resourceId} />
-                                <MovieCardInfo title={title} tmdb={voteAverage} type={genreNames} />
-                            </Flex>
-                        </>
-                    );
-                })}
+                {allMoviesMemo?.map(
+                    ({ poster, title, resourceId, voteAverage, genreNames }: IMovieList) => {
+                        return (
+                            <>
+                                <Flex
+                                    flexDirection={"column"}
+                                    width={"194px"}
+                                    height={"436px"}
+                                    backgroundColor={"rgba(0, 0, 0, 90%)"}
+                                    color={"#ffffff"}
+                                    borderRadius={"5px"}
+                                >
+                                    <MovieCardThumbnail src={poster} title={title} id={resourceId} />
+                                    <MovieCardInfo title={title} tmdb={voteAverage} type={genreNames} />
+                                </Flex>
+                            </>
+                        );
+                    }
+                )}
             </Grid>
             <Center marginTop={"105px"}>
                 <Button
@@ -73,13 +75,8 @@ const AllMovies = () => {
                     _focus={"none"}
                     onClick={loadMoreMovies}
                 >
-                    <Text
-                        fontFamily={"body"}
-                        fontWeight={"700"}
-                        fontSize={"h3"}
-                        lineHeight={"40px"}
-                    >
-                        Load More
+                    <Text fontFamily={"body"} fontWeight={"700"} fontSize={"h3"} lineHeight={"40px"}>
+            Load More
                     </Text>
                 </Button>
             </Center>
