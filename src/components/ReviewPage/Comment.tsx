@@ -3,9 +3,8 @@ import { isEmpty } from "lodash";
 import ReviewAvatar from "./ReviewAvatar";
 import { dateCreatedAt } from "@/utils/dateCreateAt";
 import { Text, Button, Box } from "@chakra-ui/react";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { toggleHideChildrenComment } from "@/app/reducer/commentSlice";
-
 
 export interface ICommentProps {
     topComments: {
@@ -39,14 +38,12 @@ function replyComments(item: any) {
 }
 
 const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
+    const hiddenIdArray = useSelector((state: any) => state.comments.hiddenIdArray);
+    const dispatch = useDispatch();
 
-    const hiddenIdArray=useSelector((state:any)=>state.comments.hiddenIdArray)
-    const dispatch=useDispatch()
-
-    const toggleHide=(id:string)=>{
-
-        dispatch(toggleHideChildrenComment(id))
-    }
+    const toggleHide = (id: string) => {
+        dispatch(toggleHideChildrenComment(id));
+    };
 
     return (
         <>
@@ -60,13 +57,13 @@ const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
                 createdAt,
                 // like,
                 author,
-                // mentionedUserId,
+            // mentionedUserId,
             } = item;
             return (
-                // <Stack 
-                // // mb="5px" 
-                // // pb="30px" 
-                //     bg="#F9FAFB" key={_id}>
+            // <Stack
+            // // mb="5px"
+            // // pb="30px"
+            //     bg="#F9FAFB" key={_id}>
                 <Box pt="25px" pl="54.4px" position={"relative"} key={_id}>
                     <>
                         <ReviewAvatar
@@ -75,7 +72,7 @@ const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
                             createdAt={dateCreatedAt(createdAt)}
                             avatar={author?.avatar}
                         />
-                        <div className="before-content" onClick={()=>toggleHide(_id)}></div>
+                        <div className="before-content" onClick={() => toggleHide(_id)}></div>
 
                         {/* <div className="pre-comment-content"> hello</div> */}
                         <Box pl="63px" className="comment-content">
@@ -94,10 +91,10 @@ const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
                         </Box>
                         {/* {mentionedUserId}
                     {replyComments(item)} */}
-                        {hiddenIdArray.includes(_id)?null:replyComments(item)}
+                        {hiddenIdArray.includes(_id) ? null : replyComments(item)}
                     </>
                 </Box>
-                // </Stack>
+            // </Stack>
             );
         })}
         </>
