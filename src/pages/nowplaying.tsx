@@ -1,8 +1,7 @@
 import PageWrapper from "@/components/PageWrapper";
-import MoviePageHeader from "@/components/NowPlayingPage/MoviePageHeader";
-import NowPlayingMovieFilter from "@/components/NowPlayingPage/NowPlayingMovieFilter";
 import NowPlayingMovies from "@/components/NowPlayingPage/NowPlayingMovies";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import NowPlayingPageHeader from "@/components/NowPlayingPage/NowPlayingPageHeader";
 
 interface IgetStaticProps {
     locale: string;
@@ -18,9 +17,7 @@ export async function getStaticProps({ locale }: IgetStaticProps) {
 const nowplaying = () => {
     return (
         <PageWrapper>
-            <MoviePageHeader header="Now Playing">
-                <NowPlayingMovieFilter />
-            </MoviePageHeader>
+            <NowPlayingPageHeader />
             <NowPlayingMovies />
         </PageWrapper>
     );
