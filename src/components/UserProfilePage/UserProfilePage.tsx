@@ -12,7 +12,6 @@ import { getUserProfile } from "@/utils/axiosUserApi";
 import UserPosts from "./UserPosts";
 import { useTranslation } from "next-i18next";
 
-
 interface userProfileProps {
     queryUserId: string;
 }
@@ -86,24 +85,27 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                 followed={userId in userProfile.followingsList}
                 token={token}
             />
-            <Flex flexDirection="row" pos="relative" mt="28px" w="100%">
-                <Flex maxW="816px" flexDirection="column">
-                    <Tabs>
-                        <UserProfileTabs isLoading={isLoading} setCurrentTab={setCurrentTab} isSelf={userId === queryUserId} userName={userProfile.userName}/>
+            <Flex flexDirection="row" pos="relative" mt="28px">
+                <Flex maxW="816px" flexDirection="column" w="70%">
+                    <Tabs w='100%'>
+                        <UserProfileTabs
+                            isLoading={isLoading}
+                            setCurrentTab={setCurrentTab}
+                            isSelf={userId === queryUserId}
+                            userName={userProfile.userName}
+                        />
                         <TabPanels>
-                            <>
-                                {console.log(currentTab)}
-                                {currentTab === t("home:myPosts") ? (
-                                    <UserPosts queryUserId={queryUserId} setIsLoading={setIsLoading} />
-                                ) : currentTab === t("home:message") ? (
-                                    <Message setIsLoading={setIsLoading}></Message>
-                                ) : (
-                                    <ChangePassword setIsLoading={setIsLoading}></ChangePassword>
-                                )}</>
+                            {currentTab.toString() === t("home:myPosts") ? (
+                                <UserPosts queryUserId={queryUserId} setIsLoading={setIsLoading} />
+                            ) : currentTab.toString() === t("home:message") ? (
+                                <Message setIsLoading={setIsLoading}></Message>
+                            ) : (
+                                <ChangePassword setIsLoading={setIsLoading}></ChangePassword>
+                            )}
                         </TabPanels>
                     </Tabs>
                 </Flex>
-                <Flex mr="0px" ml="auto" flexDirection="column" maxW="403px">
+                <Flex mr="0px" ml="26px" flexDirection="column" maxW="403px" w='35%'>
                     <UserProfileSider
                         siderName="Follower"
                         count={userProfile.followersList.length}

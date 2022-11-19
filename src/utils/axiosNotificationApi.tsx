@@ -17,7 +17,7 @@ export const getNotifications = async ({pageNumber, limit, token}:IgetNotificati
     const config = {
         headers: { Authorization: `Bearer ${token}` },
     };
-    return await axiosApi.get(`/?pageNumber=${pageNumber}?limit=${limit}`, config);
+    return await axiosApi.get(`?pageNumber=${pageNumber}&limit=${limit}`, config);
 };
 
 export const readSingleNotifications = async (notificationId:string|null, token:string|null) => {

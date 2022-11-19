@@ -48,8 +48,8 @@ const UserProfileHeader = ({
                 />
                 <Flex flexDir="row">
                     <Avatar
-                        key={userName.split(' ')[0]}
-                        name={userName.split(' ')[0]}
+                        key={userName.split(" ")[0]}
+                        name={userName.split(" ")[0]}
                         src={userAvatar}
                         borderRadius="full"
                         width="120px"
@@ -81,7 +81,7 @@ const UserProfileHeader = ({
                             fontFamily="body"
                             fontWeight="700"
                         >
-                            {userName.split(' ')[0]}
+                            {userName.split(" ")[0]}
                         </Text>
                     </Flex>
                     {isSelf ? (

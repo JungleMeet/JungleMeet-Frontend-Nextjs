@@ -3,17 +3,17 @@ import { useTranslation } from "next-i18next";
 import { FiEdit } from "react-icons/fi";
 import { AiOutlineMessage } from "react-icons/ai";
 import { HiOutlineSpeakerphone } from "react-icons/hi";
+import { Dispatch, SetStateAction } from "react";
 
 interface IUserProfileTabs {
     isLoading: boolean;
-    setCurrentTab: (value: string) => void;
+    setCurrentTab: Dispatch<SetStateAction<() => never>>;
     isSelf: boolean;
     userName: string;
 }
 const UserProfileTabs = ({ isLoading, setCurrentTab, isSelf, userName }: IUserProfileTabs) => {
     const { t } = useTranslation("home");
-    const tabContent =  
-    [
+    const tabContent = [
         {
             tabTitle: t("home:myPosts"),
             icon: FiEdit,
@@ -27,7 +27,7 @@ const UserProfileTabs = ({ isLoading, setCurrentTab, isSelf, userName }: IUserPr
             icon: HiOutlineSpeakerphone,
         },
     ];
-    const firstName = userName.split(' ')[0]
+    const firstName = userName.split(" ")[0];
 
     return (
         <TabList
@@ -42,39 +42,16 @@ const UserProfileTabs = ({ isLoading, setCurrentTab, isSelf, userName }: IUserPr
             pt="27px"
             // pr="220px"
         >
-            {
-                isSelf
-                    ?
-                    tabContent.map(({ tabTitle, icon }) => (
-                        <Tab
-                            key={tabTitle}
-                            fontSize="text2"
-                            lineHeight="lh32"
-                            fontWeight="600"
-                            _selected={{
-                                color: "#000",
-                            }}
-                            _focus={{ borderBottom: "2px solid #000" }}
-                            p="0"
-                            pb="11px"
-                            ml="35px"
-                            onClick={() => {
-                                // setIsLoading(true);
-                                setCurrentTab(tabTitle);
-                            }}
-                        >
-                            <Icon as={icon} mr="18px"></Icon>
-                            <span>{tabTitle}</span>
-                        </Tab>
-                    ))
-                    :
+            {isSelf ? (
+                tabContent.map(({ tabTitle, icon }) => (
                     <Tab
-                        key={t("home:myPosts")}
+                        key={tabTitle}
                         fontSize="text2"
                         lineHeight="lh32"
                         fontWeight="600"
                         _selected={{
                             color: "#000",
+                            borderBottom: "2px solid #000"
                         }}
                         _focus={{ borderBottom: "2px solid #000" }}
                         p="0"
@@ -82,14 +59,36 @@ const UserProfileTabs = ({ isLoading, setCurrentTab, isSelf, userName }: IUserPr
                         ml="35px"
                         onClick={() => {
                             // setIsLoading(true);
-                            setCurrentTab(t("home:myPosts"));
+                            setCurrentTab(tabTitle);
                         }}
                     >
-                        <Icon as={FiEdit} mr="18px"></Icon>
-                        <span>{`${firstName}'s Posts`}</span>
+                        <Icon as={icon} mr="18px"></Icon>
+                        <span>{tabTitle}</span>
                     </Tab>
-            }
-            {isLoading && <Spinner />}
+                ))
+            ) : (
+                <Tab
+                    key={t("home:myPosts")}
+                    fontSize="text2"
+                    lineHeight="lh32"
+                    fontWeight="600"
+                    _selected={{
+                        color: "#000",
+                    }}
+                    _focus={{ borderBottom: "2px solid #000" }}
+                    p="0"
+                    pb="11px"
+                    ml="35px"
+                    onClick={() => {
+                        // setIsLoading(true);
+                        setCurrentTab(t("home:myPosts"));
+                    }}
+                >
+                    <Icon as={FiEdit} mr="18px"></Icon>
+                    <span>{`${firstName}'s Posts`}</span>
+                </Tab>
+            )}
+            {isLoading && <Spinner ml='10px'/>}
         </TabList>
     );
 };
