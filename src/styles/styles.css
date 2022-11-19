@@ -178,3 +178,43 @@ div input {
   bottom:0;
   margin-right:1rem;
 }
+
+.comment-content{
+  /* border-left: 1px solid #616161; */
+  display:inline-block;
+  /* width:90%; */
+}
+
+.pre-comment-content{
+  /* display: inline-block; */
+  background-color: yellow;
+  
+}
+
+/* .pre-comment-content::after{
+  height: 100%;
+  background-color: crimson;
+  content:"I got sth";
+  height:15px;
+  padding-top: 15px;
+} */
+
+.before-content{
+  position:absolute;
+  bottom:0;
+  left:75px;
+  top:80px;
+  background-color: rgb(167, 168, 167);
+  width:3px;
+  cursor:pointer;
+  z-index: 11;
+}
+
+.hidden{
+  background-color: bisque;
+  display:none;
+}
+
+.hiddden > * {
+  display: none;
+}
