@@ -53,7 +53,6 @@ const NotificationDropdownItem = ({
             await readSingleNotifications(_id, stateToken);
             setHasRead(!hasRead);
         } catch (error) {
-            console.log(error);
             return error;
         }
     };

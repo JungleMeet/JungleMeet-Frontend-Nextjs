@@ -10,7 +10,7 @@ import { io, Socket } from "socket.io-client";
 import { useEffect, useState } from "react";
 import { GoSignOut } from "react-icons/go";
 import { logout } from "@/app/reducer/loginSlice";
-import { newMessage } from '@/app/reducer/notificationSlice';
+import { newMessage } from "@/app/reducer/notificationSlice";
 import { getNotifications } from "@/utils/axiosNotificationApi";
 import formatNotificationData from "@/utils/formatNotificationData";
 import NotificationDropdown from "./NotificationDropdown";
@@ -91,7 +91,6 @@ const UserNameAndMessage = () => {
     ];
 
     useEffect(() => {
-        
         socket = io("http://localhost:3000", { query: { userId: userId }, transports: ["websocket"] });
         socket.on("connect", () => {
             console.log("connect client");

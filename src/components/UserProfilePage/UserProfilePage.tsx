@@ -10,7 +10,6 @@ import UserProfileSider from "@/components/UserProfilePage/UserProfileSider";
 import ProfileSiderDetails from "./ProfileSiderDetails";
 import { getUserProfile } from "@/utils/axiosUserApi";
 import UserPosts from "./UserPosts";
-import { useTranslation } from "next-i18next";
 
 interface userProfileProps {
     queryUserId: string;
@@ -36,7 +35,6 @@ interface IUserProfile {
     }[];
 }
 const UserProfilePage = ({ queryUserId }: userProfileProps) => {
-    const { t } = useTranslation("home");
     const defaultUserProfile = {
         userRole: "",
         userName: "",
@@ -50,7 +48,7 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
     const [userId, setUserId] = useState("");
     const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [currentTab, setCurrentTab] = useState(t("home:myPosts"));
+    const [currentTab, setCurrentTab] = useState("My Posts");
     useEffect(() => {
         const getUserProfileDetail = async () => {
             try {
@@ -72,7 +70,6 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
         };
         getUserProfileDetail();
     }, []);
-    console.log("userProfile", userProfile);
     return (
         <>
             <UserProfileHeader
@@ -87,7 +84,7 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
             />
             <Flex flexDirection="row" pos="relative" mt="28px">
                 <Flex maxW="816px" flexDirection="column" w="70%">
-                    <Tabs w='100%'>
+                    <Tabs w="100%">
                         <UserProfileTabs
                             isLoading={isLoading}
                             setCurrentTab={setCurrentTab}
@@ -95,9 +92,9 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                             userName={userProfile.userName}
                         />
                         <TabPanels>
-                            {currentTab.toString() === t("home:myPosts") ? (
+                            {currentTab === "My Posts" ? (
                                 <UserPosts queryUserId={queryUserId} setIsLoading={setIsLoading} />
-                            ) : currentTab.toString() === t("home:message") ? (
+                            ) : currentTab === "Message" ? (
                                 <Message setIsLoading={setIsLoading}></Message>
                             ) : (
                                 <ChangePassword setIsLoading={setIsLoading}></ChangePassword>
@@ -105,7 +102,7 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                         </TabPanels>
                     </Tabs>
                 </Flex>
-                <Flex mr="0px" ml="26px" flexDirection="column" maxW="403px" w='35%'>
+                <Flex mr="0px" ml="26px" flexDirection="column" maxW="403px" w="35%">
                     <UserProfileSider
                         siderName="Follower"
                         count={userProfile.followersList.length}

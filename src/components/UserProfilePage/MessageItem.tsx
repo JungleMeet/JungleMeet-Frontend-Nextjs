@@ -1,33 +1,32 @@
 import { Avatar, Box, Text } from "@chakra-ui/react";
-import styled, {css} from "styled-components";
-import {ItemProps} from '../NavBarSection/IconContainer/NotificationDropdownItem';
-import {useEffect, useState} from 'react';
+import styled, { css } from "styled-components";
+import { ItemProps } from "../NavBarSection/IconContainer/NotificationDropdownItem";
+import { useEffect, useState } from "react";
 import { readSingleNotifications } from "@/utils/axiosNotificationApi";
 
-
 const viewedStyle = css`
-    ::after {
-        content: "·";
-        position: absolute;
-        top: -5px;
-        right: -23px;
-        font-size: 50px;
-        color: red;
-    }
+  ::after {
+    content: "·";
+    position: absolute;
+    top: -5px;
+    right: -23px;
+    font-size: 50px;
+    color: red;
+  }
 `;
 
 interface IMessageItemContainer {
     isViewed: boolean;
 }
 const MessageItemContainer = styled.div`
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #E5E7EB;
-    padding-bottom: 10px;
-    padding-top: 20px;
-    position: relative;
-    ${({ isViewed }: IMessageItemContainer) => !isViewed && viewedStyle}
-`
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+  padding-top: 20px;
+  position: relative;
+  ${({ isViewed }: IMessageItemContainer) => !isViewed && viewedStyle}
+`;
 const MessageItem = ({
     _id,
     triggerUserName,
@@ -54,7 +53,7 @@ const MessageItem = ({
         }
     };
     return (
-        <MessageItemContainer isViewed={viewed} onClick={handleClick} >
+        <MessageItemContainer isViewed={viewed} onClick={handleClick}>
             <Avatar
                 w="25px"
                 h="25px"
@@ -70,7 +69,7 @@ const MessageItem = ({
                 fontFamily="secondary"
                 lineHeight="lh16"
                 fontWeight="400"
-                mr='auto'
+                mr="auto"
             >
                 {content}
             </Box>
@@ -78,8 +77,7 @@ const MessageItem = ({
                 {createTime}
             </Text>
         </MessageItemContainer>
-        
-    )
-}
+    );
+};
 
 export default MessageItem;
