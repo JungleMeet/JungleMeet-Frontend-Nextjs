@@ -1,6 +1,6 @@
 import React from "react";
 import PageWrapper from "@/components/PageWrapper";
-import UserProfilePage from "@/components/UserProfilePage/UserProfile";
+import UserProfilePage from "@/components/UserProfilePage/UserProfilePage";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export async function getStaticProps({ locale }) {

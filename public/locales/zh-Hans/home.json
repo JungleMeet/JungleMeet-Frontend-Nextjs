@@ -21,5 +21,9 @@
   "sortedByTitle": "排序",
   "mostRecentOption": "最新",
   "mostViewedOption": "最热",
-  "jumpTo": "跳转至"
+  "jumpTo": "跳转至",
+
+  "myPosts": "我的帖子",
+  "message": "消息",
+  "changePassword": "修改密码"
 }

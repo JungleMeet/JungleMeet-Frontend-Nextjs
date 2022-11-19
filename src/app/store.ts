@@ -4,7 +4,8 @@ import LoginReducer from "./reducer/loginSlice";
 import SignupReducer from './reducer/signupSlice';
 import PageReducer from './reducer/pageSlice';
 import loginModalReducer from './reducer/loginModalSlice';
-import ModalReducer from './reducer/modalSlice'
+import ModalReducer from './reducer/modalSlice';
+import NotificationReducer from './reducer/notificationSlice';
 
 export const makeStore = () => {
     return configureStore({
@@ -13,8 +14,8 @@ export const makeStore = () => {
             signup: SignupReducer,
             page: PageReducer,
             loginModal: loginModalReducer,
-            modal: ModalReducer
-            
+            modal: ModalReducer,
+            notification: NotificationReducer
         },
     });
 };

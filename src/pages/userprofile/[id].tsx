@@ -1,11 +1,15 @@
 import React from "react";
 import PageWrapper from "@/components/PageWrapper";
-import UserProfilePage from "@/components/UserProfilePage/UserProfile";
+import UserProfilePage from "@/components/UserProfilePage/UserProfilePage";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { GetStaticPaths } from "next/types";
 
-export async function getStaticProps({ locale }) {
+interface IgetStaticProps {
+    locale: string;
+}
+
+export async function getStaticProps({ locale }: IgetStaticProps) {
     return {
         props: {
             ...(await serverSideTranslations(locale, ["home"])),
