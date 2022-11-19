@@ -7,10 +7,13 @@ import { HiOutlineSpeakerphone } from "react-icons/hi";
 interface IUserProfileTabs {
     isLoading: boolean;
     setCurrentTab: (value: string) => void;
+    isSelf: boolean;
+    userName: string;
 }
-const UserProfileTabs = ({ isLoading, setCurrentTab }: IUserProfileTabs) => {
+const UserProfileTabs = ({ isLoading, setCurrentTab, isSelf, userName }: IUserProfileTabs) => {
     const { t } = useTranslation("home");
-    const tabContent = [
+    const tabContent =  
+    [
         {
             tabTitle: t("home:myPosts"),
             icon: FiEdit,
@@ -24,6 +27,7 @@ const UserProfileTabs = ({ isLoading, setCurrentTab }: IUserProfileTabs) => {
             icon: HiOutlineSpeakerphone,
         },
     ];
+    const firstName = userName.split(' ')[0]
 
     return (
         <TabList
@@ -36,30 +40,55 @@ const UserProfileTabs = ({ isLoading, setCurrentTab }: IUserProfileTabs) => {
             border="none"
             pb="27px"
             pt="27px"
-            pr="220px"
+            // pr="220px"
         >
-            {tabContent.map(({ tabTitle, icon }) => (
-                <Tab
-                    key={tabTitle}
-                    fontSize="text2"
-                    lineHeight="lh32"
-                    fontWeight="600"
-                    _selected={{
-                        color: "#000",
-                    }}
-                    _focus={{ borderBottom: "2px solid #000" }}
-                    p="0"
-                    pb="11px"
-                    ml="35px"
-                    onClick={() => {
-                        // setIsLoading(true);
-                        setCurrentTab(tabTitle);
-                    }}
-                >
-                    <Icon as={icon} mr="18px"></Icon>
-                    <span>{tabTitle}</span>
-                </Tab>
-            ))}
+            {
+                isSelf
+                    ?
+                    tabContent.map(({ tabTitle, icon }) => (
+                        <Tab
+                            key={tabTitle}
+                            fontSize="text2"
+                            lineHeight="lh32"
+                            fontWeight="600"
+                            _selected={{
+                                color: "#000",
+                            }}
+                            _focus={{ borderBottom: "2px solid #000" }}
+                            p="0"
+                            pb="11px"
+                            ml="35px"
+                            onClick={() => {
+                                // setIsLoading(true);
+                                setCurrentTab(tabTitle);
+                            }}
+                        >
+                            <Icon as={icon} mr="18px"></Icon>
+                            <span>{tabTitle}</span>
+                        </Tab>
+                    ))
+                    :
+                    <Tab
+                        key={t("home:myPosts")}
+                        fontSize="text2"
+                        lineHeight="lh32"
+                        fontWeight="600"
+                        _selected={{
+                            color: "#000",
+                        }}
+                        _focus={{ borderBottom: "2px solid #000" }}
+                        p="0"
+                        pb="11px"
+                        ml="35px"
+                        onClick={() => {
+                            // setIsLoading(true);
+                            setCurrentTab(t("home:myPosts"));
+                        }}
+                    >
+                        <Icon as={FiEdit} mr="18px"></Icon>
+                        <span>{`${firstName}'s Posts`}</span>
+                    </Tab>
+            }
             {isLoading && <Spinner />}
         </TabList>
     );

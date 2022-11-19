@@ -10,6 +10,8 @@ import UserProfileSider from "@/components/UserProfilePage/UserProfileSider";
 import ProfileSiderDetails from "./ProfileSiderDetails";
 import { getUserProfile } from "@/utils/axiosUserApi";
 import UserPosts from "./UserPosts";
+import { useTranslation } from "next-i18next";
+
 
 interface userProfileProps {
     queryUserId: string;
@@ -35,6 +37,7 @@ interface IUserProfile {
     }[];
 }
 const UserProfilePage = ({ queryUserId }: userProfileProps) => {
+    const { t } = useTranslation("home");
     const defaultUserProfile = {
         userRole: "",
         userName: "",
@@ -48,7 +51,7 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
     const [userId, setUserId] = useState("");
     const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [currentTab, setCurrentTab] = useState("My Posts");
+    const [currentTab, setCurrentTab] = useState(t("home:myPosts"));
     useEffect(() => {
         const getUserProfileDetail = async () => {
             try {
@@ -86,15 +89,17 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
             <Flex flexDirection="row" pos="relative" mt="28px" w="100%">
                 <Flex maxW="816px" flexDirection="column">
                     <Tabs>
-                        <UserProfileTabs isLoading={isLoading} setCurrentTab={setCurrentTab} />
+                        <UserProfileTabs isLoading={isLoading} setCurrentTab={setCurrentTab} isSelf={userId === queryUserId} userName={userProfile.userName}/>
                         <TabPanels>
-                            {currentTab === "My Posts" ? (
-                                <UserPosts queryUserId={queryUserId} setIsLoading={setIsLoading} />
-                            ) : currentTab === "Message" ? (
-                                <Message setIsLoading={setIsLoading}></Message>
-                            ) : (
-                                <ChangePassword setIsLoading={setIsLoading}></ChangePassword>
-                            )}
+                            <>
+                                {console.log(currentTab)}
+                                {currentTab === t("home:myPosts") ? (
+                                    <UserPosts queryUserId={queryUserId} setIsLoading={setIsLoading} />
+                                ) : currentTab === t("home:message") ? (
+                                    <Message setIsLoading={setIsLoading}></Message>
+                                ) : (
+                                    <ChangePassword setIsLoading={setIsLoading}></ChangePassword>
+                                )}</>
                         </TabPanels>
                     </Tabs>
                 </Flex>
