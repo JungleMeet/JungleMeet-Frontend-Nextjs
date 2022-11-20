@@ -75,7 +75,7 @@ const Comment = ({
             // visible,
             // mentionedUserId,
             } = item;
-            if (!_id) return null;
+            if (!_id) return null; // prevent empty children from rendering
             return (
                 <Stack mb="5px" bg="#F9FAFB" key={_id}>
                     <Stack pt="10px" pl="54.4px" pb="4.25px">

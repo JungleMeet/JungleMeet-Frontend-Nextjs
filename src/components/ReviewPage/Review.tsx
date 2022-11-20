@@ -6,7 +6,6 @@ import ReviewFilter from "./ReviewFilter";
 import ReviewHeader from "./ReviewHeader";
 import { getMovieDetails } from "@/utils/axiosMovieApi";
 import { Button, Flex } from "@chakra-ui/react";
-import { isEmpty } from "lodash";
 import { ICommentProps } from "@/components/ReviewPage/Comment";
 
 interface IReviewProps {
@@ -35,7 +34,6 @@ const Review = () => {
             try {
                 const res = await getCommentsByCondition(id, "createdAt", 9999, 0);
                 const data: any = res.data;
-                console.log(data.topComments);
                 setComments(data.topComments);
                 setReviews(data.length);
             } catch (err) {
@@ -43,7 +41,7 @@ const Review = () => {
             }
         };
         fetchComments();
-    }, []);
+    }, [newComment]);
 
     useEffect(() => {
         const fetchHeader = async () => {
@@ -58,31 +56,31 @@ const Review = () => {
         fetchHeader();
     }, []);
 
-    useEffect(() => {
-        if (!isEmpty(newComment)) {
-            let isFound = false;
-            const addNewComment = (id: string, array: ICommentProps[]) => {
-                for (let i = 0; i < array.length; i++) {
-                    if (isFound) break;
-                    if (array[i]._id === id) {
-                        // found the element
-                        array[i].children.unshift(newComment);
-                        isFound = true;
-                        break;
-                    }
-                    if (array[i].children[0]?._id) {
-                        addNewComment(id, array[i].children);
-                    }
-                }
-            };
-            // make a deep clone of the current comments
-            // addNewComment will perform a recursive search and add new element to children
-            // setComments
-            const commentsClone = JSON.parse(JSON.stringify(comments));
-            addNewComment(newComment.parentCommentId, commentsClone);
-            setComments(commentsClone);
-        }
-    }, [newComment]);
+    // useEffect(() => {
+    //     if (!isEmpty(newComment)) {
+    //         let isFound = false;
+    //         const addNewComment = (id: string, array: ICommentProps[]) => {
+    //             for (let i = 0; i < array.length; i++) {
+    //                 if (isFound) break;
+    //                 if (array[i]._id === id) {
+    //                     // found the element
+    //                     array[i].children.unshift(newComment);
+    //                     isFound = true;
+    //                     break;
+    //                 }
+    //                 if (array[i].children[0]?._id) {
+    //                     addNewComment(id, array[i].children);
+    //                 }
+    //             }
+    //         };
+    //         // make a deep clone of the current comments
+    //         // addNewComment will perform a recursive search and add new element to children
+    //         // setComments
+    //         const commentsClone = JSON.parse(JSON.stringify(comments));
+    //         addNewComment(newComment.parentCommentId, commentsClone);
+    //         setComments(commentsClone);
+    //     }
+    // }, [newComment]);
 
     return (
         <>
