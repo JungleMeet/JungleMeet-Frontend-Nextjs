@@ -64,6 +64,10 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
         clearContent();
     };
 
+    const detectEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") editor?.commands.focus();
+    };
+
     return (
         <form onSubmit={handleSumble}>
             <Box background="gray.200" padding="32px" borderRadius="5px">
@@ -73,6 +77,7 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
                 <PostSingleLineInput
                     placeholder="Post Title"
                     value={postTitle}
+                    onKeyUp={detectEnterKey}
                     onChange={(event) => setPostTitle(event.target.value)}
                 />
                 <ContentEditor editor={editor} height="350px" />
