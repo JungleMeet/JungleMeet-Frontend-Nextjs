@@ -7,8 +7,8 @@ const axiosApi = axios.create({
     timeout: REQUEST_TIMEOUT,
 });
 
-export const getNowPlaying = async () => {
-    return await axiosApi.get("/list?tag=now_playing");
+export const getNowPlaying = async (page: number) => {
+    return await axiosApi.get(`/list?tag=now_playing&page=${page}`);
 };
 
 export const getUpcoming = async () => {
@@ -27,17 +27,20 @@ export const searchMovieName = async (name: string, page = 1) => {
     return await axiosApi.get(`/search?name=${name}&page=${page}`);
 };
 
-
 export const getHeroBannerMovies = async () => {
     return await axiosApi.get("/tops");
 }
 
-export const getYoutubeLinkById = async (id:number) => {
+export const getYoutubeLinkById = async (id: number) => {
     return await axiosApi.get(`/trailers/${id}`);
 }
 
-export const getMovieDetails = async(id:number)=>{
+export const getMovieDetails = async (id: number) => {
     return await axiosApi.get(`/details/${id}`)
+}
+
+export const getMoviesByCondition = async (year: string, genre: string, sortBy: string, page: number) => {
+    return await axiosApi.get(`/allMovies?year=${year}&genre=${genre}&sortBy=${sortBy}&page=${page}`);
 }
 
 export default axiosApi;

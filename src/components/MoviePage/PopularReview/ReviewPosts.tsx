@@ -27,16 +27,7 @@ const ReviewPosts = () => {
         <>
             {(reviewList || []).length > 0 &&
         reviewList?.map(
-            ({
-                _id,
-                content,
-                createdAt,
-                author,
-                likeCount,
-                viewNumber,
-                commentCount,
-                topComment,
-            }) => {
+            ({ _id, content, createdAt, author, likeCount, viewNumber, commentCount }) => {
                 return (
                     <ReviewInfo
                         key={_id}
@@ -51,7 +42,7 @@ const ReviewPosts = () => {
                 );
             }
         )}
-            <SeeMoreReviews href={`/movies/reviews/${id}`} topCommentsLength={topCommentsLength} />
+            {<SeeMoreReviews href={`/movies/reviews/${id}`} topCommentsLength={topCommentsLength} />}
         </>
     );
 };
