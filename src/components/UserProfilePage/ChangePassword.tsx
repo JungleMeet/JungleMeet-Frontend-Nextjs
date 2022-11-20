@@ -1,30 +1,30 @@
-import styled from 'styled-components';
-import { 
-    Text, 
-    useToast, 
-    FormControl, 
-    Flex, 
-    FormLabel, 
-    Input, 
-    InputRightElement, 
-    Button, 
+import styled from "styled-components";
+import {
+    Text,
+    useToast,
+    FormControl,
+    Flex,
+    FormLabel,
+    Input,
+    InputRightElement,
+    Button,
     FormErrorMessage,
-    CircularProgress
+    CircularProgress,
 } from "@chakra-ui/react";
 import { Form } from "../Login/LoginForm/LoginForm";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import {useState, useEffect} from 'react';
-import {changePwd} from '@/utils/axiosUserApi';
+import { useState, useEffect } from "react";
+import { changePwd } from "@/utils/axiosUserApi";
 
 const ChangePasswordContainer = styled.div`
-    margin-top: 14px;
-    width: 100%;
-    background-color: #F3F4F6;
-    padding-top: 21px;
-    padding-left: 35px;
-    padding-right: 35px;
-    padding-bottom: 49px;
-`
+  margin-top: 14px;
+  width: 100%;
+  background-color: #f3f4f6;
+  padding-top: 21px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 49px;
+`;
 const ChangePwdForm = styled(Form)`
   gap: 50px;
   width: 100%;
@@ -42,7 +42,7 @@ const ChangePassword = ({ setIsLoading }: IChangePassword) => {
     const [newPwd, setNewPwd] = useState("");
     const [confirmPwdErrorMsg, setConfirmPwdErrorMsg] = useState("");
     const [isChanging, setIsChanging] = useState(false);
-    const [token, setToken] = useState<string | null>('');
+    const [token, setToken] = useState<string | null>("");
     const toast = useToast();
 
     const handleClick = () => setShow(!show);
@@ -75,18 +75,18 @@ const ChangePassword = ({ setIsLoading }: IChangePassword) => {
     useEffect(() => {
         const localToken = localStorage.getItem("token");
         setToken(localToken);
-    })
+    });
     return (
         <ChangePasswordContainer>
             <Text lineHeight="lh24" fontSize="h6" fontWeight="700" mb="25px">
-            Change Password
+        Change Password
             </Text>
             <ChangePwdForm
                 onSubmit={async (event) => {
                     event.preventDefault();
                     setIsChanging(true);
                     try {
-                        await changePwd(token, password, newPwd );
+                        await changePwd(token, password, newPwd);
                         toast({
                             position: "top",
                             title: "Change password Success!",
@@ -185,8 +185,7 @@ const ChangePassword = ({ setIsLoading }: IChangePassword) => {
                 </Button>
             </ChangePwdForm>
         </ChangePasswordContainer>
-    )
-    
+    );
 };
 
 export default ChangePassword;
