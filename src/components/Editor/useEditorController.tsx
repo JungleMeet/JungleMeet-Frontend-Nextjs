@@ -21,9 +21,7 @@ const useEditorController = () => {
         ],
         autofocus: true,
         content: "",
-    // onUpdate: ({ editor }) => {
-    //     const data = editor.getHTML();
-    // },
+
     });
 
     const content = editor?.getHTML();

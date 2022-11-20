@@ -6,7 +6,6 @@ import ReviewFilter from "./ReviewFilter";
 import ReviewHeader from "./ReviewHeader";
 import { getMovieDetails } from "@/utils/axiosMovieApi";
 import { Button, Flex } from "@chakra-ui/react";
-import { ICommentProps } from "@/components/ReviewPage/Comment";
 
 interface IReviewProps {
     resourceId: number;
@@ -26,7 +25,7 @@ const Review = () => {
     const { id }: any = router.query;
     const comentsPerPage = 5;
     const [next, setNext] = useState(comentsPerPage);
-    const [newComment, setNewComment] = useState<ICommentProps>();
+    const [newComment, setNewComment] = useState(true);
     const handleMoreComments = () => setNext(next + comentsPerPage);
 
     useEffect(() => {
@@ -36,11 +35,13 @@ const Review = () => {
                 const data: any = res.data;
                 setComments(data.topComments);
                 setReviews(data.length);
+                setNewComment(false)
             } catch (err) {
                 return err;
             }
         };
-        fetchComments();
+
+        newComment && fetchComments();
     }, [newComment]);
 
     useEffect(() => {
@@ -56,31 +57,6 @@ const Review = () => {
         fetchHeader();
     }, []);
 
-    // useEffect(() => {
-    //     if (!isEmpty(newComment)) {
-    //         let isFound = false;
-    //         const addNewComment = (id: string, array: ICommentProps[]) => {
-    //             for (let i = 0; i < array.length; i++) {
-    //                 if (isFound) break;
-    //                 if (array[i]._id === id) {
-    //                     // found the element
-    //                     array[i].children.unshift(newComment);
-    //                     isFound = true;
-    //                     break;
-    //                 }
-    //                 if (array[i].children[0]?._id) {
-    //                     addNewComment(id, array[i].children);
-    //                 }
-    //             }
-    //         };
-    //         // make a deep clone of the current comments
-    //         // addNewComment will perform a recursive search and add new element to children
-    //         // setComments
-    //         const commentsClone = JSON.parse(JSON.stringify(comments));
-    //         addNewComment(newComment.parentCommentId, commentsClone);
-    //         setComments(commentsClone);
-    //     }
-    // }, [newComment]);
 
     return (
         <>

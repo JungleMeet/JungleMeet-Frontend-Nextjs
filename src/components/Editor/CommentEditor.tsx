@@ -34,7 +34,6 @@ const CommentEditor = ({ postId }: ICommentEditorProps) => {
         <Box position={"relative"} transitionTimingFunction="ease" pr={"3rem"}>
             <ContentEditor editor={editor} height="150px" />
             <ButtonGroup pt={"15px"}>
-                <Button onClick={clearContent}>Clear</Button>
                 <Button
                     isLoading={loading}
                     onClick={submitComment}
@@ -43,6 +42,7 @@ const CommentEditor = ({ postId }: ICommentEditorProps) => {
                 >
           Comment
                 </Button>
+                <Button onClick={clearContent}>Clear</Button>
             </ButtonGroup>
         </Box>
     );
