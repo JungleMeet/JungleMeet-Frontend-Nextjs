@@ -15,17 +15,17 @@ const UserProfileTabs = ({ isLoading, setCurrentTab, isSelf, userName }: IUserPr
     const tabContent = [
         {
             tabTitle: t("home:myPosts"),
-            EnglishTitle: 'My Posts',
+            EnglishTitle: "My Posts",
             icon: FiEdit,
         },
         {
             tabTitle: t("home:message"),
-            EnglishTitle: 'Message',
+            EnglishTitle: "Message",
             icon: AiOutlineMessage,
         },
         {
             tabTitle: t("home:changePassword"),
-            EnglishTitle: 'Change Password',
+            EnglishTitle: "Change Password",
             icon: HiOutlineSpeakerphone,
         },
     ];

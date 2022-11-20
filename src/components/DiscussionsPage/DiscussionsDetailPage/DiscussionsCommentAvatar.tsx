@@ -1,50 +1,81 @@
 import React from "react";
-import { Avatar } from "@chakra-ui/react";
-import { useState, useEffect, useMemo } from "react";
-import { getUserById } from "@/utils/axiosUserApi";
+import { isEmpty } from "lodash";
+import DiscussionsCommentTitle from "./DiscussionCommentTitle";
+import { dateCreatedAt } from "@/utils/dateCreateAt";
+import { Stack, Text, Button, Divider } from "@chakra-ui/react";
 
-interface IDiscussionsCommentAvatar {
-    commentId: string;
-    _id: string;
-    name: string;
-    avatar: string;
+export interface ICommentProps {
+    topComments: {
+        _id: string;
+        content: string;
+        visible: boolean;
+        author: {
+            _id: string;
+            name: string;
+            avatar: string;
+        };
+        mentionedUserId: string[];
+        postId: string;
+        parentCommentId: string;
+        like: string[];
+        createdAt: string;
+        updatedAt: string;
+        level: number;
+        __V: number;
+        children: ICommentProps[];
+    };
 }
 
-const DiscussionsCommentAvatar = ({ authorId }: any) => {
-    const [commentAuthor, setCommentAuthor] = useState([]);
+function replyComments(item: any) {
+    if (!isEmpty(item.children[0]?._id)) {
+        return <DiscussionsCommentAvatar comments={item.children} />;
+    } else {
+        return null;
+    }
+}
 
-    const commentAuthorMemo = useMemo(() => commentAuthor, [commentAuthor]);
-
-    useEffect(() => {
-        const getCommentAvatar = async () => {
-            try {
-                const { data: author } = await getUserById(authorId);
-
-                const result = [];
-                result.push(author);
-
-                setCommentAuthor(result);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        getCommentAvatar();
-    }, []);
+const DiscussionsCommentAvatar = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
     return (
         <>
-            {commentAuthorMemo?.map(({ _id, name, avatar }: IDiscussionsCommentAvatar) => {
-                return (
-                    <Avatar
-                        key={_id}
-                        name={name}
-                        src={avatar}
-                        borderRadius="10px"
-                        width="35px"
-                        height="35px"
-                        mr="20px"
-                    ></Avatar>
-                );
-            })}
+            {comments &&
+        comments?.map((item: any) => {
+            const {
+                _id,
+                content,
+                // visible,
+                //  postId,
+                parentCommentId,
+                createdAt,
+                author,
+                mentionedUserId,
+            } = item;
+            return (
+                <>
+                    <Stack mt="20px" key={_id}>
+                        <DiscussionsCommentTitle
+                            id={author?._id}
+                            author={`${author?.name}`}
+                            createdAt={dateCreatedAt(createdAt)}
+                            avatar={author?.avatar}
+                        />
+
+                        <Stack pl="60px">
+                            <Text fontSize={"text5"} fontWeight="500" mb="10px">
+                                {`${content}`}
+                            </Text>
+                            <Button width="45px" fontSize="text6" lineHeight="lh24" variant="link">
+                    REPLY
+                            </Button>
+                        </Stack>
+                        <Stack pl="60px">
+                            {mentionedUserId}
+                            {replyComments(item)}
+                        </Stack>
+                        {parentCommentId ? "" : <Divider mb="20px" />}
+                    </Stack>
+                </>
+            );
+        })}
         </>
     );
 };
