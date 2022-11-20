@@ -8,7 +8,9 @@ interface UserProfileSiderProps {
     children: ReactNode;
     marginTop: string;
 }
+
 const UserProfileSider = (props: UserProfileSiderProps) => {
+    // const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <Box
             w="100%"
@@ -36,6 +38,10 @@ const UserProfileSider = (props: UserProfileSiderProps) => {
                     {props.count}
                 </Text>
                 <Button
+                    _focus={{}}
+                    _hover={{}}
+                    _active={{}}
+                    // onClick={onOpen}
                     ml="auto"
                     p="0"
                     lineHeight="lh28"
@@ -43,7 +49,10 @@ const UserProfileSider = (props: UserProfileSiderProps) => {
                     color="rose.600"
                     fontWeight="500"
                 >
-          More {">"}
+                    {" "}
+                    <Text lineHeight="lh32" fontSize="text3" color="rose.600">
+            More {">"}
+                    </Text>{" "}
                 </Button>
             </Flex>
             <Box

@@ -50,6 +50,7 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
     const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [currentTab, setCurrentTab] = useState("My Posts");
+    const [followed, setFollowed] = useState(false);
     useEffect(() => {
         const getUserProfileDetail = async () => {
             try {
@@ -63,6 +64,11 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                     )!;
                     setUserProfile(profileResponse.data);
                     setUserId(userInfo.userId);
+                    setFollowed(
+                        profileResponse.data.followersList
+                            .map((follower: any) => follower.userId)
+                            .includes(userInfo.userId)
+                    );
                 } else {
                 }
             } catch (err) {
@@ -72,6 +78,25 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
         getUserProfileDetail();
     }, []);
 
+    useEffect(() => {
+        const getUserProfileDetail = async () => {
+            try {
+                const userInfoLocalStorage = localStorage.getItem("userInfo");
+                if (userInfoLocalStorage) {
+                    const userInfo = JSON.parse(userInfoLocalStorage);
+                    const profileResponse: AxiosResponse = await getUserProfile(
+                        queryUserId === userInfo.userId ? userInfo.userId : queryUserId
+                    )!;
+                    setUserProfile(profileResponse.data);
+                } else {
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        getUserProfileDetail();
+    }, [followed]);
+
     return (
         <>
             <UserProfileHeader
@@ -79,10 +104,13 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                 userBgImg={userProfile.userBgImg}
                 userRole={userProfile.userRole}
                 userName={userProfile.userName}
-                isSelf={userId === queryUserId}
+                userId={userId}
                 queryUserId={queryUserId}
-                followed={userId in userProfile.followingsList}
+                followed={followed}
                 token={token}
+                setFollowed={setFollowed}
+                userProfile={userProfile}
+                setUserProfile={setUserProfile}
             />
             <Flex flexDirection="row" pos="relative" mt="28px">
                 <Flex maxW="816px" flexDirection="column" w="70%">
