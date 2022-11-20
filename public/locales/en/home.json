@@ -25,7 +25,30 @@
 
   "myPosts": "My Posts",
   "message": "Message",
-  "changePassword": "Change Password"
+  "changePassword": "Change Password",
+
+  "logInTitle": "Log in",
+  "signUpTitle": "Sign up",
+  "emailAddress": "Email Address",
+  "userName": "User Name",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "loginForgotPassword": "Forgot password",
+  "loginWith": "Log in with",
+  "signUpWith": "Sign up with",
+
+  "loginEmailRequiredErrorMsg": "Email is required",
+  "loginEmailInvalidErrorMsg": "Invalid email address",
+  "loginPwdRequiredErrorMsg": "Password is required",
+  "loginPwdLenShortErrorMsg": "Password must be at least 6 characters",
+  "loginPwdLenLongErrorMsg": "Password is too long",
+
+  "SignUpUsernameRequiredErrorMsg": "Please enter Username.",
+  "SignUpEmailRequiredMsg": "Please enter email.",
+  "SignUpEmailInvalidMsg": "Invalid email address",
+  "SignUpPwdRequiredMsg": "Please enter Password.",
+  "SignUpPwdDoesn'tMatch": "Password and Confirm Password does not match.",
+  "SignUpConfirmPasswordRequired": "Please enter Confirm Password."
 
 
 }
