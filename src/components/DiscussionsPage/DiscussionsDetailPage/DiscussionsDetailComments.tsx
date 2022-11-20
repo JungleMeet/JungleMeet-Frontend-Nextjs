@@ -1,79 +1,34 @@
-import { Flex, Divider, Box, Text, Grid, Button, HStack } from "@chakra-ui/react";
+import { Box, Grid } from "@chakra-ui/react";
 import React from "react";
-import { useState, useEffect, useMemo } from "react";
-import { getComments } from "@/utils/axiosCommentApi";
-import { dateCreatedAt } from "../../../utils/dateCreateAt";
-import { getUserById } from "@/utils/axiosUserApi";
+import { useState, useEffect } from "react";
+import { getCommentsByCondition } from "@/utils/axiosCommentApi";
+
 import DiscussionsCommentAvatar from "./DiscussionsCommentAvatar";
-
-interface ICommentProps {
-    postId: string;
-    content: string;
-
-    createdAt: string;
-    author: string;
-    _id: string;
-}
 
 const DiscussionsDetailComments = ({ postId }: any) => {
     const [postComment, setPostComment] = useState([]);
-    const [commentAuthor, setCommentAuthor] = useState("");
-
-    const postCommentMemo = useMemo(() => postComment, [postComment]);
+    const [length, setLength] = useState(0);
 
     useEffect(() => {
         const getCommentDetail = async () => {
             try {
-                console.log(postId);
-                const { data } = await getComments(postId);
+                const res = await getCommentsByCondition(postId, "createdAt", 9999, 0);
+                const data: any = res.data;
 
-                const name = postComment.map((item: any) => {
-                    return item.author;
-                });
-
-                const user = await getUserById(name.toString());
-
-                setCommentAuthor(user.data.name);
-                setPostComment(data);
+                setLength(data.topComments.length);
+                setPostComment(data.topComments);
             } catch (err) {
                 console.log(err);
             }
         };
         getCommentDetail();
-    }, [commentAuthor]);
+    }, []);
 
     return (
         <Grid>
-            {postCommentMemo?.map(({ _id, content, createdAt, author }: ICommentProps) => {
-                return (
-                    <Flex key={_id} direction={"column"}>
-                        <Box mt="56px">
-                            <Flex alignContent="center">
-                                <DiscussionsCommentAvatar authorId={author} />
-                                <Flex flexDirection="column">
-                                    <HStack lineHeight="lh20" fontSize="text5">
-                                        <Text color="blue.500" mt="0px">
-                                            {commentAuthor}
-                                        </Text>
-                                        <Text color="gray.400" mt="0px">
-                                            {dateCreatedAt(createdAt)}
-                                        </Text>
-                                    </HStack>
-                                    <Text lineHeight="lh24" mt="5px">
-                                        {content}
-                                    </Text>
-                                </Flex>
-                            </Flex>
-                            <Text>
-                                <Button fontSize="text5" lineHeight="lh24" variant="link" ml="55px" mt="15px">
-                  REPLY
-                                </Button>
-                            </Text>
-                            <Divider mt="30px" color="gray.200" />
-                        </Box>
-                    </Flex>
-                );
-            })}
+            <Box mt="40px">
+                <DiscussionsCommentAvatar comments={postComment.slice(0, length)} />
+            </Box>
         </Grid>
     );
 };
