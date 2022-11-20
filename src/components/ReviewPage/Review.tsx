@@ -35,7 +35,7 @@ const Review = () => {
                 const data: any = res.data;
                 setComments(data.topComments);
                 setReviews(data.length);
-                setNewComment(false)
+                setNewComment(false);
             } catch (err) {
                 return err;
             }
@@ -56,7 +56,6 @@ const Review = () => {
         };
         fetchHeader();
     }, []);
-
 
     return (
         <>
