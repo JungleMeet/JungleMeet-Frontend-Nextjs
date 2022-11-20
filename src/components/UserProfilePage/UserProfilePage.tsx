@@ -10,6 +10,7 @@ import UserProfileSider from "@/components/UserProfilePage/UserProfileSider";
 import ProfileSiderDetails from "./ProfileSiderDetails";
 import { getUserProfile } from "@/utils/axiosUserApi";
 import UserPosts from "./UserPosts";
+import uuid from "react-uuid";
 
 interface userProfileProps {
     queryUserId: string;
@@ -24,11 +25,13 @@ interface IUserProfile {
         name: string;
         role: string;
         avatar?: string;
+        userId: string;
     }[];
     followingsList: {
         name: string;
         role: string;
         avatar?: string;
+        userId: string;
     }[];
     followingPostsList: {
         title: string;
@@ -40,8 +43,8 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
         userName: "",
         userBgImg: "",
         userAvatar: "",
-        followersList: [{ name: "", avatar: "", role: "" }],
-        followingsList: [{ name: "", avatar: "", role: "" }],
+        followersList: [{ name: "", avatar: "", role: "", userId: "" }],
+        followingsList: [{ name: "", avatar: "", role: "", userId: "" }],
         followingPostsList: [{ title: "" }],
     };
 
@@ -76,27 +79,7 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
             }
         };
         getUserProfileDetail();
-    }, []);
-
-    useEffect(() => {
-        const getUserProfileDetail = async () => {
-            try {
-                const userInfoLocalStorage = localStorage.getItem("userInfo");
-                if (userInfoLocalStorage) {
-                    const userInfo = JSON.parse(userInfoLocalStorage);
-                    const profileResponse: AxiosResponse = await getUserProfile(
-                        queryUserId === userInfo.userId ? userInfo.userId : queryUserId
-                    )!;
-                    setUserProfile(profileResponse.data);
-                } else {
-                }
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        getUserProfileDetail();
     }, [followed]);
-
     return (
         <>
             <UserProfileHeader
@@ -147,9 +130,20 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                             columnGap="28.2px"
                             rowGap="15px"
                         >
-                            {userProfile.followersList.length > 6
-                                ? userProfile.followersList.slice(0, 6).map(ProfileSiderDetails)
-                                : userProfile.followersList.map(ProfileSiderDetails)}
+                            {(userProfile.followersList.length > 6
+                                ? userProfile.followersList.slice(0, 6)
+                                : userProfile.followersList
+                            ).map(({ name, role, avatar, userId }) => {
+                                return (
+                                    <ProfileSiderDetails
+                                        key={uuid()}
+                                        name={name}
+                                        role={role}
+                                        avatar={avatar}
+                                        userId={userId}
+                                    ></ProfileSiderDetails>
+                                );
+                            })}
                         </Flex>
                     </UserProfileSider>
 
@@ -167,9 +161,20 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                             columnGap="28.2px"
                             rowGap="15px"
                         >
-                            {userProfile.followingsList.length > 6
-                                ? userProfile.followingsList.slice(0, 6).map(ProfileSiderDetails)
-                                : userProfile.followingsList.map(ProfileSiderDetails)}
+                            {(userProfile.followingsList.length > 6
+                                ? userProfile.followingsList.slice(0, 6)
+                                : userProfile.followingsList
+                            ).map(({ name, role, avatar, userId }) => {
+                                return (
+                                    <ProfileSiderDetails
+                                        key={uuid()}
+                                        name={name}
+                                        role={role}
+                                        avatar={avatar}
+                                        userId={userId}
+                                    ></ProfileSiderDetails>
+                                );
+                            })}
                         </Flex>
                     </UserProfileSider>
 

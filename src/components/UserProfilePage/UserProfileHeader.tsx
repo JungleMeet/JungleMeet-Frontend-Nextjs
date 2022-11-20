@@ -9,6 +9,8 @@ import {
 } from "react-icons/hi";
 import { IoPersonOutline } from "react-icons/io5";
 import { toggleFollowing } from "@/utils/axiosUserApi";
+import { AxiosResponse } from "axios";
+import { getUserProfile } from "@/utils/axiosUserApi";
 
 interface UserProfileHeaderInfoProps {
     userRole: string;
@@ -34,7 +36,31 @@ const UserProfileHeader = ({
     queryUserId,
     token,
     setFollowed,
+    setUserProfile,
 }: UserProfileHeaderInfoProps) => {
+    const UpdateFollow = async () => {
+        try {
+            toggleFollowing(token, queryUserId);
+            const userInfoLocalStorage = localStorage.getItem("userInfo");
+            if (userInfoLocalStorage) {
+                const userInfo = JSON.parse(userInfoLocalStorage);
+                const profileResponse: AxiosResponse = await getUserProfile(
+                    queryUserId === userInfo.userId ? userInfo.userId : queryUserId
+                );
+                console.log(profileResponse);
+                setUserProfile(profileResponse.data);
+                setFollowed(
+                    profileResponse.data.followersList
+                        .map((follower: any) => follower.userId)
+                        .includes(userInfo.userId)
+                );
+                console.log(userInfo);
+            } else {
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
     return (
         <Box pos="relative" m="auto" w="100%" height="245px" background="rgba(79, 79, 79, 0.8)">
             <Image
@@ -119,10 +145,7 @@ const UserProfileHeader = ({
                                 height="50px"
                                 color="white"
                                 fontSize="text4"
-                                onClick={() => {
-                                    toggleFollowing(token, queryUserId);
-                                    setFollowed(!followed);
-                                }}
+                                onClick={UpdateFollow}
                             >
                                 {followed ? <Icon as={HiMinus} w={5} h={5} /> : <Icon as={HiPlus} w={5} h={5} />}
                                 <Text flexGrow={1}>{followed ? "Unfollow" : "Follow"}</Text>
