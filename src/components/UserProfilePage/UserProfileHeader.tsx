@@ -46,11 +46,10 @@ const UserProfileHeader = ({
                     p="0"
                     zIndex={5}
                 />
-
                 <Flex flexDir="row">
                     <Avatar
-                        key={userName}
-                        name={userName}
+                        key={userName.split(" ")[0]}
+                        name={userName.split(" ")[0]}
                         src={userAvatar}
                         borderRadius="full"
                         width="120px"
@@ -68,7 +67,7 @@ const UserProfileHeader = ({
                                 bottom="0"
                                 fontWeight="500"
                             >
-                                {userRole === "admin" ? "Admin User" : "General User"}
+                                {userRole === "admin" ? "Admin_User" : "General_User"}
                             </Text>
                         </Flex>
                         <Text
@@ -82,7 +81,7 @@ const UserProfileHeader = ({
                             fontFamily="body"
                             fontWeight="700"
                         >
-                            {userName}
+                            {userName.split(" ")[0]}
                         </Text>
                     </Flex>
                     {isSelf ? (

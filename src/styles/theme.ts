@@ -102,6 +102,7 @@ const theme = extendTheme(config, styles, {
         text4: "16px",
         text5: "14px",
         text6: "12px",
+        text7: "10px"
     },
     lineHeights: {
         h1: "48px",
@@ -115,6 +116,7 @@ const theme = extendTheme(config, styles, {
         lh28: "28px",
         lh24: "24px",
         lh20: "20px",
+        lh16: "16px"
     },
     fonts: {
         body: `'Inter', ${base.fonts?.body}`,
