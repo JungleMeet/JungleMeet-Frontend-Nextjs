@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { getNowPlaying } from "@/utils/axiosMovieApi";
 import { Grid, Text } from "@chakra-ui/react";
 import Movie from "@/components/MainPage/NowPlaying/MovieThumbnail";
@@ -103,7 +103,7 @@ const NowPlayingMovies = () => {
         >
             <Grid gridTemplateColumns={"repeat(5,20%)"} gridGap={"72px 4px"}>
                 {movieList.map(({ resourceId, poster, title, voteAverage }: ImovieList) => {
-                    return <Movie src={poster} title={title} tmdb={voteAverage} key={resourceId} />;
+                    return <Movie id={resourceId} src={poster} title={title} tmdb={voteAverage} key={resourceId} />;
                 })}
             </Grid>
         </InfiniteScroll>

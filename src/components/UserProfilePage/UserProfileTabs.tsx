@@ -9,8 +9,15 @@ interface IUserProfileTabs {
     setCurrentTab: (value: string) => void;
     isSelf: boolean;
     userName: string;
+    active: string;
 }
-const UserProfileTabs = ({ isLoading, setCurrentTab, isSelf, userName }: IUserProfileTabs) => {
+const UserProfileTabs = ({
+    isLoading,
+    setCurrentTab,
+    isSelf,
+    userName,
+    active,
+}: IUserProfileTabs) => {
     const { t } = useTranslation("home");
     const tabContent = [
         {

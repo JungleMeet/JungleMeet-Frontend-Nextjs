@@ -2,11 +2,14 @@ import styled from "styled-components";
 import { MenuList, MenuDivider, Text } from "@chakra-ui/react";
 import { MenuListTitle } from "../Hamburger/HamburgerDropdown";
 import NotificationDropdownItem from "./NotificationDropdownItem";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const NotificationTitle = styled(MenuListTitle)`
   padding-left: 21px;
   padding-right: 21px;
 `;
+
 interface INotificationDropdown {
     menuList: {
         _id: string;
@@ -26,6 +29,12 @@ const NotificationDropdown = ({
     hasRead,
     setHasRead,
 }: INotificationDropdown) => {
+    const router = useRouter();
+    const [userId, setUserId] = useState("");
+    useEffect(() => {
+        const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
+        setUserId(userInfo?.userId);
+    }, []);
     return (
         <>
             <MenuList
@@ -62,6 +71,10 @@ const NotificationDropdown = ({
                     mb="10px"
                     fontWeight="400"
                     lineHeight="lh24"
+                    cursor="pointer"
+                    onClick={() => {
+                        router.push(`/userprofile/${userId}/?active=message`);
+                    }}
                 >
           See all recent activity
                 </Text>
