@@ -54,3 +54,12 @@ export const toggleFollowing = async (token: string | null, following: string) =
 
     return await axiosApi.put('/following/', {following}, {headers: { Authorization: `Bearer ${token}` }});
 }
+
+export const changePwd = async(token: string | null, previousPwd:string, newPwd: string) => {
+    const reqBody = {
+        oldPassword: previousPwd,
+        newPassword: newPwd
+    }
+    return await axiosApi.post('/reset', reqBody, {headers: { Authorization: `Bearer ${token}` }});
+
+}

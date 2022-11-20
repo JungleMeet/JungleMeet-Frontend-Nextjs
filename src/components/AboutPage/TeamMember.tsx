@@ -1,46 +1,72 @@
-import { Box, Text, Flex } from "@chakra-ui/react";
+import { Box, Text, Flex, Image } from "@chakra-ui/react";
 import React from "react";
 
-function TeamMember(props: any) {
+interface ITeamMemberProps {
+    memberName: string;
+    avatar: string;
+    title: string;
+    email: string;
+    linkedin: string;
+}
+
+function TeamMember({ memberName, avatar, title, email, linkedin }: ITeamMemberProps) {
     return (
-        <Box mt="55px" ml="28px" mr="2px" alignItems="center" mb="40px">
-            <Flex gap="5px">
+        <Flex mb="40px" flexDirection="column" alignContent="center">
+            <Flex>
+                <Image
+                    boxSize="60px"
+                    borderRadius="full"
+                    src="Avatar.jpg"
+                    alt="avatar image"
+                    marginRight="10px"
+                />
+                <Box>
+                    <Text
+                        color="#000"
+                        fontFamily="Inter"
+                        fontStyle="normal"
+                        fontWeight="700"
+                        fontSize="20px"
+                        lineHeight="28px"
+                    >
+                        {memberName} -
+                    </Text>
+                    <Text
+                        color="rose.900"
+                        fontFamily="Inter"
+                        fontStyle="normal"
+                        fontWeight="700"
+                        fontSize="20px"
+                        lineHeight="28px"
+                    >
+                        {title}
+                    </Text>
+                </Box>
+            </Flex>
+            <Box>
+                <Text
+                    mt="25px"
+                    color="#000"
+                    fontFamily="Inter"
+                    fontStyle="normal"
+                    fontWeight="400"
+                    fontSize="16px"
+                    lineHeight="20px"
+                >
+          Email: {email}
+                </Text>
                 <Text
                     color="#000"
                     fontFamily="Inter"
                     fontStyle="normal"
-                    fontWeight="700"
-                    fontSize="20px"
-                    lineHeight="28px"
+                    fontWeight="400"
+                    fontSize="16px"
+                    lineHeight="20px"
                 >
-                    {props.memberName} -
+          LinkedIn: {linkedin}
                 </Text>
-                <Text
-                    color="rose.900"
-                    fontFamily="Inter"
-                    fontStyle="normal"
-                    fontWeight="700"
-                    fontSize="20px"
-                    lineHeight="28px"
-                >
-                    {props.title}
-                </Text>
-            </Flex>
-            <Text
-                mt="25"
-                color="#000"
-                fontFamily="Inter"
-                fontStyle="normal"
-                fontWeight="400"
-                fontSize="16px"
-                lineHeight="20px"
-            >
-        Email: {props.Email}
-                <br />
-        LinkedIn: {props.LinkedIn}
-                {/* How to make it a link? */}
-            </Text>
-        </Box>
+            </Box>
+        </Flex>
     );
 }
 
