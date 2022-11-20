@@ -31,7 +31,7 @@ const NotificationDropdown = ({
             <MenuList
                 minW="180px"
                 p="0"
-                maxW="224px"
+                maxW="260px"
                 _before={{
                     position: "absolute",
                     content: "''",
