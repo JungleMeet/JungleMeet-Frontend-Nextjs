@@ -16,7 +16,6 @@ import { signupError, signupSuccess } from "@/app/reducer/signupSlice";
 import { loginError, loginSuccess } from "@/app/reducer/loginSlice";
 import { useTranslation } from "next-i18next";
 
-
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -34,7 +33,6 @@ const SignupForm = ({ closeModal }: ISignupForm) => {
     const toast = useToast();
     const dispatch = useDispatch();
     const { t } = useTranslation("home");
-
 
     const [input, setInput] = useState({
         username: "",
@@ -215,7 +213,11 @@ const SignupForm = ({ closeModal }: ISignupForm) => {
                 type="submit"
                 color="gray.50"
             >
-                {isLoading ? <CircularProgress isIndeterminate size="24px" color="teal" /> : t("home:signUpTitle")}
+                {isLoading ? (
+                    <CircularProgress isIndeterminate size="24px" color="teal" />
+                ) : (
+                    t("home:signUpTitle")
+                )}
             </Button>
         </Form>
     );

@@ -148,7 +148,11 @@ const LoginForm = ({ closeModal }: ILoginForm) => {
                 </Button>
             </ButtonContainer>
             <Button w="359px" h="50px" backgroundColor="lightBlue.600" type="submit" color="gray.50">
-                {isLoading ? <CircularProgress isIndeterminate size="24px" color="teal" /> : t("home:logInTitle")}
+                {isLoading ? (
+                    <CircularProgress isIndeterminate size="24px" color="teal" />
+                ) : (
+                    t("home:logInTitle")
+                )}
             </Button>
         </Form>
     );
