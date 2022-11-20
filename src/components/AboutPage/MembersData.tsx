@@ -1,0 +1,96 @@
+export const membersData = [
+    {
+        memberName: "Yanhan Fang (Rachel)",
+        avatar: "/Avatar.jpg",
+        title: "Developer & Team Leader",
+        email: "yanhanfang828@gmail.com",
+        linkedin: "https://www.linkedn.com/in/rachel-fang",
+    },
+    {
+        memberName: "Mingying Lin (Justin)",
+        avatar: "/Avatar.jpg",
+        title: "Developer & UI/UX Designer",
+        email: "mingyingl233@gmail.com",
+        linkedin: "https://www.linkedn.com/in/mydev",
+    },
+    {
+        memberName: "Eric Li",
+        avatar: "/Avatar.jpg",
+        title: "Developer",
+        email: "zheceyong666@gmail.com",
+        linkedin: "https://www.linkedn.com/in/eric-li-5692941a3",
+    },
+    {
+        memberName: "Haoxuan Feng (Stephen)",
+        avatar: "/Avatar.jpg",
+        title: "Developer",
+        email: "fhxniepan@gmail.com",
+        linkedin: "https://www.linkedn.com/in/haoxuan-feng-stephen",
+    },
+    {
+        memberName: "Ting Huang",
+        avatar: "/Avatar.jpg",
+        title: "Developer",
+        email: "tinghuang.dev@gmail.com",
+        linkedin: "https://www.linkedn.com/in/tinghuang-dev",
+    },
+    {
+        memberName: "Tom Zhong",
+        avatar: "/Avatar.jpg",
+        title: "Developer",
+        email: "tom.zhong.cn@gmail.com",
+        linkedin: "https://www.linkedin.com/in/tom-zhong-dev",
+    },
+    {
+        memberName: "Lijie Cheng (Eden)",
+        avatar: "/Avatar.jpg",
+        title: "Developer",
+        email: "cljeden@gmail.com",
+        linkedin: "https://www.linkedn.com/in/eden-cheng",
+    },
+    {
+        memberName: "Haoran Jin",
+        avatar: "/Avatar.jpg",
+        title: "Developer",
+        email: "asdjhr666@gmail.com",
+        linkedin: "https://www.linkedn.com/in/haoran-jin",
+    },
+    {
+        memberName: "Sebrina Xian",
+        avatar: "/Avatar.jpg",
+        title: "Developer",
+        email: "swxt1980@gmail.com",
+        linkedin: "https://www.linkedn.com/in/sebrinax2021",
+    },
+];
+
+export const devopsData = [
+    {
+        memberName: "Yanbo Zhu",
+        avatar: "/Avatar.jpg",
+        title: "Devops & Leader",
+        email: "boriszhu@hotmail.com",
+        linkedin: "https://www.linkedn.com/in/yanbo-zhu",
+    },
+    {
+        memberName: "Yuqin Xing (Cass)",
+        avatar: "/Avatar.jpg",
+        title: "Devops",
+        email: "huladollx@hotmail.com",
+        linkedin: "https://www.linkedn.com/in/cass-xing",
+    },
+    {
+        memberName: "Jia Chen",
+        avatar: "/Avatar.jpg",
+        title: "Devops",
+        email: "cassie.jchen@gmail.com",
+        linkedin: "https://www.linkedn.com/in/cassie-jchen",
+    },
+    {
+        memberName: "Bo Chen",
+        avatar: "/Avatar.jpg",
+        title: "Devops & AWS Certified Solutions Architect - Associate",
+        email: "adrien027@hotmail.com",
+        linkedin: "https://www.linkedn.com/in/bochen027",
+    },
+];
