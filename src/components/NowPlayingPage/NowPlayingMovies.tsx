@@ -54,7 +54,7 @@ const NowPlayingMovies = () => {
             const { data } = await getNowPlaying(moviePage);
             return data;
         } catch (err) {
-            return (err);
+            return err;
         }
     };
 

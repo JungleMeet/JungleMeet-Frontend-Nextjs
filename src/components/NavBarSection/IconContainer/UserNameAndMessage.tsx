@@ -92,8 +92,7 @@ const UserNameAndMessage = () => {
 
     useEffect(() => {
         socket = io("http://localhost:3000", { query: { userId: userId }, transports: ["websocket"] });
-        socket.on("connect", () => {
-        });
+        socket.on("connect", () => {});
         socket.on("message", (data) => {
             dispatch(newMessage());
             // setHasNewMessage(!hasNewMessage);
