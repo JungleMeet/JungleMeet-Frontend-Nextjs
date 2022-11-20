@@ -31,7 +31,7 @@ const Movies = () => {
 
                 setMovieList(data.slice(0, 4));
             } catch (err) {
-                console.error(err);
+                return err;
             }
         };
         fetchMovies();

@@ -4,7 +4,8 @@ import LoginReducer from "./reducer/loginSlice";
 import SignupReducer from './reducer/signupSlice';
 import PageReducer from './reducer/pageSlice';
 import loginModalReducer from './reducer/loginModalSlice';
-import ModalReducer from './reducer/modalSlice'
+import ModalReducer from './reducer/modalSlice';
+import NotificationReducer from './reducer/notificationSlice';
 import commentSlice from "./reducer/commentSlice";
 
 export const makeStore = () => {
@@ -15,8 +16,9 @@ export const makeStore = () => {
             page: PageReducer,
             loginModal: loginModalReducer,
             modal: ModalReducer,
+            notification: NotificationReducer,
             comments:commentSlice,
-            
+
         },
     });
 };

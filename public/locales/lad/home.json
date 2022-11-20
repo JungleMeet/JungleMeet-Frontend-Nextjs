@@ -21,5 +21,9 @@
   "sortedByTitle": "Ordenado por",
   "mostRecentOption": "Más reciente",
   "mostViewedOption": "Mas visto",
-  "jumpTo": "Salta a"
+  "jumpTo": "Salta a",
+
+  "myPosts": "Mis publicaciones",
+  "message": "Mensaje",
+  "changePassword": "Cambia la contraseña"
 }

@@ -21,7 +21,7 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
                 setIsLoading(false);
                 changeMovieListMethod(data.slice(0, 10));
             } catch (err) {
-                console.log(err);
+                return err;
             }
         } else if (tabTitle === t("home:popularTitle")) {
             try {
@@ -29,16 +29,16 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
                 setIsLoading(false);
                 changeMovieListMethod(data.slice(0, 10));
             } catch (err) {
-                console.log(err);
+                return err;
             }
         } else {
             try {
                 const { data } = await getTopRated();
                 setIsLoading(false);
-                // console.log(data);
+                // return (data);
                 changeMovieListMethod(data.slice(0, 10));
             } catch (err) {
-                console.log(err);
+                return err;
             }
         }
     };

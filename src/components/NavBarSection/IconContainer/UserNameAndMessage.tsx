@@ -10,6 +10,7 @@ import { io, Socket } from "socket.io-client";
 import { useEffect, useState } from "react";
 import { GoSignOut } from "react-icons/go";
 import { logout } from "@/app/reducer/loginSlice";
+import { newMessage } from "@/app/reducer/notificationSlice";
 import { getNotifications } from "@/utils/axiosNotificationApi";
 import formatNotificationData from "@/utils/formatNotificationData";
 import NotificationDropdown from "./NotificationDropdown";
@@ -49,7 +50,6 @@ let socket: Socket<ServerToClientEvents, ClientToServerEvents>;
 
 const UserNameAndMessage = () => {
     const userInfo = useSelector((state: any) => state.login.userInfo);
-    const [hasNewMessage, setHasNewMessage] = useState(false);
     const { userName, userRole, userId } = userInfo;
     // eslint-disable-next-line no-unused-vars
     const [pageNumber, setPageNumber] = useState(0);
@@ -59,6 +59,8 @@ const UserNameAndMessage = () => {
     const [currentPageNotice, setCurrentPageNotice] = useState([]);
     const [hasRead, setHasRead] = useState(false);
     const firstName = userName.split(" ")[0];
+    const hasNewMessage = useSelector((state: any) => state.notification.hasNewMessage);
+
     const dispatch = useDispatch();
     const handleLogout = () => {
         dispatch(logout());
@@ -91,11 +93,10 @@ const UserNameAndMessage = () => {
     useEffect(() => {
         socket = io("http://localhost:3000", { query: { userId: userId }, transports: ["websocket"] });
         socket.on("connect", () => {
-            console.log("connect client");
         });
         socket.on("message", (data) => {
-            console.log(data);
-            setHasNewMessage(!hasNewMessage);
+            dispatch(newMessage());
+            // setHasNewMessage(!hasNewMessage);
         });
         return () => {
             socket.off("connect");

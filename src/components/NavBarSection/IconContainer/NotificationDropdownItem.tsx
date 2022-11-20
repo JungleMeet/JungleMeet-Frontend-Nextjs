@@ -2,7 +2,7 @@ import { MenuItem, Avatar, Box, Text } from "@chakra-ui/react";
 import styled, { css } from "styled-components";
 import { readSingleNotifications } from "@/utils/axiosNotificationApi";
 import { useEffect, useState } from "react";
-interface ItemProps {
+export interface ItemProps {
     _id: string;
     triggerUserName: string;
     triggerUserAvatar: string;
@@ -53,12 +53,11 @@ const NotificationDropdownItem = ({
             await readSingleNotifications(_id, stateToken);
             setHasRead(!hasRead);
         } catch (error) {
-            console.log(error);
             return error;
         }
     };
     return (
-        <MenuItem mb="18px" p="0" pl="20px" pr="27px" position="relative" onClick={handleClick}>
+        <MenuItem mb="18px" p="0" pl="15px" pr="27px" position="relative" onClick={handleClick}>
             <Avatar
                 w="25px"
                 h="25px"
