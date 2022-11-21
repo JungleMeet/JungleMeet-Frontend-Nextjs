@@ -2,9 +2,9 @@ import { Flex, Text, Avatar } from "@chakra-ui/react";
 import React from "react";
 
 interface ITheAuthorProps {
-    id: string;
-    author: string;
-    createdAt: string;
+    id?: string;
+    author?: string;
+    createdAt?: string;
     avatar?: string;
 }
 
