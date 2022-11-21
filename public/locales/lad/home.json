@@ -25,5 +25,28 @@
 
   "myPosts": "Mis publicaciones",
   "message": "Mensaje",
-  "changePassword": "Cambia la contraseña"
+  "changePassword": "Cambia la contraseña",
+
+  "logInTitle": "Iniciar sesión",
+  "signUpTitle": "Inscribirse",
+  "emailAddress": "Dirección de correo electrónico",
+  "userName": "Nombre de usuario",
+  "password": "Clave",
+  "confirmPassword": "Confirmar contraseña",
+  "loginForgotPassword": "Has olvidado tu contraseña",
+  "loginWith": "Iniciar con",
+  "signUpWith": "Registrarte con",
+
+  "loginEmailRequiredErrorMsg": "correo electronico es requerido",
+  "loginEmailInvalidErrorMsg": "Dirección de correo electrónico no válida",
+  "loginPwdRequiredErrorMsg": "se requiere contraseña",
+  "loginPwdLenShortErrorMsg": "La contraseña debe tener al menos 6 caracteres",
+  "loginPwdLenLongErrorMsg": "La contraseña es demasiado larga",
+
+  "SignUpUsernameRequiredErrorMsg": "Por favor ingrese nombre de usuario",
+  "SignUpEmailRequiredMsg": "Por favor ingrese el correo electrónico",
+  "SignUpEmailInvalidMsg": "Dirección de correo electrónico no válida",
+  "SignUpPwdRequiredMsg": "Por favor, ingrese contraseña.",
+  "SignUpPwdDoesn'tMatch": "Contraseña y Confirmar contraseña no coinciden.",
+  "SignUpConfirmPasswordRequired": "Por favor ingrese Confirmar contraseña."
 }

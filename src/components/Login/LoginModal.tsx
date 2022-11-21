@@ -19,6 +19,7 @@ import LoginModalFooter from "./LoginModalFooter";
 import ForgotPassword from "./ForgotPassword";
 import { useDispatch, useSelector } from "react-redux";
 import { closeForgotPasswordModal } from "@/app/reducer/loginModalSlice";
+import { useTranslation } from "next-i18next";
 
 interface ILoginModal {
     isOpen: boolean;
@@ -42,6 +43,7 @@ const selectedTabStyle = {
 const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
     const isShowForgotPassword = useSelector((state: any) => state.loginModal.isShowForgotPassword);
     const dispatch = useDispatch();
+    const { t } = useTranslation("home");
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
@@ -70,7 +72,7 @@ const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
                                 <Tab
                                     fontFamily="secondary"
                                     w="119px"
-                                    h="32px"
+                                    h="auto"
                                     fontSize="20px"
                                     p="0"
                                     color="gray.400"
@@ -80,12 +82,12 @@ const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
                                     _selected={selectedTabStyle}
                                     _focus={{ boxShadow: "none" }}
                                 >
-                  Log in
+                                    {t("home:logInTitle")}
                                 </Tab>
                                 <Tab
                                     fontFamily="secondary"
                                     w="119px"
-                                    h="32px"
+                                    h="auto"
                                     fontSize="20px"
                                     p="0"
                                     color="gray.400"
@@ -95,17 +97,17 @@ const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
                                     _selected={selectedTabStyle}
                                     _focus={{ boxShadow: "none" }}
                                 >
-                  Sign up
+                                    {t("home:signUpTitle")}
                                 </Tab>
                             </TabList>
                             <TabPanels mb="50px">
                                 <TabPanel p="0">
                                     <LoginForm closeModal={onClose}></LoginForm>
-                                    <LoginModalFooter>Log in with</LoginModalFooter>
+                                    <LoginModalFooter>{t("home:loginWith")}</LoginModalFooter>
                                 </TabPanel>
                                 <TabPanel p="0">
                                     <SignupForm closeModal={onClose}></SignupForm>
-                                    <LoginModalFooter>Sign up with</LoginModalFooter>
+                                    <LoginModalFooter>{t("home:signUpWith")}</LoginModalFooter>
                                 </TabPanel>
                             </TabPanels>
                         </Tabs>

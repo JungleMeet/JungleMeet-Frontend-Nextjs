@@ -14,6 +14,7 @@ import { login, signup } from "@/utils/axiosUserApi";
 import { useDispatch } from "react-redux";
 import { signupError, signupSuccess } from "@/app/reducer/signupSlice";
 import { loginError, loginSuccess } from "@/app/reducer/loginSlice";
+import { useTranslation } from "next-i18next";
 
 const Form = styled.form`
   display: flex;
@@ -31,6 +32,7 @@ const SignupForm = ({ closeModal }: ISignupForm) => {
     const [isLoading, setIsLoading] = useState(false);
     const toast = useToast();
     const dispatch = useDispatch();
+    const { t } = useTranslation("home");
 
     const [input, setInput] = useState({
         username: "",
@@ -66,22 +68,22 @@ const SignupForm = ({ closeModal }: ISignupForm) => {
             switch (name) {
                 case "username":
                     if (!value) {
-                        stateObj[name] = "Please enter Username.";
+                        stateObj[name] = t("home:SignUpUsernameRequiredErrorMsg");
                     }
                     break;
                 case "email":
                     if (!value) {
-                        stateObj[name] = "Please enter email.";
+                        stateObj[name] = t("home:SignUpEmailRequiredMsg");
                     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(input.email)) {
-                        stateObj[name] = "Invalid email address";
+                        stateObj[name] = t("home:SignUpEmailInvalidMsg");
                     }
                     break;
 
                 case "password":
                     if (!value) {
-                        stateObj[name] = "Please enter Password.";
+                        stateObj[name] = t("home:SignUpPwdRequiredMsg");
                     } else if (input.confirmPassword && value !== input.confirmPassword) {
-                        stateObj["confirmPassword"] = "Password and Confirm Password does not match.";
+                        stateObj["confirmPassword"] = t("home:SignUpPwdDoesn'tMatch");
                     } else {
                         stateObj["confirmPassword"] = input.confirmPassword ? "" : error.confirmPassword;
                     }
@@ -89,9 +91,9 @@ const SignupForm = ({ closeModal }: ISignupForm) => {
 
                 case "confirmPassword":
                     if (!value) {
-                        stateObj[name] = "Please enter Confirm Password.";
+                        stateObj[name] = t("home:SignUpConfirmPasswordRequired");
                     } else if (input.password && value !== input.password) {
-                        stateObj[name] = "Password and Confirm Password does not match.";
+                        stateObj[name] = t("home:SignUpPwdDoesn'tMatch");
                     }
                     break;
 
@@ -146,7 +148,7 @@ const SignupForm = ({ closeModal }: ISignupForm) => {
                     name="email"
                     type="email"
                     value={input.email}
-                    placeholder="Email Address"
+                    placeholder={t("home:emailAddress")}
                     onChange={onInputChange}
                     onBlur={validateSignupInput}
                 />
@@ -157,7 +159,7 @@ const SignupForm = ({ closeModal }: ISignupForm) => {
                     name="username"
                     type="username"
                     value={input.username}
-                    placeholder="User Name"
+                    placeholder={t("home:userName")}
                     onChange={onInputChange}
                     onBlur={validateSignupInput}
                 />
@@ -168,7 +170,7 @@ const SignupForm = ({ closeModal }: ISignupForm) => {
                     name="password"
                     type={showPassword ? "text" : "password"}
                     value={input.password}
-                    placeholder="Password"
+                    placeholder={t("home:password")}
                     onChange={onInputChange}
                     onBlur={validateSignupInput}
                 />
@@ -186,7 +188,7 @@ const SignupForm = ({ closeModal }: ISignupForm) => {
                 <SignupFormInput
                     name="confirmPassword"
                     type={showPassword ? "text" : "password"}
-                    placeholder="Confirm Password"
+                    placeholder={t("home:confirmPassword")}
                     value={input.confirmPassword}
                     onChange={onInputChange}
                     onBlur={validateSignupInput}
@@ -209,7 +211,11 @@ const SignupForm = ({ closeModal }: ISignupForm) => {
                 type="submit"
                 color="gray.50"
             >
-                {isLoading ? <CircularProgress isIndeterminate size="24px" color="teal" /> : "Sign up"}
+                {isLoading ? (
+                    <CircularProgress isIndeterminate size="24px" color="teal" />
+                ) : (
+                    t("home:signUpTitle")
+                )}
             </Button>
         </Form>
     );

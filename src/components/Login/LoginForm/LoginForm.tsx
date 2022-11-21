@@ -10,7 +10,7 @@ import FormInput from "./FormInput";
 import { useState } from "react";
 import { login } from "@/utils/axiosUserApi";
 import styled from "styled-components";
-// import { Buffer } from "buffer";
+import { useTranslation } from "next-i18next";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { loginSuccess, loginError } from "@/app/reducer/loginSlice";
@@ -44,14 +44,15 @@ const LoginForm = ({ closeModal }: ILoginForm) => {
     const [pwdErrorMsg, setPwdErrorMsg] = useState("");
     const toast = useToast();
     const dispatch = useDispatch();
+    const { t } = useTranslation("home");
 
     const validateEmailInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setEmailErrorMsg("");
         if (!value) {
-            setEmailErrorMsg("Email is required");
+            setEmailErrorMsg(t("home:loginEmailRequiredErrorMsg"));
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-            setEmailErrorMsg("Invalid email address");
+            setEmailErrorMsg(t("home:loginEmailInvalidErrorMsg"));
         }
     };
 
@@ -59,11 +60,11 @@ const LoginForm = ({ closeModal }: ILoginForm) => {
         const value = e.target.value;
         setPwdErrorMsg("");
         if (!value) {
-            setPwdErrorMsg("Password is required");
+            setPwdErrorMsg(t("home:loginPwdRequiredErrorMsg"));
         } else if (value.length < 6) {
-            setPwdErrorMsg("Password must be at least 6 characters");
+            setPwdErrorMsg(t("home:loginPwdLenShortErrorMsg"));
         } else if (value.length > 50) {
-            setPwdErrorMsg("Password is too long");
+            setPwdErrorMsg(t("home:loginPwdLenLongErrorMsg"));
         }
     };
 
@@ -107,7 +108,7 @@ const LoginForm = ({ closeModal }: ILoginForm) => {
                 <FormInput
                     name="email"
                     type="email"
-                    placeholder="Email Address"
+                    placeholder={t("home:emailAddress")}
                     value={email}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                         setEmail((event.target as HTMLInputElement).value);
@@ -120,7 +121,7 @@ const LoginForm = ({ closeModal }: ILoginForm) => {
                 <FormInput
                     name="password"
                     type={show ? "text" : "password"}
-                    placeholder="Password"
+                    placeholder={t("home:password")}
                     value={password}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                         setPassword((event.target as HTMLInputElement).value);
@@ -143,11 +144,15 @@ const LoginForm = ({ closeModal }: ILoginForm) => {
                     color="blue.500"
                     onClick={() => dispatch(openForgotPassword())}
                 >
-          Forgot password?
+                    {t("home:loginForgotPassword")}
                 </Button>
             </ButtonContainer>
             <Button w="359px" h="50px" backgroundColor="lightBlue.600" type="submit" color="gray.50">
-                {isLoading ? <CircularProgress isIndeterminate size="24px" color="teal" /> : "Log in"}
+                {isLoading ? (
+                    <CircularProgress isIndeterminate size="24px" color="teal" />
+                ) : (
+                    t("home:logInTitle")
+                )}
             </Button>
         </Form>
     );

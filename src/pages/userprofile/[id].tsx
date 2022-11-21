@@ -24,11 +24,11 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
 };
 const UserProfile = () => {
     const router = useRouter();
-    const { id }: any = router.query;
+    const { id, active }: any = router.query;
 
     return (
         <PageWrapper>
-            <UserProfilePage queryUserId={id} />
+            <UserProfilePage queryUserId={id} active={active} />
         </PageWrapper>
     );
 };

@@ -123,7 +123,7 @@ const UserNameAndMessage = () => {
 
     return (
         <>
-            <Menu offset={[-190, 10]}>
+            <Menu offset={[-225, 10]}>
                 <MenuButton
                     as={Button}
                     border="none"
