@@ -103,9 +103,7 @@ const NowPlayingMovies = () => {
         >
             <Grid gridTemplateColumns={"repeat(5,20%)"} gridGap={"72px 4px"}>
                 {movieList.map(({ resourceId, poster, title, voteAverage }: ImovieList) => {
-                    return (
-                        <Movie id={resourceId} src={poster} title={title} tmdb={voteAverage} key={resourceId} />
-                    );
+                    return <Movie id={resourceId} src={poster} title={title} tmdb={voteAverage} key={resourceId} />;
                 })}
             </Grid>
         </InfiniteScroll>

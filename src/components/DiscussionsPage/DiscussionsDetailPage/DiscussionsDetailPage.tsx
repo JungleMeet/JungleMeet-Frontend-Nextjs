@@ -6,7 +6,7 @@ import { getUserById } from "@/utils/axiosUserApi";
 import { Box, useToast } from "@chakra-ui/react";
 import DiscussionsDetailContent from "./DiscussionsDetailContent";
 import DiscussionsDetailComments from "./DiscussionsDetailComments";
-import AddComment from "./AddComment";
+import CommentEditor from "../../Editor/CommentEditor";
 import { useSelector, useDispatch } from "react-redux";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
 
@@ -91,7 +91,7 @@ const DiscussionsDetailPage = () => {
                 isEditorVisible={isEditorVisible}
                 isLogged={isLogged}
             />
-            <AddComment isEditorVisible={isEditorVisible} postId={id} />
+            {isEditorVisible ? <CommentEditor postId={id} /> : null}
             <DiscussionsDetailComments postId={postDetail._id} />
         </Box>
     );

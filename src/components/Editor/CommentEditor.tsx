@@ -4,20 +4,18 @@ import { createComment } from "@/utils/axiosCommentApi";
 import { Box, Button, ButtonGroup, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 
-interface IAddCommentProps {
-    isEditorVisible: boolean;
+interface ICommentEditorProps {
     postId: string;
 }
 
-const AddComment = ({ isEditorVisible, postId }: IAddCommentProps) => {
+const CommentEditor = ({ postId }: ICommentEditorProps) => {
     const { editor, clearContent, content } = useEditorController();
     const [loading, setLoading] = useState(false);
     const toast = useToast();
 
     const submitComment = () => {
         const token = localStorage.getItem("token");
-        if (!token) return;
-        if (!content) return;
+        if (!token || !content) return;
         setLoading(true);
         createComment({ content, postId, token }).then(() => {
             setLoading(false);
@@ -33,25 +31,21 @@ const AddComment = ({ isEditorVisible, postId }: IAddCommentProps) => {
     };
 
     return (
-        <Box position={"relative"} transitionTimingFunction="ease">
-            {isEditorVisible && (
-                <>
-                    <ContentEditor editor={editor} height="150px" />
-                    <ButtonGroup pt={"15px"}>
-                        <Button onClick={clearContent}>Clear</Button>
-                        <Button
-                            isLoading={loading}
-                            onClick={submitComment}
-                            colorScheme="blue"
-                            disabled={content ? content?.length < 8 : true}
-                        >
-              Comment
-                        </Button>
-                    </ButtonGroup>
-                </>
-            )}
+        <Box position={"relative"} transitionTimingFunction="ease" pr={"3rem"}>
+            <ContentEditor editor={editor} height="150px" />
+            <ButtonGroup pt={"15px"}>
+                <Button
+                    isLoading={loading}
+                    onClick={submitComment}
+                    colorScheme="blue"
+                    disabled={content ? content?.length < 8 : true}
+                >
+          Comment
+                </Button>
+                <Button onClick={clearContent}>Clear</Button>
+            </ButtonGroup>
         </Box>
     );
 };
 
-export default AddComment;
+export default CommentEditor;

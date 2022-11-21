@@ -1,80 +1,63 @@
 import React from "react";
 import { isEmpty } from "lodash";
-import ReviewAvatar from "./ReviewAvatar";
-import { dateCreatedAt } from "@/utils/dateCreateAt";
-import { Stack, Text, Button } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
+import CommentItem from "./CommentItem";
 
 export interface ICommentProps {
-    topComments: {
+    _id: string;
+    content: string;
+    visible: boolean;
+    author: {
         _id: string;
-        content: string;
-        visible: boolean;
-        author: {
-            _id: string;
-            name: string;
-            avatar: string;
-        };
-        mentionedUserId: string[];
-        postId: string;
-        parentCommentId: string;
-        like: string[];
-        createdAt: string;
-        updatedAt: string;
-        level: number;
-        __V: number;
-        children: ICommentProps[];
+        name: string;
+        avatar: string;
     };
-    // [key: string]: string | boolean | Array<any> | Object|null;
+    mentionedUserId: string[];
+    postId: string;
+    parentCommentId: string;
+    like: string[];
+    createdAt: string;
+    updatedAt: string;
+    level: number;
+    __V: number;
+    children: ICommentProps[];
 }
 
-function replyComments(item: any) {
-    if (!isEmpty(item.children[0]?._id)) {
-        return <Comment comments={item.children} />;
-    } else {
-        return null;
-    }
-}
-
-const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
+const Comment = ({
+    comments,
+    setNewComment,
+}: {
+    comments: ICommentProps[];
+    setNewComment: React.Dispatch<React.SetStateAction<any>>;
+}): JSX.Element => {
     return (
         <>
             {comments &&
-        comments?.map((item: any) => {
+        comments?.map((item) => {
             const {
                 _id,
                 content,
-                // visible,
-                //  postId,
+                postId,
                 createdAt,
-                // like,
                 author,
-                mentionedUserId,
+            // like,
+            // visible,
+            // mentionedUserId,
             } = item;
             return (
-                <Stack mb="5px" pb="30px" bg="#F9FAFB" key={_id}>
-                    <Stack pt="25px" pl="54.4px" pb="4.25px">
-                        <ReviewAvatar
-                            id={author?._id}
-                            author={`${author?.name}`}
-                            createdAt={dateCreatedAt(createdAt)}
-                            avatar={author?.avatar}
+                <Stack mb="5px" bg="#F9FAFB" key={_id}>
+                    <Stack pt="10px" pl="54.4px" pb="4.25px">
+                        <CommentItem
+                            _id={_id}
+                            content={content}
+                            postId={postId}
+                            createdAt={createdAt}
+                            author={author}
+                            setNewComment={setNewComment}
                         />
-                        <Stack pl="63px">
-                            <Text fontSize={"text4"} fontWeight="500" mb="15px">
-                                {`${content}`}
-                            </Text>
-                            <Button
-                                size="sl"
-                                color="blue.500"
-                                fontSize={"text5"}
-                                width="45px"
-                                variant="unstyled"
-                            >
-                    REPLY
-                            </Button>
-                        </Stack>
-                        {mentionedUserId}
-                        {replyComments(item)}
+                        {!isEmpty(item.children[0]?._id) ? (
+                            <Comment comments={item.children} setNewComment={setNewComment} />
+                        ) : null}
                     </Stack>
                 </Stack>
             );
