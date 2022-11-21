@@ -204,10 +204,14 @@ div input {
   bottom:0;
   left:75px;
   top:80px;
-  background-color: rgb(167, 168, 167);
-  width:3px;
+  background-color: rgba(235, 235, 235, 0.704);
+  width:2px;
   cursor:pointer;
   z-index: 11;
+}
+
+.before-content:hover{
+  background-color: rgb(235, 115, 29);
 }
 
 .hidden{
