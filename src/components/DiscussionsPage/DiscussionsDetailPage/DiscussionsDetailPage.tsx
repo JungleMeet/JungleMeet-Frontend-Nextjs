@@ -10,23 +10,24 @@ import CommentEditor from "../../Editor/CommentEditor";
 import { useSelector, useDispatch } from "react-redux";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
 
-interface IpostDetail{
+interface IpostDetail {
     _id?: string;
     title?: string;
     createdAt?: string;
     like?: string[];
     content?: string;
     bgImg?: string;
-}[];
+}
+[];
 
-interface IuserDetail{
+interface IuserDetail {
     name?: string;
     avatar?: string;
     _id?: string;
 }
-const DiscussionsDetailPage = ():JSX.Element=> {
+const DiscussionsDetailPage = (): JSX.Element => {
     const router = useRouter();
-    const { id }:{id?:string} = router.query;
+    const { id }: { id?: string } = router.query;
     const [postDetail, setPostDetail] = useState<IpostDetail>();
     const [userDetail, setUserDetail] = useState<IuserDetail>();
     const isLogged = useSelector((state: any) => state.login.isLogged);
@@ -79,7 +80,7 @@ const DiscussionsDetailPage = ():JSX.Element=> {
     };
 
     // make sure id is a string to satisfy typescript
-    if (typeof id !== "string") (router.push("/"))
+    if (typeof id !== "string") router.push("/");
 
     return (
         <Box key={postDetail?._id}>
