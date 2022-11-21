@@ -7,7 +7,7 @@ const axiosApi = axios.create({
     timeout: REQUEST_TIMEOUT,
 });
 
-export const getNowPlaying = async (page: number) => {
+export const getNowPlaying = async (page?: number) => {
     return await axiosApi.get(`/list?tag=now_playing&page=${page}`);
 };
 

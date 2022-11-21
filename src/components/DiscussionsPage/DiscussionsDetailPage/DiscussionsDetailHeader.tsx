@@ -22,16 +22,16 @@ import { EditIcon, HamburgerIcon, DeleteIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 
 interface IDetailProps {
-    avatar: string;
-    userId: string;
-    name: string;
-    title: string;
-    postId: string;
-    date: string;
-    like: number;
-    isLogged: boolean;
-    currentId: string;
-    userRole: string;
+    avatar?: string;
+    userId?: string;
+    name?: string;
+    title?: string;
+    postId?: string;
+    date?: string;
+    like?: number;
+    isLogged?: boolean;
+    currentId?: string;
+    userRole?: string;
 }
 
 const DiscussionsDetailHeader = ({
