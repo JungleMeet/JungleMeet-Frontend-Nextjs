@@ -5,7 +5,6 @@ import { dateCreatedAt } from "@/utils/dateCreateAt";
 import { Stack, Text, Button, Divider } from "@chakra-ui/react";
 import parser from "html-react-parser";
 
-
 export interface ICommentProps {
     topComments: {
         _id: string;
