@@ -1,4 +1,4 @@
-import { getMovieDetails } from "@/utils/axiosMovieApi";
+import { getMovieDetails, getYoutubeLinkById} from "@/utils/axiosMovieApi";
 import { useRouter } from "next/router";
 import MovieInfoDetail from "./MovieInfoDetail";
 import React, { useState, useEffect } from "react";
@@ -18,24 +18,10 @@ export interface MovieDetailsProps {
     majorCasts: [];
     director: [];
     writer: [];
+    video: string;
 }
 
-const MovieDetails = ({
-    genresName,
-    resourceId,
-    poster,
-    releaseDateRightFormat,
-    title,
-    voteAverage,
-    voteCount,
-    length,
-    languages,
-    overview,
-    country,
-    majorCasts,
-    director,
-    writer,
-}: MovieDetailsProps) => {
+const MovieDetails = () => {
     const router = useRouter();
     const { id } = router.query;
     const [moviesInfo, setMoviesInfo] = useState<MovieDetailsProps>({
@@ -53,14 +39,29 @@ const MovieDetails = ({
         majorCasts: [],
         director: [],
         writer: [],
+        video: ""
     });
+    const [moviesVideo, setMoviesVideo] = useState();
+    const [secondFetch, setSecondFetch] = useState(false);
+    
+
     useEffect(() => {
         const fetchMovieData = async () => {
             const { data } = await getMovieDetails(id);
             setMoviesInfo(data);
+            setSecondFetch(true);
         };
         fetchMovieData();
     }, []);
+    
+    useEffect(()=>{
+        const fetchVideoData = async() =>{
+            const {data} = await getYoutubeLinkById(moviesInfo.resourceId);
+            setMoviesVideo(data);
+        }
+        fetchVideoData();
+    },[secondFetch])
+
     return (
         <>
             <MovieInfoDetail
@@ -78,6 +79,7 @@ const MovieDetails = ({
                 majorCasts={moviesInfo.majorCasts}
                 director={moviesInfo.director}
                 writer={moviesInfo.writer}
+                video={moviesVideo}
             />
         </>
     );
