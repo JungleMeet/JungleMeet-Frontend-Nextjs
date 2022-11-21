@@ -3,7 +3,9 @@ import axios from "axios";
 const REQUEST_TIMEOUT = 10000;
 
 const axiosApi = axios.create({
-    baseURL: "http://localhost:3000/v1/notifications",
+    baseURL: process.env.NEXT_PUBLIC_SERVER
+        ? process.env.NEXT_PUBLIC_SERVER + "/v1/notifications"
+        : process.env.NEXT_PUBLIC_SERVER_ADD + "/v1/notifications",
     timeout: REQUEST_TIMEOUT,
 });
 
