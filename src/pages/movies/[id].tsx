@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
 import { useToast } from "@chakra-ui/react";
 import { TriangleUpIcon } from "@chakra-ui/icons";
-import MovieDetails from "@components/MoviePage/MovieDetails/MovieDetails"
+import MovieDetails from "@components/MoviePage/MovieDetails/MovieDetails";
 
 interface IgetStaticProps {
     locale: string;
@@ -37,23 +37,24 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
         fallback: "blocking", // indicates the type of fallback
     };
 };
-interface movieDetailsProps{
-    genresName:[];
+interface movieDetailsProps {
+    genresName: [];
     resourceId: number;
     poster: string;
     releaseDateRightFormat: string;
     title: string;
-    voteAverage:number;
-    voteCount:number;
+    voteAverage: number;
+    voteCount: number;
     length: string;
-    languages:[];
+    languages: [];
     overview: string;
     country: [];
-    majorCasts:[];
-    director:[];
-    writer:[];
+    majorCasts: [];
+    director: [];
+    writer: [];
 }
-const PopularReview = ({genresName,
+const PopularReview = ({
+    genresName,
     resourceId,
     poster,
     releaseDateRightFormat,
@@ -66,7 +67,8 @@ const PopularReview = ({genresName,
     country,
     majorCasts,
     director,
-    writer}:movieDetailsProps) => {
+    writer,
+}: movieDetailsProps) => {
     const router = useRouter();
     const { id } = router.query;
     const dispatch = useDispatch();
@@ -95,21 +97,22 @@ const PopularReview = ({genresName,
 
     return (
         <PageWrapper>
-            <MovieDetails 
-                genresName={ genresName}
-                resourceId={ resourceId}
-                poster={ poster}
-                releaseDateRightFormat={ releaseDateRightFormat}
-                title={ title}
-                voteAverage={ voteAverage}
-                voteCount={ voteCount}
-                length={ length}
-                languages={ languages}
-                overview={ overview}
-                country={ country}
-                majorCasts={ majorCasts}
-                director={ director}
-                writer={ writer}/>
+            <MovieDetails
+                genresName={genresName}
+                resourceId={resourceId}
+                poster={poster}
+                releaseDateRightFormat={releaseDateRightFormat}
+                title={title}
+                voteAverage={voteAverage}
+                voteCount={voteCount}
+                length={length}
+                languages={languages}
+                overview={overview}
+                country={country}
+                majorCasts={majorCasts}
+                director={director}
+                writer={writer}
+            />
             <SectionContainer>
                 <SectionHeaderContainer>
                     <Link href={`/movies/reviews/${id}`}>
