@@ -9,7 +9,6 @@ import {
     SectionTitle,
 } from "@/components/MainPage/Containers";
 import PageWrapper from "@/components/PageWrapper";
-import MovieSection from "@/components/MoviePage/MovieDetails/MovieSection";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -19,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
 import { useToast } from "@chakra-ui/react";
 import { TriangleUpIcon } from "@chakra-ui/icons";
+import MovieDetails from "@components/MoviePage/MovieDetails/MovieDetails"
 
 interface IgetStaticProps {
     locale: string;
@@ -37,7 +37,36 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
         fallback: "blocking", // indicates the type of fallback
     };
 };
-const PopularReview = () => {
+interface movieDetailsProps{
+    genresName:[];
+    resourceId: number;
+    poster: string;
+    releaseDateRightFormat: string;
+    title: string;
+    voteAverage:number;
+    voteCount:number;
+    length: string;
+    languages:[];
+    overview: string;
+    country: [];
+    majorCasts:[];
+    director:[];
+    writer:[];
+}
+const PopularReview = ({genresName,
+    resourceId,
+    poster,
+    releaseDateRightFormat,
+    title,
+    voteAverage,
+    voteCount,
+    length,
+    languages,
+    overview,
+    country,
+    majorCasts,
+    director,
+    writer}:movieDetailsProps) => {
     const router = useRouter();
     const { id } = router.query;
     const dispatch = useDispatch();
@@ -66,7 +95,21 @@ const PopularReview = () => {
 
     return (
         <PageWrapper>
-            <MovieSection />
+            <MovieDetails 
+                genresName={ genresName}
+                resourceId={ resourceId}
+                poster={ poster}
+                releaseDateRightFormat={ releaseDateRightFormat}
+                title={ title}
+                voteAverage={ voteAverage}
+                voteCount={ voteCount}
+                length={ length}
+                languages={ languages}
+                overview={ overview}
+                country={ country}
+                majorCasts={ majorCasts}
+                director={ director}
+                writer={ writer}/>
             <SectionContainer>
                 <SectionHeaderContainer>
                     <Link href={`/movies/reviews/${id}`}>

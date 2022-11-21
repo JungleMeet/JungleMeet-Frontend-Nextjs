@@ -35,7 +35,7 @@ export const getYoutubeLinkById = async (id: number) => {
     return await axiosApi.get(`/trailers/${id}`);
 }
 
-export const getMovieDetails = async (id: number) => {
+export const getMovieDetails = async (id: string | string[] | undefined |number) => {
     return await axiosApi.get(`/details/${id}`)
 }
 
