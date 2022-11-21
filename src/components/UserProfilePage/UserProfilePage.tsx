@@ -54,6 +54,8 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const [currentTab, setCurrentTab] = useState("My Posts");
     const [followed, setFollowed] = useState(false);
+    const [followTrigger, setfFllowTrigger] = useState(true);
+    const [selfProfile, setSelfProfile] = useState<IUserProfile>(defaultUserProfile);
     useEffect(() => {
         const getUserProfileDetail = async () => {
             try {
@@ -66,6 +68,9 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                         queryUserId === userInfo.userId ? userInfo.userId : queryUserId
                     )!;
                     setUserProfile(profileResponse.data);
+                    const selfProfileResponse: AxiosResponse = await getUserProfile(userInfo.userId)!;
+                    setSelfProfile(selfProfileResponse.data);
+
                     setUserId(userInfo.userId);
                     setFollowed(
                         profileResponse.data.followersList
@@ -79,7 +84,34 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
             }
         };
         getUserProfileDetail();
-    }, [followed]);
+    }, []);
+
+    useEffect(() => {
+        const updateFollow = async () => {
+            try {
+                const userInfoLocalStorage = localStorage.getItem("userInfo");
+                if (userInfoLocalStorage) {
+                    const userInfo = JSON.parse(userInfoLocalStorage);
+                    const profileResponse: AxiosResponse = await getUserProfile(
+                        queryUserId === userInfo.userId ? userInfo.userId : queryUserId
+                    );
+                    setUserProfile(profileResponse.data);
+                    const selfProfileResponse: AxiosResponse = await getUserProfile(userInfo.userId)!;
+                    setSelfProfile(selfProfileResponse.data);
+                    setFollowed(
+                        profileResponse.data.followersList
+                            .map((follower: any) => follower.userId)
+                            .includes(userInfo.userId)
+                    );
+                } else {
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        updateFollow();
+    }, [followTrigger]);
+
     return (
         <>
             <UserProfileHeader
@@ -91,9 +123,8 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                 queryUserId={queryUserId}
                 followed={followed}
                 token={token}
-                setFollowed={setFollowed}
-                userProfile={userProfile}
-                setUserProfile={setUserProfile}
+                setfFllowTrigger={setfFllowTrigger}
+                followTrigger={followTrigger}
             />
             <Flex flexDirection="row" pos="relative" mt="28px">
                 <Flex maxW="816px" flexDirection="column" w="70%">
@@ -117,10 +148,16 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                 </Flex>
                 <Flex mr="0px" ml="26px" flexDirection="column" maxW="403px" w="35%">
                     <UserProfileSider
-                        siderName="Follower"
+                        siderName="Followers"
                         count={userProfile.followersList.length}
                         icon={HiOutlineUsers}
                         marginTop="0"
+                        modalItems={userProfile.followersList}
+                        token={token}
+                        selfProfile={selfProfile}
+                        followTrigger={followTrigger}
+                        setfFllowTrigger={setfFllowTrigger}
+                        followed={followed}
                     >
                         <Flex
                             display="grid"
@@ -152,6 +189,12 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                         count={userProfile.followingsList.length}
                         icon={HiOutlineUserAdd}
                         marginTop={"25px"}
+                        modalItems={userProfile.followingsList}
+                        token={token}
+                        selfProfile={selfProfile}
+                        followTrigger={followTrigger}
+                        setfFllowTrigger={setfFllowTrigger}
+                        followed={followed}
                     >
                         <Flex
                             display="grid"
@@ -183,9 +226,15 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
                         count={userProfile.followingPostsList.length}
                         icon={HiOutlineFlag}
                         marginTop={"25px"}
+                        modalItems={userProfile.followingPostsList}
+                        token={token}
+                        followTrigger={followTrigger}
+                        setfFllowTrigger={setfFllowTrigger}
+                        followed={followed}
+                        selfProfile={selfProfile}
                     >
                         <Flex
-                            display="grid"
+                            flexDirection={"column"}
                             w="100%"
                             flexWrap="wrap"
                             gridTemplateColumns="1fr 1fr"
