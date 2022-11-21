@@ -91,9 +91,12 @@ const UserNameAndMessage = () => {
     ];
 
     useEffect(() => {
-        socket = io(process.env.NEXT_PUBLIC_SERVER
-            ? `${process.env.NEXT_PUBLIC_SERVER}` 
-            : `${process.env.NEXT_PUBLIC_SERVER_ADD}` , { query: { userId: userId }, transports: ["websocket"] });
+        socket = io(
+            process.env.NEXT_PUBLIC_SERVER
+                ? `${process.env.NEXT_PUBLIC_SERVER}`
+                : `${process.env.NEXT_PUBLIC_SERVER_ADD}`,
+            { query: { userId: userId }, transports: ["websocket"] }
+        );
         socket.on("connect", () => {
             console.log("connect client");
         });
