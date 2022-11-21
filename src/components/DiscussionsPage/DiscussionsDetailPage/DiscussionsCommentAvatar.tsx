@@ -3,6 +3,7 @@ import { isEmpty } from "lodash";
 import DiscussionsCommentTitle from "./DiscussionCommentTitle";
 import { dateCreatedAt } from "@/utils/dateCreateAt";
 import { Stack, Text, Button, Divider } from "@chakra-ui/react";
+import parser from "html-react-parser";
 
 export interface ICommentProps {
     topComments: {
@@ -61,7 +62,7 @@ const DiscussionsCommentAvatar = ({ comments }: { comments: ICommentProps[] }): 
 
                         <Stack pl="60px">
                             <Text fontSize={"text5"} fontWeight="500" mb="10px">
-                                {`${content}`}
+                                {parser(content)}
                             </Text>
                             <Button width="45px" fontSize="text6" lineHeight="lh24" variant="link">
                     REPLY
