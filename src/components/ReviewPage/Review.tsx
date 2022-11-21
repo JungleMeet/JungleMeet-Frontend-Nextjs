@@ -12,6 +12,7 @@ interface IReviewProps {
     poster: string;
     title: string;
 }
+
 const Review = () => {
     const [comments, setComments] = useState([]);
     const [reviews, setReviews] = useState(0);
@@ -22,9 +23,11 @@ const Review = () => {
     });
     const router = useRouter();
     const { id }: any = router.query;
-    const comentsPerPage = 3;
+    const comentsPerPage = 5;
     const [next, setNext] = useState(comentsPerPage);
+    const [newComment, setNewComment] = useState(true);
     const handleMoreComments = () => setNext(next + comentsPerPage);
+
     useEffect(() => {
         const fetchComments = async () => {
             try {
@@ -32,12 +35,14 @@ const Review = () => {
                 const data: any = res.data;
                 setComments(data.topComments);
                 setReviews(data.length);
+                setNewComment(false);
             } catch (err) {
                 return err;
             }
         };
-        fetchComments();
-    }, []);
+
+        newComment && fetchComments();
+    }, [newComment]);
 
     useEffect(() => {
         const fetchHeader = async () => {
@@ -60,7 +65,7 @@ const Review = () => {
                 title={headerInfo.title}
             />
             <ReviewFilter reviews={reviews} />
-            <Comment comments={comments.slice(0, next)} />
+            <Comment comments={comments.slice(0, next)} setNewComment={setNewComment} />
             <Flex justify={"center"} alignContent={"center"} pt="36px">
                 {next < reviews && (
                     <Button
