@@ -46,13 +46,13 @@ const AllMovies = () => {
         fetchMovies();
     }, []);
 
-    const filterByYearHandler = (filterByYear:string) => {
+    const filterByYearHandler = (filterByYear: string) => {
         setFilterByYear(filterByYear);
     };
-    const filterByTypeHandler = (filterByType:string) => {
+    const filterByTypeHandler = (filterByType: string) => {
         setFilterByType(filterByType);
     };
-    const sortByFeaturedHandler = (sortByFeatured:string) => {
+    const sortByFeaturedHandler = (sortByFeatured: string) => {
         setSortByFeatured(sortByFeatured);
     };
     useEffect(() => {
