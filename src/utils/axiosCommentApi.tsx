@@ -11,7 +11,7 @@ const axiosApi = axios.create({
 
 interface createNewComment {
     content:string;
-    postId: string;
+    postId?: string;
     parentCommentId?:string;
     token:string;
 }

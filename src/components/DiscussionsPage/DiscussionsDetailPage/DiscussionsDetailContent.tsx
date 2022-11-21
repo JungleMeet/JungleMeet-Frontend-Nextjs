@@ -6,14 +6,14 @@ import DiscussionsFollowButton from "./DiscussionsFollowButton";
 import { DiscussionsLikeButton } from "./DiscussionsFollowButton";
 
 interface IContentProps {
-    postId: string;
-    content: string;
-    bgImg: string;
+    postId?: string;
+    content?: string;
+    bgImg?: string;
     toggleShowEditor: () => void;
-    isEditorVisible: boolean;
-    userId: string;
-    isLogged: boolean;
-    currentId: string;
+    isEditorVisible?: boolean;
+    userId?: string;
+    isLogged?: boolean;
+    currentId?: string;
 }
 
 const DiscussionsDetailContent = ({

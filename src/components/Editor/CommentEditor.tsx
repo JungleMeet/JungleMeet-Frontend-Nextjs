@@ -5,7 +5,7 @@ import { Box, Button, ButtonGroup, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 
 interface ICommentEditorProps {
-    postId: string;
+    postId?: string;
 }
 
 const CommentEditor = ({ postId }: ICommentEditorProps) => {
