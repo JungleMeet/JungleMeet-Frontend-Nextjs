@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { getNowPlaying } from "@/utils/axiosMovieApi";
 import { Grid, Text } from "@chakra-ui/react";
 import Movie from "@/components/MainPage/NowPlaying/MovieThumbnail";

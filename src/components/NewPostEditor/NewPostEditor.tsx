@@ -65,7 +65,10 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
     };
 
     const detectEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") editor?.commands.focus();
+        if (e.key === "Enter") {
+            e.preventDefault();
+            editor?.commands.focus();
+        }
     };
 
     return (
@@ -77,7 +80,7 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
                 <PostSingleLineInput
                     placeholder="Post Title"
                     value={postTitle}
-                    onKeyUp={detectEnterKey}
+                    onKeyDown={detectEnterKey}
                     onChange={(event) => setPostTitle(event.target.value)}
                 />
                 <ContentEditor editor={editor} height="350px" />
