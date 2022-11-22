@@ -13,9 +13,7 @@ const DiscussionFilter = () => {
                     <Heading fontSize={"text1"}>{t("home:displaySetting")}</Heading>
                     <Stack align="center" direction="row">
                         <Switch size="md" pl="44px" />
-                        <Text fontSize={"text2"}>{t("home:coverOption")}</Text>
-                        <Switch size="md" pl="47px" />
-                        <Text fontSize={"text2"}>{t("home:abstractOption")}</Text>
+                        <Text fontSize={"text2"}>{t("home:comingSoon")}</Text>
                     </Stack>
                 </Flex>
                 <DiscussionSort />

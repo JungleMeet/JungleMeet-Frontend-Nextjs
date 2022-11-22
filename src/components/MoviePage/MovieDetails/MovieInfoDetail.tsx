@@ -8,7 +8,6 @@ import {
     Divider,
     Button,
     Stack,
-    Link,
     useToast,
 } from "@chakra-ui/react";
 import { FaPen, FaLink } from "react-icons/fa";
@@ -171,7 +170,7 @@ const MovieInfoDetail = ({
                 {genresName &&
           genresName?.map((item: any) => {
               return (
-                  <Link
+                  <Button
                       key={resourceId}
                       padding="5px"
                       bgColor="#D9D9D9"
@@ -181,7 +180,7 @@ const MovieInfoDetail = ({
                       p="8px 12px"
                   >
                       {item}
-                  </Link>
+                  </Button>
               );
           })}
             </Flex>
