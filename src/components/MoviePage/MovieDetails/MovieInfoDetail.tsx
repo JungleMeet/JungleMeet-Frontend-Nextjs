@@ -31,7 +31,7 @@ interface MovieInfoDetailProps {
     majorCasts: [];
     director: [];
     writer: [];
-    video?: string;
+    video: string;
 }
 
 const MovieInfoDetail = ({
