@@ -70,7 +70,8 @@ export const UserProfileModal = ({
                                 })
                                 : modalItems.map((modalItem: any) => {
                                     return (
-                                        <Flex key = {uuid()}
+                                        <Flex
+                                            key={uuid()}
                                             w="80%"
                                             h="68px"
                                             flexDir={"row"}
