@@ -1,7 +1,7 @@
 import { FaPen } from "react-icons/fa";
 import { Button, Stack } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReviewPosts from "@/components/MoviePage/PopularReview/ReviewPosts";
 import {
     SectionContainer,
@@ -9,11 +9,16 @@ import {
     SectionTitle,
 } from "@/components/MainPage/Containers";
 import PageWrapper from "@/components/PageWrapper";
-import MovieSection from "@/components/MoviePage/MovieDetails/MovieSection";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { GetStaticPaths } from "next/types";
+import AddReview from "@/components/MoviePage/PopularReview/AddReview";
+import { useDispatch, useSelector } from "react-redux";
+import { openLoginModal } from "@/app/reducer/loginModalSlice";
+import { useToast } from "@chakra-ui/react";
+import { TriangleUpIcon } from "@chakra-ui/icons";
+import MovieDetails from "@components/MoviePage/MovieDetails/MovieDetails";
 
 interface IgetStaticProps {
     locale: string;
@@ -32,12 +37,37 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
         fallback: "blocking", // indicates the type of fallback
     };
 };
-const PopularReview = (): JSX.Element => {
+
+const PopularReview = () => {
     const router = useRouter();
     const { id } = router.query;
+    const dispatch = useDispatch();
+    const toast = useToast();
+    const isLogged = useSelector((state: any) => state.login.isLogged);
+    const [isEditorVisible, setIsEditorVisible] = useState(false);
+
+    useEffect(() => {
+        setIsEditorVisible(isLogged);
+    }, [isLogged]);
+
+    const toggleShowEditor = () => {
+        if (!isLogged) {
+            toast({
+                position: "bottom",
+                title: "Please Log in",
+                description: "Only registered users can make comments",
+                status: "warning",
+                duration: 5000,
+                isClosable: true,
+            });
+            return dispatch(openLoginModal());
+        }
+        setIsEditorVisible((state) => !state);
+    };
+
     return (
         <PageWrapper>
-            <MovieSection />
+            <MovieDetails />
             <SectionContainer>
                 <SectionHeaderContainer>
                     <Link href={`/movies/reviews/${id}`}>
@@ -55,13 +85,30 @@ const PopularReview = (): JSX.Element => {
                     {/* write a new review part using chakra-ui component */}
                     <div>
                         <Stack direction="row" spacing={4}>
-                            <Button leftIcon={<FaPen />} colorScheme="blue" variant="solid">
-                Review
-                            </Button>
+                            {isEditorVisible ? (
+                                <Button
+                                    leftIcon={isEditorVisible ? <FaPen /> : <FaPen />}
+                                    colorScheme="gray"
+                                    variant="solid"
+                                    onClick={toggleShowEditor}
+                                >
+                  Review
+                                </Button>
+                            ) : (
+                                <Button
+                                    leftIcon={isEditorVisible ? <TriangleUpIcon /> : <FaPen />}
+                                    colorScheme="blue"
+                                    variant="solid"
+                                    onClick={toggleShowEditor}
+                                >
+                  Review
+                                </Button>
+                            )}
                         </Stack>
                     </div>
                     {/* write a new review part END */}
                 </SectionHeaderContainer>
+                <AddReview isEditorVisible={isLogged} postId={`${id}`} />
                 <ReviewPosts />
                 <Link href={`/movies/reviews/${id}`}>
                     <Text

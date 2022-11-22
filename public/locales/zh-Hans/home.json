@@ -25,5 +25,28 @@
 
   "myPosts": "我的帖子",
   "message": "消息",
-  "changePassword": "修改密码"
+  "changePassword": "修改密码",
+
+  "logInTitle": "登录",
+  "signUpTitle": "注册",
+  "emailAddress": "邮箱",
+  "userName": "用户名",
+  "password": "密码",
+  "confirmPassword": "确认密码",
+  "loginForgotPassword": "忘记密码",
+  "loginWith": "第三方登录",
+  "signUpWith": "第三方注册",
+
+  "loginEmailRequiredErrorMsg": "请输入邮箱",
+  "loginEmailInvalidErrorMsg": "邮箱不合理",
+  "loginPwdRequiredErrorMsg": "请输入密码",
+  "loginPwdLenShortErrorMsg": "至少输入6位字符",
+  "loginPwdLenLongErrorMsg": "密码太长",
+
+  "SignUpUsernameRequiredErrorMsg": "请输入用户名",
+  "SignUpEmailRequiredMsg": "请输入邮箱",
+  "SignUpEmailInvalidMsg": "邮箱不合理",
+  "SignUpPwdRequiredMsg": "请输入密码",
+  "SignUpPwdDoesn'tMatch": "密码不一致",
+  "SignUpConfirmPasswordRequired": "请再输入一遍密码"
 }

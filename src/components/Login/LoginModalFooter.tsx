@@ -21,7 +21,7 @@ const LoginModalFooter = ({ children }: IFooter) => {
                     borderColor: "#000",
                     flexGrow: 1,
                     mr: "13px",
-                    w: "126px",
+                    w: "auto",
                 }}
                 _after={{
                     content: '""',
@@ -29,7 +29,7 @@ const LoginModalFooter = ({ children }: IFooter) => {
                     borderColor: "#000",
                     flexGrow: 1,
                     ml: "13px",
-                    w: "126px",
+                    w: "auto",
                 }}
                 fontSize="text5"
                 fontWeight="400"

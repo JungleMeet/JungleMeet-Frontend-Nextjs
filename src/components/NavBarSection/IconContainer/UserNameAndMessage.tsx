@@ -91,7 +91,12 @@ const UserNameAndMessage = () => {
     ];
 
     useEffect(() => {
-        socket = io("http://localhost:3000", { query: { userId: userId }, transports: ["websocket"] });
+        socket = io(
+            process.env.NEXT_PUBLIC_SERVER
+                ? `${process.env.NEXT_PUBLIC_SERVER}`
+                : `${process.env.NEXT_PUBLIC_SERVER_ADD}`,
+            { query: { userId: userId }, transports: ["websocket"] }
+        );
         socket.on("connect", () => {
             console.log("connect client");
         });
@@ -126,7 +131,7 @@ const UserNameAndMessage = () => {
 
     return (
         <>
-            <Menu offset={[-190, 10]}>
+            <Menu offset={[-225, 10]}>
                 <MenuButton
                     as={Button}
                     border="none"

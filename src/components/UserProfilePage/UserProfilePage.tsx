@@ -14,6 +14,7 @@ import uuid from "react-uuid";
 
 interface userProfileProps {
     queryUserId: string;
+    active: string;
 }
 
 interface IUserProfile {
@@ -37,7 +38,7 @@ interface IUserProfile {
         title: string;
     }[];
 }
-const UserProfilePage = ({ queryUserId }: userProfileProps) => {
+const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     const defaultUserProfile = {
         userRole: "",
         userName: "",
@@ -53,9 +54,11 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
     const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [currentTab, setCurrentTab] = useState("My Posts");
+
     const [followed, setFollowed] = useState(false);
     const [followTrigger, setfFllowTrigger] = useState(true);
     const [selfProfile, setSelfProfile] = useState<IUserProfile>(defaultUserProfile);
+
     useEffect(() => {
         const getUserProfileDetail = async () => {
             try {
@@ -84,6 +87,7 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
             }
         };
         getUserProfileDetail();
+        console.log(active);
     }, []);
 
     useEffect(() => {
@@ -128,12 +132,13 @@ const UserProfilePage = ({ queryUserId }: userProfileProps) => {
             />
             <Flex flexDirection="row" pos="relative" mt="28px">
                 <Flex maxW="816px" flexDirection="column" w="70%">
-                    <Tabs w="100%">
+                    <Tabs w="100%" defaultIndex={active === "message" ? 1 : 0}>
                         <UserProfileTabs
                             isLoading={isLoading}
                             setCurrentTab={setCurrentTab}
                             isSelf={userId === queryUserId}
                             userName={userProfile.userName}
+                            active={active}
                         />
                         <TabPanels>
                             {currentTab === "My Posts" ? (
