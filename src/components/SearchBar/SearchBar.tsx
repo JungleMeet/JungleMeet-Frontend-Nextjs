@@ -48,7 +48,7 @@ const SearchBar = () => {
     return (
         <SearchBarContainer>
             <form onSubmit={handleSubmit}>
-                <InputGroup h="36px">
+                <InputGroup maxW="525px" h="36px" minW={["211px", "300px", "400px"]}>
                     <Input
                         _placeholder={{
                             color: "#FFFFFF",
