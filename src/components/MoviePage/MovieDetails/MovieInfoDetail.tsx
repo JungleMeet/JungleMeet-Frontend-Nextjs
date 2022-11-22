@@ -138,7 +138,9 @@ const MovieInfoDetail = ({
                             </Button>
                             {video ? (
                                 <PlayingMovieTrailerModel isOpen={isOpen} onClose={onClose} src={video} />
-                            ) : null}
+                            ) : (
+                                `Not available`
+                            )}
                         </Flex>
                     </Flex>
                     <Divider m="0px" colorScheme="gray.200" />
@@ -194,16 +196,18 @@ const MovieInfoDetail = ({
             <Stack pt="73px">
                 <Heading pb="46px">Featured Casts</Heading>
                 <CarouselContainer slideSize="287px">
-                    {majorCasts?.map((item: any) => {
-                        return (
-                            <Carousel.Slide gap={68} key={resourceId}>
-                                <Image src={item.path} alt={"casts"} height="88%" width="100%" />
-                                <Text pt="19px" textAlign="center" fontSize="text3" fontWeight="700">
-                                    {item.name}
-                                </Text>
-                            </Carousel.Slide>
-                        );
-                    })}
+                    {majorCasts && majorCasts.length > 0
+                        ? majorCasts?.map((item: any) => {
+                            return (
+                                <Carousel.Slide gap={68} key={resourceId}>
+                                    <Image src={item.path} alt={"casts"} height="88%" width="100%" />
+                                    <Text pt="19px" textAlign="center" fontSize="text3" fontWeight="700">
+                                        {item.name}
+                                    </Text>
+                                </Carousel.Slide>
+                            );
+                        })
+                        : null}
                 </CarouselContainer>
             </Stack>
         </Stack>
