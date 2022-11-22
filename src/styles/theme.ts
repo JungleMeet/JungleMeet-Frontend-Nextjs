@@ -25,11 +25,6 @@ const styles = {
     },
 };
 
-const breakpoints = {
-    sm: '600px',
-    md: '1000px',
-}
-
 const theme = extendTheme(config, styles, {
     colors: {
         rose: {
@@ -128,7 +123,10 @@ const theme = extendTheme(config, styles, {
         heading: `'Inter', ${base.fonts?.heading}`,
         secondary: `'DM Sans', ${base.fonts?.heading}`,
     },
-    breakpoints
+    breakpoints: {
+        sm: '37.5em',
+        md: '62.5em'
+    }
 });
 
 export default theme;

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
-    "start": "next start -p 3002",
+    "start": "next start",
     "lint": "next lint --fix",
     "prettier": "prettier -c .prettierrc \"src/{pages,store,components}/**/*.{js,jsx,ts,tsx}\" --write",
     "test": "jest --colors --config jest.config.js --maxWorkers=50%",

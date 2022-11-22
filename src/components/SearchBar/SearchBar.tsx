@@ -63,6 +63,7 @@ const SearchBar = () => {
                         onKeyDown={detectEsc}
                         onChange={handleInput}
                         value={query}
+                        w="100%"
                     />
                     <SearchButton onClick={handleSubmit}>
                         <SearchIcon color={"white"} boxSize="18px" />
