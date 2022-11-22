@@ -6,7 +6,7 @@ import { useTranslation } from "next-i18next";
 import { Link } from "@chakra-ui/react";
 
 const SectionContainer = styled.div`
-  width: 600px;
+  width: 50%;
   padding-left: 56px;
 `;
 
