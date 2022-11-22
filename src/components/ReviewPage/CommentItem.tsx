@@ -6,7 +6,7 @@ import ReviewAvatar from "./ReviewAvatar";
 import { useSelector, useDispatch } from "react-redux";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
 import parser from "html-react-parser";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { toggleHideChildrenComment } from "@/app/reducer/commentSlice";
 
 export interface ICommentItemProps {
@@ -28,18 +28,18 @@ export interface ICommentItemProps {
     __V?: number;
     children?: ICommentItemProps[];
     setNewComment: React.Dispatch<React.SetStateAction<any>>;
-    hasChildren:boolean;
+    hasChildren: boolean;
 }
 
-
 const CommentThread = styled.button`
-display: block;
+  display: block;
   position: absolute;
   bottom: 0;
   left: 65px;
   top: 70px;
   border-right: 2px solid #cbcacab3;
-  border-right-color: ${({isCollapsed}:{isCollapsed:boolean})=>isCollapsed?"#178005":"#cbcacab3"};
+  border-right-color: ${({ isCollapsed }: { isCollapsed: boolean }) =>
+        isCollapsed ? "#178005" : "#cbcacab3"};
   width: 13px;
   cursor: pointer;
   z-index: 10;
@@ -63,21 +63,23 @@ const CommentItem = ({
     const isLogged = useSelector((state: any) => state.login.isLogged);
     const hiddenIdArray = useSelector((state: any) => state.comments.hiddenIdArray);
 
-
     const toggleHide = (id: string) => {
         dispatch(toggleHideChildrenComment(id));
     };
-    
+
     const toggleEditor = () => {
         if (!isLogged) {
             return dispatch(openLoginModal());
         }
         setIsEditorVisible((current) => !current);
     };
-    const isThreadSelected=hiddenIdArray.includes(_id)
+    const isThreadSelected = hiddenIdArray.includes(_id);
     return (
         <>
-            <CommentThread onClick={()=>toggleHide(_id)} isCollapsed={hasChildren && isThreadSelected}/>
+            <CommentThread
+                onClick={() => toggleHide(_id)}
+                isCollapsed={hasChildren && isThreadSelected}
+            />
             <ReviewAvatar
                 id={author?._id}
                 author={`${author?.name}`}
@@ -98,7 +100,7 @@ const CommentItem = ({
                 >
                     {isEditorVisible ? "CLOSE" : "REPLY"}
                 </Button>
-            
+
                 {isEditorVisible ? (
                     <ReplyCommentEditor
                         postId={postId}
