@@ -138,9 +138,7 @@ const MovieInfoDetail = ({
                             </Button>
                             {video ? (
                                 <PlayingMovieTrailerModel isOpen={isOpen} onClose={onClose} src={video} />
-                            ) : (
-                                `Not available`
-                            )}
+                            ) : `Not available`}
                         </Flex>
                     </Flex>
                     <Divider m="0px" colorScheme="gray.200" />
