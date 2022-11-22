@@ -27,6 +27,8 @@ const EscPrompt = styled.span`
 const SearchBarContainer = styled.div`
   position: relative;
   height: auto;
+  max-width: 525px;
+  width: 100%;
 `;
 
 const SearchBar = () => {
@@ -48,7 +50,7 @@ const SearchBar = () => {
     return (
         <SearchBarContainer>
             <form onSubmit={handleSubmit}>
-                <InputGroup maxW="525px" h="36px" minW={["211px", "300px", "400px"]}>
+                <InputGroup h="36px" w="100%">
                     <Input
                         _placeholder={{
                             color: "#FFFFFF",

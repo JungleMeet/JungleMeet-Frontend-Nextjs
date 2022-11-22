@@ -1,21 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { getNowPlaying } from "@/utils/axiosMovieApi";
 import { Grid, Text } from "@chakra-ui/react";
 import Movie from "@/components/MainPage/NowPlaying/MovieThumbnail";
 import InfiniteScroll from "react-infinite-scroll-component";
+import PlayingMovieTrailerModel from "../PlayingMovieTrailerModel";
+import { useDispatch, useSelector } from "react-redux";
+import { closeMovieTrailerModel } from "@/app/reducer/modalSlice";
 
-interface ImovieList {
+interface IMovieList {
     resourceId: number;
     poster: string;
     title: string;
     voteAverage: number;
+    youtubeLink: string;
 }
 
 const NowPlayingMovies = () => {
+    const dispatch = useDispatch();
+    const videoLink = useSelector((state: any) => state.modal.videoLink);
+    const isModalOpen = useSelector((state: any) => state.modal.isModalOpen);
     const [movieList, setMovieList] = useState([]);
     const [moviePage, setMoviePage] = useState(2);
     const [noMore, setNoMore] = useState(true);
-    // const nowPlayingMoviesMemo = useMemo(() => movieList, [movieList]);
+    const nowPlayingMoviesMemo = useMemo(() => movieList, [movieList]);
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -99,11 +106,25 @@ const NowPlayingMovies = () => {
             }
         >
             <Grid gridTemplateColumns={"repeat(5,20%)"} gridGap={"72px 4px"}>
-                {movieList.map(({ resourceId, poster, title, voteAverage }: ImovieList) => {
-                    return (
-                        <Movie id={resourceId} src={poster} title={title} tmdb={voteAverage} key={resourceId} />
-                    );
-                })}
+                {nowPlayingMoviesMemo?.map(
+                    ({ resourceId, poster, title, voteAverage, youtubeLink }: IMovieList) => {
+                        return (
+                            <Movie
+                                id={resourceId}
+                                src={poster}
+                                title={title}
+                                tmdb={voteAverage}
+                                key={resourceId}
+                                youtubeLink={youtubeLink}
+                            />
+                        );
+                    }
+                )}
+                <PlayingMovieTrailerModel
+                    isOpen={isModalOpen}
+                    onClose={() => dispatch(closeMovieTrailerModel())}
+                    src={videoLink}
+                />
             </Grid>
         </InfiniteScroll>
     );

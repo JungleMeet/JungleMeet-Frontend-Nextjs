@@ -1,7 +1,12 @@
-import { Avatar, Flex, Text, Icon } from "@chakra-ui/react";
+import { Avatar, Flex, Text, Icon, Link } from "@chakra-ui/react";
 import { HiLightBulb } from "react-icons/hi";
 
-const ProfileSiderDetails = (follower: { name: string; role: string; avatar?: string }) => {
+const ProfileSiderDetails = (follower: {
+    name: string;
+    role: string;
+    avatar?: string;
+    userId: string;
+}) => {
     return (
         <Flex w="100%" h="70px" flexDir={"row"}>
             <Avatar
@@ -23,7 +28,7 @@ const ProfileSiderDetails = (follower: { name: string; role: string; avatar?: st
                     overflow="hidden"
                     lineHeight="lh20"
                 >
-                    {follower.name}
+                    <Link href={"/userprofile/" + follower.userId}>{follower.name}</Link>
                 </Text>
                 <Flex flexDir={"row"} mt="1px" h="23px">
                     <Icon as={HiLightBulb} h={4} color="gray.500" mr="7px" />
