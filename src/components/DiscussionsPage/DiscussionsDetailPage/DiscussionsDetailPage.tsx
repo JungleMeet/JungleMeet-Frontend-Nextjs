@@ -6,15 +6,30 @@ import { getUserById } from "@/utils/axiosUserApi";
 import { Box, useToast } from "@chakra-ui/react";
 import DiscussionsDetailContent from "./DiscussionsDetailContent";
 import DiscussionsDetailComments from "./DiscussionsDetailComments";
-import AddComment from "./AddComment";
+import CommentEditor from "../../Editor/CommentEditor";
 import { useSelector, useDispatch } from "react-redux";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
 
-const DiscussionsDetailPage = () => {
+interface IpostDetail {
+    _id?: string;
+    title?: string;
+    createdAt?: string;
+    like?: string[];
+    content?: string;
+    bgImg?: string;
+}
+[];
+
+interface IuserDetail {
+    name?: string;
+    avatar?: string;
+    _id?: string;
+}
+const DiscussionsDetailPage = (): JSX.Element => {
     const router = useRouter();
-    const { id } = router.query;
-    const [postDetail, setPostDetail] = useState("" as any);
-    const [userDetail, setUserDetail] = useState("" as any);
+    const { id }: { id?: string } = router.query;
+    const [postDetail, setPostDetail] = useState<IpostDetail>();
+    const [userDetail, setUserDetail] = useState<IuserDetail>();
     const isLogged = useSelector((state: any) => state.login.isLogged);
     const userInfo = useSelector((state: any) => state.login.userInfo);
     const [isEditorVisible, setIsEditorVisible] = useState(false);
@@ -65,34 +80,34 @@ const DiscussionsDetailPage = () => {
     };
 
     // make sure id is a string to satisfy typescript
-    if (typeof id !== "string") return router.push("/");
+    if (typeof id !== "string") router.push("/");
 
     return (
-        <Box key={postDetail._id}>
+        <Box key={postDetail?._id}>
             <DiscussionDetailHeader
                 postId={postDetail?._id}
-                title={postDetail.title}
-                name={userDetail.name}
-                avatar={userDetail.avatar}
-                userId={userDetail._id}
+                title={postDetail?.title}
+                name={userDetail?.name}
+                avatar={userDetail?.avatar}
+                userId={userDetail?._id}
                 userRole={userRole}
                 currentId={currentId}
-                date={postDetail.createdAt}
-                like={postDetail.like?.length}
+                date={postDetail?.createdAt}
+                like={postDetail?.like?.length}
                 isLogged={isLogged}
             />
             <DiscussionsDetailContent
-                postId={postDetail._id}
-                content={postDetail.content}
-                bgImg={postDetail.bgImg}
+                postId={postDetail?._id}
+                content={postDetail?.content}
+                bgImg={postDetail?.bgImg}
                 currentId={currentId}
-                userId={userDetail._id}
+                userId={userDetail?._id}
                 toggleShowEditor={toggleShowEditor}
                 isEditorVisible={isEditorVisible}
                 isLogged={isLogged}
             />
-            <AddComment isEditorVisible={isEditorVisible} postId={id} />
-            <DiscussionsDetailComments postId={postDetail._id} />
+            {isEditorVisible ? <CommentEditor postId={id} /> : null}
+            <DiscussionsDetailComments postId={postDetail?._id} />
         </Box>
     );
 };

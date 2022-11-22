@@ -6,14 +6,13 @@ import ReviewFilter from "./ReviewFilter";
 import ReviewHeader from "./ReviewHeader";
 import { getMovieDetails } from "@/utils/axiosMovieApi";
 import { Button, Flex } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
-import { clearCollapsedArray } from "@/app/reducer/commentSlice";
 
 interface IReviewProps {
     resourceId: number;
     poster: string;
     title: string;
 }
+
 const Review = () => {
     const [comments, setComments] = useState([]);
     const [reviews, setReviews] = useState(0);
@@ -24,11 +23,11 @@ const Review = () => {
     });
     const router = useRouter();
     const { id }: any = router.query;
-    const comentsPerPage = 3;
+    const comentsPerPage = 5;
     const [next, setNext] = useState(comentsPerPage);
-    const dispatch = useDispatch();
+    const [newComment, setNewComment] = useState(true);
+    const handleMoreComments = () => setNext(next + comentsPerPage);
 
-    const handleMoreComments = () => setNext((current) => current + comentsPerPage);
     useEffect(() => {
         const fetchComments = async () => {
             try {
@@ -36,13 +35,14 @@ const Review = () => {
                 const data: any = res.data;
                 setComments(data.topComments);
                 setReviews(data.length);
+                setNewComment(false);
             } catch (err) {
                 return err;
             }
         };
-        dispatch(clearCollapsedArray());
-        fetchComments();
-    }, []);
+
+        newComment && fetchComments();
+    }, [newComment]);
 
     useEffect(() => {
         const fetchHeader = async () => {
@@ -65,7 +65,7 @@ const Review = () => {
                 title={headerInfo.title}
             />
             <ReviewFilter reviews={reviews} />
-            <Comment comments={comments.slice(0, next)} />
+            <Comment comments={comments.slice(0, next)} setNewComment={setNewComment} />
             <Flex justify={"center"} alignContent={"center"} pt="36px">
                 {next < reviews && (
                     <Button

@@ -1,100 +1,82 @@
 import React from "react";
 import { isEmpty } from "lodash";
-import ReviewAvatar from "./ReviewAvatar";
-import { dateCreatedAt } from "@/utils/dateCreateAt";
-import { Text, Button, Box } from "@chakra-ui/react";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleHideChildrenComment } from "@/app/reducer/commentSlice";
+import { Stack } from "@chakra-ui/react";
+import CommentItem from "./CommentItem";
+// import { useSelector, useDispatch } from "react-redux";
+// import { toggleHideChildrenComment } from "@/app/reducer/commentSlice";
 
 export interface ICommentProps {
-    topComments: {
+    _id: string;
+    content: string;
+    visible: boolean;
+    author: {
         _id: string;
-        content: string;
-        visible: boolean;
-        author: {
-            _id: string;
-            name: string;
-            avatar: string;
-        };
-        mentionedUserId: string[];
-        postId: string;
-        parentCommentId: string;
-        like: string[];
-        createdAt: string;
-        updatedAt: string;
-        level: number;
-        __V: number;
-        children: ICommentProps[];
+        name: string;
+        avatar: string;
     };
-    // [key: string]: string | boolean | Array<any> | Object|null;
+    mentionedUserId: string[];
+    postId: string;
+    parentCommentId: string;
+    like: string[];
+    createdAt: string;
+    updatedAt: string;
+    level: number;
+    __V: number;
+    children: ICommentProps[];
 }
 
-function replyComments(item: any) {
-    if (!isEmpty(item.children[0]?._id)) {
-        return <Comment comments={item.children} />;
-    } else {
-        return null;
-    }
-}
+const Comment = ({
+    comments,
+    setNewComment,
+}: {
+    comments: ICommentProps[];
+    setNewComment: React.Dispatch<React.SetStateAction<any>>;
+}): JSX.Element => {
+    // function replyComments(item: any) {
+    //     if (!isEmpty(item.children[0]?._id)) {
+    //         return <Comment comments={item.children} />;
+    //     } else {
+    //         return null;
+    //     }
+    // }
 
-const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
-    const hiddenIdArray = useSelector((state: any) => state.comments.hiddenIdArray);
-    const dispatch = useDispatch();
+    // const hiddenIdArray = useSelector((state: any) => state.comments.hiddenIdArray);
+    // const dispatch = useDispatch();
 
-    const toggleHide = (id: string) => {
-        dispatch(toggleHideChildrenComment(id));
-    };
+    // const toggleHide = (id: string) => {
+    //     dispatch(toggleHideChildrenComment(id));
+    // };
 
     return (
         <>
             {comments &&
-        comments?.map((item: any) => {
+        comments?.map((item) => {
             const {
                 _id,
                 content,
-                // visible,
-                //  postId,
+                postId,
                 createdAt,
-                // like,
                 author,
+            // like,
+            // visible,
             // mentionedUserId,
             } = item;
             return (
-            // <Stack
-            // // mb="5px"
-            // // pb="30px"
-            //     bg="#F9FAFB" key={_id}>
-                <Box pt="25px" pl="54.4px" position={"relative"} key={_id}>
-                    <>
-                        <ReviewAvatar
-                            id={author?._id}
-                            author={`${author?.name}`}
-                            createdAt={dateCreatedAt(createdAt)}
-                            avatar={author?.avatar}
+                <Stack mb="5px" bg="#F9FAFB" key={_id}>
+                    <Stack pt="10px" pl="54.4px" pb="4.25px">
+                        <CommentItem
+                            _id={_id}
+                            content={content}
+                            postId={postId}
+                            createdAt={createdAt}
+                            author={author}
+                            setNewComment={setNewComment}
                         />
-                        <div className="before-content" onClick={() => toggleHide(_id)}></div>
-
-                        {/* <div className="pre-comment-content"> hello</div> */}
-                        <Box pl="63px" className="comment-content">
-                            <Text fontSize={"text4"} fontWeight="500" mb="15px">
-                                {`${content}`}
-                            </Text>
-                            <Button
-                                size="sl"
-                                color="blue.500"
-                                fontSize={"text5"}
-                                width="45px"
-                                variant="unstyled"
-                            >
-                    REPLY
-                            </Button>
-                        </Box>
-                        {/* {mentionedUserId}
-                    {replyComments(item)} */}
-                        {hiddenIdArray.includes(_id) ? null : replyComments(item)}
-                    </>
-                </Box>
-            // </Stack>
+                        {!isEmpty(item.children[0]?._id) ? (
+                            <Comment comments={item.children} setNewComment={setNewComment} />
+                        ) : null}
+                    </Stack>
+                </Stack>
             );
         })}
         </>

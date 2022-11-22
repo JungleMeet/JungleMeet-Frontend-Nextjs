@@ -48,7 +48,7 @@ const SearchBar = () => {
     return (
         <SearchBarContainer>
             <form onSubmit={handleSubmit}>
-                <InputGroup w="525px" h="36px">
+                <InputGroup maxW="525px" h="36px" minW={["211px", "300px", "400px"]}>
                     <Input
                         _placeholder={{
                             color: "#FFFFFF",
@@ -63,6 +63,7 @@ const SearchBar = () => {
                         onKeyDown={detectEsc}
                         onChange={handleInput}
                         value={query}
+                        w="100%"
                     />
                     <SearchButton onClick={handleSubmit}>
                         <SearchIcon color={"white"} boxSize="18px" />

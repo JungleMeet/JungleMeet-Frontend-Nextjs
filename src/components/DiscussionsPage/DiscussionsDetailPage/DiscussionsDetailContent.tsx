@@ -4,16 +4,17 @@ import { Flex, Divider, Image, Box, Text, Grid, HStack, Button } from "@chakra-u
 import React from "react";
 import DiscussionsFollowButton from "./DiscussionsFollowButton";
 import { DiscussionsLikeButton } from "./DiscussionsFollowButton";
+import parser from "html-react-parser";
 
 interface IContentProps {
-    postId: string;
-    content: string;
-    bgImg: string;
+    postId?: string;
+    content?: string;
+    bgImg?: string;
     toggleShowEditor: () => void;
-    isEditorVisible: boolean;
-    userId: string;
-    isLogged: boolean;
-    currentId: string;
+    isEditorVisible?: boolean;
+    userId?: string;
+    isLogged?: boolean;
+    currentId?: string;
 }
 
 const DiscussionsDetailContent = ({
@@ -31,7 +32,7 @@ const DiscussionsDetailContent = ({
             <Flex key={postId} direction={"column"}>
                 <Box mt="70px" position="relative">
                     <Image src={bgImg}></Image>
-                    <Text mt="40px">{content}</Text>
+                    <Text mt="40px">{content && parser(content)}</Text>
                     <Flex alignItems="center" mt="40px">
                         {isLogged ? (
                             <>
