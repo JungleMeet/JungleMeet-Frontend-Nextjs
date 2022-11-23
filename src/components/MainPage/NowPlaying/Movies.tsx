@@ -29,11 +29,11 @@ const Movies = () => {
     useEffect(() => {
         const fetchMovies = async () => {
             try {
-                const { data } = await getNowPlaying();
+                const { data } = await getNowPlaying(1);
 
                 setMovieList(data.slice(0, 4));
             } catch (err) {
-                console.error(err);
+                return err;
             }
         };
         fetchMovies();
