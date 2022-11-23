@@ -30,7 +30,7 @@ const NowPlayingMovies = () => {
                 const { data } = await getNowPlaying(1);
                 setMovieList(data);
             } catch (err) {
-                console.log(err);
+                return err;
             }
         };
         fetchMovies();
@@ -61,7 +61,7 @@ const NowPlayingMovies = () => {
             const { data } = await getNowPlaying(moviePage);
             return data;
         } catch (err) {
-            console.log(err);
+            return err;
         }
     };
 
@@ -73,7 +73,6 @@ const NowPlayingMovies = () => {
             setNoMore(false);
         }
         setMoviePage(moviePage + 1);
-    // console.log(moviePage);
     };
 
     return (

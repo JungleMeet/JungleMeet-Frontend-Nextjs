@@ -6,6 +6,8 @@ import ReviewAvatar from "./ReviewAvatar";
 import { useSelector, useDispatch } from "react-redux";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
 import parser from "html-react-parser";
+import styled from "styled-components";
+import { toggleHideChildrenComment } from "@/app/reducer/commentSlice";
 
 export interface ICommentItemProps {
     _id: string;
@@ -26,7 +28,26 @@ export interface ICommentItemProps {
     __V?: number;
     children?: ICommentItemProps[];
     setNewComment: React.Dispatch<React.SetStateAction<any>>;
+    hasChildren: boolean;
 }
+
+const CommentThread = styled.button`
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 65px;
+  top: 70px;
+  border-right: 2px solid #cbcacab3;
+  border-right-color: ${({ isCollapsed }: { isCollapsed: boolean }) =>
+        isCollapsed ? "#178005" : "#cbcacab3"};
+  width: 13px;
+  cursor: pointer;
+  z-index: 10;
+
+  &:hover {
+    border-right: 2px solid #eb351d;
+  }
+`;
 
 const CommentItem = ({
     _id,
@@ -35,10 +56,16 @@ const CommentItem = ({
     createdAt,
     author,
     setNewComment,
+    hasChildren,
 }: ICommentItemProps) => {
+    const dispatch = useDispatch();
     const [isEditorVisible, setIsEditorVisible] = useState(false);
     const isLogged = useSelector((state: any) => state.login.isLogged);
-    const dispatch = useDispatch();
+    const hiddenIdArray = useSelector((state: any) => state.comments.hiddenIdArray);
+
+    const toggleHide = (id: string) => {
+        dispatch(toggleHideChildrenComment(id));
+    };
 
     const toggleEditor = () => {
         if (!isLogged) {
@@ -46,8 +73,13 @@ const CommentItem = ({
         }
         setIsEditorVisible((current) => !current);
     };
+    const isThreadSelected = hiddenIdArray.includes(_id);
     return (
         <>
+            <CommentThread
+                onClick={() => toggleHide(_id)}
+                isCollapsed={hasChildren && isThreadSelected}
+            />
             <ReviewAvatar
                 id={author?._id}
                 author={`${author?.name}`}
@@ -55,7 +87,7 @@ const CommentItem = ({
                 avatar={author?.avatar}
             />
             <Stack pl="63px" pb={"10px"}>
-                <Text fontSize={"text4"} fontWeight="500" mb="15px">
+                <Text fontSize={"text4"} fontWeight="500" mb="15px" pr={"2rem"}>
                     {parser(content)}
                 </Text>
                 <Button
@@ -68,15 +100,16 @@ const CommentItem = ({
                 >
                     {isEditorVisible ? "CLOSE" : "REPLY"}
                 </Button>
+
+                {isEditorVisible ? (
+                    <ReplyCommentEditor
+                        postId={postId}
+                        parentCommentId={_id}
+                        setNewComment={setNewComment}
+                        setIsEditorVisible={setIsEditorVisible}
+                    />
+                ) : null}
             </Stack>
-            {isEditorVisible ? (
-                <ReplyCommentEditor
-                    postId={postId}
-                    parentCommentId={_id}
-                    setNewComment={setNewComment}
-                    setIsEditorVisible={setIsEditorVisible}
-                />
-            ) : null}
         </>
     );
 };
