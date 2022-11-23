@@ -3,14 +3,14 @@ import React from "react";
 // import { dateCreatedAt } from "../utils/dateCreateAt";
 
 interface ICreatedByTheAuthorProps {
-    id: string;
+    id?: string;
     gap: string;
     color: string;
     fontSize: string;
     lineHeight: string;
     fontWeight: string;
     imageSize: string;
-    author: string;
+    author?: string;
     createdAt: string;
     avatar?: string;
 }

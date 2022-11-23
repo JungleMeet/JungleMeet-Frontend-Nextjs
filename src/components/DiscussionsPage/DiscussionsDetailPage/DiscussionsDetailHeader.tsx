@@ -31,8 +31,8 @@ import {
 } from "@/app/reducer/buttonSlice";
 
 interface IDetailProps {
-    likeList: string[];
-    followList: string[];
+    likeList?: string[];
+    followList?: string[];
     avatar?: string;
     userId?: string;
     name?: string;
