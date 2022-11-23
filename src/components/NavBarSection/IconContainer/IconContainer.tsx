@@ -65,7 +65,7 @@ const IconContainer = () => {
                     dispatch(tokenValid(userInfo));
                 }
             } catch (e) {
-                console.log(e);
+                return e;
             }
         };
         if (token) {
