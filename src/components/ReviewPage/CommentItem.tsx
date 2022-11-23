@@ -38,18 +38,14 @@ const CommentThread = styled.button`
   left: 65px;
   top: 70px;
   border-right: ${({ isCollapsed }: { isCollapsed: boolean }) =>
-        isCollapsed 
-            ? "6px double #cbcacab3"
-            : "2px solid #cbcacab3"};
+        isCollapsed ? "6px double #cbcacab3" : "2px solid #cbcacab3"};
   width: 13px;
   cursor: pointer;
   z-index: 10;
 
   &:hover {
-    border-right:  ${({ isCollapsed }: { isCollapsed: boolean }) =>
-        isCollapsed 
-            ? "6px double #9d1304"
-            : "2px solid #9d1304"};
+    border-right: ${({ isCollapsed }: { isCollapsed: boolean }) =>
+        isCollapsed ? "6px double #9d1304" : "2px solid #9d1304"};
   }
 `;
 
