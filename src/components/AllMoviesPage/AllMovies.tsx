@@ -38,9 +38,8 @@ const AllMovies = () => {
                     moviePage
                 );
                 setAllMovies(data);
-                console.log(moviePage);
             } catch (err) {
-                console.log(err);
+                return err;
             }
         };
         fetchMovies();
@@ -72,8 +71,6 @@ const AllMovies = () => {
                     setAllMovies((currentData) => currentData.concat(data));
                 }
             );
-            console.log(moviePage);
-            console.log(filterByYear, filterByType, sortByFeatured, moviePage);
         }
     }, [moviePage]);
 
