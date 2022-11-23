@@ -12,16 +12,27 @@ import {
     useToast,
     IconButton,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import DiscussionsFollowButton from "./DiscussionsFollowButton";
 import { DiscussionsLikeButton } from "./DiscussionsFollowButton";
 import { dateCreatedAt } from "../../../utils/dateCreateAt";
 import DiscussionPostAuthor from "./DiscussionPostAuthor";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
 import { EditIcon, HamburgerIcon, DeleteIcon } from "@chakra-ui/icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+    clickTheFollow,
+    clickTheLike,
+    likeClicked,
+    followClicked,
+    theLikeNum,
+    setLikeNum,
+} from "@/app/reducer/buttonSlice";
 
 interface IDetailProps {
+    likeList: string[];
+    followList: string[];
     avatar: string;
     userId: string;
     name: string;
@@ -42,12 +53,28 @@ const DiscussionsDetailHeader = ({
     title,
     date,
     like,
+    likeList,
+    followList,
     isLogged,
     currentId,
     userRole,
 }: IDetailProps) => {
     const dispatch = useDispatch();
     const toast = useToast();
+    const theLike = useSelector((state: any) => state.button.like);
+
+    useEffect(() => {
+        const theUser = JSON.parse(localStorage.getItem("userInfo") || "{}");
+        dispatch(setLikeNum(like));
+
+        if (followList?.includes(theUser?.userId)) {
+            dispatch(followClicked());
+        }
+
+        if (likeList?.includes(theUser?.userId)) {
+            dispatch(likeClicked());
+        }
+    }, []);
 
     const toggleClick = () => {
         if (!isLogged) {
@@ -60,6 +87,38 @@ const DiscussionsDetailHeader = ({
                 isClosable: true,
             });
             return dispatch(openLoginModal());
+        }
+    };
+
+    const toggleClickLike = () => {
+        if (!isLogged) {
+            toast({
+                position: "bottom",
+                title: "Please Log in",
+                description: "Only registered users can follow/like",
+                status: "warning",
+                duration: 5000,
+                isClosable: true,
+            });
+            return dispatch(openLoginModal());
+        } else {
+            dispatch(clickTheLike());
+            dispatch(theLikeNum());
+        }
+    };
+    const toggleClickFollow = async () => {
+        if (!isLogged) {
+            toast({
+                position: "bottom",
+                title: "Please Log in",
+                description: "Only registered users can follow/like",
+                status: "warning",
+                duration: 5000,
+                isClosable: true,
+            });
+            return dispatch(openLoginModal());
+        } else {
+            dispatch(clickTheFollow());
         }
     };
 
@@ -122,25 +181,23 @@ const DiscussionsDetailHeader = ({
                                     </MenuList>
                                 </Menu>
                             ) : (
-                                <DiscussionsFollowButton>
-                                    <Text>Follow post </Text>
-                                </DiscussionsFollowButton>
+                                <HStack
+                                    align="center"
+                                    textColor="gray.500"
+                                    onClick={toggleClickFollow}
+                                    _hover={{ color: "gray.50" }}
+                                >
+                                    <DiscussionsFollowButton />
+                                </HStack>
                             )}
                         </HStack>
 
                         <Flex alignItems="center" justifyContent="flex-end" flex="1">
                             <Text color="red" mr="10px">
-                                {like} liked
+                                {theLike} liked
                             </Text>
-                            <HStack
-                                align="center"
-                                textColor="gray.500"
-                                onClick={toggleClick}
-                                _hover={{ color: "gray.50" }}
-                            >
-                                <DiscussionsLikeButton>
-                                    <Text>Like</Text>
-                                </DiscussionsLikeButton>
+                            <HStack align="center" onClick={toggleClickLike} _hover={{ color: "gray.50" }}>
+                                <DiscussionsLikeButton />
                             </HStack>
                         </Flex>
                     </Flex>

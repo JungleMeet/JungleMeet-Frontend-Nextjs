@@ -12,7 +12,7 @@ import { openLoginModal } from "@/app/reducer/loginModalSlice";
 
 const DiscussionsDetailPage = () => {
     const router = useRouter();
-    const { id } = router.query;
+    const { id }: any = router.query;
     const [postDetail, setPostDetail] = useState("" as any);
     const [userDetail, setUserDetail] = useState("" as any);
     const isLogged = useSelector((state: any) => state.login.isLogged);
@@ -23,7 +23,6 @@ const DiscussionsDetailPage = () => {
     const [currentId, setCurrentId] = useState("");
     const [userRole, setUserRole] = useState("");
 
-    // const currentPagePost = useMemo(() => postDetail, [postDetail]);
     useEffect(() => {
         const getDetail = async () => {
             try {
@@ -78,6 +77,8 @@ const DiscussionsDetailPage = () => {
                 userRole={userRole}
                 currentId={currentId}
                 date={postDetail.createdAt}
+                followList={postDetail.follower}
+                likeList={postDetail.like}
                 like={postDetail.like?.length}
                 isLogged={isLogged}
             />
@@ -92,7 +93,7 @@ const DiscussionsDetailPage = () => {
                 isLogged={isLogged}
             />
             <AddComment isEditorVisible={isEditorVisible} postId={id} />
-            <DiscussionsDetailComments postId={postDetail._id} />
+            <DiscussionsDetailComments />
         </Box>
     );
 };

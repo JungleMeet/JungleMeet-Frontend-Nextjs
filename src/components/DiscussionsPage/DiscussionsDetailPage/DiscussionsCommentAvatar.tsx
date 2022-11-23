@@ -26,14 +26,6 @@ export interface ICommentProps {
     };
 }
 
-function replyComments(item: any) {
-    if (!isEmpty(item.children[0]?._id)) {
-        return <DiscussionsCommentAvatar comments={item.children} />;
-    } else {
-        return null;
-    }
-}
-
 const DiscussionsCommentAvatar = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
     return (
         <>
@@ -51,8 +43,9 @@ const DiscussionsCommentAvatar = ({ comments }: { comments: ICommentProps[] }): 
             } = item;
             return (
                 <>
-                    <Stack mt="20px" key={_id}>
+                    <Stack key={_id} mt="20px">
                         <DiscussionsCommentTitle
+                            key={author?._id}
                             id={author?._id}
                             author={`${author?.name}`}
                             createdAt={dateCreatedAt(createdAt)}
@@ -69,7 +62,9 @@ const DiscussionsCommentAvatar = ({ comments }: { comments: ICommentProps[] }): 
                         </Stack>
                         <Stack pl="60px">
                             {mentionedUserId}
-                            {replyComments(item)}
+                            {!isEmpty(item.children[0]?._id) ? (
+                                <DiscussionsCommentAvatar comments={item.children} />
+                            ) : null}
                         </Stack>
                         {parentCommentId ? "" : <Divider mb="20px" />}
                     </Stack>

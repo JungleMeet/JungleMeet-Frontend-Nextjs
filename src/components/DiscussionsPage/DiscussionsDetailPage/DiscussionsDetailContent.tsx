@@ -4,6 +4,8 @@ import { Flex, Divider, Image, Box, Text, Grid, HStack, Button } from "@chakra-u
 import React from "react";
 import DiscussionsFollowButton from "./DiscussionsFollowButton";
 import { DiscussionsLikeButton } from "./DiscussionsFollowButton";
+import { useDispatch } from "react-redux";
+import { clickTheFollow, clickTheLike, theLikeNum } from "@/app/reducer/buttonSlice";
 
 interface IContentProps {
     postId: string;
@@ -26,6 +28,15 @@ const DiscussionsDetailContent = ({
     isLogged,
     currentId,
 }: IContentProps) => {
+    const dispatch = useDispatch();
+
+    const toggleClickLike = () => {
+        dispatch(clickTheLike());
+        dispatch(theLikeNum());
+    };
+    const toggleClickFollow = () => {
+        return dispatch(clickTheFollow());
+    };
     return (
         <Grid>
             <Flex key={postId} direction={"column"}>
@@ -37,24 +48,33 @@ const DiscussionsDetailContent = ({
                             <>
                                 {userId === currentId ? (
                                     <Flex alignItems="center">
-                                        <HStack align="center" textColor="red.500" _hover={{ color: "gray.50" }}>
-                                            <DiscussionsLikeButton>
-                                                <Text>Like this post</Text>
-                                            </DiscussionsLikeButton>
+                                        <HStack
+                                            align="center"
+                                            textColor="red.500"
+                                            onClick={toggleClickLike}
+                                            _hover={{ color: "gray.50" }}
+                                        >
+                                            <DiscussionsLikeButton />
                                         </HStack>
                                     </Flex>
                                 ) : (
                                     <>
-                                        <HStack align="center" textColor="gray.500" _hover={{ color: "gray.50" }}>
-                                            <DiscussionsFollowButton>
-                                                <Text>Follow post</Text>
-                                            </DiscussionsFollowButton>
+                                        <HStack
+                                            align="center"
+                                            textColor="gray.500"
+                                            onClick={toggleClickFollow}
+                                            _hover={{ color: "gray.50" }}
+                                        >
+                                            <DiscussionsFollowButton />
                                         </HStack>
                                         <Flex alignItems="center">
-                                            <HStack align="center" textColor="gray.500" _hover={{ color: "gray.50" }}>
-                                                <DiscussionsLikeButton>
-                                                    <Text>Like</Text>
-                                                </DiscussionsLikeButton>
+                                            <HStack
+                                                align="center"
+                                                textColor="gray.500"
+                                                onClick={toggleClickLike}
+                                                _hover={{ color: "gray.50" }}
+                                            >
+                                                <DiscussionsLikeButton />
                                             </HStack>
                                         </Flex>
                                     </>
