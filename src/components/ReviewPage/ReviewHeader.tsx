@@ -1,6 +1,7 @@
 import { Flex, Heading, Divider, IconButton, Image } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 import React from "react";
+import { useTranslation } from "next-i18next";
 
 interface IReviewHeaderProps {
     resourceId: number;
@@ -8,6 +9,7 @@ interface IReviewHeaderProps {
     title: string;
 }
 const ReviewHeader = ({ resourceId, poster, title }: IReviewHeaderProps) => {
+    const { t } = useTranslation("home");
     return (
         <>
             <Flex alignItems="center" justifyContent="space-between" pt="70px">
@@ -18,14 +20,14 @@ const ReviewHeader = ({ resourceId, poster, title }: IReviewHeaderProps) => {
                             {title}
                         </Heading>
                         <Heading fontSize={"h1"} fontFamily="heading">
-              Movie Review
+                            {t("home:movieReview")}
                         </Heading>
                     </Flex>
                 </Flex>
 
                 <Flex alignItems="center" pt="10px">
                     <Heading fontSize="h4" pr="11px">
-            Write Review
+                        {t("home:writeReview")}
                     </Heading>
                     <IconButton
                         variant="outline"

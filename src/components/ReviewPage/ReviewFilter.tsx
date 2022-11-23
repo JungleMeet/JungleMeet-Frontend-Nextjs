@@ -23,7 +23,7 @@ const ReviewFilter = ({ reviews }: IReviewFilterProps) => {
                         {t("home:total")}:
                     </Heading>
                     <Text fontSize={"text3"} pl="16px">
-                        {reviews} {t("home:review")}
+                        {reviews} {t("home:reviews")}
                     </Text>
                 </Flex>
                 <Flex alignItems="center">
