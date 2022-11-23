@@ -4,9 +4,8 @@ import SeeMore from "../SeeMore";
 import Movies from "./Movies";
 import { useTranslation } from "next-i18next";
 
-
 const SectionContainer = styled.div`
-    width: 70%;
+  width: 70%;
 `;
 
 const NowPlaying = () => {

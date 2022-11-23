@@ -10,8 +10,8 @@ import CarouselContainer from "@/components/CarouselContainer";
 import { Carousel } from "@mantine/carousel";
 
 const MoviesContainer = styled.div`
-//   display: flex;
-//   gap: 20px;
+  //   display: flex;
+  //   gap: 20px;
 `;
 interface ImovieList {
     resourceId: number;
