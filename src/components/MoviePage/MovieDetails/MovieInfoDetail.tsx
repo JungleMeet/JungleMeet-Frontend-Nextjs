@@ -31,7 +31,7 @@ interface MovieInfoDetailProps {
     majorCasts: [];
     director: [];
     writer: [];
-    video: string;
+    video?: string;
 }
 
 const MovieInfoDetail = ({
@@ -128,7 +128,7 @@ const MovieInfoDetail = ({
                             <Text pb="23px" fontWeight="600" fontSize="h5">
                 Trailors Option
                             </Text>
-                            <Button colorScheme="#fff" onClick={onOpen}>
+                            <Button colorScheme="#ffffff" onClick={onOpen}>
                                 <Image
                                     width="40px"
                                     height="40px"
@@ -171,7 +171,7 @@ const MovieInfoDetail = ({
             </Flex>
             <Flex gap="10px" pt="20px">
                 {genresName &&
-          genresName?.map((item: any) => {
+          genresName?.map((item: any, resourceId) => {
               return (
                   <Link
                       key={resourceId}
@@ -197,7 +197,7 @@ const MovieInfoDetail = ({
                 <Heading pb="46px">Featured Casts</Heading>
                 <CarouselContainer slideSize="287px">
                     {majorCasts && majorCasts.length > 0
-                        ? majorCasts?.map((item: any) => {
+                        ? majorCasts?.map((item: any, resourceId) => {
                             return (
                                 <Carousel.Slide gap={68} key={resourceId}>
                                     <Image src={item.path} alt={"casts"} height="88%" width="100%" />
