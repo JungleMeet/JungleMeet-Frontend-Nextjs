@@ -1,4 +1,4 @@
-import { Flex, Text, Avatar } from "@chakra-ui/react";
+import { Flex, Text, Avatar, Link } from "@chakra-ui/react";
 import React from "react";
 // import { dateCreatedAt } from "../utils/dateCreateAt";
 
@@ -43,7 +43,10 @@ const CreatedByTheAuthor = ({
             {/* <Image src= {avatar ? avatar :"/noun-user-circle-1918168.svg"} width={imageSize} /> */}
             <Text>
                 {" "}
-                {author} {createdAt}
+                <Link _hover={{ textColor: "black" }} mr="5px" href={"/userprofile/" + id}>
+                    {author}
+                </Link>
+                {createdAt}
             </Text>
         </Flex>
     );
