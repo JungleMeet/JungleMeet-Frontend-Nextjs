@@ -1,82 +1,82 @@
 import React from "react";
 import { isEmpty } from "lodash";
-import ReviewAvatar from "./ReviewAvatar";
-import { dateCreatedAt } from "@/utils/dateCreateAt";
-import { Stack, Text, Button } from "@chakra-ui/react";
+import CommentItem from "./CommentItem";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+
+const CommentContainer = styled.div`
+  padding: 5px 0px 5px 54.5px;
+  margin-bottom: 0px;
+  background-color: #f9fafb;
+  position: relative;
+`;
 
 export interface ICommentProps {
-    topComments: {
+    _id: string;
+    content: string;
+    visible: boolean;
+    author: {
         _id: string;
-        content: string;
-        visible: boolean;
-        author: {
-            _id: string;
-            name: string;
-            avatar: string;
-        };
-        mentionedUserId: string[];
-        postId: string;
-        parentCommentId: string;
-        like: string[];
-        createdAt: string;
-        updatedAt: string;
-        level: number;
-        __V: number;
-        children: ICommentProps[];
+        name: string;
+        avatar: string;
     };
-    // [key: string]: string | boolean | Array<any> | Object|null;
+    mentionedUserId: string[];
+    postId: string;
+    parentCommentId: string;
+    like: string[];
+    createdAt: string;
+    updatedAt: string;
+    level: number;
+    __V: number;
+    children: ICommentProps[];
 }
 
-function replyComments(item: any) {
-    if (!isEmpty(item.children[0]?._id)) {
-        return <Comment comments={item.children} />;
-    } else {
-        return null;
-    }
-}
+const Comment = ({
+    comments,
+    setNewComment,
+}: {
+    comments: ICommentProps[];
+    setNewComment: React.Dispatch<React.SetStateAction<any>>;
+}): JSX.Element => {
+    const hiddenIdArray = useSelector((state: any) => state.comments.hiddenIdArray);
 
-const Comment = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
     return (
         <>
             {comments &&
-        comments?.map((item: any) => {
+        comments?.map((item) => {
             const {
                 _id,
                 content,
-                // visible,
-                //  postId,
+                postId,
                 createdAt,
-                // like,
                 author,
-                mentionedUserId,
+            // like,
+            // visible,
+            // mentionedUserId,
             } = item;
+            const hasChildren = !isEmpty(item.children[0]?._id);
             return (
-                <Stack mb="5px" pb="30px" bg="#F9FAFB" key={_id}>
-                    <Stack pt="25px" pl="54.4px" pb="4.25px">
-                        <ReviewAvatar
-                            id={author?._id}
-                            author={`${author?.name}`}
-                            createdAt={dateCreatedAt(createdAt)}
-                            avatar={author?.avatar}
-                        />
-                        <Stack pl="63px">
-                            <Text fontSize={"text4"} fontWeight="500" mb="15px">
-                                {`${content}`}
-                            </Text>
-                            <Button
-                                size="sl"
-                                color="blue.500"
-                                fontSize={"text5"}
-                                width="45px"
-                                variant="unstyled"
-                            >
-                    REPLY
-                            </Button>
-                        </Stack>
-                        {mentionedUserId}
-                        {replyComments(item)}
-                    </Stack>
-                </Stack>
+            // <Stack mb="5px" bg="#F9FAFB" key={_id}>
+            // <Stack pt="5px" pl="54.4px" pb="5px" mb="5px" bg="#F9FAFB" key={_id}>
+                <CommentContainer key={_id}>
+                    <CommentItem
+                        _id={_id}
+                        content={content}
+                        postId={postId}
+                        createdAt={createdAt}
+                        author={author}
+                        setNewComment={setNewComment}
+                        hasChildren={hasChildren}
+                    />
+                    {
+                        // if no children or is hidden, display nothing. otherwise, display nested comment
+                        !hasChildren || hiddenIdArray.includes(_id) ? null : (
+                            <Comment comments={item.children} setNewComment={setNewComment} />
+                        )
+                    }
+                </CommentContainer>
+            // </Stack>
+            // </Stack>
             );
         })}
         </>

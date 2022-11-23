@@ -38,21 +38,20 @@ const AllMovies = () => {
                     moviePage
                 );
                 setAllMovies(data);
-                console.log(moviePage);
             } catch (err) {
-                console.log(err);
+                return err;
             }
         };
         fetchMovies();
     }, []);
 
-    const filterByYearHandler = (filterByYear) => {
+    const filterByYearHandler = (filterByYear: string) => {
         setFilterByYear(filterByYear);
     };
-    const filterByTypeHandler = (filterByType) => {
+    const filterByTypeHandler = (filterByType: string) => {
         setFilterByType(filterByType);
     };
-    const sortByFeaturedHandler = (sortByFeatured) => {
+    const sortByFeaturedHandler = (sortByFeatured: string) => {
         setSortByFeatured(sortByFeatured);
     };
     useEffect(() => {
@@ -72,8 +71,6 @@ const AllMovies = () => {
                     setAllMovies((currentData) => currentData.concat(data));
                 }
             );
-            console.log(moviePage);
-            console.log(filterByYear, filterByType, sortByFeatured, moviePage);
         }
     }, [moviePage]);
 

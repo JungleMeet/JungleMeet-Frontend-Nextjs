@@ -7,6 +7,7 @@ import loginModalReducer from './reducer/loginModalSlice';
 import ModalReducer from './reducer/modalSlice';
 import buttonReducer from "./reducer/buttonSlice";
 import NotificationReducer from './reducer/notificationSlice';
+import commentSlice from "./reducer/commentSlice";
 
 export const makeStore = () => {
     return configureStore({
@@ -17,7 +18,9 @@ export const makeStore = () => {
             loginModal: loginModalReducer,
             modal: ModalReducer,
             notification: NotificationReducer,
-            button: buttonReducer
+            button: buttonReducer,
+            comments:commentSlice,
+
         },
     });
 };

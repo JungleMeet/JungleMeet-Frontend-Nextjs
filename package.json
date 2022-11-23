@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
     "prettier": "prettier -c .prettierrc \"src/{pages,store,components}/**/*.{js,jsx,ts,tsx}\" --write",
@@ -72,6 +72,7 @@
     "react-redux": "^8.0.1",
     "react-router-dom": "^6.4.2",
     "react-spinners": "^0.13.6",
+    "react-uuid": "^2.0.0",
     "socket.io-client": "^4.5.3",
     "sort-by": "^0.0.2",
     "styled-components": "^5.3.5"

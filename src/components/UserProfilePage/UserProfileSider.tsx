@@ -1,5 +1,6 @@
-import { Flex, Box, Text, Button, Icon } from "@chakra-ui/react";
+import { Flex, Box, Text, Button, Icon, useDisclosure } from "@chakra-ui/react";
 import { ReactNode } from "react";
+import { UserProfileModal } from "@/components/UserProfilePage/UserProfileFollowModal";
 
 interface UserProfileSiderProps {
     siderName: string;
@@ -7,8 +8,16 @@ interface UserProfileSiderProps {
     icon: any;
     children: ReactNode;
     marginTop: string;
+    modalItems: any;
+    token: string;
+    followTrigger: boolean;
+    setfFllowTrigger: Function;
+    followed: boolean;
+    selfProfile: any;
 }
+
 const UserProfileSider = (props: UserProfileSiderProps) => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <Box
             w="100%"
@@ -36,6 +45,10 @@ const UserProfileSider = (props: UserProfileSiderProps) => {
                     {props.count}
                 </Text>
                 <Button
+                    _focus={{}}
+                    _hover={{}}
+                    _active={{}}
+                    onClick={onOpen}
                     ml="auto"
                     p="0"
                     lineHeight="lh28"
@@ -43,7 +56,10 @@ const UserProfileSider = (props: UserProfileSiderProps) => {
                     color="rose.600"
                     fontWeight="500"
                 >
-          More {">"}
+                    {" "}
+                    <Text lineHeight="lh32" fontSize="text3" color="rose.600">
+            More {">"}
+                    </Text>{" "}
                 </Button>
             </Flex>
             <Box
@@ -55,6 +71,17 @@ const UserProfileSider = (props: UserProfileSiderProps) => {
                 margin="auto"
             />
             {props.children}
+            <UserProfileModal
+                modalName={props.siderName}
+                isOpen={isOpen}
+                onClose={onClose}
+                modalItems={props.modalItems}
+                token={props.token}
+                followTrigger={props.followTrigger}
+                setfFllowTrigger={props.setfFllowTrigger}
+                followed={props.followed}
+                selfProfile={props.selfProfile}
+            />
         </Box>
     );
 };

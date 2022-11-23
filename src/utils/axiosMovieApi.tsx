@@ -7,7 +7,7 @@ const axiosApi = axios.create({
     timeout: REQUEST_TIMEOUT,
 });
 
-export const getNowPlaying = async (page: number) => {
+export const getNowPlaying = async (page?: number) => {
     return await axiosApi.get(`/list?tag=now_playing&page=${page}`);
 };
 
@@ -35,7 +35,7 @@ export const getYoutubeLinkById = async (id: number) => {
     return await axiosApi.get(`/trailers/${id}`);
 }
 
-export const getMovieDetails = async (id: number) => {
+export const getMovieDetails = async (id: string | string[] | undefined | number) => {
     return await axiosApi.get(`/details/${id}`)
 }
 

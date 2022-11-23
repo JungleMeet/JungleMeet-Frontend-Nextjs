@@ -23,7 +23,7 @@ const DiscussionsDetailComments = () => {
                 setLength(data.topComments.length);
                 setPostComment(data.topComments);
             } catch (err) {
-                console.log(err);
+                return err;
             }
         };
         getCommentDetail();

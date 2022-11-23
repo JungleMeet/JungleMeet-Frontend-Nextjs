@@ -33,16 +33,16 @@ import {
 interface IDetailProps {
     likeList: string[];
     followList: string[];
-    avatar: string;
-    userId: string;
-    name: string;
-    title: string;
-    postId: string;
-    date: string;
-    like: number;
-    isLogged: boolean;
-    currentId: string;
-    userRole: string;
+    avatar?: string;
+    userId?: string;
+    name?: string;
+    title?: string;
+    postId?: string;
+    date?: string;
+    like?: number;
+    isLogged?: boolean;
+    currentId?: string;
+    userRole?: string;
 }
 
 const DiscussionsDetailHeader = ({

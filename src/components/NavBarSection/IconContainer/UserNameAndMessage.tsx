@@ -91,12 +91,16 @@ const UserNameAndMessage = () => {
     ];
 
     useEffect(() => {
-        socket = io("http://localhost:3000", { query: { userId: userId }, transports: ["websocket"] });
+        socket = io(
+            process.env.NEXT_PUBLIC_SERVER
+                ? `${process.env.NEXT_PUBLIC_SERVER}`
+                : `${process.env.NEXT_PUBLIC_SERVER_ADD}`,
+            { query: { userId: userId }, transports: ["websocket"] }
+        );
         socket.on("connect", () => {
             console.log("connect client");
         });
         socket.on("message", (data) => {
-            console.log(data);
             dispatch(newMessage());
             // setHasNewMessage(!hasNewMessage);
         });

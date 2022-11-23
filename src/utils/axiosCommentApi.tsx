@@ -3,13 +3,15 @@ import axios from "axios";
 const REQUEST_TIMEOUT = 10000;
 
 const axiosApi = axios.create({
-    baseURL: "http://localhost:3000/v1/comments",
+    baseURL: process.env.NEXT_PUBLIC_SERVER
+        ? process.env.NEXT_PUBLIC_SERVER + "/v1/comments"
+        : process.env.NEXT_PUBLIC_SERVER_ADD + "/v1/comments",
     timeout: REQUEST_TIMEOUT,
 });
 
 interface createNewComment {
     content:string;
-    postId: string;
+    postId?: string;
     parentCommentId?:string;
     token:string;
 }

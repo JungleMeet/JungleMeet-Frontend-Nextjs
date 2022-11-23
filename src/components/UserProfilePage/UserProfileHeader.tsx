@@ -1,17 +1,25 @@
 import { Flex, Box, Image, Text, Button, Icon, Avatar } from "@chakra-ui/react";
-import { HiPlus, HiOutlineChatAlt2, HiUpload, HiCamera, HiLightBulb } from "react-icons/hi";
-import { IoPersonOutline } from "react-icons/io5";
-import React from "react";
+import {
+    HiPlus,
+    HiMinus,
+    HiOutlineChatAlt2,
+    HiUpload,
+    HiCamera,
+    HiLightBulb,
+} from "react-icons/hi";
 import { toggleFollowing } from "@/utils/axiosUserApi";
+
 interface UserProfileHeaderInfoProps {
     userRole: string;
     userName: string;
     userBgImg: string;
     userAvatar: string;
-    isSelf: boolean;
+    userId: string;
     followed: boolean;
     queryUserId: string;
     token: string;
+    setfFllowTrigger: Function;
+    followTrigger: boolean;
 }
 
 const UserProfileHeader = ({
@@ -19,10 +27,12 @@ const UserProfileHeader = ({
     userBgImg,
     userRole,
     userName,
-    isSelf,
+    userId,
     followed,
     queryUserId,
     token,
+    setfFllowTrigger,
+    followTrigger,
 }: UserProfileHeaderInfoProps) => {
     return (
         <Box pos="relative" m="auto" w="100%" height="245px" background="rgba(79, 79, 79, 0.8)">
@@ -34,18 +44,19 @@ const UserProfileHeader = ({
                 fallbackSrc="/defaultUserImage.svg"
             />
             <Box pos="absolute" bottom="15px" left="15px">
-                <Icon
+                <Button
+                    backgroundColor="transparent"
                     pos="absolute"
                     bottom="5px"
                     left="90px"
-                    as={HiCamera}
-                    w={9}
-                    h={9}
-                    opacity="1"
-                    color="lightBlue.600"
-                    p="0"
-                    zIndex={5}
-                />
+                    padding={0}
+                    _hover={{}}
+                    _focus={{}}
+                    _active={{}}
+                >
+                    <Icon as={HiCamera} w={9} h={9} opacity="1" color="lightBlue.600" p="0" zIndex={5} />
+                </Button>
+
                 <Flex flexDir="row">
                     <Avatar
                         key={userName.split(" ")[0]}
@@ -84,18 +95,8 @@ const UserProfileHeader = ({
                             {userName.split(" ")[0]}
                         </Text>
                     </Flex>
-                    {isSelf ? (
-                        <Button
-                            backgroundColor="lightBlue.600"
-                            mt={6}
-                            width="140px"
-                            height="50px"
-                            color="white"
-                            fontSize="text4"
-                        >
-                            <Icon as={IoPersonOutline} w={4} h={4} />
-                            <Text flexGrow={1}>Edit Profile</Text>
-                        </Button>
+                    {userId === queryUserId ? (
+                        <></>
                     ) : (
                         <>
                             <Button
@@ -105,11 +106,12 @@ const UserProfileHeader = ({
                                 height="50px"
                                 color="white"
                                 fontSize="text4"
-                                onClick={() => {
-                                    toggleFollowing(token, queryUserId);
+                                onClick={async () => {
+                                    await toggleFollowing(token, queryUserId);
+                                    setfFllowTrigger(!followTrigger);
                                 }}
                             >
-                                <Icon as={HiPlus} w={5} h={5} />
+                                {followed ? <Icon as={HiMinus} w={5} h={5} /> : <Icon as={HiPlus} w={5} h={5} />}
                                 <Text flexGrow={1}>{followed ? "Unfollow" : "Follow"}</Text>
                             </Button>
                             <Button
@@ -128,7 +130,7 @@ const UserProfileHeader = ({
                     )}
                 </Flex>
             </Box>
-            {isSelf ? (
+            {userId === queryUserId ? (
                 <Button
                     pos="absolute"
                     height="38px"
