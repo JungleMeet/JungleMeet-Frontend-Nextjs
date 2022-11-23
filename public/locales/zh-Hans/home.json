@@ -23,6 +23,13 @@
   "mostViewedOption": "最热",
   "jumpTo": "跳转至",
 
+  "comingSoon": "即将推出",
+  "total": "总数",
+  "reviews": "评论",
+  "writeReview":"编写评论",
+  "movieReview": "电影评论",
+
+
   "myPosts": "我的帖子",
   "message": "消息",
   "changePassword": "修改密码",

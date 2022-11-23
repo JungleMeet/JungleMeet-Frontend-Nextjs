@@ -12,7 +12,7 @@ const DiscussionFilter = () => {
                 <Flex alignItems="center">
                     <Heading fontSize={"text1"}>{t("home:displaySetting")}</Heading>
                     <Stack align="center" direction="row">
-                        <Switch size="md" pl="44px" />
+                        <Switch size="md" pl="44px" isDisabled/>
                         <Text fontSize={"text2"}>{t("home:comingSoon")}</Text>
                     </Stack>
                 </Flex>

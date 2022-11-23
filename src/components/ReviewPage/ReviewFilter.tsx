@@ -20,10 +20,10 @@ const ReviewFilter = ({ reviews }: IReviewFilterProps) => {
                         </Text>
                     </Stack>
                     <Heading fontSize={"text1"} pl="40px">
-            Total:
+                        {t("home:total")}:
                     </Heading>
                     <Text fontSize={"text3"} pl="16px">
-                        {reviews} Reviews
+                        {reviews} {t("home:review")}
                     </Text>
                 </Flex>
                 <Flex alignItems="center">
