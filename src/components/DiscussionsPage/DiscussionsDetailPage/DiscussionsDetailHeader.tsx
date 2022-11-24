@@ -32,6 +32,7 @@ interface IDetailProps {
     isLogged?: boolean;
     currentId?: string;
     userRole?: string;
+    handleEditPost:()=>void;
 }
 
 const DiscussionsDetailHeader = ({
@@ -45,6 +46,7 @@ const DiscussionsDetailHeader = ({
     isLogged,
     currentId,
     userRole,
+    handleEditPost,
 }: IDetailProps) => {
     const dispatch = useDispatch();
     const toast = useToast();
@@ -110,6 +112,7 @@ const DiscussionsDetailHeader = ({
                                         icon={<HamburgerIcon />}
                                         variant="outline"
                                         bg="blue.200"
+                                        onClick={handleEditPost}
                                     />
                                     <MenuList
                                         bg="gray.300"

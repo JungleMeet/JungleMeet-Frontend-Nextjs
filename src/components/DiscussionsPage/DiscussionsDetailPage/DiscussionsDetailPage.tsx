@@ -3,12 +3,14 @@ import { useRouter } from "next/router";
 import DiscussionDetailHeader from "./DiscussionsDetailHeader";
 import { getPostById } from "@/utils/axiosPostApi";
 import { getUserById } from "@/utils/axiosUserApi";
-import { Box, useToast } from "@chakra-ui/react";
+import { Box, Heading, useToast } from "@chakra-ui/react";
 import DiscussionsDetailContent from "./DiscussionsDetailContent";
 import DiscussionsDetailComments from "./DiscussionsDetailComments";
 import CommentEditor from "../../Editor/CommentEditor";
 import { useSelector, useDispatch } from "react-redux";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
+import CloudinaryUploader from "@/components/NewPostEditor/CloudinaryUploader";
+import NewPostEditor from "@/components/NewPostEditor/NewPostEditor";
 
 interface IpostDetail {
     _id?: string;
@@ -37,6 +39,10 @@ const DiscussionsDetailPage = (): JSX.Element => {
     const toast = useToast();
     const [currentId, setCurrentId] = useState("");
     const [userRole, setUserRole] = useState("");
+    const [isPostEditable, setIsPostEditable] = useState(false);
+
+    // make sure id is a string to satisfy typescript
+    if (typeof id !== "string") router.push("/");
 
     // const currentPagePost = useMemo(() => postDetail, [postDetail]);
     useEffect(() => {
@@ -79,9 +85,26 @@ const DiscussionsDetailPage = (): JSX.Element => {
         setIsEditorVisible((state) => !state);
     };
 
-    // make sure id is a string to satisfy typescript
-    if (typeof id !== "string") router.push("/");
-
+    const handleEditPost = () => {
+        setIsPostEditable(true)
+    };
+    if (isPostEditable)
+        return (
+            <>
+                <Heading
+                    as="h3"
+                    fontSize="h3"
+                    lineHeight="lh36"
+                    fontWeight="700"
+                    marginTop="100px"
+                    marginBottom="50px"
+                >
+          Update Post
+                </Heading>
+                <CloudinaryUploader setBgImg={setBgImg} bgImg={bgImg} />
+                <NewPostEditor bgImg={bgImg} />
+            </>
+        );
     return (
         <Box key={postDetail?._id}>
             <DiscussionDetailHeader
@@ -95,6 +118,7 @@ const DiscussionsDetailPage = (): JSX.Element => {
                 date={postDetail?.createdAt}
                 like={postDetail?.like?.length}
                 isLogged={isLogged}
+                handleEditPost={handleEditPost}
             />
             <DiscussionsDetailContent
                 postId={postDetail?._id}

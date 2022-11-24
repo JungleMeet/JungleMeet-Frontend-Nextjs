@@ -1,15 +1,10 @@
 import React from "react";
 import { isEmpty } from "lodash";
-import CommentItem from "./CommentItem";
+import 
+// CommentItem, 
+{ MemoizeCommentItem } from "./CommentItem";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
-
-const CommentContainer = styled.div`
-  padding: 5px 0px 5px 54.5px;
-  margin-bottom: 0px;
-  background-color: #f9fafb;
-  position: relative;
-`;
+import { CommentContainer } from "./styles";
 
 export interface ICommentProps {
     _id: string;
@@ -56,10 +51,10 @@ const Comment = ({
             } = item;
             const hasChildren = !isEmpty(item.children[0]?._id);
             return (
-            // <Stack mb="5px" bg="#F9FAFB" key={_id}>
+            // <Stack mb="0px" bg="#8abbeb" key={_id}>
             // <Stack pt="5px" pl="54.4px" pb="5px" mb="5px" bg="#F9FAFB" key={_id}>
                 <CommentContainer key={_id}>
-                    <CommentItem
+                    <MemoizeCommentItem
                         _id={_id}
                         content={content}
                         postId={postId}
@@ -68,6 +63,15 @@ const Comment = ({
                         setNewComment={setNewComment}
                         hasChildren={hasChildren}
                     />
+                    {/* <CommentItem
+                        _id={_id}
+                        content={content}
+                        postId={postId}
+                        createdAt={createdAt}
+                        author={author}
+                        setNewComment={setNewComment}
+                        hasChildren={hasChildren}
+                    /> */}
                     {
                         // if no children or is hidden, display nothing. otherwise, display nested comment
                         !hasChildren || hiddenIdArray.includes(_id) ? null : (

@@ -6,8 +6,8 @@ import ReviewAvatar from "./ReviewAvatar";
 import { useSelector, useDispatch } from "react-redux";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
 import parser from "html-react-parser";
-import styled from "styled-components";
 import { toggleHideChildrenComment } from "@/app/reducer/commentSlice";
+import { CommentThread } from "./styles";
 
 export interface ICommentItemProps {
     _id: string;
@@ -30,24 +30,6 @@ export interface ICommentItemProps {
     setNewComment: React.Dispatch<React.SetStateAction<any>>;
     hasChildren: boolean;
 }
-
-const CommentThread = styled.button`
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 65px;
-  top: 70px;
-  border-right: ${({ isCollapsed }: { isCollapsed: boolean }) =>
-        isCollapsed ? "6px double #cbcacab3" : "2px solid #cbcacab3"};
-  width: 13px;
-  cursor: pointer;
-  z-index: 10;
-
-  &:hover {
-    border-right: ${({ isCollapsed }: { isCollapsed: boolean }) =>
-        isCollapsed ? "6px double #9d1304" : "2px solid #9d1304"};
-  }
-`;
 
 const CommentItem = ({
     _id,
@@ -113,5 +95,7 @@ const CommentItem = ({
         </>
     );
 };
+
+export const MemoizeCommentItem = React.memo(CommentItem);
 
 export default CommentItem;
