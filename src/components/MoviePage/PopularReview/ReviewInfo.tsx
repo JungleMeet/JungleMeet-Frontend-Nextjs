@@ -1,12 +1,13 @@
 import { Tag, TagLabel, TagLeftIcon, HStack } from "@chakra-ui/react";
-import { Flex, Text, Link, Spacer, Box, Divider, Image } from "@chakra-ui/react";
+import { Flex, Text, Link, Spacer, Box, Divider, Image, Button } from "@chakra-ui/react";
 import { ReviewsContainer } from "./ReviewsContainer";
-import React from "react";
+import React,{memo} from "react";
 import { ChatIcon } from "@chakra-ui/icons";
 import { dateCreatedAt } from "@/utils/dateCreateAt";
+import parse from 'html-react-parser';
 
-interface ReviewInfoProps {
-    id: string;
+export interface IReviewInfoProps {
+    _id: string;
     createdAt: string;
     author: {
         _id: string;
@@ -14,16 +15,14 @@ interface ReviewInfoProps {
         avatar: string;
     };
     likeCount: number;
-    views: number;
-    comments: number;
-    description: string;
+    content: string;
 }
 
-const ReviewInfo: React.FC<ReviewInfoProps> = (props) => {
+const ReviewInfo = ({_id, createdAt,author, likeCount,content}:IReviewInfoProps) => {
     return (
         <ReviewsContainer>
             <Box>
-                <Box pb="13px" lineHeight="lh32">
+                <Box pb="13px" lineHeight="lh32" key={_id}>
                     <Flex alignItems="center">
                         <Box display="flex">
                             <Text
@@ -33,21 +32,22 @@ const ReviewInfo: React.FC<ReviewInfoProps> = (props) => {
                                 fontWeight="600"
                                 lineHeight="32px"
                             >
-                                {props.author.name}
+                                {author.name}
                                 <Link />
                 &nbsp;
                             </Text>
                             <Text textColor="gray.400" fontSize="16px" fontWeight="400">
-                                <Text>{dateCreatedAt(props.createdAt)}</Text>
+                                <Text>{dateCreatedAt(createdAt)}</Text>
                             </Text>
                         </Box>
                         <Spacer />
-                        <Box
+                        <Button
                             display="flex"
                             justifyContent="flex-end"
                             fontSize="text5"
                             lineHeight="lh32"
                             textColor="gray.400"
+                            colorScheme="#ffffff"
                         >
                             <Image
                                 src="/thumpsUp.svg"
@@ -56,11 +56,11 @@ const ReviewInfo: React.FC<ReviewInfoProps> = (props) => {
                                 color="gray.900"
                                 margin="8.76px 7px 7.15px"
                             ></Image>
-                            <Text textColor="red.500"> {props.likeCount} Likes </Text>
-                        </Box>
+                            <Text textColor="red.500"> {likeCount} Likes </Text>
+                        </Button>
                     </Flex>
                     <Box fontSize="18px" lineHeight="24px" marginTop="20px">
-                        <Text>{props.description}</Text>
+                        <Text>{parse(content)}</Text>
                     </Box>
                     <Box display="flex" textColor="gray.600" marginTop="18.67px">
                         <Link _hover={{ textColor: "black" }} mr="5px">
@@ -81,4 +81,4 @@ const ReviewInfo: React.FC<ReviewInfoProps> = (props) => {
     );
 };
 
-export default ReviewInfo;
+export default memo(ReviewInfo);

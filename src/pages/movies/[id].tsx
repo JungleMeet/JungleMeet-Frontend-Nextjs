@@ -1,4 +1,4 @@
-import PopularReview from "@components/MoviePage/PopularReview/PopularReview"
+import PopularReview from "@components/MoviePage/PopularReview/PopularReview";
 import MovieDetails from "@components/MoviePage/MovieDetails/MovieDetails";
 import PageWrapper from "@/components/PageWrapper";
 import { GetStaticPaths } from "next/types";
@@ -23,7 +23,6 @@ export async function getStaticProps({ locale }: IgetStaticProps) {
 }
 
 const MovieDetailsPage = () => {
-
     return (
         <PageWrapper>
             <MovieDetails />

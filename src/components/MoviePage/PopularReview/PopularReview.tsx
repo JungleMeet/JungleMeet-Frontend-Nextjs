@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { Button, Stack,Text,useToast } from "@chakra-ui/react";
+import { Button, Stack, Text, useToast } from "@chakra-ui/react";
 import { FaPen } from "react-icons/fa";
 import { TriangleUpIcon } from "@chakra-ui/icons";
 import Link from "next/link";
@@ -13,19 +13,19 @@ import {
     SectionTitle,
 } from "@/components/MainPage/Containers";
 import AddReview from "@/components/MoviePage/PopularReview/AddReview";
-  
-const PopularReview=()=>{
+
+const PopularReview = () => {
     const router = useRouter();
     const { id } = router.query;
     const dispatch = useDispatch();
     const toast = useToast();
     const isLogged = useSelector((state: any) => state.login.isLogged);
     const [isEditorVisible, setIsEditorVisible] = useState(false);
-  
+
     useEffect(() => {
         setIsEditorVisible(isLogged);
     }, [isLogged]);
-  
+
     const toggleShowEditor = () => {
         if (!isLogged) {
             toast({
@@ -40,8 +40,8 @@ const PopularReview=()=>{
         }
         setIsEditorVisible((state) => !state);
     };
-  
-    return(
+
+    return (
         <>
             <SectionContainer>
                 <SectionHeaderContainer>
@@ -67,7 +67,7 @@ const PopularReview=()=>{
                                     variant="solid"
                                     onClick={toggleShowEditor}
                                 >
-                        Review
+                  Review
                                 </Button>
                             ) : (
                                 <Button
@@ -76,7 +76,7 @@ const PopularReview=()=>{
                                     variant="solid"
                                     onClick={toggleShowEditor}
                                 >
-                        Review
+                  Review
                                 </Button>
                             )}
                         </Stack>
@@ -96,7 +96,7 @@ const PopularReview=()=>{
                 </Link>
             </SectionContainer>
         </>
-    )
-}
+    );
+};
 
 export default PopularReview;
