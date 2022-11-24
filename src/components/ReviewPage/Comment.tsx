@@ -1,8 +1,9 @@
 import React from "react";
 import { isEmpty } from "lodash";
-import 
-// CommentItem, 
-{ MemoizeCommentItem } from "./CommentItem";
+import {
+    // CommentItem,
+    MemoizeCommentItem,
+} from "./CommentItem";
 import { useSelector } from "react-redux";
 import { CommentContainer } from "./styles";
 

@@ -32,7 +32,7 @@ interface IDetailProps {
     isLogged?: boolean;
     currentId?: string;
     userRole?: string;
-    handleEditPost:()=>void;
+    handleEditPost: () => void;
 }
 
 const DiscussionsDetailHeader = ({

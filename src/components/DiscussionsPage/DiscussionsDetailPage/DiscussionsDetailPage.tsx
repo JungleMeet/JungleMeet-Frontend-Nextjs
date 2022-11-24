@@ -86,7 +86,7 @@ const DiscussionsDetailPage = (): JSX.Element => {
     };
 
     const handleEditPost = () => {
-        setIsPostEditable(true)
+        setIsPostEditable(true);
     };
     if (isPostEditable)
         return (
