@@ -28,11 +28,6 @@ export const SectionTitle = styled.div`
   font-weight: 700;
   font-size: 30px;
   line-height: 47px;
-
-  :hover {
-    cursor: pointer;
-    color: #3b82f6;
-  }
 `;
 
 export const SectionSubTitleSeeMore = styled.div`
