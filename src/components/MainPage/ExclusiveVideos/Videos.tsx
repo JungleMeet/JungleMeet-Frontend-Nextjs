@@ -3,28 +3,28 @@ import VideoThumbnail from "./VideoThumbnail";
 import { Carousel } from "@mantine/carousel";
 import CarouselContainer from "@/components/CarouselContainer";
 
-import {getHeroBannerMovies, getYoutubeLinkById} from "@/utils/axiosMovieApi"
+import { getHeroBannerMovies, getYoutubeLinkById } from "@/utils/axiosMovieApi";
 
-export interface IVideoProps{
+export interface IVideoProps {
     id: number;
     title: string;
-    youtubeLink?: string;
+    youtubeLink: string;
 }
 
 const Videos = () => {
     const [videoList, setVideoList] = useState<IVideoProps[]>([]);
-    const [secondFetch,setSecondFetch] = useState(false);
+    const [secondFetch, setSecondFetch] = useState(false);
 
     useEffect(() => {
-        const fetchMovieId = async () =>{
-            const {data} = await getHeroBannerMovies();
+        const fetchMovieId = async () => {
+            const { data } = await getHeroBannerMovies();
             setVideoList(data);
             setSecondFetch(false);
         };
         fetchMovieId();
-    },[]);
+    }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
         const fetchYoutubeVideo = async () => {
             setSecondFetch(true);
             const youtubeLink = await Promise.all(
@@ -44,14 +44,14 @@ const Videos = () => {
     return (
         <>
             <CarouselContainer slideSize="33.333%">
-                {videoList.length>0 && videoList.map((item) =>{
-                    return(
-                        <Carousel.Slide gap={48} key={item.id} >
-                            <VideoThumbnail id={item.id} youtubeLink={item.youtubeLink} title={item.title} />
-                        </Carousel.Slide>
-                    )
-                })
-                }
+                {videoList.length > 0 &&
+          videoList.map((item) => {
+              return (
+                  <Carousel.Slide gap={48} key={item.id}>
+                      {item.youtubeLink &&<VideoThumbnail youtubeLink={item.youtubeLink} title={item.title} />}
+                  </Carousel.Slide>
+              );
+          })}
             </CarouselContainer>
         </>
     );

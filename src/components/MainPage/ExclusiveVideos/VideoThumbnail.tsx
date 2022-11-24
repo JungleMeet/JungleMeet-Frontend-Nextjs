@@ -3,9 +3,8 @@ import styled from "styled-components";
 import React, { memo } from "react";
 
 export interface IVideoThumbnailProps {
-    id: number;
     title: string;
-    youtubeLink?: string;
+    youtubeLink: string;
 }
 
 const MovieTitle = styled.div`
@@ -16,9 +15,9 @@ const MovieTitle = styled.div`
   color: #111827;
 `;
 
-const VideoThumbnail = ({id, youtubeLink, title }: IVideoThumbnailProps): JSX.Element => {
+const VideoThumbnail = ({youtubeLink, title }: IVideoThumbnailProps): JSX.Element => {
     return (
-        <Box key={id}>
+        <Box>
             <iframe src={youtubeLink} title={title} width="450" height="253" allow="fullscreen"></iframe>
             <MovieTitle>{title}</MovieTitle>
         </Box>
