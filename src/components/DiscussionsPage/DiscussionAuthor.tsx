@@ -2,8 +2,8 @@ import React from "react";
 import CreatedByTheAuthor from "../CreatedByTheAuthor";
 
 interface IDiscussionAuthor {
-    id: string;
-    author: string;
+    id?: string;
+    author?: string;
     createdAt: string;
     avatar?: string;
 }

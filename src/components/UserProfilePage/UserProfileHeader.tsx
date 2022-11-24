@@ -4,6 +4,7 @@ import { toggleFollowing } from "@/utils/axiosUserApi";
 import { ImageUploadModal } from "@/components/UserProfilePage/ImageUploadModal";
 import Router from "next/router";
 import { useState } from "react";
+
 interface UserProfileHeaderInfoProps {
     userRole: string;
     userName: string;
@@ -53,6 +54,7 @@ const UserProfileHeader = ({
                 fallbackSrc="/defaultUserImage.svg"
             />
             <Box pos="absolute" bottom="15px" left="15px">
+
                 {userId === queryUserId ? (
                     <Button
                         backgroundColor="transparent"
@@ -84,6 +86,7 @@ const UserProfileHeader = ({
                         Router.push("/userprofile/" + userId);
                     }}
                 />
+
 
                 <Flex flexDir="row">
                     <Avatar

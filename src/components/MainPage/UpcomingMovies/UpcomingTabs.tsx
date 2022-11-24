@@ -21,7 +21,7 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
                 setIsLoading(false);
                 changeMovieListMethod(data.slice(0, 10));
             } catch (err) {
-                console.log(err);
+                return err;
             }
         } else if (tabTitle === t("home:popularTitle")) {
             try {
@@ -29,16 +29,16 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
                 setIsLoading(false);
                 changeMovieListMethod(data.slice(0, 10));
             } catch (err) {
-                console.log(err);
+                return err;
             }
         } else {
             try {
                 const { data } = await getTopRated();
                 setIsLoading(false);
-                // console.log(data);
+                // return (data);
                 changeMovieListMethod(data.slice(0, 10));
             } catch (err) {
-                console.log(err);
+                return err;
             }
         }
     };
@@ -69,12 +69,13 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
                     lineHeight="36px"
                     fontWeight="500"
                     _selected={{
-                        fontSize: "30px",
+                        fontSize: "h3",
                         fontWeight: "700",
                         lineHeight: "36px",
                         color: "#000",
                     }}
                     _focus={{ border: "none" }}
+                    _hover={{ textDecoration: "underline", textUnderlineOffset: "10px" }}
                     p="0"
                     onClick={() => {
                         setIsLoading(true);

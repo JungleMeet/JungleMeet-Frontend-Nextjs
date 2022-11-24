@@ -24,7 +24,7 @@ const IconContainerStyles = styled.div`
   display: flex;
   gap: 16px;
   align-items: center;
-  margin-right: 84.75px;
+  margin-right: 5.89%;
 `;
 
 const MenuListTitle = styled.div`
@@ -65,7 +65,7 @@ const IconContainer = () => {
                     dispatch(tokenValid(userInfo));
                 }
             } catch (e) {
-                console.log(e);
+                return e;
             }
         };
         if (token) {
