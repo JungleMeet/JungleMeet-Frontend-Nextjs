@@ -5,7 +5,7 @@ import WeeklyListItems from "./WeeklyListItems";
 import { useTranslation } from "next-i18next";
 
 const SectionContainer = styled.div`
-  width: 600px;
+  width: 30%;
   padding-left: 56px;
 `;
 

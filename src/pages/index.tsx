@@ -18,6 +18,7 @@ export const PageContainer = styled.div`
 export const ContentWrapper = styled.div`
   padding: 98px;
   padding-bottom: 0;
+  width: 100%;
 `;
 
 interface IgetStaticProps {
