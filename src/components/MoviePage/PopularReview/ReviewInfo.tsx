@@ -1,10 +1,10 @@
 import { Tag, TagLabel, TagLeftIcon, HStack } from "@chakra-ui/react";
 import { Flex, Text, Link, Spacer, Box, Divider, Image, Button } from "@chakra-ui/react";
 import { ReviewsContainer } from "./ReviewsContainer";
-import React,{memo} from "react";
+import React, { memo } from "react";
 import { ChatIcon } from "@chakra-ui/icons";
 import { dateCreatedAt } from "@/utils/dateCreateAt";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 export interface IReviewInfoProps {
     _id: string;
@@ -18,7 +18,7 @@ export interface IReviewInfoProps {
     content: string;
 }
 
-const ReviewInfo = ({_id, createdAt,author, likeCount,content}:IReviewInfoProps) => {
+const ReviewInfo = ({ _id, createdAt, author, likeCount, content }: IReviewInfoProps) => {
     return (
         <ReviewsContainer>
             <Box>

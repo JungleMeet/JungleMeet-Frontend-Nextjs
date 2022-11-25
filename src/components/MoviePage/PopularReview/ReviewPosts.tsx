@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import ReviewInfo from "./ReviewInfo";
 import { useRouter } from "next/router";
 import SeeMoreReviews from "@/components/MainPage/SeeMoreReviews";
-import {IReviewInfoProps} from "@components/MoviePage/PopularReview/ReviewInfo"
+import { IReviewInfoProps } from "@components/MoviePage/PopularReview/ReviewInfo";
 
 const ReviewPosts = () => {
     const [reviewList, setReviewList] = useState([]);
@@ -23,19 +23,24 @@ const ReviewPosts = () => {
         fetchComments();
     }, []);
 
-    const reviewPostsMemo = useMemo(()=>(
-        reviewList ? reviewList?.map(
-            ({ _id, createdAt, author, likeCount, content }:IReviewInfoProps) => (
-                <ReviewInfo
-                    key={_id}
-                    _id={_id}
-                    author={author}
-                    createdAt={createdAt}
-                    likeCount={likeCount}
-                    content={content}
-                />
-            )
-        ): <div>Be the first one to make comments</div>),[reviewList])
+    const reviewPostsMemo = useMemo(
+        () =>
+            reviewList ? (
+                reviewList?.map(({ _id, createdAt, author, likeCount, content }: IReviewInfoProps) => (
+                    <ReviewInfo
+                        key={_id}
+                        _id={_id}
+                        author={author}
+                        createdAt={createdAt}
+                        likeCount={likeCount}
+                        content={content}
+                    />
+                ))
+            ) : (
+                <div>Be the first one to make comments</div>
+            ),
+        [reviewList]
+    );
 
     return (
         <>
