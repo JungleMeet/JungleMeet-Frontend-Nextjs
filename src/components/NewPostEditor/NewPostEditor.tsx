@@ -7,6 +7,7 @@ import ButtonCancel from "./ButtonCancel";
 import ButtonPost from "./ButtonPost";
 import useEditorController from "../Editor/useEditorController";
 import ContentEditor from "../Editor/ContentEditor";
+import Hashtag from "./Hashtag";
 
 interface INewEditorProps {
     bgImg: string | undefined;
@@ -14,9 +15,8 @@ interface INewEditorProps {
 
 const NewPostEditor = ({ bgImg }: INewEditorProps) => {
     const [postTitle, setPostTitle] = useState("");
-    const [hashtag, setHashtag] = useState("");
+    const [hashtags, setHashtags] = useState("");
     const [token, setToken] = useState<any | null>("");
-    // eslint-disable-next-line no-unused-vars
     const [isLoading, setIsLoading] = useState(false);
 
     const toast = useToast();
@@ -28,7 +28,7 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
 
     const { editor, clearContent, content } = useEditorController();
 
-    const handleSumble = async (e: any) => {
+    const handleSumble = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         if (!postTitle || !content) {
             toast({
@@ -42,10 +42,9 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
         }
         setIsLoading(true);
         try {
-            await addNewPost(postTitle, content, hashtag, token, bgImg);
+            await addNewPost(postTitle, content, hashtags, token, bgImg);
             clearContent();
             Router.push("/discussions");
-            setIsLoading(false);
             toast({
                 position: "top",
                 title: "Post Success!",
@@ -60,7 +59,7 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
 
     const handleCancel = () => {
         setPostTitle("");
-        setHashtag("");
+        setHashtags("");
         clearContent();
     };
 
@@ -84,20 +83,13 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
                     onChange={(event) => setPostTitle(event.target.value)}
                 />
                 <ContentEditor editor={editor} height="350px" />
-                <Flex paddingTop="20px" marginLeft="8px" gap="25px" alignItems="center">
-                    <Text fontSize="text3" fontWeight="700" lineHeight="lh28">
-            #Hashtag
-                    </Text>
-                    <PostSingleLineInput
-                        placeholder="Add your Hashtag here with #..."
-                        value={hashtag}
-                        onChange={(event) => setHashtag(event.target.value)}
-                    />
-                </Flex>
+                <Hashtag />
             </Box>
             <Flex justifyContent="space-between" marginTop="50px" marginBottom="50px">
                 <ButtonCancel onClick={handleCancel}>Cancel</ButtonCancel>
-                <ButtonPost>Post</ButtonPost>
+                <ButtonPost isLoading={isLoading} disabled={isLoading && true}>
+          Post
+                </ButtonPost>
             </Flex>
         </form>
     );

@@ -32,7 +32,7 @@ export const getPostsByView = async (sortBy: string) => {
 export const addNewPost = async (
     title: string,
     content: string,
-    hashtag: string,
+    hashtags: string,
     token: string | null,
     bgImg: string | undefined
 ) => {
@@ -44,7 +44,7 @@ export const addNewPost = async (
     const reqBody = {
         title,
         content,
-        hashtag,
+        hashtags,
         bgImg,
     };
 

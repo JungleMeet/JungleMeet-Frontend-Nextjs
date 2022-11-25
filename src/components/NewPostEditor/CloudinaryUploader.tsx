@@ -27,7 +27,7 @@ const CloudinaryUploader = ({ setBgImg, bgImg }: ICloudinaryUploaderProps) => {
         <Box background="gray.200" padding="32px" borderRadius="5px" marginBottom="50px">
             <UploadWidget callback={saveImage}>
                 {({ open }) => (
-                    <ImageButtonWrapper onClick={(e: any) => open(e)}>
+                    <ImageButtonWrapper onClick={(e: any) => open(e)} bgImg={bgImg}>
                         <ImageWrapper>
                             <ImagePlus>
                                 <Image src="/upload_image.svg" position="relative" />

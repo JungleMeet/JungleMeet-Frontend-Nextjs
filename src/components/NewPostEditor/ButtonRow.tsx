@@ -9,6 +9,8 @@ export interface IButtonRowProps {
     _hover?: object;
     type: "submit" | "reset" | "button";
     onClick?: () => void;
+    isLoading?: boolean;
+    disabled?: boolean;
 }
 
 const ButtonRow = ({ children, ...rest }: IButtonRowProps) => {
@@ -19,6 +21,10 @@ const ButtonRow = ({ children, ...rest }: IButtonRowProps) => {
             borderRadius="5px"
             fontSize="text4"
             lineHeight="lh28"
+            loadingText="Loading"
+            colorScheme="teal"
+            variant="outline"
+            spinnerPlacement="start"
             {...rest}
         >
             {children}
