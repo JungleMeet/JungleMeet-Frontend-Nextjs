@@ -48,7 +48,9 @@ const Videos = () => {
           videoList.map((item) => {
               return (
                   <Carousel.Slide gap={48} key={item.id}>
-                      {item.youtubeLink &&<VideoThumbnail youtubeLink={item.youtubeLink} title={item.title} />}
+                      {item.youtubeLink && (
+                          <VideoThumbnail youtubeLink={item.youtubeLink} title={item.title} />
+                      )}
                   </Carousel.Slide>
               );
           })}

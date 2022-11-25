@@ -40,7 +40,9 @@ const AddReview = ({ isEditorVisible, postId }: IAddReviewProps) => {
                         <Button onClick={clearContent}>Clear</Button>
                         <Button
                             isLoading={loading}
-                            onClick={submitComment}
+                            onClick={()=>{
+                                submitComment();
+                            }}
                             colorScheme="blue"
                             disabled={content ? content?.length < 8 : true}
                         >

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { Button, Stack, Text, useToast } from "@chakra-ui/react";
 import { FaPen } from "react-icons/fa";
 import { TriangleUpIcon } from "@chakra-ui/icons";
+
 import Link from "next/link";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
 import ReviewPosts from "@/components/MoviePage/PopularReview/ReviewPosts";
@@ -41,12 +42,14 @@ const PopularReview = () => {
         setIsEditorVisible((state) => !state);
     };
 
+    //     loged in -> toggle editor
+
     return (
         <>
             <SectionContainer>
                 <SectionHeaderContainer>
                     <Link href={`/movies/reviews/${id}`}>
-                        <SectionTitle>Popular Review</SectionTitle>
+                        <SectionTitle style={{ cursor: "pointer" }}>Popular Review</SectionTitle>
                     </Link>
                     <Stack>
                         <Text
@@ -62,12 +65,12 @@ const PopularReview = () => {
                         <Stack direction="row" spacing={4}>
                             {isEditorVisible ? (
                                 <Button
-                                    leftIcon={isEditorVisible ? <FaPen /> : <FaPen />}
+                                    leftIcon={isEditorVisible ? <TriangleUpIcon /> : <FaPen />}
                                     colorScheme="gray"
                                     variant="solid"
                                     onClick={toggleShowEditor}
                                 >
-                  Review
+                  Hide Comment
                                 </Button>
                             ) : (
                                 <Button
@@ -76,26 +79,15 @@ const PopularReview = () => {
                                     variant="solid"
                                     onClick={toggleShowEditor}
                                 >
-                  Review
+                  Add Review
                                 </Button>
                             )}
                         </Stack>
                     </Stack>
                     {/* write a new review part END */}
                 </SectionHeaderContainer>
-                <AddReview isEditorVisible={isLogged} postId={`${id}`} />
-
-                <Link href={`/movies/reviews/${id}`}>
-                    <Text
-                        fontWeight="400"
-                        fontSize="18px"
-                        color="rose.700"
-                        lineHeight="24px"
-                        cursor={"pointer"}
-                    >
-                        <ReviewPosts />
-                    </Text>
-                </Link>
+                {isEditorVisible ? <AddReview isEditorVisible={isLogged} postId={`${id}`} /> : null}
+                <ReviewPosts />
             </SectionContainer>
         </>
     );
