@@ -32,8 +32,7 @@ const ReviewInfo = ({ _id, createdAt, author, likeCount, content }: IReviewInfoP
                                 fontWeight="600"
                                 lineHeight="32px"
                             >
-                                {author.name}
-                                <Link />
+                                <Link href={"/userprofile/" + props.author._id}>{author.name}</Link>
                 &nbsp;
                             </Text>
                             <Text textColor="gray.400" fontSize="16px" fontWeight="400">

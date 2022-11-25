@@ -31,7 +31,6 @@ const AddReview = ({ isEditorVisible, postId }: IAddReviewProps) => {
             });
         });
     };
-
     return (
         <Box position={"relative"} transitionTimingFunction="ease">
             {isEditorVisible && (

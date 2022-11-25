@@ -31,7 +31,12 @@ const newpost = () => {
             >
         Create Your Post in Discussion
             </Heading>
-            <CloudinaryUploader setBgImg={setBgImg} bgImg={bgImg} />
+            <CloudinaryUploader
+                setBgImg={setBgImg}
+                bgImg={bgImg}
+                displayText={"SELECT YOUR COVER IMAGE"}
+                croppingAspectRatio={5.12}
+            />
             <NewPostEditor bgImg={bgImg} />
         </PageWrapper>
     );

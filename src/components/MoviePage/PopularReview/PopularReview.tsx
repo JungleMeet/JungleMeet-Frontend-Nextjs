@@ -48,7 +48,7 @@ const PopularReview = () => {
                     <Link href={`/movies/reviews/${id}`}>
                         <SectionTitle>Popular Review</SectionTitle>
                     </Link>
-                    <div>
+                    <Stack>
                         <Text
                             fontWeight="400"
                             fontSize="18px"
@@ -56,9 +56,9 @@ const PopularReview = () => {
                             marginRight="800px"
                             lineHeight="24px"
                         ></Text>
-                    </div>
+                    </Stack>
                     {/* write a new review part using chakra-ui component */}
-                    <div>
+                    <Stack>
                         <Stack direction="row" spacing={4}>
                             {isEditorVisible ? (
                                 <Button
@@ -80,11 +80,11 @@ const PopularReview = () => {
                                 </Button>
                             )}
                         </Stack>
-                    </div>
+                    </Stack>
                     {/* write a new review part END */}
                 </SectionHeaderContainer>
                 <AddReview isEditorVisible={isLogged} postId={`${id}`} />
-                <ReviewPosts />
+
                 <Link href={`/movies/reviews/${id}`}>
                     <Text
                         fontWeight="400"
@@ -92,7 +92,9 @@ const PopularReview = () => {
                         color="rose.700"
                         lineHeight="24px"
                         cursor={"pointer"}
-                    ></Text>
+                    >
+                        <ReviewPosts />
+                    </Text>
                 </Link>
             </SectionContainer>
         </>
