@@ -33,8 +33,7 @@ const ReviewInfo: React.FC<ReviewInfoProps> = (props) => {
                                 fontWeight="600"
                                 lineHeight="32px"
                             >
-                                {props.author.name}
-                                <Link />
+                                <Link href={"/userprofile/" + props.author._id}>{props.author.name}</Link>
                 &nbsp;
                             </Text>
                             <Text textColor="gray.400" fontSize="16px" fontWeight="400">

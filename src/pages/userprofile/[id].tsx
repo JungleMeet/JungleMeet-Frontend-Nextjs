@@ -28,7 +28,7 @@ const UserProfile = () => {
 
     return (
         <PageWrapper>
-            <UserProfilePage queryUserId={id} active={active} />
+            <UserProfilePage key={id} queryUserId={id} active={active} />
         </PageWrapper>
     );
 };
