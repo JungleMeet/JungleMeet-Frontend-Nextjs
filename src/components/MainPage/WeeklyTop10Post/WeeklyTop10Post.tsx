@@ -8,6 +8,9 @@ import { Link } from "@chakra-ui/react";
 const SectionContainer = styled.div`
   width: 30%;
   padding-left: 56px;
+  @media (max-width: 60em) {
+    width: 100%;
+  }
 `;
 
 const WeeklyTop10Header = styled(SectionHeaderContainer)`
