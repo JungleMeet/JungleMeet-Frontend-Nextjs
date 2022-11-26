@@ -109,7 +109,7 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                 } else {
                 }
             } catch (err) {
-                return(err);
+                return err;
             }
         };
         updateFollow();
