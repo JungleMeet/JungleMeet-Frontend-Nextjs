@@ -1,12 +1,15 @@
 import React from "react";
 import { getCommentsByCondition } from "@/utils/axiosCommentApi";
 import { useState, useEffect } from "react";
-import ReviewInfo, {IReviewInfoProps}from "./ReviewInfo";
+import ReviewInfo, { IReviewInfoProps } from "./ReviewInfo";
 import { useRouter } from "next/router";
 import SeeMoreReviews from "@/components/MainPage/SeeMoreReviews";
 // import { IReviewInfoProps } from "@components/MoviePage/PopularReview/ReviewInfo";
 
-const ReviewPosts = () => {
+interface IReviewPostsProps {
+    isRefresh: boolean;
+}
+const ReviewPosts = ({ isRefresh }: IReviewPostsProps) => {
     const [reviewList, setReviewList] = useState([]);
     const [topCommentsLength, setTopCommentsLength] = useState(0);
     const router = useRouter();
@@ -21,13 +24,12 @@ const ReviewPosts = () => {
             setTopCommentsLength(dataLength);
         };
         fetchComments();
-    }, []);
-
+    }, [isRefresh]);
 
     return (
         <>
             {reviewList?.map(({ _id, createdAt, author, likeCount, content }: IReviewInfoProps) => {
-                return(
+                return (
                     <ReviewInfo
                         key={_id}
                         _id={_id}
@@ -36,8 +38,8 @@ const ReviewPosts = () => {
                         likeCount={likeCount}
                         content={content}
                     />
-                )} 
-            )}
+                );
+            })}
             <SeeMoreReviews href={`/movies/reviews/${id}`} topCommentsLength={topCommentsLength} />
         </>
     );

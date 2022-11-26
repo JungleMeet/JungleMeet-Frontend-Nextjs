@@ -34,7 +34,7 @@ const ReviewInfo = ({ _id, createdAt, author, likeCount, content }: IReviewInfoP
                                     lineHeight="32px"
                                 >
                                     <Link href={"/userprofile/" + author._id}>{author.name}</Link>
-                &nbsp;
+                  &nbsp;
                                 </Text>
                                 <Text textColor="gray.400" fontSize="16px" fontWeight="400">
                                     <Text>{dateCreatedAt(createdAt)}</Text>

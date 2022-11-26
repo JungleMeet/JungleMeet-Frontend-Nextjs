@@ -9,6 +9,7 @@ import {
     Button,
     Stack,
     useToast,
+    Link,
 } from "@chakra-ui/react";
 import { FaPen, FaLink } from "react-icons/fa";
 import CarouselContainer from "@components/CarouselContainer";
@@ -145,9 +146,11 @@ const MovieInfoDetail = ({
                     <Divider m="0px" colorScheme="gray.200" />
                     <Divider m="0px" colorScheme="gray.200" />
                     <Flex justifyContent="space-between" pt="30px">
-                        <Button p="7px 27px" leftIcon={<FaPen />} bgColor="blue.200" color="blue.500">
-              Review
-                        </Button>
+                        <Link href="#popularReview">
+                            <Button p="7px 27px" leftIcon={<FaPen />} bgColor="blue.200" color="blue.500">
+                Review
+                            </Button>
+                        </Link>
                         <Button
                             leftIcon={<FaLink />}
                             bgColor="white"

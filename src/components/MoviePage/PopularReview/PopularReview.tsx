@@ -22,6 +22,7 @@ const PopularReview = () => {
     const toast = useToast();
     const isLogged = useSelector((state: any) => state.login.isLogged);
     const [isEditorVisible, setIsEditorVisible] = useState(false);
+    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         setIsEditorVisible(isLogged);
@@ -49,7 +50,9 @@ const PopularReview = () => {
             <SectionContainer>
                 <SectionHeaderContainer>
                     <Link href={`/movies/reviews/${id}`}>
-                        <SectionTitle style={{ cursor: "pointer" }}>Popular Review</SectionTitle>
+                        <SectionTitle style={{ cursor: "pointer" }} id="popularReview">
+              Popular Review
+                        </SectionTitle>
                     </Link>
                     <Stack>
                         <Text
@@ -86,8 +89,10 @@ const PopularReview = () => {
                     </Stack>
                     {/* write a new review part END */}
                 </SectionHeaderContainer>
-                {isEditorVisible ? <AddReview isEditorVisible={isLogged} postId={`${id}`} /> : null}
-                <ReviewPosts />
+                {isEditorVisible ? (
+                    <AddReview isEditorVisible={isLogged} postId={`${id}`} setRefresh={setRefresh} />
+                ) : null}
+                <ReviewPosts isRefresh={refresh} />
             </SectionContainer>
         </>
     );
