@@ -6,7 +6,15 @@ export interface IVideoThumbnailProps {
     youtubeLink: string;
 }
 
-const VideoThumbnail = ({ youtubeLink, title }: IVideoThumbnailProps): JSX.Element => {
+// const MovieTitle = styled.div`
+//   width: 450px;
+//   font-size: 18px;
+//   font-weight: 700;
+//   line-height: 23px;
+//   color: #111827;
+// `;
+
+const VideoThumbnail = ({youtubeLink, title }: IVideoThumbnailProps): JSX.Element => {
     return (
         <Box width="450px">
             <iframe src={youtubeLink} title={title} width="450" height="253" allow="fullscreen"></iframe>
