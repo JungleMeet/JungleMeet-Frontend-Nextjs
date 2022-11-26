@@ -18,6 +18,7 @@ interface IpostDetail {
     like?: string[];
     content: string;
     bgImg?: string;
+    follower?: string[];
     hashtag?: string;
 }
 [];
@@ -110,6 +111,8 @@ const DiscussionsDetailPage = (): JSX.Element => {
                 userRole={userRole}
                 currentId={currentId}
                 date={postDetail?.createdAt}
+                followList={postDetail?.follower}
+                likeList={postDetail?.like}
                 like={postDetail?.like?.length}
                 isLogged={isLogged}
                 handleEditPost={handleEditPost}
@@ -125,7 +128,8 @@ const DiscussionsDetailPage = (): JSX.Element => {
                 isLogged={isLogged}
             />
             {isEditorVisible ? <CommentEditor postId={id} /> : null}
-            <DiscussionsDetailComments postId={postDetail?._id} />
+            <DiscussionsDetailComments />
+            {/* postId={postDetail?._id} */}
         </Box>
     );
 };

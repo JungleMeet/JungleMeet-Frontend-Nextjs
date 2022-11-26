@@ -15,7 +15,7 @@ import {
 import styled from "styled-components";
 import LoginForm from "./LoginForm/LoginForm";
 import SignupForm from "./SignupForm/SignupForm";
-import LoginModalFooter from "./LoginModalFooter";
+// import LoginModalFooter from "./LoginModalFooter";
 import ForgotPassword from "./ForgotPassword";
 import { useDispatch, useSelector } from "react-redux";
 import { closeForgotPasswordModal } from "@/app/reducer/loginModalSlice";
@@ -103,11 +103,11 @@ const LoginModal = ({ isOpen, onClose }: ILoginModal) => {
                             <TabPanels mb="50px">
                                 <TabPanel p="0">
                                     <LoginForm closeModal={onClose}></LoginForm>
-                                    <LoginModalFooter>{t("home:loginWith")}</LoginModalFooter>
+                                    {/* <LoginModalFooter>{t("home:loginWith")}</LoginModalFooter> */}
                                 </TabPanel>
                                 <TabPanel p="0">
                                     <SignupForm closeModal={onClose}></SignupForm>
-                                    <LoginModalFooter>{t("home:signUpWith")}</LoginModalFooter>
+                                    {/* <LoginModalFooter>{t("home:signUpWith")}</LoginModalFooter> */}
                                 </TabPanel>
                             </TabPanels>
                         </Tabs>

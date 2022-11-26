@@ -1,6 +1,6 @@
 {
   "searchPlaceholder": "你想看什么?",
-  "loginAndRegister": "登录/ 注册",
+  "loginAndRegister": "登录",
   "nowPlayingTitle": "正在热映",
   "weeklyTop10": "本周前十",
   "more": "更多",
@@ -22,6 +22,12 @@
   "mostRecentOption": "最新",
   "mostViewedOption": "最热",
   "jumpTo": "跳转至",
+
+  "comingSoon": "即将推出",
+  "total": "总数",
+  "reviews": "评论",
+  "writeReview": "编写评论",
+  "movieReview": "电影评论",
 
   "myPosts": "我的帖子",
   "message": "消息",

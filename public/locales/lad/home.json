@@ -1,6 +1,6 @@
 {
   "searchPlaceholder": "¿Qué quieres ver?",
-  "loginAndRegister": "Iniciar sesión Registrarse",
+  "loginAndRegister": "Iniciar sesión",
   "nowPlayingTitle": "Jugandoahora",
   "weeklyTop10": "Top 10 semanal de publicaciones",
   "more": "Más",
@@ -22,6 +22,12 @@
   "mostRecentOption": "Más reciente",
   "mostViewedOption": "Mas visto",
   "jumpTo": "Salta a",
+
+  "comingSoon": "Próximamente",
+  "total": "Total",
+  "reviews": "Revise",
+  "writeReview": "Escriba su opinión",
+  "movieReview": "Reseña de la película",
 
   "myPosts": "Mis publicaciones",
   "message": "Mensaje",
