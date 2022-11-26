@@ -21,9 +21,7 @@ const SeeMoreReviews = ({ href, topCommentsLength }: ISeemoreReviews): JSX.Eleme
 
     return (
         <Link href={href} style={{ cursor: "pointer" }}>
-            <Container>
-                {`${t("home:seeMoreReviews")} (${topCommentsLength} reviews)  >`}
-            </Container>
+            <Container>{`${t("home:seeMoreReviews")} (${topCommentsLength} reviews)  >`}</Container>
         </Link>
     );
 };
