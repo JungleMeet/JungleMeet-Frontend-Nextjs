@@ -38,7 +38,7 @@ export const DiscussionsLikeButton = () => {
         try {
             await toggleLikeButton(id, userId, token);
         } catch (err) {
-            return (err);
+            return err;
         }
     };
 
@@ -81,7 +81,7 @@ const DiscussionsFollowButton = () => {
         try {
             await toggleFollowButton(id, userId, token);
         } catch (err) {
-            return (err);
+            return err;
         }
     };
     return (
