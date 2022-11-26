@@ -101,16 +101,16 @@ export default function FooterUpperPart() {
                     <Spacer w="130px" />
                     <Stack display="flex" fontFamily={"secondary"} gap="10px" maxW="345px">
                         <ListHeader>Useful Links</ListHeader>
-                        <Link fontSize={"text4"} href={"#"}>
+                        <Link fontSize={"text4"} href={"/nowplaying"}>
               Feature Movie
                         </Link>
-                        <Link fontSize={"text4"} href={"#"}>
+                        <Link fontSize={"text4"} href={"/allmovies"}>
               New Arrival
                         </Link>
-                        <Link fontSize={"text4"} href={"#"}>
+                        <Link fontSize={"text4"} href={"/discussions"}>
               Disscusion
                         </Link>
-                        <Link fontSize={"text4"} href={"/aboutpage"}>
+                        <Link fontSize={"text4"} href={"/about"}>
               Contact Us
                         </Link>
                     </Stack>

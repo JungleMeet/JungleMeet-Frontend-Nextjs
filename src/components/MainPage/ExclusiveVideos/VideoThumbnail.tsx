@@ -15,7 +15,7 @@ const MovieTitle = styled.div`
   color: #111827;
 `;
 
-const VideoThumbnail = ({youtubeLink, title }: IVideoThumbnailProps): JSX.Element => {
+const VideoThumbnail = ({ youtubeLink, title }: IVideoThumbnailProps): JSX.Element => {
     return (
         <Box>
             <iframe src={youtubeLink} title={title} width="450" height="253" allow="fullscreen"></iframe>
