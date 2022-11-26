@@ -6,8 +6,6 @@ import ReviewAvatar from "./ReviewAvatar";
 import { useSelector, useDispatch } from "react-redux";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
 import parser from "html-react-parser";
-import { toggleHideChildrenComment } from "@/app/reducer/commentSlice";
-import { CommentThread } from "./styles";
 
 export interface ICommentItemProps {
     _id: string;
@@ -28,7 +26,6 @@ export interface ICommentItemProps {
     __V?: number;
     children?: ICommentItemProps[];
     setNewComment: React.Dispatch<React.SetStateAction<any>>;
-    hasChildren: boolean;
 }
 
 const CommentItem = ({
@@ -38,16 +35,10 @@ const CommentItem = ({
     createdAt,
     author,
     setNewComment,
-    hasChildren,
 }: ICommentItemProps) => {
     const dispatch = useDispatch();
     const [isEditorVisible, setIsEditorVisible] = useState(false);
     const isLogged = useSelector((state: any) => state.login.isLogged);
-    const hiddenIdArray = useSelector((state: any) => state.comments.hiddenIdArray);
-
-    const toggleHide = (id: string) => {
-        dispatch(toggleHideChildrenComment(id));
-    };
 
     const toggleEditor = () => {
         if (!isLogged) {
@@ -55,13 +46,8 @@ const CommentItem = ({
         }
         setIsEditorVisible((current) => !current);
     };
-    const isThreadSelected = hiddenIdArray.includes(_id);
     return (
         <>
-            <CommentThread
-                onClick={() => toggleHide(_id)}
-                isCollapsed={hasChildren && isThreadSelected}
-            />
             <ReviewAvatar
                 id={author?._id}
                 author={`${author?.name}`}
@@ -96,6 +82,6 @@ const CommentItem = ({
     );
 };
 
-export const MemoizeCommentItem = React.memo(CommentItem);
+const MemoizeCommentItem = React.memo(CommentItem);
 
-export default CommentItem;
+export default MemoizeCommentItem;

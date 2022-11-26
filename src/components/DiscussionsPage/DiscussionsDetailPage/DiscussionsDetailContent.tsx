@@ -40,7 +40,7 @@ const DiscussionsDetailContent = ({
                                     <Flex alignItems="center">
                                         <HStack align="center" textColor="red.500" _hover={{ color: "gray.50" }}>
                                             <DiscussionsLikeButton>
-                                                <Text>Like this post</Text>
+                                                <Text>Like</Text>
                                             </DiscussionsLikeButton>
                                         </HStack>
                                     </Flex>

@@ -3,22 +3,22 @@ import { useRouter } from "next/router";
 import DiscussionDetailHeader from "./DiscussionsDetailHeader";
 import { getPostById } from "@/utils/axiosPostApi";
 import { getUserById } from "@/utils/axiosUserApi";
-import { Box, Heading, useToast } from "@chakra-ui/react";
+import { Box, useToast } from "@chakra-ui/react";
 import DiscussionsDetailContent from "./DiscussionsDetailContent";
 import DiscussionsDetailComments from "./DiscussionsDetailComments";
 import CommentEditor from "../../Editor/CommentEditor";
 import { useSelector, useDispatch } from "react-redux";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
-import CloudinaryUploader from "@/components/NewPostEditor/CloudinaryUploader";
-import NewPostEditor from "@/components/NewPostEditor/NewPostEditor";
+import { getCurrentPostData } from "@/app/reducer/postEditingSlice";
 
 interface IpostDetail {
-    _id?: string;
-    title?: string;
-    createdAt?: string;
+    _id: string;
+    title: string;
+    createdAt: string;
     like?: string[];
-    content?: string;
+    content: string;
     bgImg?: string;
+    hashtag?: string;
 }
 [];
 
@@ -39,12 +39,10 @@ const DiscussionsDetailPage = (): JSX.Element => {
     const toast = useToast();
     const [currentId, setCurrentId] = useState("");
     const [userRole, setUserRole] = useState("");
-    const [isPostEditable, setIsPostEditable] = useState(false);
 
     // make sure id is a string to satisfy typescript
     if (typeof id !== "string") router.push("/");
 
-    // const currentPagePost = useMemo(() => postDetail, [postDetail]);
     useEffect(() => {
         const getDetail = async () => {
             try {
@@ -59,6 +57,7 @@ const DiscussionsDetailPage = (): JSX.Element => {
             }
         };
         getDetail();
+    // trigger fetching data when post editor close
     }, []);
 
     useEffect(() => {
@@ -86,25 +85,20 @@ const DiscussionsDetailPage = (): JSX.Element => {
     };
 
     const handleEditPost = () => {
-        setIsPostEditable(true);
+        if (postDetail) {
+            dispatch(
+                getCurrentPostData({
+                    postId: postDetail._id,
+                    postTitle: postDetail.title,
+                    content: postDetail.content,
+                    hashtag: postDetail.hashtag,
+                    bgImg: postDetail.bgImg,
+                })
+            );
+            router.push("/editpost");
+        }
     };
-    if (isPostEditable)
-        return (
-            <>
-                <Heading
-                    as="h3"
-                    fontSize="h3"
-                    lineHeight="lh36"
-                    fontWeight="700"
-                    marginTop="100px"
-                    marginBottom="50px"
-                >
-          Update Post
-                </Heading>
-                <CloudinaryUploader setBgImg={setBgImg} bgImg={bgImg} />
-                <NewPostEditor bgImg={bgImg} />
-            </>
-        );
+
     return (
         <Box key={postDetail?._id}>
             <DiscussionDetailHeader

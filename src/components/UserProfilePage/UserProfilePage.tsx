@@ -87,7 +87,6 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
             }
         };
         getUserProfileDetail();
-        console.log(active);
     }, []);
 
     useEffect(() => {
@@ -110,7 +109,7 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                 } else {
                 }
             } catch (err) {
-                console.log(err);
+                return(err);
             }
         };
         updateFollow();

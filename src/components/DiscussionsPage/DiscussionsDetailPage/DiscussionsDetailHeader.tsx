@@ -112,7 +112,6 @@ const DiscussionsDetailHeader = ({
                                         icon={<HamburgerIcon />}
                                         variant="outline"
                                         bg="blue.200"
-                                        onClick={handleEditPost}
                                     />
                                     <MenuList
                                         bg="gray.300"
@@ -121,7 +120,9 @@ const DiscussionsDetailHeader = ({
                                         }}
                                         _focus={{ border: "none" }}
                                     >
-                                        <MenuItem icon={<EditIcon />}>Edit my post</MenuItem>
+                                        <MenuItem icon={<EditIcon />} onClick={handleEditPost}>
+                      Edit my post
+                                        </MenuItem>
                                     </MenuList>
                                 </Menu>
                             ) : (

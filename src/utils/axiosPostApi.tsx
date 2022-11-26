@@ -68,3 +68,27 @@ export const searchPost = ({
     limit: number;
 }) =>axiosApi.get(`/search/all?keyword=${keyword}&page=${page}&limit=${limit}`);
 
+interface IUpdatePostParams{
+    postId:string,
+    postTitle:string,
+    content:string,
+    hashtag?:string,
+    hashtags?:Array<string>,
+    bgImg?:string,
+    token:string,
+}
+
+export const updatePost=({postId,postTitle,content,hashtag,hashtags,bgImg, token}:IUpdatePostParams)=>{
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    };
+
+    const reqBody = {
+        title:postTitle,
+        content,
+        hashtag,
+        hashtags,
+        bgImg,
+    };
+    return axiosApi.put(`/${postId}`,reqBody, config)
+}

@@ -1,11 +1,9 @@
 import React from "react";
 import { isEmpty } from "lodash";
-import {
-    // CommentItem,
-    MemoizeCommentItem,
-} from "./CommentItem";
-import { useSelector } from "react-redux";
-import { CommentContainer } from "./styles";
+import MemoizeCommentItem from "./CommentItem";
+import { useDispatch, useSelector } from "react-redux";
+import { CommentContainer, CommentThread } from "./styles";
+import { toggleHideChildrenComment } from "@/app/reducer/commentSlice";
 
 export interface ICommentProps {
     _id: string;
@@ -36,6 +34,11 @@ const Comment = ({
 }): JSX.Element => {
     const hiddenIdArray = useSelector((state: any) => state.comments.hiddenIdArray);
 
+    const dispatch = useDispatch();
+    const toggleHide = (id: string) => {
+        dispatch(toggleHideChildrenComment(id));
+    };
+
     return (
         <>
             {comments &&
@@ -51,10 +54,15 @@ const Comment = ({
             // mentionedUserId,
             } = item;
             const hasChildren = !isEmpty(item.children[0]?._id);
+            const isThreadSelected = hiddenIdArray.includes(_id);
+
             return (
             // <Stack mb="0px" bg="#8abbeb" key={_id}>
-            // <Stack pt="5px" pl="54.4px" pb="5px" mb="5px" bg="#F9FAFB" key={_id}>
                 <CommentContainer key={_id}>
+                    <CommentThread
+                        onClick={() => toggleHide(_id)}
+                        isCollapsed={hasChildren && isThreadSelected}
+                    />
                     <MemoizeCommentItem
                         _id={_id}
                         content={content}
@@ -62,7 +70,6 @@ const Comment = ({
                         createdAt={createdAt}
                         author={author}
                         setNewComment={setNewComment}
-                        hasChildren={hasChildren}
                     />
                     {/* <CommentItem
                         _id={_id}
@@ -71,16 +78,14 @@ const Comment = ({
                         createdAt={createdAt}
                         author={author}
                         setNewComment={setNewComment}
-                        hasChildren={hasChildren}
                     /> */}
                     {
                         // if no children or is hidden, display nothing. otherwise, display nested comment
-                        !hasChildren || hiddenIdArray.includes(_id) ? null : (
+                        !hasChildren || isThreadSelected ? null : (
                             <Comment comments={item.children} setNewComment={setNewComment} />
                         )
                     }
                 </CommentContainer>
-            // </Stack>
             // </Stack>
             );
         })}
