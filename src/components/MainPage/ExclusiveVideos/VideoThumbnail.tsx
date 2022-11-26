@@ -14,7 +14,7 @@ export interface IVideoThumbnailProps {
 //   color: #111827;
 // `;
 
-const VideoThumbnail = ({youtubeLink, title }: IVideoThumbnailProps): JSX.Element => {
+const VideoThumbnail = ({ youtubeLink, title }: IVideoThumbnailProps): JSX.Element => {
     return (
         <Box width="450px">
             <iframe src={youtubeLink} title={title} width="450" height="253" allow="fullscreen"></iframe>
