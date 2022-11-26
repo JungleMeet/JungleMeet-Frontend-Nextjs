@@ -114,7 +114,6 @@ const UserPosts = ({ queryUserId, setIsLoading }: IUserPosts) => {
                     </Text>
                 </MessageContainer>
             )}
-
         </>
     );
 };

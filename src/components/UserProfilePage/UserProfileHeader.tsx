@@ -54,7 +54,6 @@ const UserProfileHeader = ({
                 fallbackSrc="/defaultUserImage.svg"
             />
             <Box pos="absolute" bottom="15px" left="15px">
-
                 {userId === queryUserId ? (
                     <Button
                         backgroundColor="transparent"
@@ -86,7 +85,6 @@ const UserProfileHeader = ({
                         Router.push("/userprofile/" + userId);
                     }}
                 />
-
 
                 <Flex flexDir="row">
                     <Avatar
