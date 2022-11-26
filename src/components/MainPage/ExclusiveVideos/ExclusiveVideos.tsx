@@ -1,4 +1,3 @@
-
 import Videos from "./Videos";
 import { SectionContainer, SectionHeaderContainer, SectionTitle } from "../Containers";
 import { useTranslation } from "next-i18next";

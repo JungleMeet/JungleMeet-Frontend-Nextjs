@@ -52,7 +52,11 @@ const Videos = () => {
           videoList.map((item) => {
               return (
                   <Carousel.Slide gap={48} key={item.id}>
-                      {!loading ?(<VideoThumbnail youtubeLink={item.youtubeLink} title={item.title} />) : <Spinner size='xl' color='blue.500'thickness='4px' /> }
+                      {!loading ? (
+                          <VideoThumbnail youtubeLink={item.youtubeLink} title={item.title} />
+                      ) : (
+                          <Spinner size="xl" color="blue.500" thickness="4px" emptyColor='gray.200'/>
+                      )}
                   </Carousel.Slide>
               );
           })}
