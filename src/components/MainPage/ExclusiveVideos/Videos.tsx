@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import VideoThumbnail from "./VideoThumbnail";
 import { Carousel } from "@mantine/carousel";
 import CarouselContainer from "@/components/CarouselContainer";
+import { Spinner } from "@chakra-ui/react";
 
 import { getHeroBannerMovies, getYoutubeLinkById } from "@/utils/axiosMovieApi";
 
@@ -14,6 +15,7 @@ export interface IVideoProps {
 const Videos = () => {
     const [videoList, setVideoList] = useState<IVideoProps[]>([]);
     const [secondFetch, setSecondFetch] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchMovieId = async () => {
@@ -26,6 +28,7 @@ const Videos = () => {
 
     useEffect(() => {
         const fetchYoutubeVideo = async () => {
+            setLoading(true);
             setSecondFetch(true);
             const youtubeLink = await Promise.all(
                 videoList.map(async ({ id, ...rest }) => {
@@ -36,6 +39,7 @@ const Videos = () => {
                     };
                 })
             );
+            setLoading(false);
             setVideoList(youtubeLink);
         };
         fetchYoutubeVideo();
@@ -48,9 +52,7 @@ const Videos = () => {
           videoList.map((item) => {
               return (
                   <Carousel.Slide gap={48} key={item.id}>
-                      {item.youtubeLink && (
-                          <VideoThumbnail youtubeLink={item.youtubeLink} title={item.title} />
-                      )}
+                      {!loading ?(<VideoThumbnail youtubeLink={item.youtubeLink} title={item.title} />) : <Spinner size='xl' color='blue.500'thickness='4px' /> }
                   </Carousel.Slide>
               );
           })}
