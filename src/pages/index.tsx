@@ -12,6 +12,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useMediaQuery } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Header from "../layouts/Header";
+// import PageWrapper from "@/components/PageWrapper";
 
 export const PageContainer = styled.div`
   max-width: 1440px;
@@ -45,13 +46,13 @@ const HomePage = (): JSX.Element => {
         }
     }, [isLargerThan60em]);
 
-    console.log(isLargerThan60em);
     return (
+    // <PageWrapper>
         <PageContainer>
-            <Header />
             <NavBar />
             <HeroBanner />
             <ContentWrapper>
+                <Header />
                 <Flex>
                     {!isMinWidthMedium && (
                         <>
@@ -69,6 +70,7 @@ const HomePage = (): JSX.Element => {
             </ContentWrapper>
             <Footer />
         </PageContainer>
+    // </PageWrapper>
     );
 };
 
