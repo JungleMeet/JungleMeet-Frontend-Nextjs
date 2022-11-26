@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import ReviewInfo, { IReviewInfoProps } from "./ReviewInfo";
 import { useRouter } from "next/router";
 import SeeMoreReviews from "@/components/MainPage/SeeMoreReviews";
-// import { IReviewInfoProps } from "@components/MoviePage/PopularReview/ReviewInfo";
 
 interface IReviewPostsProps {
     isRefresh: boolean;
@@ -40,7 +39,7 @@ const ReviewPosts = ({ isRefresh }: IReviewPostsProps) => {
                     />
                 );
             })}
-            <SeeMoreReviews href={`/movies/reviews/${id}`} topCommentsLength={topCommentsLength} />
+            {topCommentsLength>0? <SeeMoreReviews href={`/movies/reviews/${id}`} topCommentsLength={topCommentsLength} />: `Be the firest one to comment`}
         </>
     );
 };

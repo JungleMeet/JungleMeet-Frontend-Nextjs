@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { Button, Stack, Text, useToast } from "@chakra-ui/react";
+import { Button, Stack, useToast } from "@chakra-ui/react";
 import { FaPen } from "react-icons/fa";
 import { TriangleUpIcon } from "@chakra-ui/icons";
 
@@ -43,8 +43,6 @@ const PopularReview = () => {
         setIsEditorVisible((state) => !state);
     };
 
-    //     loged in -> toggle editor
-
     return (
         <>
             <SectionContainer>
@@ -54,16 +52,6 @@ const PopularReview = () => {
               Popular Review
                         </SectionTitle>
                     </Link>
-                    <Stack>
-                        <Text
-                            fontWeight="400"
-                            fontSize="18px"
-                            color="rose.700"
-                            marginRight="800px"
-                            lineHeight="24px"
-                        ></Text>
-                    </Stack>
-                    {/* write a new review part using chakra-ui component */}
                     <Stack>
                         <Stack direction="row" spacing={4}>
                             {isEditorVisible ? (
@@ -87,7 +75,6 @@ const PopularReview = () => {
                             )}
                         </Stack>
                     </Stack>
-                    {/* write a new review part END */}
                 </SectionHeaderContainer>
                 {isEditorVisible ? (
                     <AddReview isEditorVisible={isLogged} postId={`${id}`} setRefresh={setRefresh} />

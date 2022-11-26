@@ -33,7 +33,7 @@ const AddReview = ({ isEditorVisible, postId, setRefresh }: IAddReviewProps) => 
         });
     };
     return (
-        <Box position={"relative"} transitionTimingFunction="ease">
+        <Box position={"relative"} transitionTimingFunction="ease" mb="30px">
             {isEditorVisible && (
                 <>
                     <ContentEditor editor={editor} height="150px" />

@@ -9,7 +9,7 @@ const Container = styled.div`
   font-size: 18px;
   line-height: 24px;
   cursor: pointer;
-  // padding-top: 18px;
+  padding-top: 20px;
 `;
 interface ISeemoreReviews {
     href: string;
@@ -22,8 +22,7 @@ const SeeMoreReviews = ({ href, topCommentsLength }: ISeemoreReviews): JSX.Eleme
     return (
         <Link href={href} style={{ cursor: "pointer" }}>
             <Container>
-        ${t("home:seeMoreReviews")}
-                {topCommentsLength == 0 ? topCommentsLength : null}
+                {`${t("home:seeMoreReviews")} (${topCommentsLength} reviews)  >`}
             </Container>
         </Link>
     );
