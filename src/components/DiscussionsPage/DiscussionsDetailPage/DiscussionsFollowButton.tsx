@@ -36,10 +36,9 @@ export const DiscussionsLikeButton = () => {
 
     const likeButtonClick = async () => {
         try {
-            const res = await toggleLikeButton(id, userId, token);
-            console.log(res);
+            await toggleLikeButton(id, userId, token);
         } catch (err) {
-            console.log(err);
+            return (err);
         }
     };
 
@@ -82,7 +81,7 @@ const DiscussionsFollowButton = () => {
         try {
             await toggleFollowButton(id, userId, token);
         } catch (err) {
-            console.log(err);
+            return (err);
         }
     };
     return (

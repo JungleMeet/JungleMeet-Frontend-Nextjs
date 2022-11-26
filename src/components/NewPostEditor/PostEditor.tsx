@@ -31,11 +31,12 @@ const PostEditor = ({ type }: IPostEditorProps) => {
             >
                 {type === "newPost" ? "Create Your Post in Discussion" : "Edit Your Post"}
             </Heading>
-            <CloudinaryUploader 
-                setBgImg={setBgImg} 
-                bgImg={bgImg}                 
+            <CloudinaryUploader
+                setBgImg={setBgImg}
+                bgImg={bgImg}
                 displayText={"SELECT YOUR COVER IMAGE"}
-                croppingAspectRatio={5.12}/>
+                croppingAspectRatio={5.12}
+            />
             <PostContentEditor bgImg={bgImg} type={type} />
         </>
     );
