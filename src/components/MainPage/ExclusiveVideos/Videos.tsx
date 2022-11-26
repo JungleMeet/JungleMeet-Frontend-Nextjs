@@ -53,21 +53,22 @@ const Videos = () => {
           videoList.map(({ id, title, youtubeLink }: IVideoProps) => {
               return (
                   <>
-                      {!loading ? (
-                          <Carousel.Slide gap={48} key={id}>
+                      <Carousel.Slide gap={48} key={id}>
+                          {!loading ? (
                               <VideoThumbnail youtubeLink={youtubeLink} title={title} />
-                          </Carousel.Slide>
-                      ) : (
-                          <Box
-                              width="450px"
-                              height="253px"
-                              display="flex"
-                              justifyContent="center"
-                              alignItems="center"
-                          >
-                              <Spinner size="xl" color="blue.500" thickness="4px" emptyColor="gray.200" />
-                          </Box>
-                      )}
+                          ) : (
+                              <Box
+                                  width="450px"
+                                  height="253px"
+                                  display="flex"
+                                  justifyContent="center"
+                                  alignItems="center"
+                                  key={id}
+                              >
+                                  <Spinner size="xl" color="blue.500" thickness="4px" emptyColor="gray.200" />
+                              </Box>
+                          )}
+                      </Carousel.Slide>
                   </>
               );
           })}
