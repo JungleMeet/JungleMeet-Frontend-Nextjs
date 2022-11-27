@@ -50,7 +50,7 @@ const PostCardInfo: React.FC<PostCardInfoProps> = (props) => {
                             </Link>
                         </Stack>
                         <Box pb="13px" fontSize="text5" lineHeight="lh32" textColor="gray.400">
-                            <Flex alignItems="center">
+                            <Flex alignItems="center" flexWrap="wrap">
                                 <Box display="flex">
                                     <Text id={props.name._id}>
                     By&nbsp;

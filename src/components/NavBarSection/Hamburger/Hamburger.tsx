@@ -34,7 +34,7 @@ const Hamburger = () => {
     ];
     return (
         <Menu offset={[-160, 10]}>
-            <MenuButton>
+            <MenuButton minW="37.19px">
                 <HamburgerContainer>
                     <Image src="/hamburger.svg" />
                 </HamburgerContainer>

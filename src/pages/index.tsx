@@ -45,7 +45,6 @@ const HomePage = (): JSX.Element => {
         }
     }, [isLargerThan60em]);
 
-    console.log(isLargerThan60em);
     return (
         <PageContainer>
             <Header />
@@ -59,9 +58,7 @@ const HomePage = (): JSX.Element => {
                             <WeeklyTop10Post />
                         </>
                     )}
-                    {/* <NowPlaying /> */}
                     {isMinWidthMedium && <WeeklyTop10Post />}
-                    {/* <WeeklyTop10Post /> */}
                 </Flex>
                 <UpcomingMovies />
                 <ExclusiveVideos />
