@@ -4,14 +4,18 @@ interface IWrapperProps {
     height: string;
 }
 
-export const Wrapper = styled.div`
+interface ImageButtonWrapper {
+    bgImg: string | undefined;
+}
+
+export const Wrapper = styled.div<IWrapperProps>`
   border: 3px solid #000;
   border-radius: 10px;
   max-width: 1280px;
   width: 100%;
   margin: auto;
   margin-top: 30px;
-  min-height: ${({ height }: IWrapperProps) => height};
+  min-height: ${({ height }) => height};
   position: relative;
   padding-bottom: 1rem;
 `;
@@ -40,7 +44,7 @@ export const TitleInput = styled.input`
   background-color: #e5e7eb;
 `;
 
-export const ImageButtonWrapper = styled.button`
+export const ImageButtonWrapper = styled.button<ImageButtonWrapper>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +54,7 @@ export const ImageButtonWrapper = styled.button`
   gap: 40px;
   cursor: pointer;
   width: 100%;
-  background-image: url(${({ bgImg }: { bgImg: string | undefined }) => bgImg});
+  background-image: url(${({ bgImg }) => bgImg});
 `;
 
 export const ImageWrapper = styled.div`
