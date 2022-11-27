@@ -15,6 +15,7 @@ import { FaPen, FaLink } from "react-icons/fa";
 import CarouselContainer from "@components/CarouselContainer";
 import { Carousel } from "@mantine/carousel";
 import PlayingMovieTrailerModel from "@components/PlayingMovieTrailerModel";
+import { useRouter } from "next/router";
 
 interface MovieInfoDetailProps {
     genresName: [];
@@ -54,6 +55,7 @@ const MovieInfoDetail = ({
     const [shareCount, setShareCount] = useState(0);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const toast = useToast();
+    const router = useRouter();
 
     function clickCount() {
         const countPlusOne = 1;
@@ -81,13 +83,13 @@ const MovieInfoDetail = ({
                         lineHeight="lh28"
                     >
                         <Text>
-              Director:
+                            Director:
                             <Text as="b">
                                 {director && director.length > 0 ? director?.map((item) => item) : `Not available`}
                             </Text>
                         </Text>
                         <Text>
-              Writer:
+                            Writer:
                             <Text as="b">
                                 {writer && writer.length > 0
                                     ? writer?.map((item) => ` ${item} /`)
@@ -95,17 +97,17 @@ const MovieInfoDetail = ({
                             </Text>
                         </Text>
                         <Text>
-              Stars:{" "}
+                            Stars:{" "}
                             <Text as="b">{majorCasts && majorCasts.map((item: any) => ` ${item.name} / `)}</Text>
                         </Text>
                         <Text>
-              Country:{" "}
+                            Country:{" "}
                             {country && country.length > 0 ? country.map((item) => ` ${item} `) : `Not available`}
                         </Text>
                         <Text>Date: {releaseDateRightFormat}</Text>
                         <Text>Length: {length}</Text>
                         <Text>
-              Language:{" "}
+                            Language:{" "}
                             {languages && languages.length > 0 ? languages.map((item) => item) : `Not available`}
                         </Text>
                     </Flex>
@@ -114,19 +116,17 @@ const MovieInfoDetail = ({
                     <Flex justifyContent="space-between" gap="26px" pb="30px">
                         <Flex direction="column">
                             <Text fontWeight="600" fontSize="h5">
-                TMDB Rating
+                                TMDB Rating
                             </Text>
                             <Flex alignItems="center" pt="12px">
                                 <Image width="39px" src="/TMDB.svg" />
-                                <Text pl="10px" fontSize="text1">{`${
-                                    voteAverage && voteAverage.toFixed(1)
-                                }/10`}</Text>
+                                <Text pl="10px" fontSize="text1">{`${voteAverage && voteAverage.toFixed(1)}/10`}</Text>
                             </Flex>
                             <Text pt="6px" fontSize="text4" fontWeight="500">{`${voteCount} votes`}</Text>
                         </Flex>
                         <Flex direction="column" alignItems="center">
                             <Text pb="23px" fontWeight="600" fontSize="h5">
-                Trailors Option
+                                Trailors Option
                             </Text>
                             <Button colorScheme="#ffffff" onClick={onOpen}>
                                 <Image
@@ -148,7 +148,7 @@ const MovieInfoDetail = ({
                     <Flex justifyContent="space-between" pt="30px">
                         <Link href="#popularReview">
                             <Button p="7px 27px" leftIcon={<FaPen />} bgColor="blue.200" color="blue.500">
-                Review
+                                Review
                             </Button>
                         </Link>
                         <Button
@@ -166,28 +166,34 @@ const MovieInfoDetail = ({
                                 });
                             }}
                         >
-              Share {shareCount === 0 ? null : `+ ${shareCount}`}
+                            Share {shareCount === 0 ? null : `+ ${shareCount}`}
                         </Button>
                     </Flex>
                 </Flex>
             </Flex>
             <Flex gap="10px" pt="20px">
                 {genresName &&
-          genresName?.map((item: any, resourceId) => {
-              return (
-                  <Button
-                      key={resourceId}
-                      padding="5px"
-                      bgColor="#D9D9D9"
-                      borderRadius="5px"
-                      fontSize={"text2"}
-                      fontWeight="500"
-                      p="8px 12px"
-                  >
-                      {item}
-                  </Button>
-              );
-          })}
+                    genresName?.map((item: any, resourceId) => {
+                        return (
+                            <Button
+                                key={resourceId}
+                                padding="5px"
+                                bgColor="#D9D9D9"
+                                borderRadius="5px"
+                                fontSize={"text2"}
+                                fontWeight="500"
+                                p="8px 12px"
+                                onClick={() => {
+                                    router.push({
+                                        pathname: '/allmovies',
+                                        query: { genre: item }
+                                    }, '/allmovies')
+                                }}
+                            >
+                                {item}
+                            </Button>
+                        );
+                    })}
             </Flex>
             <Stack pt="73px" pb="35px">
                 <Heading>Movie Description </Heading>
