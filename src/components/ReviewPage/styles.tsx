@@ -19,7 +19,7 @@ interface ICommentThreadProps {
     hasChildren: boolean;
 }
 
-export const CommentThread = styled.button`
+export const CommentThread = styled.button<ICommentThreadProps>`
   display: block;
   position: absolute;
   bottom: 0;
@@ -30,5 +30,5 @@ export const CommentThread = styled.button`
   width: 13px;
   cursor: pointer;
   z-index: 10;
-  ${({ hasChildren }: ICommentThreadProps) => hasChildren && hoverStyle}
+  ${({ hasChildren }) => hasChildren && hoverStyle}
 `;
