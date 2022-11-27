@@ -22,13 +22,36 @@ export const getPostsByCondition = async (nPerPage: number, pageNumber: number, 
     return await axiosApi.get(`/?nPerPage=${nPerPage}&pageNumber=${pageNumber}&sortBy=${sortBy}`);
 };
 
-export const getPostsByUserId = async (nPerPage: number, pageNumber: number, sortBy: string, userId: string) => {
-    return await axiosApi.get(`/?nPerPage=${nPerPage}&pageNumber=${pageNumber}&sortBy=${sortBy}&userId=${userId}`);
+export const getPostsByUserId = async (
+    nPerPage: number,
+    pageNumber: number,
+    sortBy: string,
+    userId: string
+) => {
+    return await axiosApi.get(
+        `/?nPerPage=${nPerPage}&pageNumber=${pageNumber}&sortBy=${sortBy}&userId=${userId}`
+    );
 };
 
 export const getPostsByView = async (sortBy: string) => {
     return await axiosApi.get(`/?sortBy=${sortBy}`);
 };
+
+export const toggleLikeButton = async (postId: string, userId: string, token: string | null) => {
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    };
+
+    return await axiosApi.patch(`/like/${postId}`, userId, config);
+};
+
+export const toggleFollowButton = async (postId: string, userId: string, token: string | null) => {
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    };
+    return await axiosApi.patch(`/follow/${postId}`, userId, config);
+};
+
 export const addNewPost = async (
     title: string,
     content: string,
@@ -36,7 +59,6 @@ export const addNewPost = async (
     token: string | null,
     bgImg: string | undefined
 ) => {
-
     const config = {
         headers: { Authorization: `Bearer ${token}` },
     };
@@ -68,3 +90,27 @@ export const searchPost = ({
     limit: number;
 }) =>axiosApi.get(`/search/all?keyword=${keyword}&page=${page}&limit=${limit}`);
 
+interface IUpdatePostParams{
+    postId:string,
+    postTitle:string,
+    content:string,
+    hashtag?:string,
+    hashtags?:Array<string>,
+    bgImg?:string,
+    token:string,
+}
+
+export const updatePost=({postId,postTitle,content,hashtag,hashtags,bgImg, token}:IUpdatePostParams)=>{
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    };
+
+    const reqBody = {
+        title:postTitle,
+        content,
+        hashtag,
+        hashtags,
+        bgImg,
+    };
+    return axiosApi.put(`/${postId}`,reqBody, config)
+}

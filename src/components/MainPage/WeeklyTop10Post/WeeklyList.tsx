@@ -14,7 +14,7 @@ const WeeklyList = ({ title, icon, postId }: IWeeklyListProps) => {
             borderBottomColor="gray.200"
             alignItems="center"
         >
-            <Flex paddingBottom="8px">
+            <Flex paddingBottom="8px" noOfLines={1}>
                 <Link
                     href={`/discussions/${postId}`}
                     color="#3B82F6"
@@ -25,7 +25,7 @@ const WeeklyList = ({ title, icon, postId }: IWeeklyListProps) => {
                     {title}
                 </Link>
             </Flex>
-            <Image paddingBottom="10px" src={icon} alignItems="end" />
+            <Image paddingLeft={"5px"} paddingBottom="10px" src={icon} alignItems="end" />
         </Flex>
     );
 };

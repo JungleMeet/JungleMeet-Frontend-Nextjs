@@ -45,6 +45,7 @@ const HomePage = (): JSX.Element => {
         }
     }, [isLargerThan60em]);
 
+    console.log(isLargerThan60em);
     return (
         <PageContainer>
             <Header />

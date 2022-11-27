@@ -1,4 +1,4 @@
-import { Flex, Text, Avatar } from "@chakra-ui/react";
+import { Flex, Text, Avatar, Link } from "@chakra-ui/react";
 import React from "react";
 
 interface ICreatedByTheAuthorProps {
@@ -38,7 +38,11 @@ const CreatedByTheAuthor = ({
         >
             <Avatar name={author} src={avatar} borderRadius="10px" width="32px" height="32px"></Avatar>
 
-            <Text textColor="blue.500">{author}</Text>
+            <Text textColor="blue.500">
+                <Link _hover={{ textColor: "black" }} mr="5px" href={"/userprofile/" + id}>
+                    {author}
+                </Link>
+            </Text>
             <Text textColor="gray.500">{createdAt}</Text>
         </Flex>
     );

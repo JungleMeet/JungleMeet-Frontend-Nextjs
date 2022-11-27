@@ -69,12 +69,13 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
                     lineHeight="36px"
                     fontWeight="500"
                     _selected={{
-                        fontSize: "30px",
+                        fontSize: "h3",
                         fontWeight: "700",
                         lineHeight: "36px",
                         color: "#000",
                     }}
                     _focus={{ border: "none" }}
+                    _hover={{ textDecoration: "underline", textUnderlineOffset: "10px" }}
                     p="0"
                     onClick={() => {
                         setIsLoading(true);

@@ -8,8 +8,8 @@ import {
     Divider,
     Button,
     Stack,
-    Link,
     useToast,
+    Link,
 } from "@chakra-ui/react";
 import { FaPen, FaLink } from "react-icons/fa";
 import CarouselContainer from "@components/CarouselContainer";
@@ -128,7 +128,7 @@ const MovieInfoDetail = ({
                             <Text pb="23px" fontWeight="600" fontSize="h5">
                 Trailors Option
                             </Text>
-                            <Button colorScheme="#fff" onClick={onOpen}>
+                            <Button colorScheme="#ffffff" onClick={onOpen}>
                                 <Image
                                     width="40px"
                                     height="40px"
@@ -138,15 +138,19 @@ const MovieInfoDetail = ({
                             </Button>
                             {video ? (
                                 <PlayingMovieTrailerModel isOpen={isOpen} onClose={onClose} src={video} />
-                            ) : null}
+                            ) : (
+                                `Not available`
+                            )}
                         </Flex>
                     </Flex>
                     <Divider m="0px" colorScheme="gray.200" />
                     <Divider m="0px" colorScheme="gray.200" />
                     <Flex justifyContent="space-between" pt="30px">
-                        <Button p="7px 27px" leftIcon={<FaPen />} bgColor="blue.200" color="blue.500">
-              Review
-                        </Button>
+                        <Link href="#popularReview">
+                            <Button p="7px 27px" leftIcon={<FaPen />} bgColor="blue.200" color="blue.500">
+                Review
+                            </Button>
+                        </Link>
                         <Button
                             leftIcon={<FaLink />}
                             bgColor="white"
@@ -169,9 +173,9 @@ const MovieInfoDetail = ({
             </Flex>
             <Flex gap="10px" pt="20px">
                 {genresName &&
-          genresName?.map((item: any) => {
+          genresName?.map((item: any, resourceId) => {
               return (
-                  <Link
+                  <Button
                       key={resourceId}
                       padding="5px"
                       bgColor="#D9D9D9"
@@ -181,7 +185,7 @@ const MovieInfoDetail = ({
                       p="8px 12px"
                   >
                       {item}
-                  </Link>
+                  </Button>
               );
           })}
             </Flex>
@@ -194,16 +198,18 @@ const MovieInfoDetail = ({
             <Stack pt="73px">
                 <Heading pb="46px">Featured Casts</Heading>
                 <CarouselContainer slideSize="287px">
-                    {majorCasts?.map((item: any) => {
-                        return (
-                            <Carousel.Slide gap={68} key={resourceId}>
-                                <Image src={item.path} alt={"casts"} height="88%" width="100%" />
-                                <Text pt="19px" textAlign="center" fontSize="text3" fontWeight="700">
-                                    {item.name}
-                                </Text>
-                            </Carousel.Slide>
-                        );
-                    })}
+                    {majorCasts && majorCasts.length > 0
+                        ? majorCasts?.map((item: any, resourceId) => {
+                            return (
+                                <Carousel.Slide gap={68} key={resourceId}>
+                                    <Image src={item.path} alt={"casts"} height="88%" width="100%" />
+                                    <Text pt="19px" textAlign="center" fontSize="text3" fontWeight="700">
+                                        {item.name}
+                                    </Text>
+                                </Carousel.Slide>
+                            );
+                        })
+                        : null}
                 </CarouselContainer>
             </Stack>
         </Stack>

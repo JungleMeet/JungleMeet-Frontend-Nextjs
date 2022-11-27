@@ -28,7 +28,7 @@ const ProfileSiderDetails = (follower: {
                     overflow="hidden"
                     lineHeight="lh20"
                 >
-                    <Link href={"/userprofile/" + follower.userId}>{follower.name}</Link>
+                    <Link href={"/userprofile/" + follower.userId}>{follower.name.split(" ")[0]}</Link>
                 </Text>
                 <Flex flexDir={"row"} mt="1px" h="23px">
                     <Icon as={HiLightBulb} h={4} color="gray.500" mr="7px" />

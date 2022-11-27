@@ -7,9 +7,16 @@ import { CloudinaryCallbackImage } from "./cloudinaryType";
 interface ICloudinaryUploaderProps {
     setBgImg: (value: string) => void;
     bgImg: string | undefined;
+    croppingAspectRatio: number;
+    displayText: string;
 }
 
-const CloudinaryUploader = ({ setBgImg, bgImg }: ICloudinaryUploaderProps) => {
+const CloudinaryUploader = ({
+    setBgImg,
+    bgImg,
+    croppingAspectRatio,
+    displayText,
+}: ICloudinaryUploaderProps) => {
     const toast = useToast();
 
     const saveImage = (imageData: CloudinaryCallbackImage) => {
@@ -25,7 +32,7 @@ const CloudinaryUploader = ({ setBgImg, bgImg }: ICloudinaryUploaderProps) => {
 
     return (
         <Box background="gray.200" padding="32px" borderRadius="5px" marginBottom="50px">
-            <UploadWidget callback={saveImage}>
+            <UploadWidget callback={saveImage} croppingAspectRatio={croppingAspectRatio}>
                 {({ open }) => (
                     <ImageButtonWrapper onClick={(e: any) => open(e)}>
                         <ImageWrapper>
@@ -35,7 +42,7 @@ const CloudinaryUploader = ({ setBgImg, bgImg }: ICloudinaryUploaderProps) => {
                         </ImageWrapper>
                         <Flex flexDirection="column" justifyContent="space-between" textAlign="start">
                             <Text fontSize="text3" fontWeight="600" lineHeight="lh28">
-                SELECT YOUR COVER IMAGE
+                                {displayText}
                             </Text>
                             <Text fontSize="text4" lineHeight="lh28">
                 Click here to upload your image.
