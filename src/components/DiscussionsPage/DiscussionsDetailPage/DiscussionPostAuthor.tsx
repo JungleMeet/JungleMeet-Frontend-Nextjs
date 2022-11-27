@@ -1,4 +1,4 @@
-import { Flex, Text, Avatar } from "@chakra-ui/react";
+import { Flex, Text, Avatar, Link } from "@chakra-ui/react";
 import React from "react";
 
 interface ITheAuthorProps {
@@ -22,7 +22,10 @@ const DiscussionPostAuthor = ({ id, author, createdAt, avatar }: ITheAuthorProps
 
             <Text>
                 {" "}
-                {author} {createdAt}
+                <Link _hover={{ textColor: "black" }} mr="5px" href={"/userprofile/" + id}>
+                    {author}
+                </Link>
+                {createdAt}
             </Text>
         </Flex>
     );

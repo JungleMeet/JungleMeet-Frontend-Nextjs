@@ -5,21 +5,21 @@ import Movies from "./Movies";
 import { useTranslation } from "next-i18next";
 
 const SectionContainer = styled.div`
-  /*width: 840px;*/
+  width: 70%;
 `;
 
 const NowPlaying = () => {
-    const { t } = useTranslation("home");
+  const { t } = useTranslation("home");
 
-    return (
-        <SectionContainer>
-            <SectionHeaderContainer>
-                <SectionTitle>{t("home:nowPlayingTitle")}</SectionTitle>
-                <SeeMore href="/nowplaying" />
-            </SectionHeaderContainer>
-            <Movies />
-        </SectionContainer>
-    );
+  return (
+    <SectionContainer>
+      <SectionHeaderContainer>
+        <SectionTitle>{t("home:nowPlayingTitle")}</SectionTitle>
+        <SeeMore href="/nowplaying" />
+      </SectionHeaderContainer>
+      <Movies />
+    </SectionContainer>
+  );
 };
 
 export default NowPlaying;

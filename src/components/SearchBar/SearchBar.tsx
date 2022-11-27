@@ -66,6 +66,7 @@ const SearchBar = () => {
                         onChange={handleInput}
                         value={query}
                         w="100%"
+                        minW="270px"
                     />
                     <SearchButton onClick={handleSubmit}>
                         <SearchIcon color={"white"} boxSize="18px" />

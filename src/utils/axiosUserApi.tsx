@@ -63,3 +63,15 @@ export const changePwd = async(token: string | null, previousPwd:string, newPwd:
     return await axiosApi.post('/reset', reqBody, {headers: { Authorization: `Bearer ${token}` }});
 
 }
+export const changeAvatar = async(token: string | null, avatar: string) => {
+    const reqBody = {
+        avatar: avatar,
+    }
+    return await axiosApi.put('/', reqBody, {headers: { Authorization: `Bearer ${token}` }});
+}
+export const changeBgImg = async(token: string | null, bgImg: string) => {
+    const reqBody = {
+        bgImg: bgImg,
+    }
+    return await axiosApi.put('/', reqBody, {headers: { Authorization: `Bearer ${token}` }});
+}

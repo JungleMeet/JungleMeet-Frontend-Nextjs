@@ -101,7 +101,6 @@ const UserNameAndMessage = () => {
             console.log("connect client");
         });
         socket.on("message", (data) => {
-            console.log(data);
             dispatch(newMessage());
             // setHasNewMessage(!hasNewMessage);
         });

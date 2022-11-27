@@ -9,7 +9,7 @@ import {
 // import styled from "styled-components";
 import { Form } from "./LoginForm/LoginForm";
 import FormInput from "./LoginForm/FormInput";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { sendResetPwdEmail } from "@/utils/axiosEmailApi";
 
 interface IForgotPassword {
@@ -31,10 +31,6 @@ const ForgotPassword = ({ closeModal }: IForgotPassword) => {
         }
     };
 
-    useEffect(() => {
-        console.log("forgot password");
-    }, []);
-
     return (
         <Form
             onSubmit={async (event) => {
@@ -52,7 +48,6 @@ const ForgotPassword = ({ closeModal }: IForgotPassword) => {
                     setIsLoading(false);
                     closeModal();
                 } catch (error: any) {
-                    console.log(error);
                     setIsLoading(false);
                     const status = error.response.status;
                     status === 401

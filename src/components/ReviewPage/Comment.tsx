@@ -1,7 +1,15 @@
 import React from "react";
 import { isEmpty } from "lodash";
-import { Stack } from "@chakra-ui/react";
 import CommentItem from "./CommentItem";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+
+const CommentContainer = styled.div`
+  padding: 5px 0px 5px 54.5px;
+  margin-bottom: 0px;
+  background-color: #f9fafb;
+  position: relative;
+`;
 
 export interface ICommentProps {
     _id: string;
@@ -30,6 +38,8 @@ const Comment = ({
     comments: ICommentProps[];
     setNewComment: React.Dispatch<React.SetStateAction<any>>;
 }): JSX.Element => {
+    const hiddenIdArray = useSelector((state: any) => state.comments.hiddenIdArray);
+
     return (
         <>
             {comments &&
@@ -44,22 +54,29 @@ const Comment = ({
             // visible,
             // mentionedUserId,
             } = item;
+            const hasChildren = !isEmpty(item.children[0]?._id);
             return (
-                <Stack mb="5px" bg="#F9FAFB" key={_id}>
-                    <Stack pt="10px" pl="54.4px" pb="4.25px">
-                        <CommentItem
-                            _id={_id}
-                            content={content}
-                            postId={postId}
-                            createdAt={createdAt}
-                            author={author}
-                            setNewComment={setNewComment}
-                        />
-                        {!isEmpty(item.children[0]?._id) ? (
+            // <Stack mb="5px" bg="#F9FAFB" key={_id}>
+            // <Stack pt="5px" pl="54.4px" pb="5px" mb="5px" bg="#F9FAFB" key={_id}>
+                <CommentContainer key={_id}>
+                    <CommentItem
+                        _id={_id}
+                        content={content}
+                        postId={postId}
+                        createdAt={createdAt}
+                        author={author}
+                        setNewComment={setNewComment}
+                        hasChildren={hasChildren}
+                    />
+                    {
+                        // if no children or is hidden, display nothing. otherwise, display nested comment
+                        !hasChildren || hiddenIdArray.includes(_id) ? null : (
                             <Comment comments={item.children} setNewComment={setNewComment} />
-                        ) : null}
-                    </Stack>
-                </Stack>
+                        )
+                    }
+                </CommentContainer>
+            // </Stack>
+            // </Stack>
             );
         })}
         </>
