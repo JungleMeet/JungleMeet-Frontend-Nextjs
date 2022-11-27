@@ -12,9 +12,10 @@ interface ChildrenProps {
 interface CloudinaryUploadWidgetProps {
     children: (props: ChildrenProps) => React.ReactNode;
     callback: (image: CloudinaryCallbackImage) => void;
+    croppingAspectRatio: number;
 }
 
-const UploadWidget = ({ callback, children }: CloudinaryUploadWidgetProps) => {
+const UploadWidget = ({ callback, children, croppingAspectRatio }: CloudinaryUploadWidgetProps) => {
     function showWidget() {
         const widget: CloudinaryWidget = (window as any).cloudinary.createUploadWidget(
             {
@@ -34,8 +35,8 @@ const UploadWidget = ({ callback, children }: CloudinaryUploadWidgetProps) => {
                 // googleApiKey: "<image_search_google_api_key>",
                 showAdvancedOptions: false,
                 cropping: true,
-                croppingAspectRatio: "5.12",
-                croppingDefaultSelectionRatio: "0.19",
+                croppingAspectRatio: String(croppingAspectRatio),
+                croppingDefaultSelectionRatio: String(1 / croppingAspectRatio),
                 croppingShowDimensions: true,
                 croppingCoordinatesMode: "custom",
                 multiple: false,

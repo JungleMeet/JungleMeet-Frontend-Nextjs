@@ -1,36 +1,78 @@
-/* eslint-disable react/jsx-key */
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import VideoThumbnail from "./VideoThumbnail";
-import { IVideoThumbnailProps } from "./VideoThumbnail";
-import React from "react";
 import { Carousel } from "@mantine/carousel";
 import CarouselContainer from "@/components/CarouselContainer";
+import { Spinner, Box } from "@chakra-ui/react";
 
-const staticSrc = [
-    { id: "1", src: "https://www.youtube.com/embed/DUnQcJz76Ck", title: "The Super Mario Bros" },
-    { id: "2", src: "https://www.youtube.com/embed/szby7ZHLnkA", title: "Sonic the Hedgehog" },
-    { id: "3", src: "https://www.youtube.com/embed/9kK86zmhpWc", title: "Pikachu's Cutest Moments" },
-    { id: "4", src: "https://www.youtube.com/embed/szby7ZHLnkA", title: "Sonic the Hedgehog again" },
-];
+import { getHeroBannerMovies, getYoutubeLinkById } from "@/utils/axiosMovieApi";
+
+export interface IVideoProps {
+    id: number;
+    title: string;
+    youtubeLink: string;
+}
+
 const Videos = () => {
-    const [videoList, setVideoList] = useState<IVideoThumbnailProps[]>([]);
+    const [videoList, setVideoList] = useState<IVideoProps[]>([]);
+    const [secondFetch, setSecondFetch] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const allMoviesMemo = useMemo(() => videoList, [videoList]);
 
     useEffect(() => {
-        setVideoList(staticSrc);
+        const fetchMovieId = async () => {
+            setLoading(true);
+            const { data } = await getHeroBannerMovies();
+            setVideoList(data);
+            setSecondFetch(false);
+        };
+        fetchMovieId();
     }, []);
 
+    useEffect(() => {
+        const fetchYoutubeVideo = async () => {
+            setLoading(true);
+            setSecondFetch(true);
+            const youtubeLink = await Promise.all(
+                videoList.map(async ({ id, ...rest }) => {
+                    return {
+                        id,
+                        ...rest,
+                        youtubeLink: (await getYoutubeLinkById(id)).data,
+                    };
+                })
+            );
+            setVideoList(youtubeLink);
+            setLoading(false);
+        };
+        fetchYoutubeVideo();
+    }, [secondFetch]);
+
     return (
-        <>
-            {videoList.length > 0 && (
-                <CarouselContainer slideSize="33.333%">
-                    {videoList?.map(({ id, src, title }) => (
-                        <Carousel.Slide gap={48} key={id}>
-                            <VideoThumbnail src={src} title={title} />
-                        </Carousel.Slide>
-                    ))}
-                </CarouselContainer>
-            )}
-        </>
+        <CarouselContainer slideSize="33.333%">
+            {videoList.length > 0 &&
+          allMoviesMemo.map(({ id, title, youtubeLink }: IVideoProps) => {
+              return (
+                  <>
+                      <Carousel.Slide gap={48} key={id}>
+                          {!loading ? (
+                              <VideoThumbnail youtubeLink={youtubeLink} title={title} />
+                          ) : (
+                              <Box
+                                  width="450px"
+                                  height="253px"
+                                  display="flex"
+                                  justifyContent="center"
+                                  alignItems="center"
+                                  key={id}
+                              >
+                                  <Spinner size="xl" color="blue.500" thickness="4px" emptyColor="gray.200" />
+                              </Box>
+                          )}
+                      </Carousel.Slide>
+                  </>
+              );
+          })}
+        </CarouselContainer>
     );
 };
 

@@ -123,6 +123,11 @@ const theme = extendTheme(config, styles, {
         heading: `'Inter', ${base.fonts?.heading}`,
         secondary: `'DM Sans', ${base.fonts?.heading}`,
     },
+    breakpoints: {
+        sm: '37.5em',
+        md: '60em',
+        // lg:"88.75em"
+    }
 });
 
 export default theme;

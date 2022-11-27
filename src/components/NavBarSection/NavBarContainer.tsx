@@ -10,13 +10,14 @@ const NavBarContainer = ({ children }: NavBarContainerProps) => {
             as="nav"
             align="center"
             justify="space-between"
-            wrap="wrap"
+            gap={["14px", "14px", "60px"]}
             w="100%"
             h="80px"
-            maxW="1440px"
+            maxW="inherit"
             m="auto"
             zIndex="999"
-            position="fixed"
+            position="sticky"
+            top="0"
             backgroundColor="rgba(0,0,0,0.85)"
             backdropFilter="grayscale(0.5) opacity(0.8)"
         >

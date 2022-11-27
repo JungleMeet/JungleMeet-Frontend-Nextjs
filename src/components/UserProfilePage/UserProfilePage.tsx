@@ -10,6 +10,7 @@ import UserProfileSider from "@/components/UserProfilePage/UserProfileSider";
 import ProfileSiderDetails from "./ProfileSiderDetails";
 import { getUserProfile } from "@/utils/axiosUserApi";
 import UserPosts from "./UserPosts";
+import uuid from "react-uuid";
 
 interface userProfileProps {
     queryUserId: string;
@@ -25,11 +26,13 @@ interface IUserProfile {
         name: string;
         role: string;
         avatar?: string;
+        userId: string;
     }[];
     followingsList: {
         name: string;
         role: string;
         avatar?: string;
+        userId: string;
     }[];
     followingPostsList: {
         title: string;
@@ -41,15 +44,20 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
         userName: "",
         userBgImg: "",
         userAvatar: "",
-        followersList: [{ name: "", avatar: "", role: "" }],
-        followingsList: [{ name: "", avatar: "", role: "" }],
+        followersList: [{ name: "", avatar: "", role: "", userId: "" }],
+        followingsList: [{ name: "", avatar: "", role: "", userId: "" }],
         followingPostsList: [{ title: "" }],
     };
+
     const [userProfile, setUserProfile] = useState<IUserProfile>(defaultUserProfile);
     const [userId, setUserId] = useState("");
     const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [currentTab, setCurrentTab] = useState("My Posts");
+
+    const [followed, setFollowed] = useState(false);
+    const [followTrigger, setfFllowTrigger] = useState(true);
+    const [selfProfile, setSelfProfile] = useState<IUserProfile>(defaultUserProfile);
 
     useEffect(() => {
         const getUserProfileDetail = async () => {
@@ -63,7 +71,15 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                         queryUserId === userInfo.userId ? userInfo.userId : queryUserId
                     )!;
                     setUserProfile(profileResponse.data);
+                    const selfProfileResponse: AxiosResponse = await getUserProfile(userInfo.userId)!;
+                    setSelfProfile(selfProfileResponse.data);
+
                     setUserId(userInfo.userId);
+                    setFollowed(
+                        profileResponse.data.followersList
+                            .map((follower: any) => follower.userId)
+                            .includes(userInfo.userId)
+                    );
                 } else {
                 }
             } catch (err) {
@@ -71,8 +87,33 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
             }
         };
         getUserProfileDetail();
-        console.log(active);
     }, []);
+
+    useEffect(() => {
+        const updateFollow = async () => {
+            try {
+                const userInfoLocalStorage = localStorage.getItem("userInfo");
+                if (userInfoLocalStorage) {
+                    const userInfo = JSON.parse(userInfoLocalStorage);
+                    const profileResponse: AxiosResponse = await getUserProfile(
+                        queryUserId === userInfo.userId ? userInfo.userId : queryUserId
+                    );
+                    setUserProfile(profileResponse.data);
+                    const selfProfileResponse: AxiosResponse = await getUserProfile(userInfo.userId)!;
+                    setSelfProfile(selfProfileResponse.data);
+                    setFollowed(
+                        profileResponse.data.followersList
+                            .map((follower: any) => follower.userId)
+                            .includes(userInfo.userId)
+                    );
+                } else {
+                }
+            } catch (err) {
+                return err;
+            }
+        };
+        updateFollow();
+    }, [followTrigger]);
 
     return (
         <>
@@ -81,10 +122,12 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                 userBgImg={userProfile.userBgImg}
                 userRole={userProfile.userRole}
                 userName={userProfile.userName}
-                isSelf={userId === queryUserId}
+                userId={userId}
                 queryUserId={queryUserId}
-                followed={userId in userProfile.followingsList}
+                followed={followed}
                 token={token}
+                setfFllowTrigger={setfFllowTrigger}
+                followTrigger={followTrigger}
             />
             <Flex flexDirection="row" pos="relative" mt="28px">
                 <Flex maxW="816px" flexDirection="column" w="70%">
@@ -109,10 +152,16 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                 </Flex>
                 <Flex mr="0px" ml="26px" flexDirection="column" maxW="403px" w="35%">
                     <UserProfileSider
-                        siderName="Follower"
+                        siderName="Followers"
                         count={userProfile.followersList.length}
                         icon={HiOutlineUsers}
                         marginTop="0"
+                        modalItems={userProfile.followersList}
+                        token={token}
+                        selfProfile={selfProfile}
+                        followTrigger={followTrigger}
+                        setfFllowTrigger={setfFllowTrigger}
+                        followed={followed}
                     >
                         <Flex
                             display="grid"
@@ -122,9 +171,20 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                             columnGap="28.2px"
                             rowGap="15px"
                         >
-                            {userProfile.followersList.length > 6
-                                ? userProfile.followersList.slice(0, 6).map(ProfileSiderDetails)
-                                : userProfile.followersList.map(ProfileSiderDetails)}
+                            {(userProfile.followersList.length > 6
+                                ? userProfile.followersList.slice(0, 6)
+                                : userProfile.followersList
+                            ).map(({ name, role, avatar, userId }) => {
+                                return (
+                                    <ProfileSiderDetails
+                                        key={uuid()}
+                                        name={name}
+                                        role={role}
+                                        avatar={avatar}
+                                        userId={userId}
+                                    ></ProfileSiderDetails>
+                                );
+                            })}
                         </Flex>
                     </UserProfileSider>
 
@@ -133,6 +193,12 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                         count={userProfile.followingsList.length}
                         icon={HiOutlineUserAdd}
                         marginTop={"25px"}
+                        modalItems={userProfile.followingsList}
+                        token={token}
+                        selfProfile={selfProfile}
+                        followTrigger={followTrigger}
+                        setfFllowTrigger={setfFllowTrigger}
+                        followed={followed}
                     >
                         <Flex
                             display="grid"
@@ -142,9 +208,20 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                             columnGap="28.2px"
                             rowGap="15px"
                         >
-                            {userProfile.followingsList.length > 6
-                                ? userProfile.followingsList.slice(0, 6).map(ProfileSiderDetails)
-                                : userProfile.followingsList.map(ProfileSiderDetails)}
+                            {(userProfile.followingsList.length > 6
+                                ? userProfile.followingsList.slice(0, 6)
+                                : userProfile.followingsList
+                            ).map(({ name, role, avatar, userId }) => {
+                                return (
+                                    <ProfileSiderDetails
+                                        key={uuid()}
+                                        name={name}
+                                        role={role}
+                                        avatar={avatar}
+                                        userId={userId}
+                                    ></ProfileSiderDetails>
+                                );
+                            })}
                         </Flex>
                     </UserProfileSider>
 
@@ -153,9 +230,15 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                         count={userProfile.followingPostsList.length}
                         icon={HiOutlineFlag}
                         marginTop={"25px"}
+                        modalItems={userProfile.followingPostsList}
+                        token={token}
+                        followTrigger={followTrigger}
+                        setfFllowTrigger={setfFllowTrigger}
+                        followed={followed}
+                        selfProfile={selfProfile}
                     >
                         <Flex
-                            display="grid"
+                            flexDirection={"column"}
                             w="100%"
                             flexWrap="wrap"
                             gridTemplateColumns="1fr 1fr"
@@ -200,19 +283,5 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
         </>
     );
 };
-// interface FollowPrps {
-//     name: String;
-//     role: String;
-//     bgImg: String;
-// }
-// const Following = (following: FollowPrps) =>{
-//     return(
-//         {
-//             following.map((following)=>{
-
-//             })
-//         }
-//     )
-// }
 
 export default UserProfilePage;

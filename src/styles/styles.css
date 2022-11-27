@@ -28,6 +28,13 @@ button.is-active {
   padding: 4px 4px 0 4px;
 }
 
+body{
+  background-image: url('/Frame10.svg');
+  background-position: left top, right bottom;
+  background-repeat: no-repeat;
+  background-color: rgb(0, 0, 0);
+}
+
 body pre {
   white-space: pre-wrap;
 }

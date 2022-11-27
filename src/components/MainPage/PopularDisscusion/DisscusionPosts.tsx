@@ -37,6 +37,7 @@ const DisscusionPosts = () => {
                 return (
                     <PostCardInfo
                         key={_id}
+                        postId={_id}
                         src={bgImg}
                         hashtag={hashtag}
                         title={title}

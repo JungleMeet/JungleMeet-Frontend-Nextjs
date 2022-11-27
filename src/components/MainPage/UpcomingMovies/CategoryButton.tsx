@@ -19,6 +19,7 @@ const CategoryButton = ({ type }: ICategoryButton) => {
                     fontFamily="secondary"
                     minW="auto"
                     color="gray.400"
+                    _hover={{ background: "none", cursor: "text" }}
                 >
                     {name}
                 </Button>

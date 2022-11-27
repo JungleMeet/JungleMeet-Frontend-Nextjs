@@ -16,7 +16,6 @@ interface INewEditorProps {
 
 const NewPostEditor = ({ bgImg }: INewEditorProps) => {
     const [postTitle, setPostTitle] = useState("");
-    // const [hashtags, setHashtags] = useState("");
     const [hashtagsArray, setHashtagsArray] = useState<IHashtagsProps[]>([]);
     const [token, setToken] = useState<any | null>("");
     const [isLoading, setIsLoading] = useState(false);

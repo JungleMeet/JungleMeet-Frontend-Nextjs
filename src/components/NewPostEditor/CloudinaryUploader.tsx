@@ -7,9 +7,14 @@ import { CloudinaryCallbackImage } from "./cloudinaryType";
 interface ICloudinaryUploaderProps {
     setBgImg: (value: string) => void;
     bgImg: string | undefined;
+    croppingAspectRatio: number;
+    displayText?: string;
 }
 
-const CloudinaryUploader = ({ setBgImg, bgImg }: ICloudinaryUploaderProps) => {
+const CloudinaryUploader = ({
+    setBgImg,
+    bgImg,
+}: ICloudinaryUploaderProps) => {
     const toast = useToast();
 
     const saveImage = (imageData: CloudinaryCallbackImage) => {
@@ -26,7 +31,7 @@ const CloudinaryUploader = ({ setBgImg, bgImg }: ICloudinaryUploaderProps) => {
     return (
         <Box background="gray.200" padding="32px" borderRadius="5px" marginBottom="50px">
             {!bgImg ? (
-                <UploadWidget callback={saveImage}>
+                <UploadWidget callback={saveImage} croppingAspectRatio={+(5.12)}>
                     {({ open }) => (
                         <ImageButtonWrapper onClick={(e: any) => open(e)} bgImg={bgImg}>
                             <ImageWrapper>
@@ -49,7 +54,7 @@ const CloudinaryUploader = ({ setBgImg, bgImg }: ICloudinaryUploaderProps) => {
             ) : (
                 <Flex flexDirection="column" alignItems="flex-end">
                     <Image src={bgImg} objectFit="cover" width="100%" />
-                    <UploadWidget callback={saveImage}>
+                    <UploadWidget callback={saveImage} croppingAspectRatio={+(5.12)}>
                         {({ open }) => (
                             <Button
                                 mt="20px"

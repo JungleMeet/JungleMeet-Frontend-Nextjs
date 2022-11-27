@@ -5,6 +5,7 @@ import ExpandableTextComponent from "./ExpandableTextComponent";
 import parser from "html-react-parser";
 
 interface PostCardInfoProps {
+    postId: string;
     title: string;
     hashtag: string;
     src: string;
@@ -45,16 +46,22 @@ const PostCardInfo: React.FC<PostCardInfoProps> = (props) => {
                     ></Avatar>
                     <Box w="100%">
                         <Stack pb="4px">
-                            <Link textUnderlineOffset="5px">
+                            {/* <Link textUnderlineOffset="5px"> */}
+                            <Link href={"/discussions/" + props.postId}>
                                 <Heading fontSize="h6">{props.title}</Heading>
                             </Link>
+                            {/* </Link> */}
                         </Stack>
                         <Box pb="13px" fontSize="text5" lineHeight="lh32" textColor="gray.400">
-                            <Flex alignItems="center">
+                            <Flex alignItems="center" flexWrap="wrap">
                                 <Box display="flex">
                                     <Text id={props.name._id}>
                     By&nbsp;
-                                        <Link _hover={{ textColor: "black" }} mr="5px">
+                                        <Link
+                                            _hover={{ textColor: "black" }}
+                                            mr="5px"
+                                            href={"/userprofile/" + props.name._id}
+                                        >
                                             {props.name.name}
                                         </Link>
                                     </Text>
