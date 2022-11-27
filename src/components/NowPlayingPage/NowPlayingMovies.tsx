@@ -30,7 +30,7 @@ const NowPlayingMovies = () => {
                 const { data } = await getNowPlaying(1);
                 setMovieList(data);
             } catch (err) {
-                console.log(err);
+                return err;
             }
         };
         fetchMovies();
@@ -61,7 +61,7 @@ const NowPlayingMovies = () => {
             const { data } = await getNowPlaying(moviePage);
             return data;
         } catch (err) {
-            console.log(err);
+            return err;
         }
     };
 
@@ -73,7 +73,6 @@ const NowPlayingMovies = () => {
             setNoMore(false);
         }
         setMoviePage(moviePage + 1);
-    // console.log(moviePage);
     };
 
     return (
@@ -90,7 +89,7 @@ const NowPlayingMovies = () => {
                     textAlign={"center"}
                     marginTop={"105px"}
                 >
-          loading...
+                    loading...
                 </Text>
             }
             endMessage={
@@ -102,11 +101,11 @@ const NowPlayingMovies = () => {
                     textAlign={"center"}
                     marginTop={"105px"}
                 >
-          The end
+                    The end
                 </Text>
             }
         >
-            <Grid gridTemplateColumns={"repeat(5,20%)"} gridGap={"72px 4px"}>
+            <Grid gridTemplateColumns={"repeat(auto-fit, minmax(194px, 1fr))"} gridGap={"72px 20px"}>
                 {nowPlayingMoviesMemo?.map(
                     ({ resourceId, poster, title, voteAverage, youtubeLink }: IMovieList) => {
                         return (

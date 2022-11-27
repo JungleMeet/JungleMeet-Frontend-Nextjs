@@ -2,7 +2,7 @@ import React from "react";
 import { isEmpty } from "lodash";
 import DiscussionsCommentTitle from "./DiscussionCommentTitle";
 import { dateCreatedAt } from "@/utils/dateCreateAt";
-import { Stack, Text, Button, Divider } from "@chakra-ui/react";
+import { Stack, Text, Button, Divider, Box } from "@chakra-ui/react";
 import parser from "html-react-parser";
 
 export interface ICommentProps {
@@ -27,14 +27,6 @@ export interface ICommentProps {
     };
 }
 
-function replyComments(item: any) {
-    if (!isEmpty(item.children[0]?._id)) {
-        return <DiscussionsCommentAvatar comments={item.children} />;
-    } else {
-        return null;
-    }
-}
-
 const DiscussionsCommentAvatar = ({ comments }: { comments: ICommentProps[] }): JSX.Element => {
     return (
         <>
@@ -51,30 +43,31 @@ const DiscussionsCommentAvatar = ({ comments }: { comments: ICommentProps[] }): 
                 mentionedUserId,
             } = item;
             return (
-                <>
-                    <Stack mt="20px" key={_id}>
-                        <DiscussionsCommentTitle
-                            id={author?._id}
-                            author={`${author?.name}`}
-                            createdAt={dateCreatedAt(createdAt)}
-                            avatar={author?.avatar}
-                        />
+                <Stack key={_id} mt="20px">
+                    <DiscussionsCommentTitle
+                        key={author?._id}
+                        id={author?._id}
+                        author={`${author?.name}`}
+                        createdAt={dateCreatedAt(createdAt)}
+                        avatar={author?.avatar}
+                    />
 
-                        <Stack pl="60px">
-                            <Text fontSize={"text5"} fontWeight="500" mb="10px">
-                                {parser(content)}
-                            </Text>
-                            <Button width="45px" fontSize="text6" lineHeight="lh24" variant="link">
-                    REPLY
-                            </Button>
-                        </Stack>
-                        <Stack pl="60px">
-                            {mentionedUserId}
-                            {replyComments(item)}
-                        </Stack>
-                        {parentCommentId ? "" : <Divider mb="20px" />}
+                    <Box pl="60px">
+                        <Text fontSize={"text5"} fontWeight="500" mb="10px">
+                            {parser(content)}
+                        </Text>
+                        <Button width="45px" fontSize="text6" lineHeight="lh24" variant="link">
+                  REPLY
+                        </Button>
+                    </Box>
+                    <Stack pl="60px">
+                        {mentionedUserId}
+                        {!isEmpty(item.children[0]?._id) ? (
+                            <DiscussionsCommentAvatar comments={item.children} />
+                        ) : null}
                     </Stack>
-                </>
+                    {parentCommentId ? "" : <Divider mb="20px" />}
+                </Stack>
             );
         })}
         </>

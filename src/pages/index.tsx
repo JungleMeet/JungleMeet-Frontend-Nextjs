@@ -9,6 +9,9 @@ import PopularDisscusion from "@/components/MainPage/PopularDisscusion/PopularDi
 import WeeklyTop10Post from "@/components/MainPage/WeeklyTop10Post/WeeklyTop10Post";
 import { Flex } from "@chakra-ui/react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useMediaQuery } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import Header from "../layouts/Header";
 
 export const PageContainer = styled.div`
   max-width: 1440px;
@@ -18,6 +21,10 @@ export const PageContainer = styled.div`
 export const ContentWrapper = styled.div`
   padding: 98px;
   padding-bottom: 0;
+  width: 100%;
+  @media (max-width: 60em) {
+    padding: 50px;
+  }
 `;
 
 interface IgetStaticProps {
@@ -32,14 +39,30 @@ export async function getStaticProps({ locale }: IgetStaticProps) {
 }
 
 const HomePage = (): JSX.Element => {
+    const [isMinWidthMedium, setIsMinWidthMedium] = useState(false);
+    const [isLargerThan60em] = useMediaQuery("(max-width: 60em)");
+
+    useEffect(() => {
+        if (isLargerThan60em !== isMinWidthMedium) {
+            setIsMinWidthMedium(isLargerThan60em);
+        }
+    }, [isLargerThan60em]);
+
+    // console.log(isLargerThan60em);
     return (
         <PageContainer>
+            <Header />
             <NavBar />
             <HeroBanner />
             <ContentWrapper>
                 <Flex>
-                    <NowPlaying />
-                    <WeeklyTop10Post />
+                    {!isMinWidthMedium && (
+                        <>
+                            <NowPlaying />
+                            <WeeklyTop10Post />
+                        </>
+                    )}
+                    {isMinWidthMedium && <WeeklyTop10Post />}
                 </Flex>
                 <UpcomingMovies />
                 <ExclusiveVideos />

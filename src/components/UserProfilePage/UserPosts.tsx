@@ -75,6 +75,7 @@ const UserPosts = ({ queryUserId, setIsLoading }: IUserPosts) => {
                     />
                 )
             )}
+
             {displayNumber === userPost.length ? (
                 <Button
                     onClick={loadMore}

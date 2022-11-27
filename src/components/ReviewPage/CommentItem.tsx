@@ -36,9 +36,9 @@ const CommentItem = ({
     author,
     setNewComment,
 }: ICommentItemProps) => {
+    const dispatch = useDispatch();
     const [isEditorVisible, setIsEditorVisible] = useState(false);
     const isLogged = useSelector((state: any) => state.login.isLogged);
-    const dispatch = useDispatch();
 
     const toggleEditor = () => {
         if (!isLogged) {
@@ -55,7 +55,7 @@ const CommentItem = ({
                 avatar={author?.avatar}
             />
             <Stack pl="63px" pb={"10px"}>
-                <Text fontSize={"text4"} fontWeight="500" mb="15px">
+                <Text fontSize={"text4"} fontWeight="500" mb="15px" pr={"2rem"}>
                     {parser(content)}
                 </Text>
                 <Button
@@ -68,17 +68,20 @@ const CommentItem = ({
                 >
                     {isEditorVisible ? "CLOSE" : "REPLY"}
                 </Button>
+
+                {isEditorVisible ? (
+                    <ReplyCommentEditor
+                        postId={postId}
+                        parentCommentId={_id}
+                        setNewComment={setNewComment}
+                        setIsEditorVisible={setIsEditorVisible}
+                    />
+                ) : null}
             </Stack>
-            {isEditorVisible ? (
-                <ReplyCommentEditor
-                    postId={postId}
-                    parentCommentId={_id}
-                    setNewComment={setNewComment}
-                    setIsEditorVisible={setIsEditorVisible}
-                />
-            ) : null}
         </>
     );
 };
 
-export default CommentItem;
+const MemoizeCommentItem = React.memo(CommentItem);
+
+export default MemoizeCommentItem;

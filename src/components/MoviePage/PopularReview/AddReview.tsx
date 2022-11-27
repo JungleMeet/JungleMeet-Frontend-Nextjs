@@ -7,9 +7,10 @@ import { useState } from "react";
 interface IAddReviewProps {
     isEditorVisible: boolean;
     postId: string;
+    setRefresh: (value: boolean) => void;
 }
 
-const AddReview = ({ isEditorVisible, postId }: IAddReviewProps) => {
+const AddReview = ({ isEditorVisible, postId, setRefresh }: IAddReviewProps) => {
     const { editor, clearContent, content } = useEditorController();
     const [loading, setLoading] = useState(false);
     const toast = useToast();
@@ -31,9 +32,8 @@ const AddReview = ({ isEditorVisible, postId }: IAddReviewProps) => {
             });
         });
     };
-
     return (
-        <Box position={"relative"} transitionTimingFunction="ease">
+        <Box position={"relative"} transitionTimingFunction="ease" mb="30px">
             {isEditorVisible && (
                 <>
                     <ContentEditor editor={editor} height="150px" />
@@ -41,7 +41,10 @@ const AddReview = ({ isEditorVisible, postId }: IAddReviewProps) => {
                         <Button onClick={clearContent}>Clear</Button>
                         <Button
                             isLoading={loading}
-                            onClick={submitComment}
+                            onClick={() => {
+                                submitComment();
+                                setRefresh(true);
+                            }}
                             colorScheme="blue"
                             disabled={content ? content?.length < 8 : true}
                         >

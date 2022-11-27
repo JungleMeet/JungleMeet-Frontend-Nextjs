@@ -42,13 +42,11 @@ const MovieDetails = () => {
         video: "",
     });
     const [moviesVideo, setMoviesVideo] = useState();
-    const [secondFetch, setSecondFetch] = useState(false);
 
     useEffect(() => {
         const fetchMovieData = async () => {
             const { data } = await getMovieDetails(id);
             setMoviesInfo(data);
-            setSecondFetch(true);
         };
         fetchMovieData();
     }, []);
@@ -59,7 +57,7 @@ const MovieDetails = () => {
             setMoviesVideo(data);
         };
         fetchVideoData();
-    }, [secondFetch]);
+    }, [moviesVideo]);
 
     return (
         <>
