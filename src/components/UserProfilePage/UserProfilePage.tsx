@@ -58,7 +58,7 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     const [followed, setFollowed] = useState(false);
     const [followTrigger, setfFllowTrigger] = useState(true);
     const [selfProfile, setSelfProfile] = useState<IUserProfile>(defaultUserProfile);
-
+    const [editProfileTrigger, setEditProfileTrigger] = useState(false);
     useEffect(() => {
         const getUserProfileDetail = async () => {
             try {
@@ -89,6 +89,25 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
         getUserProfileDetail();
         console.log(active);
     }, []);
+
+    useEffect(() => {
+        const updateProfile = async () => {
+            try {
+                const userInfoLocalStorage = localStorage.getItem("userInfo");
+                if (userInfoLocalStorage) {
+                    const userInfo = JSON.parse(userInfoLocalStorage);
+                    const profileResponse: AxiosResponse = await getUserProfile(
+                        queryUserId === userInfo.userId ? userInfo.userId : queryUserId
+                    )!;
+                    setUserProfile(profileResponse.data);
+                } else {
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        updateProfile();
+    }, [editProfileTrigger]);
 
     useEffect(() => {
         const updateFollow = async () => {
@@ -129,6 +148,8 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                 token={token}
                 setfFllowTrigger={setfFllowTrigger}
                 followTrigger={followTrigger}
+                setEditProfileTrigger={setEditProfileTrigger}
+                editProfileTrigger={editProfileTrigger}
             />
             <Flex flexDirection="row" pos="relative" mt="28px">
                 <Flex maxW="816px" flexDirection="column" w="70%">
