@@ -53,9 +53,11 @@ const Videos = () => {
         allMoviesMemo.map(({ id, title, youtubeLink }: IVideoProps) => {
             return (
                 <Carousel.Slide gap={48} key={id}>
-                    {!loading ? 
+                    {!loading ? (
                         <VideoThumbnail youtubeLink={youtubeLink} title={title} />
-                        : <LoadingSpinner size="xl" width="450px" height="253px"/>}
+                    ) : (
+                        <LoadingSpinner size="xl" width="450px" height="253px" />
+                    )}
                 </Carousel.Slide>
             );
         })}

@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+import React, { memo } from "react";
 import { Spinner, Box } from "@chakra-ui/react";
 
 interface ILoadingSpinner {

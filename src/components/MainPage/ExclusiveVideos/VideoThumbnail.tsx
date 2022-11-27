@@ -17,7 +17,14 @@ export interface IVideoThumbnailProps {
 const VideoThumbnail = ({ youtubeLink, title }: IVideoThumbnailProps): JSX.Element => {
     return (
         <Box width="450px">
-            <iframe src={youtubeLink} title={title} width="450" height="253" allow="fullscreen" loading="lazy"></iframe>
+            <iframe
+                src={youtubeLink}
+                title={title}
+                width="450"
+                height="253"
+                allow="fullscreen"
+                loading="lazy"
+            ></iframe>
             <Text fontSize="text3" fontWeight="700" lineHeight="lh24" color="gray.900" pt="12px">
                 {title}
             </Text>
