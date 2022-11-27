@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import VideoThumbnail from "./VideoThumbnail";
 import { Carousel } from "@mantine/carousel";
 import CarouselContainer from "@/components/CarouselContainer";
+import { Spinner, Box } from "@chakra-ui/react";
 
 import { getHeroBannerMovies, getYoutubeLinkById } from "@/utils/axiosMovieApi";
 
@@ -14,9 +15,12 @@ export interface IVideoProps {
 const Videos = () => {
     const [videoList, setVideoList] = useState<IVideoProps[]>([]);
     const [secondFetch, setSecondFetch] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const allMoviesMemo = useMemo(() => videoList, [videoList]);
 
     useEffect(() => {
         const fetchMovieId = async () => {
+            setLoading(true);
             const { data } = await getHeroBannerMovies();
             setVideoList(data);
             setSecondFetch(false);
@@ -26,6 +30,7 @@ const Videos = () => {
 
     useEffect(() => {
         const fetchYoutubeVideo = async () => {
+            setLoading(true);
             setSecondFetch(true);
             const youtubeLink = await Promise.all(
                 videoList.map(async ({ id, ...rest }) => {
@@ -37,25 +42,37 @@ const Videos = () => {
                 })
             );
             setVideoList(youtubeLink);
+            setLoading(false);
         };
         fetchYoutubeVideo();
     }, [secondFetch]);
 
     return (
-        <>
-            <CarouselContainer slideSize="33.333%">
-                {videoList.length > 0 &&
-          videoList.map((item) => {
+        <CarouselContainer slideSize="33.333%">
+            {videoList.length > 0 &&
+          allMoviesMemo.map(({ id, title, youtubeLink }: IVideoProps) => {
               return (
-                  <Carousel.Slide gap={48} key={item.id}>
-                      {item.youtubeLink && (
-                          <VideoThumbnail youtubeLink={item.youtubeLink} title={item.title} />
-                      )}
-                  </Carousel.Slide>
+                  <>
+                      <Carousel.Slide gap={48} key={id}>
+                          {!loading ? (
+                              <VideoThumbnail youtubeLink={youtubeLink} title={title} />
+                          ) : (
+                              <Box
+                                  width="450px"
+                                  height="253px"
+                                  display="flex"
+                                  justifyContent="center"
+                                  alignItems="center"
+                                  key={id}
+                              >
+                                  <Spinner size="xl" color="blue.500" thickness="4px" emptyColor="gray.200" />
+                              </Box>
+                          )}
+                      </Carousel.Slide>
+                  </>
               );
           })}
-            </CarouselContainer>
-        </>
+        </CarouselContainer>
     );
 };
 
