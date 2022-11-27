@@ -8,11 +8,11 @@ import {
     Text,
     VisuallyHidden,
     Flex,
-    Spacer,
+    Hide,
     useColorModeValue,
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
-import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaEnvelope, FaGithub, FaYoutube } from "react-icons/fa";
 
 const SocialButton = ({
     children,
@@ -59,32 +59,46 @@ export default function FooterUpperPart() {
         <Box>
             <Container
                 as={Stack}
-                maxW={"1244px"}
+                maxW={"100%"}
                 py={4}
-                direction={{ base: "column", md: "row" }}
-                spacing={5}
-                align={{ base: "center", md: "center" }}
-                p="0"
+                margin="auto"
+                direction={{ lg: "row", md: "row", sm: "column" }}
+                spacing={4}
+                align={{ lg: "center", md: "center", sm: "center" }}
+                justify={{ lg: "center", md: "center", sm: "center" }}
             >
-                <Flex justifyContent="space-between" gap="10px" mt={"50px"}>
-                    <Stack maxW="355px" spacing={6}>
+                <Flex
+                    flexWrap={{ md: "wrap", sm: "wrap" }}
+                    justifyContent={{ md: "space-between", sm: "center" }}
+                    flexDirection={{ md: "row", sm: "column" }}
+                    gap={{ lg: "60px", md: "40px", sm: "40px" }}
+                    mt={{ md: "50px", sm: "0px" }}
+                    mr={{ md: "140px", sm: "0px" }}
+                >
+                    <Stack maxW="315px" textAlign={{ md: "left", sm: "center" }} spacing={6}>
                         <Heading fontSize={"text3"}>About Jungle Meet</Heading>
                         <Text fontSize={"text5"} lineHeight={"lh32"}>
-              Jungle Meet is a place for people to make Movie disscusion, where people come together
+              Jungle Meet is a place for people to make Movie discussion, where people come together
               to share their opinion. We’re also a community pushing for positive change for people.
                         </Text>
                     </Stack>
-                    <Spacer w="90px" />
-                    <Stack justify={"center"} align={"center"} maxW="342px" mr="70px" spacing={6}>
+
+                    <Stack
+                        justify="center"
+                        align={"center"}
+                        maxW="342px"
+                        mx={{ md: "50px", sm: "0px" }}
+                        spacing={6}
+                    >
                         <Stack direction={"row"} spacing={10}>
-                            <SocialButton label={"Twitter"} href={"#"}>
-                                <FaTwitter />
+                            <SocialButton label={"Github"} href={"https://github.com/JungleMeet"}>
+                                <FaGithub />
                             </SocialButton>
                             <SocialButton label={"YouTube"} href={"#"}>
                                 <FaYoutube />
                             </SocialButton>
-                            <SocialButton label={"Instagram"} href={"#"}>
-                                <FaInstagram />
+                            <SocialButton label={"Email"} href={"#"}>
+                                <FaEnvelope />
                             </SocialButton>
                         </Stack>
                         <Stack
@@ -94,26 +108,36 @@ export default function FooterUpperPart() {
                             direction={"row"}
                             spacing={5}
                         >
-                            <Link href={"#"}>Conditions of Use</Link>
-                            <Link href={"#"}>Privacy & Policy</Link>
+                            <Link fontSize={"text3"} href={"/aboutpage"}>
+                Contact Us
+                            </Link>
+                            <Link href={"/aboutpage"}>Jungle Meet</Link>
                         </Stack>
                     </Stack>
-                    <Spacer w="130px" />
-                    <Stack display="flex" fontFamily={"secondary"} gap="10px" maxW="345px">
-                        <ListHeader>Useful Links</ListHeader>
-                        <Link fontSize={"text4"} href={"/nowplaying"}>
-              Feature Movie
-                        </Link>
-                        <Link fontSize={"text4"} href={"/allmovies"}>
-              New Arrival
-                        </Link>
-                        <Link fontSize={"text4"} href={"/discussions"}>
-              Disscusion
-                        </Link>
-                        <Link fontSize={"text4"} href={"/about"}>
-              Contact Us
-                        </Link>
-                    </Stack>
+
+                    <Hide below="md">
+                        <Stack>
+                            <Text></Text>
+                        </Stack>
+                        <Stack
+                            align={"flex-start"}
+                            display="flex"
+                            fontFamily={"secondary"}
+                            gap="10px"
+                            maxW="345px"
+                        >
+                            <ListHeader>Useful Links</ListHeader>
+                            <Link fontSize={"text4"} href={"/allmovies"}>
+                More Movies
+                            </Link>
+                            <Link fontSize={"text4"} href={"/nowplaying"}>
+                Now Playing
+                            </Link>
+                            <Link fontSize={"text4"} href={"/discussions"}>
+                Discussion
+                            </Link>
+                        </Stack>
+                    </Hide>
                 </Flex>
             </Container>
         </Box>
