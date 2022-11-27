@@ -30,7 +30,7 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
 
     const { editor, clearContent, content } = useEditorController();
 
-    const hashtags = hashtagsArray.map(({_id}) => _id)
+    const hashtags = hashtagsArray.map(({ _id }) => _id);
     console.log(hashtags);
 
     const handleSumble = async (e: React.SyntheticEvent) => {
@@ -88,7 +88,7 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
                     onChange={(event) => setPostTitle(event.target.value)}
                 />
                 <ContentEditor editor={editor} height="350px" />
-                <Hashtag setHashtagsArray={setHashtagsArray} hashtagsArray={hashtagsArray}/>
+                <Hashtag setHashtagsArray={setHashtagsArray} hashtagsArray={hashtagsArray} />
             </Box>
             <Flex justifyContent="space-between" marginTop="50px" marginBottom="50px">
                 <ButtonCancel onClick={handleCancel}>Cancel</ButtonCancel>

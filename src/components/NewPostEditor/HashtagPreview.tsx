@@ -28,7 +28,7 @@ const HashtagPreview = ({
     const [selectedHashtag, setSelectedHashtag] = useState<IHashtagsProps>();
 
     // only search when user types in more than two character
-    const conditionalQuery = query.length > 1
+    const conditionalQuery = query.length > 1;
     // showing the query that doesn't match any hashtags in the database
     const matchQuery = searchResult.filter((i) => i.category === query);
 
@@ -61,14 +61,14 @@ const HashtagPreview = ({
         e.preventDefault();
         setIsLoading(true);
         try {
-            const {data} = await addNewHashtag(query);
-            setSelectedHashtag({_id:data._id, category:data.category})
+            const { data } = await addNewHashtag(query);
+            setSelectedHashtag({ _id: data._id, category: data.category });
             setIsLoading(false);
             setSearchResult([]);
-            setQuery("");            
+            setQuery("");
         } catch (error: any) {
             setIsLoading(false);
-        }        
+        }
     };
 
     console.log(hashtagsArray);
@@ -96,7 +96,7 @@ const HashtagPreview = ({
                     </Flex>
                 ))
             )}
-            { conditionalQuery && matchQuery.length === 0 && (
+            {conditionalQuery && matchQuery.length === 0 && (
                 <Button
                     m=" 5px 15px "
                     width="464px"

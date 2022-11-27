@@ -8,7 +8,7 @@ interface IHashtagProps {
     setHashtagsArray: ({}: IHashtagsProps[]) => void;
 }
 
-const Hashtag = ({hashtagsArray, setHashtagsArray}:IHashtagProps) => {
+const Hashtag = ({ hashtagsArray, setHashtagsArray }: IHashtagProps) => {
     const [query, setQuery] = useState("");
 
     return (
