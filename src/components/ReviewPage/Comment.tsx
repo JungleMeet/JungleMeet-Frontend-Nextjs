@@ -62,6 +62,7 @@ const Comment = ({
                     <CommentThread
                         onClick={() => toggleHide(_id)}
                         isCollapsed={hasChildren && isThreadSelected}
+                        hasChildren={hasChildren}
                     />
                     <MemoizeCommentItem
                         _id={_id}
@@ -71,14 +72,6 @@ const Comment = ({
                         author={author}
                         setNewComment={setNewComment}
                     />
-                    {/* <CommentItem
-                        _id={_id}
-                        content={content}
-                        postId={postId}
-                        createdAt={createdAt}
-                        author={author}
-                        setNewComment={setNewComment}
-                    /> */}
                     {
                         // if no children or is hidden, display nothing. otherwise, display nested comment
                         !hasChildren || isThreadSelected ? null : (

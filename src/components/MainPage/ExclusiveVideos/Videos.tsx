@@ -50,28 +50,28 @@ const Videos = () => {
     return (
         <CarouselContainer slideSize="33.333%">
             {videoList.length > 0 &&
-          allMoviesMemo.map(({ id, title, youtubeLink }: IVideoProps) => {
-              return (
-                  <>
-                      <Carousel.Slide gap={48} key={id}>
-                          {!loading ? (
-                              <VideoThumbnail youtubeLink={youtubeLink} title={title} />
-                          ) : (
-                              <Box
-                                  width="450px"
-                                  height="253px"
-                                  display="flex"
-                                  justifyContent="center"
-                                  alignItems="center"
-                                  key={id}
-                              >
-                                  <Spinner size="xl" color="blue.500" thickness="4px" emptyColor="gray.200" />
-                              </Box>
-                          )}
-                      </Carousel.Slide>
-                  </>
-              );
-          })}
+        allMoviesMemo.map(({ id, title, youtubeLink }: IVideoProps) => {
+            return (
+                <>
+                    <Carousel.Slide gap={48} key={id}>
+                        {!loading ? (
+                            <VideoThumbnail youtubeLink={youtubeLink} title={title} />
+                        ) : (
+                            <Box
+                                width="450px"
+                                height="253px"
+                                display="flex"
+                                justifyContent="center"
+                                alignItems="center"
+                                key={id}
+                            >
+                                <Spinner size="xl" color="blue.500" thickness="4px" emptyColor="gray.200" />
+                            </Box>
+                        )}
+                    </Carousel.Slide>
+                </>
+            );
+        })}
         </CarouselContainer>
     );
 };
