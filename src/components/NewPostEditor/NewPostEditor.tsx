@@ -8,6 +8,7 @@ import ButtonPost from "./ButtonPost";
 import useEditorController from "../Editor/useEditorController";
 import ContentEditor from "../Editor/ContentEditor";
 import Hashtag from "./Hashtag";
+import { IHashtagsProps } from "./HashtagPreview";
 
 interface INewEditorProps {
     bgImg: string | undefined;
@@ -15,7 +16,8 @@ interface INewEditorProps {
 
 const NewPostEditor = ({ bgImg }: INewEditorProps) => {
     const [postTitle, setPostTitle] = useState("");
-    const [hashtags, setHashtags] = useState("");
+    // const [hashtags, setHashtags] = useState("");
+    const [hashtagsArray, setHashtagsArray] = useState<IHashtagsProps[]>([]);
     const [token, setToken] = useState<any | null>("");
     const [isLoading, setIsLoading] = useState(false);
 
@@ -27,6 +29,9 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
     }, []);
 
     const { editor, clearContent, content } = useEditorController();
+
+    const hashtags = hashtagsArray.map(({_id}) => _id)
+    console.log(hashtags);
 
     const handleSumble = async (e: React.SyntheticEvent) => {
         e.preventDefault();
@@ -59,7 +64,7 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
 
     const handleCancel = () => {
         setPostTitle("");
-        setHashtags("");
+        setHashtagsArray([]);
         clearContent();
     };
 
@@ -83,7 +88,7 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
                     onChange={(event) => setPostTitle(event.target.value)}
                 />
                 <ContentEditor editor={editor} height="350px" />
-                <Hashtag />
+                <Hashtag setHashtagsArray={setHashtagsArray} hashtagsArray={hashtagsArray}/>
             </Box>
             <Flex justifyContent="space-between" marginTop="50px" marginBottom="50px">
                 <ButtonCancel onClick={handleCancel}>Cancel</ButtonCancel>

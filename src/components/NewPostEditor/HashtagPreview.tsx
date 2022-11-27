@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { isEmpty } from "lodash";
 import BeatLoader from "react-spinners/BeatLoader";
 import { LoaderContainer, PreviewContainer } from "./NewPostPage.style";
-import { searchHashtag } from "@/utils/axiosHashtagApi";
+import { addNewHashtag, searchHashtag } from "@/utils/axiosHashtagApi";
 import { Flex, Button } from "@chakra-ui/react";
 
-interface IHashtagPreviewProps {
+export interface IHashtagPreviewProps {
     query: string;
     setQuery: (value: string) => void;
     hashtagsArray: IHashtagsProps[];
@@ -23,18 +23,22 @@ const HashtagPreview = ({
     hashtagsArray,
     setHashtagsArray,
 }: IHashtagPreviewProps) => {
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [searchResult, setSearchResult] = useState<IHashtagsProps[]>([]);
     const [selectedHashtag, setSelectedHashtag] = useState<IHashtagsProps>();
 
-    useEffect(() => {
     // only search when user types in more than two character
-        if (query.length > 1) {
-            setLoading(true);
+    const conditionalQuery = query.length > 1
+    // showing the query that doesn't match any hashtags in the database
+    const matchQuery = searchResult.filter((i) => i.category === query);
+
+    useEffect(() => {
+        if (conditionalQuery) {
+            setIsLoading(true);
             const fetchHashtags = async () => {
                 const { data } = await searchHashtag(query);
                 isEmpty(data) ? setSearchResult([]) : setSearchResult(data);
-                setLoading(false);
+                setIsLoading(false);
             };
             fetchHashtags();
         }
@@ -53,13 +57,25 @@ const HashtagPreview = ({
         setQuery("");
     };
 
-    const matchQuery = searchResult.filter((i) => i.category === query);
+    const handleCreateHashtag = async (e: React.SyntheticEvent) => {
+        e.preventDefault();
+        setIsLoading(true);
+        try {
+            const {data} = await addNewHashtag(query);
+            setSelectedHashtag({_id:data._id, category:data.category})
+            setIsLoading(false);
+            setSearchResult([]);
+            setQuery("");            
+        } catch (error: any) {
+            setIsLoading(false);
+        }        
+    };
 
-    const handleCreatHashtag = () => {};
+    console.log(hashtagsArray);
 
     return (
         <PreviewContainer>
-            {loading ? (
+            {isLoading ? (
                 <LoaderContainer>
                     <BeatLoader color="#d736b4" />
                 </LoaderContainer>
@@ -80,7 +96,7 @@ const HashtagPreview = ({
                     </Flex>
                 ))
             )}
-            {query.length > 1 && matchQuery.length === 0 && (
+            { conditionalQuery && matchQuery.length === 0 && (
                 <Button
                     m=" 5px 15px "
                     width="464px"
@@ -89,7 +105,7 @@ const HashtagPreview = ({
                     color="blue.500"
                     fontSize="text3"
                     lineHeight="lh28"
-                    onClick={() => handleCreatHashtag()}
+                    onClick={(e) => handleCreateHashtag(e)}
                 >
           #{query}
                 </Button>

@@ -3,9 +3,13 @@ import React, { useState } from "react";
 import HashtagPreview, { IHashtagsProps } from "./HashtagPreview";
 import PostSingleLineInput from "./PostSingleLineInput";
 
-const Hashtag = () => {
+interface IHashtagProps {
+    hashtagsArray: IHashtagsProps[];
+    setHashtagsArray: ({}: IHashtagsProps[]) => void;
+}
+
+const Hashtag = ({hashtagsArray, setHashtagsArray}:IHashtagProps) => {
     const [query, setQuery] = useState("");
-    const [hashtagsArray, setHashtagsArray] = useState<IHashtagsProps[]>([]);
 
     return (
         <>
