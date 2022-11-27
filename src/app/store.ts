@@ -8,6 +8,7 @@ import ModalReducer from './reducer/modalSlice';
 import buttonReducer from "./reducer/buttonSlice";
 import NotificationReducer from './reducer/notificationSlice';
 import commentSlice from "./reducer/commentSlice";
+import postEditingSlice from "./reducer/postEditingSlice";
 
 export const makeStore = () => {
     return configureStore({
@@ -20,6 +21,7 @@ export const makeStore = () => {
             notification: NotificationReducer,
             button: buttonReducer,
             comments:commentSlice,
+            postEditing:postEditingSlice,
 
         },
     });

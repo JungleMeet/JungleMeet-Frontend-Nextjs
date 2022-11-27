@@ -1,8 +1,7 @@
-import PageWrapper from "@/components/PageWrapper";
-import React from "react";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PostEditor from "@/components/NewPostEditor/PostEditor";
+import PageWrapper from "@/components/PageWrapper";
 import RequireAuth from "@/components/RequireAuth";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface IgetStaticProps {
     locale: string;
@@ -15,14 +14,14 @@ export async function getStaticProps({ locale }: IgetStaticProps) {
     };
 }
 
-const newpost = () => {
+const EditPost = () => {
     return (
         <PageWrapper>
             <RequireAuth>
-                <PostEditor type="newPost" />
+                <PostEditor type="updatePost" />
             </RequireAuth>
         </PageWrapper>
     );
 };
 
-export default newpost;
+export default EditPost;
