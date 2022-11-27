@@ -49,7 +49,6 @@ export const ImageButtonWrapper = styled.button`
   height: 240px;
   gap: 40px;
   cursor: pointer;
-  margin-bottom: 25px;
   width: 100%;
   background-image: url(${({ bgImg }: { bgImg: string | undefined }) => bgImg});
 `;

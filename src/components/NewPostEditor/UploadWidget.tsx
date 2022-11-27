@@ -31,7 +31,7 @@ const UploadWidget = ({ callback, children }: CloudinaryUploadWidgetProps) => {
                     "instagram",
                     "getty",
                 ],
-                googleApiKey: "<image_search_google_api_key>",
+                // googleApiKey: "<image_search_google_api_key>",
                 showAdvancedOptions: false,
                 cropping: true,
                 croppingAspectRatio: "5.12",

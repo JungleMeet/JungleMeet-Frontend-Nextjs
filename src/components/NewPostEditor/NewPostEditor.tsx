@@ -31,7 +31,6 @@ const NewPostEditor = ({ bgImg }: INewEditorProps) => {
     const { editor, clearContent, content } = useEditorController();
 
     const hashtags = hashtagsArray.map(({ _id }) => _id);
-    console.log(hashtags);
 
     const handleSumble = async (e: React.SyntheticEvent) => {
         e.preventDefault();

@@ -44,6 +44,7 @@ const HashtagPreview = ({
         }
         if (query.length === 0) {
             setSearchResult([]);
+            setQuery("");
         }
     }, [query]);
 
@@ -71,8 +72,6 @@ const HashtagPreview = ({
         }
     };
 
-    console.log(hashtagsArray);
-
     return (
         <PreviewContainer>
             {isLoading ? (
@@ -80,35 +79,39 @@ const HashtagPreview = ({
                     <BeatLoader color="#d736b4" />
                 </LoaderContainer>
             ) : (
-                searchResult?.map(({ _id, category }) => (
-                    <Flex key={_id} p=" 5px 15px ">
-                        <Button
-                            width="100%"
-                            justifyContent="left"
-                            as="i"
-                            color="blue.500"
-                            fontSize="text3"
-                            lineHeight="lh28"
-                            onClick={() => handleSelectHashtag({ _id, category })}
-                        >
-              #{category}
-                        </Button>
-                    </Flex>
-                ))
-            )}
-            {conditionalQuery && matchQuery.length === 0 && (
-                <Button
-                    m=" 5px 15px "
-                    width="464px"
-                    justifyContent="left"
-                    as="i"
-                    color="blue.500"
-                    fontSize="text3"
-                    lineHeight="lh28"
-                    onClick={(e) => handleCreateHashtag(e)}
-                >
-          #{query}
-                </Button>
+                <Flex flexDirection="column">
+                    {[
+                        ...searchResult?.map(({ _id, category }) => (
+                            <Flex flexDirection="column" m="5px 15px" key={_id}>
+                                <Button                                    
+                                    width="100%"
+                                    justifyContent="left"
+                                    as="i"
+                                    color="blue.500"
+                                    fontSize="text3"
+                                    lineHeight="lh28"
+                                    onClick={() => handleSelectHashtag({ _id, category })}
+                                >
+                  #{category}
+                                </Button>
+                            </Flex>
+                        )),
+                        conditionalQuery && matchQuery.length === 0 && (
+                            <Button
+                                m=" 5px 15px "
+                                width="464px"
+                                justifyContent="left"
+                                as="i"
+                                color="blue.500"
+                                fontSize="text3"
+                                lineHeight="lh28"
+                                onClick={(e) => handleCreateHashtag(e)}
+                            >
+                #{query}
+                            </Button>
+                        ),
+                    ].filter(Boolean)}
+                </Flex>
             )}
         </PreviewContainer>
     );
