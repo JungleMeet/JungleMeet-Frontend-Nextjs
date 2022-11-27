@@ -46,11 +46,11 @@ const PostCardInfo: React.FC<PostCardInfoProps> = (props) => {
                     ></Avatar>
                     <Box w="100%">
                         <Stack pb="4px">
-                            <Link textUnderlineOffset="5px">
-                                <Heading fontSize="h6">
-                                    <Link href={"/discussions/" + props.postId}>{props.title}</Link>
-                                </Heading>
+                            {/* <Link textUnderlineOffset="5px"> */}
+                            <Link href={"/discussions/" + props.postId}>
+                                <Heading fontSize="h6">{props.title}</Heading>
                             </Link>
+                            {/* </Link> */}
                         </Stack>
                         <Box pb="13px" fontSize="text5" lineHeight="lh32" textColor="gray.400">
                             <Flex alignItems="center" flexWrap="wrap">

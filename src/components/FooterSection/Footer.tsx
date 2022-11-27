@@ -25,7 +25,7 @@ const Footer = () => {
                         flexGrow: 1,
                         ml: 8,
                     }}
-                    maxW="1440px"
+                    maxW="100%"
                     margin="auto"
                 >
                     <Image src="/footerLogo.svg" width="200" height="35" />

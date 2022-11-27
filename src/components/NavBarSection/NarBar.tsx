@@ -42,7 +42,7 @@ const NavBar = () => {
                     {showSearchBar ? (
                         <SearchBar maxWidth="100%" />
                     ) : (
-                        <SearchIcon color="white" ml="auto" mr="-5px" onClick={handleClick} />
+                        <SearchIcon color="white" ml="auto" mr="3px" onClick={handleClick} />
                     )}
                     <IconContainer showSearchBar={showSearchBar} />
                 </>
