@@ -1,23 +1,25 @@
-import React from "react";
+import React, {memo} from "react";
 import { Spinner, Box } from "@chakra-ui/react";
 
 interface ILoadingSpinner {
     id?: string;
+    size: string;
+    width: string;
+    height: string;
 }
-const LoadingSpinner = ({id}:ILoadingSpinner) =>{
+const LoadingSpinner = ({ id, size, width, height }: ILoadingSpinner) => {
     return (
         <Box
             id={id}
-            width="450px"
-            height="253px"
+            width={width}
+            height={height}
             display="flex"
             justifyContent="center"
             alignItems="center"
         >
-            <Spinner size="xl" color="black" thickness="4px" emptyColor="gray.200" />
+            <Spinner size={size} color="black" thickness="4px" emptyColor="gray.200" />
         </Box>
-
     );
-}
+};
 
-export default LoadingSpinner;
+export default memo(LoadingSpinner);
