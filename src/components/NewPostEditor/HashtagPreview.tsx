@@ -83,7 +83,7 @@ const HashtagPreview = ({
                     {[
                         ...searchResult?.map(({ _id, category }) => (
                             <Flex flexDirection="column" m="5px 15px" key={_id}>
-                                <Button                                    
+                                <Button
                                     width="100%"
                                     justifyContent="left"
                                     as="i"
