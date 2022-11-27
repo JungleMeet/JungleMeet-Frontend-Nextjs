@@ -43,6 +43,7 @@ interface IDetailProps {
     isLogged?: boolean;
     currentId?: string;
     userRole?: string;
+    handleEditPost: () => void;
 }
 
 const DiscussionsDetailHeader = ({
@@ -58,6 +59,7 @@ const DiscussionsDetailHeader = ({
     isLogged,
     currentId,
     userRole,
+    handleEditPost,
 }: IDetailProps) => {
     const dispatch = useDispatch();
     const toast = useToast();
@@ -177,7 +179,9 @@ const DiscussionsDetailHeader = ({
                                         }}
                                         _focus={{ border: "none" }}
                                     >
-                                        <MenuItem icon={<EditIcon />}>Edit my post</MenuItem>
+                                        <MenuItem icon={<EditIcon />} onClick={handleEditPost}>
+                      Edit my post
+                                        </MenuItem>
                                     </MenuList>
                                 </Menu>
                             ) : (

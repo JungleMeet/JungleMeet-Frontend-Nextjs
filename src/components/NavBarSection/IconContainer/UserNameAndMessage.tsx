@@ -97,9 +97,9 @@ const UserNameAndMessage = () => {
                 : `${process.env.NEXT_PUBLIC_SERVER_ADD}`,
             { query: { userId: userId }, transports: ["websocket"] }
         );
-        socket.on("connect", () => {
-            console.log("connect client");
-        });
+        // socket.on("connect", () => {
+        //     console.log("connect client");
+        // });
         socket.on("message", (data) => {
             dispatch(newMessage());
             // setHasNewMessage(!hasNewMessage);

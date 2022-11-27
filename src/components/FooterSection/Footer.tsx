@@ -25,12 +25,12 @@ const Footer = () => {
                         flexGrow: 1,
                         ml: 8,
                     }}
-                    maxW="1440px"
+                    maxW="100%"
                     margin="auto"
                 >
-                    <Image src="/footerLogo.svg" width="201" height="35" />
+                    <Image src="/footerLogo.svg" width="200" height="35" />
                 </Flex>
-                <Text pt={6} fontFamily={"secondary"} fontSize={"text5"} textAlign={"center"}>
+                <Text pl="10px" pt={6} fontFamily={"secondary"} fontSize={"text5"} textAlign={"center"}>
                     {FooterContent}
                 </Text>
             </Box>
