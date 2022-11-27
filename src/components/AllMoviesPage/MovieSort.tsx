@@ -1,5 +1,5 @@
 import { Flex, Heading, Select, useMediaQuery } from "@chakra-ui/react";
-import { useState, useEffect, } from "react";
+import { useState, useEffect } from "react";
 
 export interface IMovieSortProps {
     sortByFeatured: string;
@@ -7,7 +7,7 @@ export interface IMovieSortProps {
 }
 
 const MovieSort = ({ sortByFeatured, sortByFeaturedHandler }: IMovieSortProps) => {
-    const [isLargerThan1180] = useMediaQuery('(min-width: 1180px)')
+    const [isLargerThan1180] = useMediaQuery("(min-width: 1180px)");
     const [hideOnSmScreen, setHideOnSmScreen] = useState(false);
     useEffect(() => {
         setHideOnSmScreen(isLargerThan1180);
@@ -15,12 +15,13 @@ const MovieSort = ({ sortByFeatured, sortByFeaturedHandler }: IMovieSortProps) =
 
     return (
         <Flex alignItems="center">
-            {hideOnSmScreen ?
+            {hideOnSmScreen ? (
                 <label htmlFor="sort">
                     <Heading fontSize={"text1"} pr="17px">
-                        Sorted By:
+            Sorted By:
                     </Heading>
-                </label> : null}
+                </label>
+            ) : null}
             <Select
                 height="53px"
                 width="250px"

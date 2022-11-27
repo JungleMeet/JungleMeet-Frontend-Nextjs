@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import ButtonWatchTrailer from "./ButtonWatchTrailer";
 import { Heading, Box, Flex, Image, useDisclosure } from "@chakra-ui/react";
 import { Carousel } from "@mantine/carousel";
@@ -11,7 +11,8 @@ export interface ICarouselSlideProps {
     overview: string;
     heroBanner: string;
     id: number;
-    youtubeLink?: string;
+    youtubeLink: string;
+    loading: boolean;
 }
 
 const CarouselSlide = ({
@@ -21,6 +22,7 @@ const CarouselSlide = ({
     heroBanner,
     id,
     youtubeLink,
+    loading,
 }: ICarouselSlideProps): JSX.Element => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -51,7 +53,7 @@ const CarouselSlide = ({
                 <Box color="white" textStyle="myText" noOfLines={[2, 2, 5]}>
                     {overview}
                 </Box>
-                <ButtonWatchTrailer value={id} onClick={onOpen} />
+                <ButtonWatchTrailer value={id} onClick={onOpen} loading={loading} />
                 <PlayingMovieTrailerModel isOpen={isOpen} onClose={onClose} src={youtubeLink} />
             </Flex>
             <Image src={heroBanner} boxSize="100%" objectFit="cover" alt="hero image" />
@@ -59,4 +61,4 @@ const CarouselSlide = ({
     );
 };
 
-export default CarouselSlide;
+export default memo(CarouselSlide);
