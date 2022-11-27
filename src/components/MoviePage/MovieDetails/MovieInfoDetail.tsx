@@ -120,8 +120,7 @@ const MovieInfoDetail = ({
                             </Text>
                             <Flex alignItems="center" pt="12px">
                                 <Image width="39px" src="/TMDB.svg" />
-                                <Text pl="10px" fontSize="text1">{`${voteAverage && voteAverage.toFixed(1)
-                                    }/10`}</Text>
+                                <Text pl="10px" fontSize="text1">{`${voteAverage && voteAverage.toFixed(1)}/10`}</Text>
                             </Flex>
                             <Text pt="6px" fontSize="text4" fontWeight="500">{`${voteCount} votes`}</Text>
                         </Flex>

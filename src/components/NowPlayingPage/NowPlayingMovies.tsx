@@ -105,7 +105,6 @@ const NowPlayingMovies = () => {
                 </Text>
             }
         >
-            {/*<Grid gridTemplateColumns={"repeat(5,20%)"} gridGap={"72px 4px"}>*/}
             <Grid gridTemplateColumns={"repeat(auto-fit, minmax(194px, 1fr))"} gridGap={"72px 20px"}>
                 {nowPlayingMoviesMemo?.map(
                     ({ resourceId, poster, title, voteAverage, youtubeLink }: IMovieList) => {

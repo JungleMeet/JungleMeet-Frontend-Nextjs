@@ -9,17 +9,17 @@ const SectionContainer = styled.div`
 `;
 
 const NowPlaying = () => {
-  const { t } = useTranslation("home");
+    const { t } = useTranslation("home");
 
-  return (
-    <SectionContainer>
-      <SectionHeaderContainer>
-        <SectionTitle>{t("home:nowPlayingTitle")}</SectionTitle>
-        <SeeMore href="/nowplaying" />
-      </SectionHeaderContainer>
-      <Movies />
-    </SectionContainer>
-  );
+    return (
+        <SectionContainer>
+            <SectionHeaderContainer>
+                <SectionTitle>{t("home:nowPlayingTitle")}</SectionTitle>
+                <SeeMore href="/nowplaying" />
+            </SectionHeaderContainer>
+            <Movies />
+        </SectionContainer>
+    );
 };
 
 export default NowPlaying;

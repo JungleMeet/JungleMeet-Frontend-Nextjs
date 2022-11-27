@@ -22,7 +22,6 @@ const MovieSort = ({ sortByFeatured, sortByFeaturedHandler }: IMovieSortProps) =
                     </Heading>
                 </label> : null}
             <Select
-                //placeholder="Featured"
                 height="53px"
                 width="250px"
                 variant="outline"
