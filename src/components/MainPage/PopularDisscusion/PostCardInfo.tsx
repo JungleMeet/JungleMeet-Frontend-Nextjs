@@ -86,9 +86,9 @@ const PostCardInfo: React.FC<PostCardInfoProps> = (props) => {
                         </Box>
 
                         <ExpandableTextComponent noOfLines={2}>
-                            <Text fontSize="text5" lineHeight="lh32">
+                            <Box fontSize="text5" lineHeight="lh32">
                                 {parser(props.description)}
-                            </Text>
+                            </Box>
                         </ExpandableTextComponent>
                         <Text as="i" color="blue.500" fontSize="text4" lineHeight="lh28">
                             {props.hashtag}
