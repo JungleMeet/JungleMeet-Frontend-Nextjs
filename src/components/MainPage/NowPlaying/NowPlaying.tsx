@@ -5,7 +5,7 @@ import Movies from "./Movies";
 import { useTranslation } from "next-i18next";
 
 const SectionContainer = styled.div`
-  width: 70%;
+  width: 60%;
 `;
 
 const NowPlaying = () => {

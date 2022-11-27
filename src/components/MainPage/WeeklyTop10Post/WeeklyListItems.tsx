@@ -24,7 +24,7 @@ const WeeklyListItems = () => {
         <OrderedList spacing="19px" pl="0">
             {postLists.slice(0, 3).map(({ _id, title }) => {
                 return (
-                    <ListItem key={_id}>
+                    <ListItem key={_id} noOfLines={1}>
                         <WeeklyList postId={_id} title={title} icon={"/Fire.svg"} />{" "}
                     </ListItem>
                 );
@@ -32,7 +32,7 @@ const WeeklyListItems = () => {
 
             {postLists.slice(4, 11).map(({ _id, title }) => {
                 return (
-                    <ListItem key={_id}>
+                    <ListItem key={_id} noOfLines={1}>
                         <WeeklyList postId={_id} title={title} icon={""} />{" "}
                     </ListItem>
                 );

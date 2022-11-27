@@ -11,11 +11,11 @@ const ButtonWatchTrailer = ({ onClick, value }: IButtonWatchTrailer): JSX.Elemen
             <Button
                 value={value}
                 onClick={onClick}
-                width="169px"
-                height="36px"
+                width={["", "", "169px"]}
+                height={["30px", "30px", "36px"]}
                 bg="rose.700"
                 color="white"
-                fontSize="text"
+                fontSize={["text6", "text6", "text5"]}
                 fontFamily="secondary"
                 _hover={{
                     background: "rose.900",
