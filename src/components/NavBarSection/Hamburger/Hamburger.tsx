@@ -17,24 +17,24 @@ const Hamburger = () => {
             itemIcon: TbMovie,
             command: "",
             content: "All Movies",
-            href: "/",
+            href: "/allmovies",
         },
         {
             itemIcon: HiOutlineFire,
             command: "",
             content: "Now Playing",
-            href: "/",
+            href: "/nowplaying",
         },
         {
             itemIcon: MdPeopleOutline,
             command: "",
             content: "Movie Discussion",
-            href: "/",
+            href: "/discussions",
         },
     ];
     return (
         <Menu offset={[-160, 10]}>
-            <MenuButton>
+            <MenuButton minW="37.19px">
                 <HamburgerContainer>
                     <Image src="/hamburger.svg" />
                 </HamburgerContainer>
