@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import VideoThumbnail from "./VideoThumbnail";
 import { Carousel } from "@mantine/carousel";
 import CarouselContainer from "@/components/CarouselContainer";
@@ -16,6 +16,7 @@ const Videos = () => {
     const [videoList, setVideoList] = useState<IVideoProps[]>([]);
     const [secondFetch, setSecondFetch] = useState(false);
     const [loading, setLoading] = useState(false);
+    const allMoviesMemo = useMemo(() => videoList, [videoList]);
 
     useEffect(() => {
         const fetchMovieId = async () => {
@@ -47,10 +48,9 @@ const Videos = () => {
     }, [secondFetch]);
 
     return (
-        <>
-            <CarouselContainer slideSize="33.333%">
-                {videoList.length > 0 &&
-          videoList.map(({ id, title, youtubeLink }: IVideoProps) => {
+        <CarouselContainer slideSize="33.333%">
+            {videoList.length > 0 &&
+          allMoviesMemo.map(({ id, title, youtubeLink }: IVideoProps) => {
               return (
                   <>
                       <Carousel.Slide gap={48} key={id}>
@@ -72,8 +72,7 @@ const Videos = () => {
                   </>
               );
           })}
-            </CarouselContainer>
-        </>
+        </CarouselContainer>
     );
 };
 
