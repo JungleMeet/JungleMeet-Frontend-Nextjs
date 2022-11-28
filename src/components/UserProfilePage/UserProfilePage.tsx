@@ -111,6 +111,7 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     }, [editProfileTrigger]);
 
     useEffect(() => {
+
         const updateFollow = async () => {
             try {
                 const userInfoLocalStorage = localStorage.getItem("userInfo");
@@ -131,6 +132,7 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                 }
             } catch (err) {
                 console.log(err);
+
             }
         };
         updateFollow();
@@ -139,10 +141,7 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     return (
         <>
             <UserProfileHeader
-                userAvatar={userProfile.userAvatar}
-                userBgImg={userProfile.userBgImg}
-                userRole={userProfile.userRole}
-                userName={userProfile.userName}
+                userProfile = {userProfile}
                 userId={userId}
                 queryUserId={queryUserId}
                 followed={followed}
@@ -151,6 +150,8 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                 followTrigger={followTrigger}
                 setEditProfileTrigger={setEditProfileTrigger}
                 editProfileTrigger={editProfileTrigger}
+
+
             />
             <Flex flexDirection="row" pos="relative" mt="28px">
                 <Flex maxW="816px" flexDirection="column" w="70%">
