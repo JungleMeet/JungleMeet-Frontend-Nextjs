@@ -17,6 +17,7 @@ export interface IReviewInfoProps {
 
 const ReviewInfo = ({ _id, createdAt, author, likeCount, content }: IReviewInfoProps) => {
     return (
+
         <Box pb="13px" lineHeight="lh32" key={_id}>
             <Flex alignItems="center" justifyContent="space-between">
                 <Flex justifyContent="flex-start" alignItems="center" gap="13px">
