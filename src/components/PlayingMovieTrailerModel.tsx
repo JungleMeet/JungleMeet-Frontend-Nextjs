@@ -7,7 +7,7 @@ import {
     ModalHeader,
     Image,
 } from "@chakra-ui/react";
-import React, {memo} from "react";
+import React, { memo } from "react";
 
 interface IPlayingMovieTrailerModelProps {
     isOpen: boolean;
