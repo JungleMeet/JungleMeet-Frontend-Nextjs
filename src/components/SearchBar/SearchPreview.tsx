@@ -40,7 +40,7 @@ interface ISearchPreviewProps {
 }
 
 const SearchPreview = React.forwardRef<HTMLDivElement, ISearchPreviewProps>(
-    ({query, clearQuery},ref) => {
+    ({ query, clearQuery }, ref) => {
         const [loading, setLoading] = useState(false);
         const [searchResult, setSearchResult] = useState<PreviewItemProps[]>([]);
 
@@ -72,6 +72,6 @@ const SearchPreview = React.forwardRef<HTMLDivElement, ISearchPreviewProps>(
     }
 );
 
-SearchPreview.displayName="SearchPreview"
+SearchPreview.displayName = "SearchPreview";
 
 export default SearchPreview;
