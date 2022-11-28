@@ -8,12 +8,14 @@ interface ICloudinaryUploaderProps {
     setBgImg: (value: string) => void;
     bgImg: string | undefined;
     croppingAspectRatio: number;
-    displayText?: string;
+    displayText: string;
 }
 
 const CloudinaryUploader = ({
     setBgImg,
     bgImg,
+    croppingAspectRatio,
+    displayText,
 }: ICloudinaryUploaderProps) => {
     const toast = useToast();
 
@@ -31,7 +33,7 @@ const CloudinaryUploader = ({
     return (
         <Box background="gray.200" padding="32px" borderRadius="5px" marginBottom="50px">
             {!bgImg ? (
-                <UploadWidget callback={saveImage} croppingAspectRatio={+(5.12)}>
+                <UploadWidget callback={saveImage} croppingAspectRatio={croppingAspectRatio}>
                     {({ open }) => (
                         <ImageButtonWrapper onClick={(e: any) => open(e)} bgImg={bgImg}>
                             <ImageWrapper>
@@ -41,7 +43,7 @@ const CloudinaryUploader = ({
                             </ImageWrapper>
                             <Flex flexDirection="column" justifyContent="space-between" textAlign="start">
                                 <Text fontSize="text3" fontWeight="600" lineHeight="lh28">
-                  SELECT YOUR COVER IMAGE
+                                    {displayText}
                                 </Text>
                                 <Text fontSize="text4" lineHeight="lh28">
                   Click here to upload your image.
@@ -54,7 +56,7 @@ const CloudinaryUploader = ({
             ) : (
                 <Flex flexDirection="column" alignItems="flex-end">
                     <Image src={bgImg} objectFit="cover" width="100%" />
-                    <UploadWidget callback={saveImage} croppingAspectRatio={+(5.12)}>
+                    <UploadWidget callback={saveImage} croppingAspectRatio={croppingAspectRatio}>
                         {({ open }) => (
                             <Button
                                 mt="20px"

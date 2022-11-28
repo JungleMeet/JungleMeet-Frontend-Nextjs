@@ -94,13 +94,12 @@ interface IUpdatePostParams{
     postId:string,
     postTitle:string,
     content:string,
-    hashtag?:string,
     hashtags?:Array<string>,
     bgImg?:string,
     token:string,
 }
 
-export const updatePost=({postId,postTitle,content,hashtag,hashtags,bgImg, token}:IUpdatePostParams)=>{
+export const updatePost=({postId,postTitle,content,hashtags,bgImg, token}:IUpdatePostParams)=>{
     const config = {
         headers: { Authorization: `Bearer ${token}` },
     };
@@ -108,7 +107,6 @@ export const updatePost=({postId,postTitle,content,hashtag,hashtags,bgImg, token
     const reqBody = {
         title:postTitle,
         content,
-        hashtag,
         hashtags,
         bgImg,
     };
