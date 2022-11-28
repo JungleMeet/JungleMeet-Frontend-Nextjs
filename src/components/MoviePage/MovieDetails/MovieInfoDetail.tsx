@@ -32,7 +32,7 @@ interface MovieInfoDetailProps {
     majorCasts: [];
     director: [];
     writer: [];
-    video?:string
+    video?: string;
 }
 
 const MovieInfoDetail = ({
@@ -144,7 +144,6 @@ const MovieInfoDetail = ({
                             ) : (
                                 `Not available`
                             )}
-                                  
                         </Flex>
                     </Flex>
                     <Divider m="0px" colorScheme="gray.200" />

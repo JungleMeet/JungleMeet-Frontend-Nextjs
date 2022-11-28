@@ -47,7 +47,7 @@ const HeroBanner = () => {
     }, []);
 
     useEffect(() => {
-        if (topRatedMovies) {
+        if(topRatedMovies){
             const fetchYoutubeLinks = async () => {
                 const youtubeLinks = await Promise.all(
                     topRatedMovies.map(async ({ id, ...rest }) => {
@@ -62,8 +62,7 @@ const HeroBanner = () => {
                 setLoading(false);
             };
             fetchYoutubeLinks();
-        }
-    }, [secondfetch]);
+        }}, [secondfetch]);
 
     const { classes } = useStyles();
     const autoplay = useRef(autoPlay({ delay: 4000 }));
@@ -82,27 +81,18 @@ const HeroBanner = () => {
                     onMouseEnter={autoplay.current.stop}
                     onMouseLeave={autoplay.current.reset}
                 >
-                    {allMoviesMemo?.map(
-                        ({
-                            id,
-                            title,
-                            voteAverage,
-                            overview,
-                            heroBanner,
-                            youtubeLink,
-                        }: ICarouselSlideProps) => (
-                            <CarouselSlide
-                                key={id}
-                                title={title}
-                                voteAverage={voteAverage}
-                                overview={overview}
-                                heroBanner={heroBanner}
-                                id={id}
-                                youtubeLink={youtubeLink}
-                                loading={loading}
-                            />
-                        )
-                    )}
+                    {allMoviesMemo?.map(({ id, title, voteAverage, overview, heroBanner, youtubeLink }:ICarouselSlideProps) => (
+                        <CarouselSlide
+                            key={id}
+                            title={title}
+                            voteAverage={voteAverage}
+                            overview={overview}
+                            heroBanner={heroBanner}
+                            id={id}
+                            youtubeLink={youtubeLink}
+                            loading={loading}
+                        />
+                    ))}
                 </Carousel>
             )}
         </Box>

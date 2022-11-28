@@ -55,9 +55,9 @@ const MovieDetails = () => {
     useEffect(() => {
         const fetchVideoData = async () => {
             const { data } = await getYoutubeLinkById(moviesInfo.resourceId);
-            if(data.length>0){
+            if (data.length > 0) {
                 setMoviesVideo(data);
-            }else{
+            } else {
                 setMoviesVideo("");
             }
         };
