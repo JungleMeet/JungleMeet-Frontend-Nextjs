@@ -15,6 +15,7 @@ import { FaPen, FaLink } from "react-icons/fa";
 import CarouselContainer from "@components/CarouselContainer";
 import { Carousel } from "@mantine/carousel";
 import PlayingMovieTrailerModel from "@components/PlayingMovieTrailerModel";
+import { useRouter } from "next/router";
 
 interface MovieInfoDetailProps {
     genresName: [];
@@ -54,6 +55,7 @@ const MovieInfoDetail = ({
     const [shareCount, setShareCount] = useState(0);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const toast = useToast();
+    const router = useRouter();
 
     function clickCount() {
         const countPlusOne = 1;
@@ -65,7 +67,6 @@ const MovieInfoDetail = ({
         const currentUrl = window.location.href;
         return navigator.clipboard.writeText(currentUrl);
     }
-
     return (
         <Stack key={resourceId}>
             <Heading pt="100px">{title}</Heading>
@@ -128,16 +129,18 @@ const MovieInfoDetail = ({
                             <Text pb="23px" fontWeight="600" fontSize="h5">
                 Trailors Option
                             </Text>
-                            <Button colorScheme="#ffffff" onClick={onOpen}>
-                                <Image
-                                    width="40px"
-                                    height="40px"
-                                    src="/redPlayIcon.svg"
-                                    alt="trailors play button"
-                                />
-                            </Button>
                             {video ? (
-                                <PlayingMovieTrailerModel isOpen={isOpen} onClose={onClose} src={video} />
+                                <>
+                                    <Button colorScheme="#ffffff" onClick={onOpen}>
+                                        <Image
+                                            width="40px"
+                                            height="40px"
+                                            src="/redPlayIcon.svg"
+                                            alt="trailors play button"
+                                        />
+                                    </Button>
+                                    <PlayingMovieTrailerModel isOpen={isOpen} onClose={onClose} src={video} />
+                                </>
                             ) : (
                                 `Not available`
                             )}
@@ -183,6 +186,15 @@ const MovieInfoDetail = ({
                       fontSize={"text2"}
                       fontWeight="500"
                       p="8px 12px"
+                      onClick={() => {
+                          router.push(
+                              {
+                                  pathname: "/allmovies",
+                                  query: { genre: item },
+                              },
+                              "/allmovies"
+                          );
+                      }}
                   >
                       {item}
                   </Button>
