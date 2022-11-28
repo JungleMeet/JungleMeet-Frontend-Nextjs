@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+import React, { memo } from "react";
 import ButtonWatchTrailer from "./ButtonWatchTrailer";
 import { Heading, Box, Flex, Image, useDisclosure } from "@chakra-ui/react";
 import { Carousel } from "@mantine/carousel";

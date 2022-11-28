@@ -32,7 +32,7 @@ interface MovieInfoDetailProps {
     majorCasts: [];
     director: [];
     writer: [];
-    video?: string;
+    video?:string
 }
 
 const MovieInfoDetail = ({
@@ -67,7 +67,6 @@ const MovieInfoDetail = ({
         const currentUrl = window.location.href;
         return navigator.clipboard.writeText(currentUrl);
     }
-
     return (
         <Stack key={resourceId}>
             <Heading pt="100px">{title}</Heading>
@@ -130,19 +129,22 @@ const MovieInfoDetail = ({
                             <Text pb="23px" fontWeight="600" fontSize="h5">
                 Trailors Option
                             </Text>
-                            <Button colorScheme="#ffffff" onClick={onOpen}>
-                                <Image
-                                    width="40px"
-                                    height="40px"
-                                    src="/redPlayIcon.svg"
-                                    alt="trailors play button"
-                                />
-                            </Button>
                             {video ? (
-                                <PlayingMovieTrailerModel isOpen={isOpen} onClose={onClose} src={video} />
+                                <>
+                                    <Button colorScheme="#ffffff" onClick={onOpen}>
+                                        <Image
+                                            width="40px"
+                                            height="40px"
+                                            src="/redPlayIcon.svg"
+                                            alt="trailors play button"
+                                        />
+                                    </Button>
+                                    <PlayingMovieTrailerModel isOpen={isOpen} onClose={onClose} src={video} />
+                                </>
                             ) : (
                                 `Not available`
                             )}
+                                  
                         </Flex>
                     </Flex>
                     <Divider m="0px" colorScheme="gray.200" />
