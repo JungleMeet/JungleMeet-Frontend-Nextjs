@@ -92,7 +92,6 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     }, []);
 
     useEffect(() => {
-
         const updateProfile = async () => {
             try {
                 const userInfoLocalStorage = localStorage.getItem("userInfo");
@@ -112,7 +111,6 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     }, [editProfileTrigger]);
 
     useEffect(() => {
-
         const updateFollow = async () => {
             try {
                 const userInfoLocalStorage = localStorage.getItem("userInfo");
@@ -133,7 +131,6 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                 }
             } catch (err) {
                 console.log(err);
-
             }
         };
         updateFollow();
@@ -152,10 +149,8 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                 token={token}
                 setfFllowTrigger={setfFllowTrigger}
                 followTrigger={followTrigger}
-
                 setEditProfileTrigger={setEditProfileTrigger}
                 editProfileTrigger={editProfileTrigger}
-
             />
             <Flex flexDirection="row" pos="relative" mt="28px">
                 <Flex maxW="816px" flexDirection="column" w="70%">
