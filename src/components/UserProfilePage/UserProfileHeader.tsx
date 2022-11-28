@@ -77,7 +77,8 @@ const showWidget = (
         (error: unknown | undefined, result: CloudinaryWidgetResult) => {
             if (!error && result && result.event === "success") {
                 callback(token, result.info.url);
-                setEditProfileTrigger(!editProfileTrigger);
+                setTimeout(setEditProfileTrigger(!editProfileTrigger),1000)
+                
                 console.log(editProfileTrigger);
             }
         }
@@ -96,10 +97,9 @@ const UserProfileHeader = ({
     setEditProfileTrigger,
     editProfileTrigger,
 }: UserProfileHeaderInfoProps) => {
-
     useEffect(() => {
         const script = document.createElement("script");
-        
+
         script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
         script.async = true;
         document.body.appendChild(script);
