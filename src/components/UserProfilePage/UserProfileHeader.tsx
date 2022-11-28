@@ -1,4 +1,3 @@
-
 import { Flex, Box, Image, Text, Button, Icon, Avatar } from "@chakra-ui/react";
 import { HiPlus, HiMinus, HiUpload, HiCamera, HiLightBulb } from "react-icons/hi";
 import { changeAvatar, changeBgImg, toggleFollowing } from "@/utils/axiosUserApi";
@@ -7,7 +6,6 @@ import {
     CloudinaryWidget,
     CloudinaryWidgetResult,
 } from "@/components/NewPostEditor/cloudinaryType";
-
 
 interface UserProfileHeaderInfoProps {
     userRole: string;
@@ -90,7 +88,6 @@ const showWidget = (
     widget.open();
 };
 
-
 const UserProfileHeader = ({
     userAvatar,
     userBgImg,
@@ -115,12 +112,11 @@ const UserProfileHeader = ({
         };
     }, []);
 
-
     return (
         <Box pos="relative" m="auto" w="100%" height="245px" background="rgba(79, 79, 79, 0.8)">
             <Image
                 opacity="0.5"
-                src={bgImg}
+                src={userBgImg}
                 boxSize="100%"
                 objectFit="cover"
                 fallbackSrc="/defaultUserImage.svg"
@@ -137,11 +133,9 @@ const UserProfileHeader = ({
                         _hover={{}}
                         _focus={{}}
                         _active={{}}
-
                         onClick={() => {
                             showWidget(changeAvatar, token, setEditProfileTrigger, editProfileTrigger, 1);
                         }}
-
                     >
                         <Icon as={HiCamera} w={9} h={9} opacity="1" color="lightBlue.600" p="0" zIndex={5} />
                     </Button>
@@ -153,7 +147,7 @@ const UserProfileHeader = ({
                     <Avatar
                         key={userName.split(" ")[0]}
                         name={userName.split(" ")[0]}
-                        src={avatar}
+                        src={userAvatar}
                         borderRadius="full"
                         width="120px"
                         height="120px"
@@ -220,30 +214,15 @@ const UserProfileHeader = ({
                     background-color="transparent"
                     _hover={{}}
                     _focus={{}}
-
                     onClick={() => {
                         showWidget(changeBgImg, token, setEditProfileTrigger, editProfileTrigger, 5.07);
                     }}
-
                 >
                     <Icon as={HiUpload} w={6} h={6} opacity="1" color="white" />
 
                     <Text color="white" opacity="1" pl={2}>
                         {"Edit your background"}
                     </Text>
-                    <ImageUploadModal
-                        setImg={setBgImg}
-                        img={bgImg}
-                        displayText={"Upload your background image"}
-                        isOpen={isOpenBgImgUploadModal}
-                        onClose={onCloseBgImgUploadModal}
-                        modalName={"Select your background image"}
-                        croppingAspectRatio={5.07}
-                        onClick={() => {
-                            changeBgImg(token, bgImg);
-                            Router.push("/userprofile/" + userId);
-                        }}
-                    />
                 </Button>
             ) : (
                 <></>
