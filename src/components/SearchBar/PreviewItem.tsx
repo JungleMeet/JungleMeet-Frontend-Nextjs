@@ -1,5 +1,5 @@
+import usePostIdForMovieId from "@/hooks/usePostIdForMovieId";
 import { Box, Flex } from "@chakra-ui/react";
-import Link from "next/link";
 import styled from "styled-components";
 import TMDBRanking from "../MainPage/TMDBRanking";
 
@@ -9,6 +9,7 @@ export interface PreviewItemProps {
     poster: string;
     year: string;
     voteAverage: number;
+    clearQuery: () => void;
 }
 
 const ItemContainer = styled.div`
@@ -26,30 +27,34 @@ const PreviewItem = ({
     year,
     voteAverage,
     resourceId,
+    clearQuery,
 }: PreviewItemProps): JSX.Element => {
-    const href = `/movies/${resourceId}`;
+    const createMoviePostByResourceId = usePostIdForMovieId();
 
     return (
-        <Link href={href}>
-            <ItemContainer>
-                <Flex justifyContent={"space-around"}>
-                    <Box height={"100px"}>
-                        <img src={poster} width="66px" />
+        <ItemContainer
+            onClick={() => {
+                createMoviePostByResourceId(resourceId);
+                clearQuery();
+            }}
+        >
+            <Flex justifyContent={"space-around"}>
+                <Box height={"100px"}>
+                    <img src={poster} width="66px" />
+                </Box>
+                <Box width={"60%"} pl={"15px"}>
+                    <Box fontSize={"20px"} fontWeight={"500"} pt={"10px"}>
+                        {title}
                     </Box>
-                    <Box width={"60%"} pl={"15px"}>
-                        <Box fontSize={"20px"} fontWeight={"500"} pt={"10px"}>
-                            {title}
-                        </Box>
-                        <Box fontSize={"16px"} pt={"10px"}>
-                            {year}
-                        </Box>
+                    <Box fontSize={"16px"} pt={"10px"}>
+                        {year}
                     </Box>
-                    <Flex alignItems={"center"} justifyContent={"flex-end"} width={"80px"}>
-                        <TMDBRanking gap="20px" tmdb={voteAverage} color="black" />
-                    </Flex>
+                </Box>
+                <Flex alignItems={"center"} justifyContent={"flex-end"} width={"80px"}>
+                    <TMDBRanking gap="20px" tmdb={voteAverage} color="black" />
                 </Flex>
-            </ItemContainer>
-        </Link>
+            </Flex>
+        </ItemContainer>
     );
 };
 

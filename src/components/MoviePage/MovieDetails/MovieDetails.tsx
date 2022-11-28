@@ -49,7 +49,7 @@ const MovieDetails = () => {
             setMoviesInfo(data);
         };
         fetchMovieData();
-    }, []);
+    }, [id]);
 
     useEffect(() => {
         const fetchVideoData = async () => {

@@ -23,7 +23,7 @@ const ReviewPosts = ({ isRefresh }: IReviewPostsProps) => {
             setTopCommentsLength(dataLength);
         };
         fetchComments();
-    }, [isRefresh]);
+    }, [isRefresh, id]);
 
     return (
         <>

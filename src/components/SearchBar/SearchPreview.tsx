@@ -36,9 +36,10 @@ const LoaderContainer = styled.div`
 
 interface ISearchPreviewProps {
     query: string;
+    clearQuery: () => void;
 }
 
-const SearchPreview = ({ query }: ISearchPreviewProps): JSX.Element => {
+const SearchPreview = ({ query, clearQuery }: ISearchPreviewProps): JSX.Element => {
     const [loading, setLoading] = useState(false);
     const [searchResult, setSearchResult] = useState<PreviewItemProps[]>([]);
 
@@ -61,7 +62,9 @@ const SearchPreview = ({ query }: ISearchPreviewProps): JSX.Element => {
                     <BeatLoader color="#d736b4" />
                 </LoaderContainer>
             ) : (
-                searchResult?.map((item) => <PreviewItem key={item.resourceId} {...item} />)
+                searchResult?.map((item) => (
+                    <PreviewItem key={item.resourceId} {...item} clearQuery={clearQuery} />
+                ))
             )}
         </PreviewContainer>
     );

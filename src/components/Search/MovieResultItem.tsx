@@ -1,7 +1,6 @@
+import usePostIdForMovieId from "@/hooks/usePostIdForMovieId";
 import { Box, Flex } from "@chakra-ui/react";
 import TMDBRanking from "../MainPage/TMDBRanking";
-import { useRouter } from "next/router";
-import { createMoviePost } from "@/utils/axiosPostApi";
 
 export interface IMovieResultItemProps {
     resourceId: number;
@@ -17,26 +16,13 @@ export interface IMovieResultItemProps {
 }
 
 const MovieResultItem = (props: IMovieResultItemProps) => {
-    const router = useRouter();
-
-    const createMoviePostByResourceId = async (resourceId: number): Promise<void> => {
-        try {
-            const res = await createMoviePost(resourceId);
-            const { _id } = res.data;
-            router.push(`/movies/${_id}`);
-        } catch (e: any) {
-            return e;
-        }
-    };
+    const createMoviePostByResourceId = usePostIdForMovieId();
 
     const { title, poster, year, voteAverage, resourceId, overview } = props;
-    // const href = `/movies/${resourceId}`;
     return (
         <Flex justifyContent={"space-between"} pl={"15px"} pr={"38px"} pt={"25px"}>
             <Box width={"77px"} cursor="pointer" onClick={() => createMoviePostByResourceId(resourceId)}>
-                {/* <a href={href}> */}
                 <img width="77px" src={poster} alt="poster" />
-                {/* </a> */}
             </Box>
             <Box width={"80%"} pl="10px">
                 <Box

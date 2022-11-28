@@ -52,6 +52,8 @@ const SearchBar = ({ maxWidth }: { maxWidth: string }) => {
         setQuery("");
     };
 
+    const clearQuery = () => setQuery("");
+
     return (
         <SearchBarContainer maxWidth={maxWidth}>
             <form onSubmit={handleSubmit}>
@@ -79,7 +81,7 @@ const SearchBar = ({ maxWidth }: { maxWidth: string }) => {
                     {!isEmpty(query) && <EscPrompt>ESC to close</EscPrompt>}
                 </InputGroup>
             </form>
-            <SearchPreview query={query} />
+            <SearchPreview query={query} clearQuery={clearQuery} />
         </SearchBarContainer>
     );
 };
