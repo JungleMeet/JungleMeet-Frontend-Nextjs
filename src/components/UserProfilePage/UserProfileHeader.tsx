@@ -8,10 +8,7 @@ import {
 } from "@/components/NewPostEditor/cloudinaryType";
 
 interface UserProfileHeaderInfoProps {
-    userRole: string;
-    userName: string;
-    userBgImg: string;
-    userAvatar: string;
+    userProfile: any;
     userId: string;
     followed: boolean;
     queryUserId: string;
@@ -89,10 +86,7 @@ const showWidget = (
 };
 
 const UserProfileHeader = ({
-    userAvatar,
-    userBgImg,
-    userRole,
-    userName,
+    userProfile,
     userId,
     followed,
     queryUserId,
@@ -102,21 +96,23 @@ const UserProfileHeader = ({
     setEditProfileTrigger,
     editProfileTrigger,
 }: UserProfileHeaderInfoProps) => {
+
     useEffect(() => {
         const script = document.createElement("script");
+        
         script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
         script.async = true;
         document.body.appendChild(script);
         return () => {
             document.body.removeChild(script);
         };
-    }, []);
+    }, [editProfileTrigger]);
 
     return (
         <Box pos="relative" m="auto" w="100%" height="245px" background="rgba(79, 79, 79, 0.8)">
             <Image
                 opacity="0.5"
-                src={userBgImg}
+                src={userProfile.userBgImg}
                 boxSize="100%"
                 objectFit="cover"
                 fallbackSrc="/defaultUserImage.svg"
@@ -145,9 +141,9 @@ const UserProfileHeader = ({
 
                 <Flex flexDir="row">
                     <Avatar
-                        key={userName.split(" ")[0]}
-                        name={userName.split(" ")[0]}
-                        src={userAvatar}
+                        key={userProfile.userName.split(" ")[0]}
+                        name={userProfile.userName.split(" ")[0]}
+                        src={userProfile.userAvatar}
                         borderRadius="full"
                         width="120px"
                         height="120px"
@@ -164,7 +160,7 @@ const UserProfileHeader = ({
                                 bottom="0"
                                 fontWeight="500"
                             >
-                                {userRole === "admin" ? "Admin_User" : "General_User"}
+                                {userProfile.userRole === "admin" ? "Admin_User" : "General_User"}
                             </Text>
                         </Flex>
                         <Text
@@ -178,7 +174,7 @@ const UserProfileHeader = ({
                             fontFamily="body"
                             fontWeight="700"
                         >
-                            {userName.split(" ")[0]}
+                            {userProfile.userName.split(" ")[0]}
                         </Text>
                     </Flex>
                     {userId === queryUserId ? (

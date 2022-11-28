@@ -18,11 +18,9 @@ export async function getStaticProps({ locale }: IgetStaticProps) {
 const newpost = () => {
     return (
         <PageWrapper>
-
             <RequireAuth>
                 <PostEditor type="newPost" />
             </RequireAuth>
-
         </PageWrapper>
     );
 };
