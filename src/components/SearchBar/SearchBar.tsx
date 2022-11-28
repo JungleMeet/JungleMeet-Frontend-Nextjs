@@ -1,7 +1,7 @@
-import { Input, InputGroup } from "@chakra-ui/react";
+import { Input, InputGroup,useOutsideClick } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import styled from "styled-components";
-import { ChangeEvent, FormEvent, KeyboardEvent, useState } from "react";
+import { ChangeEvent, FormEvent, KeyboardEvent, useRef, useState } from "react";
 import { isEmpty } from "lodash";
 import { useRouter } from "next/router";
 import SearchPreview from "./SearchPreview";
@@ -40,8 +40,17 @@ const SearchBar = ({ maxWidth }: { maxWidth: string }) => {
     const router = useRouter();
     const { t } = useTranslation("home");
     const [query, setQuery] = useState("");
+    const [canSearchPreviewOpen, setCanSearchPreviewOpen] = useState(true)
+    const previewRef=useRef(null)
+    useOutsideClick({
+        ref:previewRef,
+        handler:()=>setCanSearchPreviewOpen(false)
+    })
 
-    const handleInput = (e: ChangeEvent<HTMLInputElement>) => setQuery(e.target.value);
+    const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value)
+        setCanSearchPreviewOpen(true)
+    };
     const detectEsc = (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Escape") setQuery("");
     };
@@ -81,7 +90,7 @@ const SearchBar = ({ maxWidth }: { maxWidth: string }) => {
                     {!isEmpty(query) && <EscPrompt>ESC to close</EscPrompt>}
                 </InputGroup>
             </form>
-            <SearchPreview query={query} clearQuery={clearQuery} />
+            {canSearchPreviewOpen && <SearchPreview ref={previewRef} query={query} clearQuery={clearQuery} />}
         </SearchBarContainer>
     );
 };

@@ -42,7 +42,7 @@ const ReviewPosts = ({ isRefresh }: IReviewPostsProps) => {
             {topCommentsLength > 0 ? (
                 <SeeMoreReviews href={`/movies/reviews/${id}`} topCommentsLength={topCommentsLength} />
             ) : (
-                `Be the firest one to comment`
+                `Be the first one to comment`
             )}
         </>
     );

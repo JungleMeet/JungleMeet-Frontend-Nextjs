@@ -61,8 +61,9 @@ const MovieDetails = () => {
             } else {
                 setMoviesVideo("");
             }
+            setSecondfetch(false);
         };
-        fetchVideoData();
+        secondfetch && fetchVideoData();
     }, [secondfetch]);
 
     return (
