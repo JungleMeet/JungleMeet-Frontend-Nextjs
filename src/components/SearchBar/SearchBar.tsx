@@ -24,14 +24,19 @@ const EscPrompt = styled.span`
   top: 8px;
 `;
 
+interface ISearchBarContainer {
+    maxWidth: string;
+}
+
 const SearchBarContainer = styled.div`
   position: relative;
   height: auto;
-  max-width: 525px;
+  max-width: ${({ maxWidth }: ISearchBarContainer) => maxWidth};
+  //   max-width: 525px;
   width: 100%;
 `;
 
-const SearchBar = () => {
+const SearchBar = ({ maxWidth }: { maxWidth: string }) => {
     const router = useRouter();
     const { t } = useTranslation("home");
     const [query, setQuery] = useState("");
@@ -48,7 +53,7 @@ const SearchBar = () => {
     };
 
     return (
-        <SearchBarContainer>
+        <SearchBarContainer maxWidth={maxWidth}>
             <form onSubmit={handleSubmit}>
                 <InputGroup h="36px" w="100%">
                     <Input

@@ -126,7 +126,7 @@ const theme = extendTheme(config, styles, {
     breakpoints: {
         sm: '37.5em',
         md: '60em',
-        lg:"88.75em"
+        // lg:"88.75em"
     }
 });
 

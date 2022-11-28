@@ -6,7 +6,7 @@ const Container = styled.div`
   font-family: sans-serif;
   color: #be123c;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
   cursor: pointer;
   // padding-top: 18px;

@@ -24,6 +24,9 @@ export const ContentWrapper = styled.div`
   padding: 98px;
   padding-bottom: 0;
   width: 100%;
+  @media (max-width: 60em) {
+    padding: 50px;
+  }
 `;
 
 interface IgetStaticProps {
@@ -66,9 +69,7 @@ const HomePage = (): JSX.Element => {
                             <WeeklyTop10Post />
                         </>
                     )}
-                    {/* <NowPlaying /> */}
                     {isMinWidthMedium && <WeeklyTop10Post />}
-                    {/* <WeeklyTop10Post /> */}
                 </Flex>
                 <UpcomingMovies />
                 <ExclusiveVideos />
