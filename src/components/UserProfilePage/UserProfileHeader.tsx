@@ -1,9 +1,11 @@
-import { Flex, Box, Image, Text, Button, Icon, Avatar, useDisclosure } from "@chakra-ui/react";
+import { Flex, Box, Image, Text, Button, Icon, Avatar } from "@chakra-ui/react";
 import { HiPlus, HiMinus, HiUpload, HiCamera, HiLightBulb } from "react-icons/hi";
-import { toggleFollowing } from "@/utils/axiosUserApi";
-import { ImageUploadModal } from "@/components/UserProfilePage/ImageUploadModal";
-import Router from "next/router";
-import { useState } from "react";
+import { changeAvatar, changeBgImg, toggleFollowing } from "@/utils/axiosUserApi";
+import { useEffect } from "react";
+import {
+    CloudinaryWidget,
+    CloudinaryWidgetResult,
+} from "@/components/NewPostEditor/cloudinaryType";
 
 interface UserProfileHeaderInfoProps {
     userRole: string;
@@ -16,8 +18,75 @@ interface UserProfileHeaderInfoProps {
     token: string;
     setfFllowTrigger: Function;
     followTrigger: boolean;
+    setEditProfileTrigger: Function;
+    editProfileTrigger: boolean;
 }
-import { changeBgImg, changeAvatar } from "@/utils/axiosUserApi";
+const showWidget = (
+    callback: Function,
+    token: string,
+    setEditProfileTrigger: Function,
+    editProfileTrigger: boolean,
+    croppingAspectRatio: number
+) => {
+    const widget: CloudinaryWidget = (window as any).cloudinary.createUploadWidget(
+        {
+            cloudName: "junglemeet",
+            uploadPreset: "avatars",
+            sources: [
+                "local",
+                "url",
+                "camera",
+                "image_search",
+                "google_drive",
+                "facebook",
+                "dropbox",
+                "instagram",
+                "getty",
+            ],
+            googleApiKey: "<image_search_google_api_key>",
+            showAdvancedOptions: false,
+            cropping: true,
+            croppingAspectRatio: String(croppingAspectRatio),
+            croppingDefaultSelectionRatio: String(1 / croppingAspectRatio),
+            croppingShowDimensions: true,
+            croppingCoordinatesMode: "custom",
+            multiple: false,
+            defaultSource: "local",
+            styles: {
+                palette: {
+                    window: "#111827",
+                    sourceBg: "#111827",
+                    windowBorder: "#FFFFFF",
+                    tabIcon: "#BE123C",
+                    inactiveTabIcon: "#FFFFFF",
+                    menuIcons: "#BE123C",
+                    link: "#BE123C",
+                    action: "#0EA5E9",
+                    inProgress: "#00BFFF",
+                    complete: "#33ff00",
+                    error: "#EA2727",
+                    textDark: "#000000",
+                    textLight: "#FFFFFF",
+                },
+                fonts: {
+                    default: null,
+                    "'Poppins', sans-serif": {
+                        url: "https://fonts.googleapis.com/css?family=Poppins",
+                        active: true,
+                    },
+                },
+            },
+        },
+        (error: unknown | undefined, result: CloudinaryWidgetResult) => {
+            if (!error && result && result.event === "success") {
+                callback(token, result.info.url);
+                setEditProfileTrigger(!editProfileTrigger);
+                console.log(editProfileTrigger);
+            }
+        }
+    );
+    widget.open();
+};
 
 const UserProfileHeader = ({
     userAvatar,
@@ -30,29 +99,29 @@ const UserProfileHeader = ({
     token,
     setfFllowTrigger,
     followTrigger,
+    setEditProfileTrigger,
+    editProfileTrigger,
 }: UserProfileHeaderInfoProps) => {
-    const [bgImg, setBgImg] = useState<string>(userBgImg);
-    const [avatar, setAvatar] = useState<string>(userAvatar);
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
+        script.async = true;
+        document.body.appendChild(script);
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
 
-    const {
-        isOpen: isOpenAvatarUploadModal,
-        onOpen: onOpenAvatarUploadModal,
-        onClose: onCloseAvatarUploadModal,
-    } = useDisclosure();
-    const {
-        isOpen: isOpenBgImgUploadModal,
-        onOpen: onOpenBgImgUploadModal,
-        onClose: onCloseBgImgUploadModal,
-    } = useDisclosure();
     return (
         <Box pos="relative" m="auto" w="100%" height="245px" background="rgba(79, 79, 79, 0.8)">
             <Image
                 opacity="0.5"
-                src={bgImg}
+                src={userBgImg}
                 boxSize="100%"
                 objectFit="cover"
                 fallbackSrc="/defaultUserImage.svg"
             />
+
             <Box pos="absolute" bottom="15px" left="15px">
                 {userId === queryUserId ? (
                     <Button
@@ -64,7 +133,9 @@ const UserProfileHeader = ({
                         _hover={{}}
                         _focus={{}}
                         _active={{}}
-                        onClick={onOpenAvatarUploadModal}
+                        onClick={() => {
+                            showWidget(changeAvatar, token, setEditProfileTrigger, editProfileTrigger, 1);
+                        }}
                     >
                         <Icon as={HiCamera} w={9} h={9} opacity="1" color="lightBlue.600" p="0" zIndex={5} />
                     </Button>
@@ -72,25 +143,11 @@ const UserProfileHeader = ({
                     <></>
                 )}
 
-                <ImageUploadModal
-                    setImg={setAvatar}
-                    img={avatar}
-                    displayText={"Upload your avatar"}
-                    isOpen={isOpenAvatarUploadModal}
-                    onClose={onCloseAvatarUploadModal}
-                    modalName={"Select your avatar"}
-                    croppingAspectRatio={1}
-                    onClick={() => {
-                        changeAvatar(token, avatar);
-                        Router.push("/userprofile/" + userId);
-                    }}
-                />
-
                 <Flex flexDir="row">
                     <Avatar
                         key={userName.split(" ")[0]}
                         name={userName.split(" ")[0]}
-                        src={avatar}
+                        src={userAvatar}
                         borderRadius="full"
                         width="120px"
                         height="120px"
@@ -157,26 +214,15 @@ const UserProfileHeader = ({
                     background-color="transparent"
                     _hover={{}}
                     _focus={{}}
-                    onClick={onOpenBgImgUploadModal}
+                    onClick={() => {
+                        showWidget(changeBgImg, token, setEditProfileTrigger, editProfileTrigger, 5.07);
+                    }}
                 >
                     <Icon as={HiUpload} w={6} h={6} opacity="1" color="white" />
 
                     <Text color="white" opacity="1" pl={2}>
                         {"Edit your background"}
                     </Text>
-                    <ImageUploadModal
-                        setImg={setBgImg}
-                        img={bgImg}
-                        displayText={"Upload your background image"}
-                        isOpen={isOpenBgImgUploadModal}
-                        onClose={onCloseBgImgUploadModal}
-                        modalName={"Select your background image"}
-                        croppingAspectRatio={5.07}
-                        onClick={() => {
-                            changeBgImg(token, bgImg);
-                            Router.push("/userprofile/" + userId);
-                        }}
-                    />
                 </Button>
             ) : (
                 <></>

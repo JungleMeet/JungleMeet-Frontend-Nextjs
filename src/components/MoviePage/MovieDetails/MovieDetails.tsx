@@ -24,6 +24,7 @@ export interface MovieDetailsProps {
 const MovieDetails = () => {
     const router = useRouter();
     const { id } = router.query;
+    const [secondfetch, setSecondfetch] = useState(false);
     const [moviesInfo, setMoviesInfo] = useState<MovieDetailsProps>({
         genresName: [],
         resourceId: 0,
@@ -41,11 +42,12 @@ const MovieDetails = () => {
         writer: [],
         video: "",
     });
-    const [moviesVideo, setMoviesVideo] = useState();
+    const [moviesVideo, setMoviesVideo] = useState("");
 
     useEffect(() => {
         const fetchMovieData = async () => {
             const { data } = await getMovieDetails(id);
+            setSecondfetch(true);
             setMoviesInfo(data);
         };
         fetchMovieData();
@@ -54,10 +56,14 @@ const MovieDetails = () => {
     useEffect(() => {
         const fetchVideoData = async () => {
             const { data } = await getYoutubeLinkById(moviesInfo.resourceId);
-            setMoviesVideo(data);
+            if (data.length > 0) {
+                setMoviesVideo(data);
+            } else {
+                setMoviesVideo("");
+            }
         };
         fetchVideoData();
-    }, [moviesVideo]);
+    }, [secondfetch]);
 
     return (
         <>

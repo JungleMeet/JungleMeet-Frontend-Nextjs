@@ -79,7 +79,7 @@ const UserNameAndMessage = () => {
             itemIcon: FiEdit,
             command: "",
             content: "Write a Post",
-            href: "",
+            href: "/new_post/",
         },
         {
             itemIcon: GoSignOut,

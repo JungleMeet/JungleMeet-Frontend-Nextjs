@@ -32,7 +32,7 @@ const UploadWidget = ({ callback, children, croppingAspectRatio }: CloudinaryUpl
                     "instagram",
                     "getty",
                 ],
-                googleApiKey: "<image_search_google_api_key>",
+                // googleApiKey: "<image_search_google_api_key>",
                 showAdvancedOptions: false,
                 cropping: true,
                 croppingAspectRatio: String(croppingAspectRatio),
