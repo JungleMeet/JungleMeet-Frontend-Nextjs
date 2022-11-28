@@ -30,19 +30,14 @@ const AllMovies = () => {
     const { genre } = router.query;
 
     useEffect(() => {
-        setFilterByType(genre as string)
+        setFilterByType(genre as string);
         getMoviesByCondition(filterByYear, filterByType, sortByFeatured, moviePage).then(({ data }) => {
-            setAllMovies(data)
-        })
-    }, [])
+            setAllMovies(data);
+        });
+    }, []);
 
     useEffect(() => {
-        getMoviesByCondition(
-            filterByYear,
-            filterByType,
-            sortByFeatured,
-            moviePage
-        ).then(({ data }) => {
+        getMoviesByCondition(filterByYear, filterByType, sortByFeatured, moviePage).then(({ data }) => {
             setAllMovies(data);
         });
     }, []);
@@ -99,7 +94,7 @@ const AllMovies = () => {
                         textAlign={"center"}
                         marginTop={"105px"}
                     >
-                        loading...
+            loading...
                     </Text>
                 }
                 endMessage={
@@ -111,7 +106,7 @@ const AllMovies = () => {
                         textAlign={"center"}
                         marginTop={"105px"}
                     >
-                        The end
+            The end
                     </Text>
                 }
             >
@@ -128,7 +123,8 @@ const AllMovies = () => {
                                     borderRadius={"5px"}
                                     key={resourceId}
                                     _hover={{
-                                        boxShadow: "5px 5px 5px #ebb513, -5px -5px 5px #ebb513, 5px -5px 5px #ebb513, -5px 5px 5px #ebb513"
+                                        boxShadow:
+                      "5px 5px 5px #ebb513, -5px -5px 5px #ebb513, 5px -5px 5px #ebb513, -5px 5px 5px #ebb513",
                                     }}
                                 >
                                     <MovieCardThumbnail src={poster} title={title} id={resourceId} />

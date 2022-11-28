@@ -7,6 +7,7 @@ import {
     ModalHeader,
     Image,
 } from "@chakra-ui/react";
+import React, {memo} from "react";
 
 interface IPlayingMovieTrailerModelProps {
     isOpen: boolean;
@@ -32,6 +33,7 @@ const PlayingMovieTrailerModel = ({ isOpen, onClose, src }: IPlayingMovieTrailer
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
+                        loading="lazy"
                     ></iframe>
                 </ModalBody>
             </ModalContent>
@@ -39,4 +41,4 @@ const PlayingMovieTrailerModel = ({ isOpen, onClose, src }: IPlayingMovieTrailer
     );
 };
 
-export default PlayingMovieTrailerModel;
+export default memo(PlayingMovieTrailerModel);

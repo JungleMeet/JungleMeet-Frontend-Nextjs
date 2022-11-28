@@ -89,7 +89,7 @@ const NowPlayingMovies = () => {
                     textAlign={"center"}
                     marginTop={"105px"}
                 >
-                    loading...
+          loading...
                 </Text>
             }
             endMessage={
@@ -101,7 +101,7 @@ const NowPlayingMovies = () => {
                     textAlign={"center"}
                     marginTop={"105px"}
                 >
-                    The end
+          The end
                 </Text>
             }
         >
