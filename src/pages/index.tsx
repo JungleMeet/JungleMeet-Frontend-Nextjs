@@ -12,10 +12,12 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useMediaQuery } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Header from "../layouts/Header";
+import { AdContainerLeft, AdContainerRight, AdImg } from "@/components/Advertisement";
 
 export const PageContainer = styled.div`
   max-width: 1440px;
   margin: auto;
+  z-index: 30;
 `;
 
 export const ContentWrapper = styled.div`
@@ -48,13 +50,18 @@ const HomePage = (): JSX.Element => {
         }
     }, [isLargerThan60em]);
 
-    // console.log(isLargerThan60em);
     return (
         <PageContainer>
-            <Header />
             <NavBar />
             <HeroBanner />
+            <AdContainerLeft>
+                <AdImg src="/ad_left.png" />
+            </AdContainerLeft>
+            <AdContainerRight>
+                <AdImg src="/ad_right.png" />
+            </AdContainerRight>
             <ContentWrapper>
+                <Header />
                 <Flex>
                     {!isMinWidthMedium && (
                         <>

@@ -53,7 +53,7 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     const [userId, setUserId] = useState("");
     const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [currentTab, setCurrentTab] = useState("My Posts");
+    const [currentTab, setCurrentTab] = useState(active === "message" ? "Message": "My Posts");
 
     const [followed, setFollowed] = useState(false);
     const [followTrigger, setfFllowTrigger] = useState(true);
@@ -92,7 +92,6 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     }, []);
 
     useEffect(() => {
-
         const updateProfile = async () => {
             try {
                 const userInfoLocalStorage = localStorage.getItem("userInfo");
@@ -149,9 +148,9 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                 token={token}
                 setfFllowTrigger={setfFllowTrigger}
                 followTrigger={followTrigger}
-
                 setEditProfileTrigger={setEditProfileTrigger}
                 editProfileTrigger={editProfileTrigger}
+
 
             />
             <Flex flexDirection="row" pos="relative" mt="28px">

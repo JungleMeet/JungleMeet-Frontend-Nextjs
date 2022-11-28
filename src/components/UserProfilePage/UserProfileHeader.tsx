@@ -99,20 +99,22 @@ const UserProfileHeader = ({
 
     useEffect(() => {
         const script = document.createElement("script");
-        
         script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
         script.async = true;
         document.body.appendChild(script);
         return () => {
             document.body.removeChild(script);
         };
-    }, [editProfileTrigger]);
+    }, []);
+
 
     return (
         <Box pos="relative" m="auto" w="100%" height="245px" background="rgba(79, 79, 79, 0.8)">
             <Image
                 opacity="0.5"
+
                 src={userProfile.userBgImg}
+
                 boxSize="100%"
                 objectFit="cover"
                 fallbackSrc="/defaultUserImage.svg"
@@ -141,9 +143,11 @@ const UserProfileHeader = ({
 
                 <Flex flexDir="row">
                     <Avatar
+
                         key={userProfile.userName.split(" ")[0]}
                         name={userProfile.userName.split(" ")[0]}
                         src={userProfile.userAvatar}
+
                         borderRadius="full"
                         width="120px"
                         height="120px"
