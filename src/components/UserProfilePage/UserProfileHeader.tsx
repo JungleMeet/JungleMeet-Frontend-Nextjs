@@ -77,7 +77,7 @@ const showWidget = (
         (error: unknown | undefined, result: CloudinaryWidgetResult) => {
             if (!error && result && result.event === "success") {
                 callback(token, result.info.url);
-                setEditProfileTrigger(!editProfileTrigger);
+                setTimeout(setEditProfileTrigger(!editProfileTrigger),1000)
                 console.log(editProfileTrigger);
             }
         }
