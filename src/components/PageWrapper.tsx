@@ -11,12 +11,6 @@ interface IPageWrapperProps {
 const PageWrapper = ({ children }: IPageWrapperProps): JSX.Element => {
     return (
         <PageContainer>
-            {/* <AdContainerLeft>
-                <Image src="/ad_left_200.png" width={200} height={250}></Image>
-            </AdContainerLeft>
-            <AdContainerRight>
-                <Image src="/ad_left_200.png" width={200} height={250}></Image>
-            </AdContainerRight> */}
             <NavBar />
             <ContentWrapper>{children}</ContentWrapper>
             <Footer />
