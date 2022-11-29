@@ -51,7 +51,8 @@ const MovieDetails = () => {
             setMoviesInfo(data);
         };
         fetchMovieData();
-    }, []);
+    }, [id]);
+
     useEffect(() => {
         const fetchVideoData = async () => {
             const { data } = await getYoutubeLinkById(moviesInfo.resourceId);
@@ -60,8 +61,9 @@ const MovieDetails = () => {
             } else {
                 setMoviesVideo("");
             }
+            setSecondfetch(false);
         };
-        fetchVideoData();
+        secondfetch && fetchVideoData();
     }, [secondfetch]);
 
     return (
