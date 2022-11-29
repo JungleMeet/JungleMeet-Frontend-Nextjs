@@ -5,6 +5,7 @@ import MovieCardThumbnail from "@/components/MainPage/UpcomingMovies/MovieCardTh
 import MovieCardInfo from "@/components/MainPage/UpcomingMovies/MovieCardInfo";
 import AllMoviesHeader from "./AllMoviesHeader";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useRouter } from "next/router";
 
 interface IMovieList {
     poster: string;
@@ -20,29 +21,25 @@ interface IMovieList {
 const AllMovies = () => {
     const [allMovies, setAllMovies] = useState([]);
     const [moviePage, setMoviePage] = useState(1);
-    const allMoviesMemo = useMemo(() => allMovies, [allMovies]);
     const [filterByYear, setFilterByYear] = useState("");
     const [filterByType, setFilterByType] = useState("");
-    const [sortByFeatured, setSortByFeatured] = useState("");
+    const [sortByFeatured, setSortByFeatured] = useState("release_date.desc");
+    const allMoviesMemo = useMemo(() => allMovies, [allMovies]);
+
+    const router = useRouter();
+    const { genre } = router.query;
 
     useEffect(() => {
-    // const year = (new Date()).getFullYear().toString()
-    // setFilterByYear((new Date()).getFullYear().toString())
-        setSortByFeatured("release_date.desc");
-        const fetchMovies = async () => {
-            try {
-                const { data } = await getMoviesByCondition(
-                    filterByYear,
-                    filterByType,
-                    sortByFeatured,
-                    moviePage
-                );
-                setAllMovies(data);
-            } catch (err) {
-                return err;
-            }
-        };
-        fetchMovies();
+        setFilterByType(genre as string);
+        getMoviesByCondition(filterByYear, filterByType, sortByFeatured, moviePage).then(({ data }) => {
+            setAllMovies(data);
+        });
+    }, []);
+
+    useEffect(() => {
+        getMoviesByCondition(filterByYear, filterByType, sortByFeatured, moviePage).then(({ data }) => {
+            setAllMovies(data);
+        });
     }, []);
 
     const filterByYearHandler = (filterByYear: string) => {
@@ -55,7 +52,7 @@ const AllMovies = () => {
         setSortByFeatured(sortByFeatured);
     };
     useEffect(() => {
-        getMoviesByCondition(filterByYear, filterByType, sortByFeatured, 1).then(({ data }) => {
+        getMoviesByCondition(filterByYear, filterByType, sortByFeatured, moviePage).then(({ data }) => {
             setAllMovies(data);
         });
         setMoviePage(1);
@@ -113,7 +110,7 @@ const AllMovies = () => {
                     </Text>
                 }
             >
-                <Grid gridTemplateColumns={"repeat(5,20%)"} gridGap={"72px 4px"}>
+                <Grid gridTemplateColumns={"repeat(auto-fit, minmax(194px, 1fr))"} gridGap={"72px 20px"}>
                     {allMoviesMemo?.map(
                         ({ poster, title, resourceId, voteAverage, genreNames }: IMovieList) => {
                             return (
@@ -125,6 +122,10 @@ const AllMovies = () => {
                                     color={"#ffffff"}
                                     borderRadius={"5px"}
                                     key={resourceId}
+                                    _hover={{
+                                        boxShadow:
+                      "5px 5px 5px #ebb513, -5px -5px 5px #ebb513, 5px -5px 5px #ebb513, -5px 5px 5px #ebb513",
+                                    }}
                                 >
                                     <MovieCardThumbnail src={poster} title={title} id={resourceId} />
                                     <MovieCardInfo title={title} tmdb={voteAverage} type={genreNames} />

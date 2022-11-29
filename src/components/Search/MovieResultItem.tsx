@@ -30,13 +30,10 @@ const MovieResultItem = (props: IMovieResultItemProps) => {
     };
 
     const { title, poster, year, voteAverage, resourceId, overview } = props;
-    // const href = `/movies/${resourceId}`;
     return (
         <Flex justifyContent={"space-between"} pl={"15px"} pr={"38px"} pt={"25px"}>
             <Box width={"77px"} cursor="pointer" onClick={() => createMoviePostByResourceId(resourceId)}>
-                {/* <a href={href}> */}
                 <img width="77px" src={poster} alt="poster" />
-                {/* </a> */}
             </Box>
             <Box width={"80%"} pl="10px">
                 <Box

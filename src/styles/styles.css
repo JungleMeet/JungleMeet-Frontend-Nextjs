@@ -28,6 +28,13 @@ button.is-active {
   padding: 4px 4px 0 4px;
 }
 
+body{
+  background-image: url('/Frame10.svg');
+  background-position: left top, right bottom;
+  background-repeat: no-repeat;
+  background-color: rgb(0, 0, 0);
+}
+
 body pre {
   white-space: pre-wrap;
 }
@@ -89,7 +96,6 @@ div input {
   padding: 0.6rem 1rem;
   outline: none;
   min-height: 100px;
-  tabindex: 99999999999999999999999999999999999;
 }
 
 .ProseMirror > * + * {
@@ -122,9 +128,10 @@ div input {
   line-height: 1.1;
 }
 
-.ProseMirror p{
+.ProseMirror p {
+  font-size: 1.3rem;
   margin-top: 0;
-  padding-top:0;
+  padding-top: 0;
 }
 
 .ProseMirror code {
@@ -174,7 +181,7 @@ div input {
 .bottom-row {
   color: #868e96;
   margin-left: 1rem;
-  position:absolute;
-  bottom:0;
-  margin-right:1rem;
+  position: absolute;
+  bottom: 0;
+  margin-right: 1rem;
 }

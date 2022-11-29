@@ -1,4 +1,4 @@
-import { TabList, Tab } from "@chakra-ui/react";
+import { TabList, Tab, Image } from "@chakra-ui/react";
 import { SectionSubTitleSeeMore } from "../Containers";
 import SeeMore from "../SeeMore";
 import { getPopular, getUpcoming, getTopRated } from "@/utils/axiosMovieApi";
@@ -10,6 +10,7 @@ interface IUpcomingTabs {
     isLoading: boolean;
     setIsLoading: (value: boolean) => void;
 }
+
 const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcomingTabs) => {
     const { t } = useTranslation("home");
     const tabTitles = [t("home:upcomingTitle"), t("home:popularTitle"), t("home:top10Title")];
@@ -57,7 +58,7 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
             display="flex"
             justifyContent="flex-start"
             alignItems="center"
-            gap="29px"
+            gap={["20px", "20px", "29px"]}
             mb="50px"
             color="gray.500"
             borderBottom="0"
@@ -88,10 +89,11 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
             ))}
             {/* {isLoading && <Spinner />} */}
             {showRunning && (
-                <img
+                <Image
                     src="/pikachu_running.gif"
                     width={"80px"}
-                    style={{ position: "absolute", left: "620px" }}
+                    position="absolute"
+                    left={["418px", "418px", "514px"]}
                 />
             )}
             <SectionSubTitleSeeMore>

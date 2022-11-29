@@ -54,7 +54,7 @@ const CommentItem = ({
                 createdAt={dateCreatedAt(createdAt)}
                 avatar={author?.avatar}
             />
-            <Stack pl="58px" pb={"10px"}>
+            <Stack pl="55px" pb={"10px"}>
                 <Text fontSize={"text4"} fontWeight="500" mb="15px" pr={"2rem"}>
                     {parser(content)}
                 </Text>
@@ -62,7 +62,7 @@ const CommentItem = ({
                     size="sl"
                     color="blue.500"
                     fontSize={"text5"}
-                    width="45px"
+                    width="43px"
                     variant="unstyled"
                     onClick={toggleEditor}
                 >

@@ -3,7 +3,7 @@ import { createStyles } from "@mantine/core";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 import CarouselSlide, { ICarouselSlideProps } from "./CarouselSlide";
 import { Carousel } from "@mantine/carousel";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { default as autoPlay } from "embla-carousel-autoplay";
 import { getHeroBannerMovies, getYoutubeLinkById } from "@/utils/axiosMovieApi";
 
@@ -34,6 +34,7 @@ const HeroBanner = () => {
     // eslint-disable-next-line no-unused-vars
     const [loading, setLoading] = useState(false);
     const [secondfetch, setSecondfetch] = useState(false);
+    const allMoviesMemo = useMemo(() => topRatedMovies, [topRatedMovies]);
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -46,19 +47,22 @@ const HeroBanner = () => {
     }, []);
 
     useEffect(() => {
-        const fetchYoutubeLinks = async () => {
-            const youtubeLinks = await Promise.all(
-                topRatedMovies.map(async ({ id, ...rest }) => {
-                    return {
-                        id,
-                        ...rest,
-                        youtubeLink: (await getYoutubeLinkById(id)).data,
-                    };
-                })
-            );
-            setTopRatedMovies(youtubeLinks);
-        };
-        fetchYoutubeLinks();
+        if (topRatedMovies) {
+            const fetchYoutubeLinks = async () => {
+                const youtubeLinks = await Promise.all(
+                    topRatedMovies.map(async ({ id, ...rest }) => {
+                        return {
+                            id,
+                            ...rest,
+                            youtubeLink: (await getYoutubeLinkById(id)).data,
+                        };
+                    })
+                );
+                setTopRatedMovies(youtubeLinks);
+                setLoading(false);
+            };
+            fetchYoutubeLinks();
+        }
     }, [secondfetch]);
 
     const { classes } = useStyles();
@@ -78,17 +82,27 @@ const HeroBanner = () => {
                     onMouseEnter={autoplay.current.stop}
                     onMouseLeave={autoplay.current.reset}
                 >
-                    {topRatedMovies?.map(({ id, title, voteAverage, overview, heroBanner, youtubeLink }) => (
-                        <CarouselSlide
-                            key={id}
-                            title={title}
-                            voteAverage={voteAverage}
-                            overview={overview}
-                            heroBanner={heroBanner}
-                            id={id}
-                            youtubeLink={youtubeLink}
-                        />
-                    ))}
+                    {allMoviesMemo?.map(
+                        ({
+                            id,
+                            title,
+                            voteAverage,
+                            overview,
+                            heroBanner,
+                            youtubeLink,
+                        }: ICarouselSlideProps) => (
+                            <CarouselSlide
+                                key={id}
+                                title={title}
+                                voteAverage={voteAverage}
+                                overview={overview}
+                                heroBanner={heroBanner}
+                                id={id}
+                                youtubeLink={youtubeLink}
+                                loading={loading}
+                            />
+                        )
+                    )}
                 </Carousel>
             )}
         </Box>

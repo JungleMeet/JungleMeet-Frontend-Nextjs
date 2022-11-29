@@ -4,11 +4,15 @@ import ButtonRow from "./ButtonRow";
 
 export interface IButtonPostProps {
     children: React.ReactNode;
+    isLoading: boolean;
+    disabled: boolean;
 }
 
-const ButtonPost = ({ children }: IButtonPostProps) => {
+const ButtonPost = ({ children, isLoading, disabled }: IButtonPostProps) => {
     return (
         <ButtonRow
+            disabled={disabled}
+            isLoading={isLoading}
             color="#fff"
             backgroundColor="blue.500"
             _hover={{

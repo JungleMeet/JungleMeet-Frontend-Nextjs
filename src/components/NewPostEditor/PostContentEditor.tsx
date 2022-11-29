@@ -10,6 +10,8 @@ import ContentEditor from "../Editor/ContentEditor";
 import { useDispatch, useSelector } from "react-redux";
 import { resetPostData } from "@/app/reducer/postEditingSlice";
 import ConfirmDialog from "./ConfirmDialogue";
+import { IHashtagsProps } from "./HashtagPreview";
+import Hashtag from "./Hashtag";
 
 interface IPostContentEditorProps {
     type: "updatePost" | "newPost";
@@ -20,27 +22,31 @@ const PostContentEditor = ({ bgImg, type }: IPostContentEditorProps) => {
     const router = useRouter();
     const dispatch = useDispatch();
     const [token, setToken] = useState<any | null>("");
-    // eslint-disable-next-line no-unused-vars
     const [isLoading, setIsLoading] = useState(false);
     const toast = useToast();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { editor, clearContent, content } = useEditorController();
+
     const postId = useSelector((state: any) => state.postEditing.postId);
     const editPostTitle = useSelector((state: any) => state.postEditing.postTitle);
-    const editHashtag = useSelector((state: any) => state.postEditing.hashtag);
+    const editHashtags = useSelector((state: any) => state.postEditing.hashtags);
     const editContent = useSelector((state: any) => state.postEditing.content);
 
     const initialData =
     type === "newPost"
         ? {
             postTitle: "",
-            hashtag: "",
+            hashtags: [],
             content: "",
         }
-        : { postTitle: editPostTitle, hashtag: editHashtag, content: editContent };
+        : { postTitle: editPostTitle, hashtags: editHashtags, content: editContent };
 
     const [postTitle, setPostTitle] = useState(initialData.postTitle);
-    const [hashtag, setHashtag] = useState(initialData.hashtag);
+    // const [hashtags, setHashtags] = useState(initialData.hashtags);
+
+    const [hashtagsArray, setHashtagsArray] = useState<IHashtagsProps[]>([]);
+
+    const hashtags = hashtagsArray.map(({ _id }) => _id);
 
     useEffect(() => {
         const localtoken = localStorage.getItem("token");
@@ -67,10 +73,10 @@ const PostContentEditor = ({ bgImg, type }: IPostContentEditorProps) => {
 
         try {
             if (type === "newPost") {
-                await addNewPost(postTitle, content, hashtag, token, bgImg);
+                await addNewPost(postTitle, content, hashtags, token, bgImg);
             }
             if (type === "updatePost") {
-                await updatePost({ postId, postTitle, content, hashtag, bgImg, token });
+                await updatePost({ postId, postTitle, content, hashtags, bgImg, token });
             }
             setIsLoading(false);
             clearContent();
@@ -91,7 +97,7 @@ const PostContentEditor = ({ bgImg, type }: IPostContentEditorProps) => {
 
     const handleCancel = () => {
         setPostTitle("");
-        setHashtag("");
+        setHashtagsArray([]);
         clearContent();
         dispatch(resetPostData());
         window.history.back();
@@ -118,20 +124,13 @@ const PostContentEditor = ({ bgImg, type }: IPostContentEditorProps) => {
                         onChange={(event) => setPostTitle(event.target.value)}
                     />
                     <ContentEditor editor={editor} height="350px" />
-                    <Flex paddingTop="20px" marginLeft="8px" gap="25px" alignItems="center">
-                        <Text fontSize="text3" fontWeight="700" lineHeight="lh28">
-              #Hashtag
-                        </Text>
-                        <PostSingleLineInput
-                            placeholder="Add your Hashtag here with #..."
-                            value={hashtag}
-                            onChange={(event) => setHashtag(event.target.value)}
-                        />
-                    </Flex>
+                    <Hashtag setHashtagsArray={setHashtagsArray} hashtagsArray={hashtagsArray} />
                 </Box>
                 <Flex justifyContent="space-between" marginTop="50px" marginBottom="50px">
                     <ButtonCancel onClick={onOpen}>Cancel</ButtonCancel>
-                    <ButtonPost>{type === "newPost" ? "Post" : "Update"}</ButtonPost>
+                    <ButtonPost isLoading={isLoading} disabled={isLoading && true}>
+                        {type === "newPost" ? "Post" : "Update"}
+                    </ButtonPost>
                 </Flex>
             </form>
             <ConfirmDialog isOpen={isOpen} onClose={onClose} handleCancel={handleCancel} />

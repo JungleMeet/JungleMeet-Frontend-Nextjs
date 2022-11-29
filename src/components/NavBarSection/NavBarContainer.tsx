@@ -10,7 +10,7 @@ const NavBarContainer = ({ children }: NavBarContainerProps) => {
             as="nav"
             align="center"
             justify="space-between"
-            gap="60px"
+            gap={["14px", "14px", "60px"]}
             w="100%"
             h="80px"
             maxW="inherit"

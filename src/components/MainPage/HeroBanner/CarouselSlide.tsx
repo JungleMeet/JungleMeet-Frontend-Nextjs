@@ -1,6 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 import ButtonWatchTrailer from "./ButtonWatchTrailer";
-import { Heading, Text, Flex, Image, useDisclosure } from "@chakra-ui/react";
+import { Heading, Box, Flex, Image, useDisclosure } from "@chakra-ui/react";
 import { Carousel } from "@mantine/carousel";
 import TMDBRanking from "../TMDBRanking";
 import PlayingMovieTrailerModel from "@/components/PlayingMovieTrailerModel";
@@ -11,7 +11,8 @@ export interface ICarouselSlideProps {
     overview: string;
     heroBanner: string;
     id: number;
-    youtubeLink?: string;
+    youtubeLink: string;
+    loading: boolean;
 }
 
 const CarouselSlide = ({
@@ -21,6 +22,7 @@ const CarouselSlide = ({
     heroBanner,
     id,
     youtubeLink,
+    loading,
 }: ICarouselSlideProps): JSX.Element => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -28,23 +30,30 @@ const CarouselSlide = ({
         <Carousel.Slide key={title}>
             <Flex
                 flexDir="column"
-                gap="16px"
+                gap={["10px", "10px", "16px"]}
                 pos="absolute"
-                bottom="220px"
-                left="80px"
-                width="40%"
-                padding="30px 50px"
+                bottom={["40px", "60px", "120px"]}
+                left={["5%", "5%", "80px"]}
+                width={["90%", "90%", "40%"]}
+                padding={["15px 20px", "15px 20px", "30px 50px"]}
                 backgroundColor="rgba(0,0,0,0.4)"
                 borderRadius="20px"
+                minW="500px"
             >
-                <Heading as="h1" fontSize="h1" fontWeight="800" color="white" display="inline-block">
+                <Heading
+                    as="h1"
+                    fontSize={["h3", "h2", "h1"]}
+                    fontWeight="800"
+                    color="white"
+                    display="inline-block"
+                >
                     {title}
                 </Heading>
                 <TMDBRanking gap="72.25px" tmdb={voteAverage} color="white" />
-                <Text color="white" textStyle="myText">
+                <Box color="white" textStyle="myText" noOfLines={[2, 2, 5]}>
                     {overview}
-                </Text>
-                <ButtonWatchTrailer value={id} onClick={onOpen} />
+                </Box>
+                <ButtonWatchTrailer value={id} onClick={onOpen} loading={loading} />
                 <PlayingMovieTrailerModel isOpen={isOpen} onClose={onClose} src={youtubeLink} />
             </Flex>
             <Image src={heroBanner} boxSize="100%" objectFit="cover" alt="hero image" />
@@ -52,4 +61,4 @@ const CarouselSlide = ({
     );
 };
 
-export default CarouselSlide;
+export default memo(CarouselSlide);

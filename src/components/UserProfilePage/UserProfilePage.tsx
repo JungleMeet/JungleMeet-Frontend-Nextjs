@@ -53,11 +53,13 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     const [userId, setUserId] = useState("");
     const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [currentTab, setCurrentTab] = useState("My Posts");
+    const [currentTab, setCurrentTab] = useState(active === "message" ? "Message" : "My Posts");
 
     const [followed, setFollowed] = useState(false);
     const [followTrigger, setfFllowTrigger] = useState(true);
     const [selfProfile, setSelfProfile] = useState<IUserProfile>(defaultUserProfile);
+
+    const [editProfileTrigger, setEditProfileTrigger] = useState(false);
 
     useEffect(() => {
         const getUserProfileDetail = async () => {
@@ -90,6 +92,25 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     }, []);
 
     useEffect(() => {
+        const updateProfile = async () => {
+            try {
+                const userInfoLocalStorage = localStorage.getItem("userInfo");
+                if (userInfoLocalStorage) {
+                    const userInfo = JSON.parse(userInfoLocalStorage);
+                    const profileResponse: AxiosResponse = await getUserProfile(
+                        queryUserId === userInfo.userId ? userInfo.userId : queryUserId
+                    )!;
+                    setUserProfile(profileResponse.data);
+                } else {
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        updateProfile();
+    }, [editProfileTrigger]);
+
+    useEffect(() => {
         const updateFollow = async () => {
             try {
                 const userInfoLocalStorage = localStorage.getItem("userInfo");
@@ -109,7 +130,7 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                 } else {
                 }
             } catch (err) {
-                return err;
+                console.log(err);
             }
         };
         updateFollow();
@@ -118,16 +139,15 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     return (
         <>
             <UserProfileHeader
-                userAvatar={userProfile.userAvatar}
-                userBgImg={userProfile.userBgImg}
-                userRole={userProfile.userRole}
-                userName={userProfile.userName}
+                userProfile={userProfile}
                 userId={userId}
                 queryUserId={queryUserId}
                 followed={followed}
                 token={token}
                 setfFllowTrigger={setfFllowTrigger}
                 followTrigger={followTrigger}
+                setEditProfileTrigger={setEditProfileTrigger}
+                editProfileTrigger={editProfileTrigger}
             />
             <Flex flexDirection="row" pos="relative" mt="28px">
                 <Flex maxW="816px" flexDirection="column" w="70%">

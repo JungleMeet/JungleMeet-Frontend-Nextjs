@@ -12,16 +12,21 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useMediaQuery } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Header from "../layouts/Header";
+import { AdContainerLeft, AdContainerRight, AdImg } from "@/components/Advertisement";
 
 export const PageContainer = styled.div`
   max-width: 1440px;
   margin: auto;
+  z-index: 30;
 `;
 
 export const ContentWrapper = styled.div`
   padding: 98px;
   padding-bottom: 0;
   width: 100%;
+  @media (max-width: 60em) {
+    padding: 50px;
+  }
 `;
 
 interface IgetStaticProps {
@@ -47,10 +52,16 @@ const HomePage = (): JSX.Element => {
 
     return (
         <PageContainer>
-            <Header />
             <NavBar />
             <HeroBanner />
+            <AdContainerLeft>
+                <AdImg src="/ad_left.png" />
+            </AdContainerLeft>
+            <AdContainerRight>
+                <AdImg src="/ad_right.png" />
+            </AdContainerRight>
             <ContentWrapper>
+                <Header />
                 <Flex>
                     {!isMinWidthMedium && (
                         <>
@@ -58,9 +69,7 @@ const HomePage = (): JSX.Element => {
                             <WeeklyTop10Post />
                         </>
                     )}
-                    {/* <NowPlaying /> */}
                     {isMinWidthMedium && <WeeklyTop10Post />}
-                    {/* <WeeklyTop10Post /> */}
                 </Flex>
                 <UpcomingMovies />
                 <ExclusiveVideos />
