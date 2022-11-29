@@ -21,6 +21,17 @@ const genPageArray=(totalPage: number, centrePage:number)=>{
         if (typeof item === "number") return item>0 && item <=lastPage
         if (typeof item === "string") return item
     })
+    // when center number is 1,2 or near the end, very few numbers will show, we could add it manually
+    if (centrePage<3){
+        const index=filteredUniqueOutput.indexOf(c+2)+1
+        filteredUniqueOutput.splice(index,0,c+3,c+4)
+    }
+
+    if (lastPage-centrePage<3){
+        const index=filteredUniqueOutput.indexOf(c-2)
+        filteredUniqueOutput.splice(index,0,c-4,c-3)
+
+    }
     return filteredUniqueOutput
 }
 
@@ -29,10 +40,9 @@ interface IUsePaginationArrayGeneratorProps{
 }
 
 const usePaginationArrayGenerator = ({totalPage}:IUsePaginationArrayGeneratorProps) => {
-    const centerNumber=Math.ceil((totalPage-1)/2)
-    const [centrePage, setCentrePage] = useState(centerNumber)
+    const [centrePage, setCentrePage] = useState(1)
     // the initial state cannot be access therfore use the ||
-    const paginationArray=genPageArray(totalPage,centrePage||centerNumber)
+    const paginationArray=genPageArray(totalPage,centrePage||1)
 
     const handleClickOnLeftDot=()=>{
         if (centrePage-3>0) setCentrePage(prev=>prev-3)
