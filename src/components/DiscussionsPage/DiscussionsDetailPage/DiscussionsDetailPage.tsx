@@ -20,6 +20,12 @@ interface IpostDetail {
     bgImg?: string;
     follower?: string[];
     hashtag?: string;
+    hashtags: [
+        {
+            _id: string;
+            category: string;
+        }
+    ];
 }
 [];
 
@@ -94,6 +100,7 @@ const DiscussionsDetailPage = (): JSX.Element => {
                     content: postDetail.content,
                     hashtag: postDetail.hashtag,
                     bgImg: postDetail.bgImg,
+                    hashtags: postDetail.hashtags,
                 })
             );
             router.push("/editpost");
@@ -126,6 +133,7 @@ const DiscussionsDetailPage = (): JSX.Element => {
                 toggleShowEditor={toggleShowEditor}
                 isEditorVisible={isEditorVisible}
                 isLogged={isLogged}
+                hashtags={postDetail?.hashtags}
             />
             {isEditorVisible ? <CommentEditor postId={id} /> : null}
             <DiscussionsDetailComments />

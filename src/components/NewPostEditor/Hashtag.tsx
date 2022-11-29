@@ -6,15 +6,26 @@ import PostSingleLineInput from "./PostSingleLineInput";
 interface IHashtagProps {
     hashtagsArray: IHashtagsProps[];
     setHashtagsArray: ({}: IHashtagsProps[]) => void;
+    type: "newPost" | "updatePost";
+    editHashtags: [];
 }
 
-const Hashtag = ({ hashtagsArray, setHashtagsArray }: IHashtagProps) => {
+const Hashtag = ({ hashtagsArray, setHashtagsArray, type, editHashtags }: IHashtagProps) => {
     const [query, setQuery] = useState("");
+
+    const updateEditHashtags = [...editHashtags, ...hashtagsArray];
 
     return (
         <>
             <Flex mt="14px" ml="6px" gap="10px" flexDirection="row">
-                {hashtagsArray.length > 0 &&
+                {type === "updatePost" &&
+          updateEditHashtags?.map(({ _id, category }) => (
+              <Box key={_id} color="blue.500" fontSize="text3" lineHeight="lh28">
+              #{category},
+              </Box>
+          ))}
+                {type === "newPost" &&
+          hashtagsArray?.length > 0 &&
           hashtagsArray?.map(({ _id, category }) => (
               <Box key={_id} color="blue.500" fontSize="text3" lineHeight="lh28">
               #{category},

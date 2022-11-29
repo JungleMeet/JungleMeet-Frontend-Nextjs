@@ -7,6 +7,12 @@ import parser from "html-react-parser";
 interface IDiscussionProps {
     title: string;
     hashtag: string;
+    hashtags: [
+        {
+            _id: string;
+            category: string;
+        }
+    ];
     src: string;
     date: string;
     name: {
@@ -24,6 +30,7 @@ interface IDiscussionProps {
 const Discussion = ({
     title,
     hashtag,
+    hashtags,
     src,
     name,
     date,
@@ -72,9 +79,16 @@ const Discussion = ({
                         {parser(description)}
                     </Text>
                 </ExpandableTextComponent>
-                <Text as="i" color="blue.500" fontSize="text4" lineHeight="lh28">
-                    {hashtag}
-                </Text>
+                {hashtags?.map(({ _id, category }) => (
+                    <Text key={_id} as="i" color="blue.500" fontSize="text4" lineHeight="lh28">
+            #{category},&nbsp;
+                    </Text>
+                ))}
+                {hashtag && (
+                    <Text as="i" color="blue.500" fontSize="text4" lineHeight="lh28">
+            #{hashtag},
+                    </Text>
+                )}
             </Box>
             <Divider />
         </Flex>

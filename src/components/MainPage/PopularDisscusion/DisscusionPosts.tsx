@@ -33,6 +33,7 @@ const DisscusionPosts = () => {
                 likeCount,
                 viewNumber,
                 commentCount,
+                hashtags,
             }) => {
                 return (
                     <PostCardInfo
@@ -47,6 +48,7 @@ const DisscusionPosts = () => {
                         views={viewNumber}
                         comments={commentCount}
                         description={content}
+                        hashtags={hashtags}
                     />
                 );
             }

@@ -32,6 +32,8 @@ const PostContentEditor = ({ bgImg, type }: IPostContentEditorProps) => {
     const editHashtags = useSelector((state: any) => state.postEditing.hashtags);
     const editContent = useSelector((state: any) => state.postEditing.content);
 
+    console.log(editContent, editPostTitle, editHashtags);
+
     const initialData =
     type === "newPost"
         ? {
@@ -124,7 +126,12 @@ const PostContentEditor = ({ bgImg, type }: IPostContentEditorProps) => {
                         onChange={(event) => setPostTitle(event.target.value)}
                     />
                     <ContentEditor editor={editor} height="350px" />
-                    <Hashtag setHashtagsArray={setHashtagsArray} hashtagsArray={hashtagsArray} />
+                    <Hashtag
+                        setHashtagsArray={setHashtagsArray}
+                        hashtagsArray={hashtagsArray}
+                        type={type}
+                        editHashtags={editHashtags}
+                    />
                 </Box>
                 <Flex justifyContent="space-between" marginTop="50px" marginBottom="50px">
                     <ButtonCancel onClick={onOpen}>Cancel</ButtonCancel>

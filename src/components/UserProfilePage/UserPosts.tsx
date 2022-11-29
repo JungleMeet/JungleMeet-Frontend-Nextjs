@@ -59,6 +59,7 @@ const UserPosts = ({ queryUserId, setIsLoading }: IUserPosts) => {
                     likeCount,
                     viewNumber,
                     commentCount,
+                    hashtags,
                 }: CurrentPagePostProps) => (
                     <Discussion
                         key={_id}
@@ -72,6 +73,7 @@ const UserPosts = ({ queryUserId, setIsLoading }: IUserPosts) => {
                         views={viewNumber}
                         comments={commentCount}
                         description={content}
+                        hashtags={hashtags}
                     />
                 )
             )}

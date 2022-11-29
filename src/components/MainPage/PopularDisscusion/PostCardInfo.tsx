@@ -19,6 +19,12 @@ interface PostCardInfoProps {
     views: number;
     comments: number;
     description: string;
+    hashtags: [
+        {
+            _id: string;
+            category: string;
+        }
+    ];
 }
 
 const PostCardInfo: React.FC<PostCardInfoProps> = (props) => {
@@ -90,9 +96,16 @@ const PostCardInfo: React.FC<PostCardInfoProps> = (props) => {
                                 {parser(props.description)}
                             </Box>
                         </ExpandableTextComponent>
-                        <Text as="i" color="blue.500" fontSize="text4" lineHeight="lh28">
-                            {props.hashtag}
-                        </Text>
+                        {props.hashtags?.map(({ _id, category }) => (
+                            <Text key={_id} as="i" color="blue.500" fontSize="text4" lineHeight="lh28">
+                #{category},&nbsp;
+                            </Text>
+                        ))}
+                        {props.hashtag && (
+                            <Text as="i" color="blue.500" fontSize="text4" lineHeight="lh28">
+                #{props.hashtag},
+                            </Text>
+                        )}
                     </Box>
                 </Flex>
                 <Divider marginTop="18px" />

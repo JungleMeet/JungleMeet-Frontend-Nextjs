@@ -53,7 +53,7 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     const [userId, setUserId] = useState("");
     const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [currentTab, setCurrentTab] = useState(active === "message" ? "Message": "My Posts");
+    const [currentTab, setCurrentTab] = useState(active === "message" ? "Message" : "My Posts");
 
     const [followed, setFollowed] = useState(false);
     const [followTrigger, setfFllowTrigger] = useState(true);
