@@ -42,7 +42,7 @@ const DiscussionsDetailContent = ({
         <Grid>
             <Flex key={postId} direction={"column"}>
                 <Box mt="70px" position="relative">
-                    <Image src={bgImg}></Image>
+                    <Image src={bgImg} w='100%'></Image>
                     <Text mt="40px">{content && parser(content)}</Text>
                     <Flex alignItems="center" mt="40px">
                         {isLogged ? (
