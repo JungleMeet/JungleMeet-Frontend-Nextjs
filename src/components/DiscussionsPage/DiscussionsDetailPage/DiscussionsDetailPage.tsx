@@ -129,7 +129,6 @@ const DiscussionsDetailPage = (): JSX.Element => {
             />
             {isEditorVisible ? <CommentEditor postId={id} /> : null}
             <DiscussionsDetailComments />
-            {/* postId={postDetail?._id} */}
         </Box>
     );
 };
