@@ -112,44 +112,47 @@ export const UserProfileModal = ({
                                                     {modalItem.name}
                                                 </Text>
                                             </Flex>
-
-                                            <Button
-                                                borderRadius={"5px"}
-                                                position="absolute"
-                                                backgroundColor="lightBlue.600"
-                                                width="80px"
-                                                height="25px"
-                                                color="white"
-                                                fontSize="text4"
-                                                right="11px"
-                                                top={"50%"}
-                                                marginTop={"-12.5px"}
-                                                onClick={async () => {
-                                                    await toggleFollowing(token, modalItem.userId);
-                                                    setfFllowTrigger(!followTrigger);
-                                                }}
-                                            >
-                                                {selfProfile.followingsList
-                                                    .map((following: any) => following.userId)
-                                                    .includes(modalItem.userId) ? (
-                                                        <Icon as={HiMinus} w={3} h={3} />
-                                                    ) : (
-                                                        <Icon as={HiPlus} w={3} h={3} />
-                                                    )}
-                                                <Text
-                                                    ml={"7.5px"}
-                                                    fontSize={"12px"}
-                                                    fontWeight={400}
-                                                    lineHeight={"20px"}
-                                                    flexGrow={1}
+                                            {selfProfile.userName ? (
+                                                <Button
+                                                    borderRadius={"5px"}
+                                                    position="absolute"
+                                                    backgroundColor="lightBlue.600"
+                                                    width="80px"
+                                                    height="25px"
+                                                    color="white"
+                                                    fontSize="text4"
+                                                    right="11px"
+                                                    top={"50%"}
+                                                    marginTop={"-12.5px"}
+                                                    onClick={async () => {
+                                                        await toggleFollowing(token, modalItem.userId);
+                                                        setfFllowTrigger(!followTrigger);
+                                                    }}
                                                 >
                                                     {selfProfile.followingsList
                                                         .map((following: any) => following.userId)
-                                                        .includes(modalItem.userId)
-                                                        ? "Unfollow"
-                                                        : "Follow"}
-                                                </Text>
-                                            </Button>
+                                                        .includes(modalItem.userId) ? (
+                                                            <Icon as={HiMinus} w={3} h={3} />
+                                                        ) : (
+                                                            <Icon as={HiPlus} w={3} h={3} />
+                                                        )}
+                                                    <Text
+                                                        ml={"7.5px"}
+                                                        fontSize={"12px"}
+                                                        fontWeight={400}
+                                                        lineHeight={"20px"}
+                                                        flexGrow={1}
+                                                    >
+                                                        {selfProfile.followingsList
+                                                            .map((following: any) => following.userId)
+                                                            .includes(modalItem.userId)
+                                                            ? "Unfollow"
+                                                            : "Follow"}
+                                                    </Text>
+                                                </Button>
+                                            ) : (
+                                                <></>
+                                            )}
                                         </Flex>
                                     );
                                 })}
