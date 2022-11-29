@@ -133,6 +133,7 @@ const DiscussionsDetailPage = (): JSX.Element => {
                 toggleShowEditor={toggleShowEditor}
                 isEditorVisible={isEditorVisible}
                 isLogged={isLogged}
+                hashtag={postDetail?.hashtag}
                 hashtags={postDetail?.hashtags}
             />
             {isEditorVisible ? <CommentEditor postId={id} /> : null}

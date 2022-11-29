@@ -36,7 +36,7 @@ const PostEditor = ({ type }: IPostEditorProps) => {
                 setBgImg={setBgImg}
                 bgImg={bgImg}
                 displayText={"SELECT YOUR COVER IMAGE"}
-                croppingAspectRatio={5.12}
+                croppingAspectRatio={4.98}
             />
             <PostContentEditor bgImg={bgImg} type={type} />
         </>
