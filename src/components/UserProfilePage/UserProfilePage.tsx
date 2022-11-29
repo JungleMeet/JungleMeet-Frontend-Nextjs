@@ -69,9 +69,7 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                     const userInfo = JSON.parse(userInfoLocalStorage);
                     const token = localStorage.getItem("token");
                     setToken(token!);
-                    const profileResponse: AxiosResponse = await getUserProfile(
-                        queryUserId === userInfo.userId ? userInfo.userId : queryUserId
-                    )!;
+                    const profileResponse: AxiosResponse = await getUserProfile(queryUserId)!;
                     setUserProfile(profileResponse.data);
                     const selfProfileResponse: AxiosResponse = await getUserProfile(userInfo.userId)!;
                     setSelfProfile(selfProfileResponse.data);
@@ -83,6 +81,9 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                             .includes(userInfo.userId)
                     );
                 } else {
+                    const profileResponse: AxiosResponse = await getUserProfile(queryUserId)!;
+                    setUserProfile(profileResponse.data);
+                    setFollowed(false);
                 }
             } catch (err) {
                 return err;
