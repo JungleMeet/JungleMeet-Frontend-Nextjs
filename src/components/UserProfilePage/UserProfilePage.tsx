@@ -53,7 +53,7 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     const [userId, setUserId] = useState("");
     const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [currentTab, setCurrentTab] = useState(active === "message" ? "Message": "My Posts");
+    const [currentTab, setCurrentTab] = useState(active === "message" ? "Message" : "My Posts");
 
     const [followed, setFollowed] = useState(false);
     const [followTrigger, setfFllowTrigger] = useState(true);
@@ -111,7 +111,6 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     }, [editProfileTrigger]);
 
     useEffect(() => {
-
         const updateFollow = async () => {
             try {
                 const userInfoLocalStorage = localStorage.getItem("userInfo");
@@ -132,7 +131,6 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                 }
             } catch (err) {
                 console.log(err);
-
             }
         };
         updateFollow();
@@ -141,7 +139,7 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     return (
         <>
             <UserProfileHeader
-                userProfile = {userProfile}
+                userProfile={userProfile}
                 userId={userId}
                 queryUserId={queryUserId}
                 followed={followed}
@@ -150,8 +148,6 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
                 followTrigger={followTrigger}
                 setEditProfileTrigger={setEditProfileTrigger}
                 editProfileTrigger={editProfileTrigger}
-
-
             />
             <Flex flexDirection="row" pos="relative" mt="28px">
                 <Flex maxW="816px" flexDirection="column" w="70%">
