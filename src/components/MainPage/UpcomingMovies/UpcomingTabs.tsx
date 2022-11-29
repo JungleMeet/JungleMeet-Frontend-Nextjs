@@ -88,7 +88,7 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
                 </Tab>
             ))}
             {/* {isLoading && <Spinner />} */}
-            {!showRunning && (
+            {showRunning && (
                 <Image
                     src="/pikachu_running.gif"
                     width={"80px"}
