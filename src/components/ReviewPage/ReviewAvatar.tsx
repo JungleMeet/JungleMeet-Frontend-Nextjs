@@ -1,5 +1,5 @@
 import React from "react";
-import CreatedByTheAuthor from "../CreatedByTheAuthor";
+import CreatedBy from "../CreatedBy";
 
 interface IReviewAvatar {
     id: string;
@@ -10,14 +10,13 @@ interface IReviewAvatar {
 
 const ReviewAvatar = ({ author, createdAt, avatar, id }: IReviewAvatar) => {
     return (
-        <CreatedByTheAuthor
+        <CreatedBy
             id={id}
-            gap="19.61px"
-            color="blue.500"
-            fontSize="text3"
+            gap="15px"
+            fontSize="text4"
             lineHeight="lh28"
             fontWeight="700"
-            imageSize="61.69px"
+            imageSize="35px"
             author={author}
             createdAt={createdAt}
             avatar={avatar}

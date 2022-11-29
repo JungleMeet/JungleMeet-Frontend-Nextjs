@@ -8,10 +8,7 @@ import {
 } from "@/components/NewPostEditor/cloudinaryType";
 
 interface UserProfileHeaderInfoProps {
-    userRole: string;
-    userName: string;
-    userBgImg: string;
-    userAvatar: string;
+    userProfile: any;
     userId: string;
     followed: boolean;
     queryUserId: string;
@@ -80,7 +77,7 @@ const showWidget = (
         (error: unknown | undefined, result: CloudinaryWidgetResult) => {
             if (!error && result && result.event === "success") {
                 callback(token, result.info.url);
-                setEditProfileTrigger(!editProfileTrigger);
+                setTimeout(setEditProfileTrigger(!editProfileTrigger), 1000);
                 console.log(editProfileTrigger);
             }
         }
@@ -89,10 +86,7 @@ const showWidget = (
 };
 
 const UserProfileHeader = ({
-    userAvatar,
-    userBgImg,
-    userRole,
-    userName,
+    userProfile,
     userId,
     followed,
     queryUserId,
@@ -116,7 +110,7 @@ const UserProfileHeader = ({
         <Box pos="relative" m="auto" w="100%" height="245px" background="rgba(79, 79, 79, 0.8)">
             <Image
                 opacity="0.5"
-                src={userBgImg}
+                src={userProfile.userBgImg}
                 boxSize="100%"
                 objectFit="cover"
                 fallbackSrc="/defaultUserImage.svg"
@@ -145,9 +139,9 @@ const UserProfileHeader = ({
 
                 <Flex flexDir="row">
                     <Avatar
-                        key={userName.split(" ")[0]}
-                        name={userName.split(" ")[0]}
-                        src={userAvatar}
+                        key={userProfile.userName.split(" ")[0]}
+                        name={userProfile.userName.split(" ")[0]}
+                        src={userProfile.userAvatar}
                         borderRadius="full"
                         width="120px"
                         height="120px"
@@ -164,7 +158,7 @@ const UserProfileHeader = ({
                                 bottom="0"
                                 fontWeight="500"
                             >
-                                {userRole === "admin" ? "Admin_User" : "General_User"}
+                                {userProfile.userRole === "admin" ? "Admin_User" : "General_User"}
                             </Text>
                         </Flex>
                         <Text
@@ -178,28 +172,32 @@ const UserProfileHeader = ({
                             fontFamily="body"
                             fontWeight="700"
                         >
-                            {userName.split(" ")[0]}
+                            {userProfile.userName.split(" ")[0]}
                         </Text>
                     </Flex>
                     {userId === queryUserId ? (
                         <></>
                     ) : (
                         <>
-                            <Button
-                                backgroundColor="lightBlue.600"
-                                mt={6}
-                                width="140px"
-                                height="50px"
-                                color="white"
-                                fontSize="text4"
-                                onClick={async () => {
-                                    await toggleFollowing(token, queryUserId);
-                                    setfFllowTrigger(!followTrigger);
-                                }}
-                            >
-                                {followed ? <Icon as={HiMinus} w={5} h={5} /> : <Icon as={HiPlus} w={5} h={5} />}
-                                <Text flexGrow={1}>{followed ? "Unfollow" : "Follow"}</Text>
-                            </Button>
+                            {token ? (
+                                <Button
+                                    backgroundColor="lightBlue.600"
+                                    mt={6}
+                                    width="140px"
+                                    height="50px"
+                                    color="white"
+                                    fontSize="text4"
+                                    onClick={async () => {
+                                        await toggleFollowing(token, queryUserId);
+                                        setfFllowTrigger(!followTrigger);
+                                    }}
+                                >
+                                    {followed ? <Icon as={HiMinus} w={5} h={5} /> : <Icon as={HiPlus} w={5} h={5} />}
+                                    <Text flexGrow={1}>{followed ? "Unfollow" : "Follow"}</Text>
+                                </Button>
+                            ) : (
+                                <></>
+                            )}
                         </>
                     )}
                 </Flex>
