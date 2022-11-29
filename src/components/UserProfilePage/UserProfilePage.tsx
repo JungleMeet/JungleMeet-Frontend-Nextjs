@@ -139,10 +139,7 @@ const UserProfilePage = ({ queryUserId, active }: userProfileProps) => {
     return (
         <>
             <UserProfileHeader
-                userAvatar={userProfile.userAvatar}
-                userBgImg={userProfile.userBgImg}
-                userRole={userProfile.userRole}
-                userName={userProfile.userName}
+                userProfile={userProfile}
                 userId={userId}
                 queryUserId={queryUserId}
                 followed={followed}

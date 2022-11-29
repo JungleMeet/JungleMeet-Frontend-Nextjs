@@ -49,7 +49,7 @@ const DiscussionsDetailContent = ({
         <Grid>
             <Flex key={postId} direction={"column"}>
                 <Box mt="70px" position="relative">
-                    <Image src={bgImg}></Image>
+                    <Image src={bgImg} w='100%'></Image>
                     <Text mt="40px">{content && parser(content)}</Text>
                     {hashtags?.map(({ _id, category }) => (
                         <Text key={_id} as="i" color="blue.500" fontSize="text4" lineHeight="lh28">
