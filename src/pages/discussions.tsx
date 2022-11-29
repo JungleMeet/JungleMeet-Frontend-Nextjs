@@ -2,6 +2,8 @@ import PageWrapper from "@/components/PageWrapper";
 import DiscussionsPage from "@/components/DiscussionsPage/DiscussionsPage";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
+
+
 interface IgetStaticProps {
     locale: string;
 }

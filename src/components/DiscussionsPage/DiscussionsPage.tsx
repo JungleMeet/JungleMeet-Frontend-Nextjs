@@ -1,12 +1,14 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useRef } from "react";
 import Discussion from "./Discussion";
 import DiscussionHeader from "./DiscussionHeader";
 import DiscussionFilter from "./DiscussionFilter";
 // import { discussionsData } from "./discussionsData";
 import { getPostsByCondition } from "@/utils/axiosPostApi";
-import Pagination from "./Pagination";
+import Pagination from './Pagination/Pagination';
 import { useDispatch, useSelector } from "react-redux";
 import { setTotalPosts, setCurrentPagePost } from "@/app/reducer/pageSlice";
+
+
 
 export interface CurrentPagePostProps {
     _id: string;
@@ -33,6 +35,7 @@ const DiscussionsPage = () => {
     const postsPerPage = useSelector((state: any) => state.page.postsPerPage);
     const sortBy = useSelector((state: any) => state.page.sortBy);
     const dispatch = useDispatch();
+    const postContainerRef=useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -48,47 +51,51 @@ const DiscussionsPage = () => {
         fetchPosts();
     }, [sortBy, currentPage]);
 
-    const currentPostsMemo = useMemo(
-        () => (
-            <>
-                {currentPagePost?.map(
-                    ({
-                        _id,
-                        title,
-                        content,
-                        releaseDateRightFormat,
-                        hashtag,
-                        bgImg,
-                        author,
-                        likeCount,
-                        viewNumber,
-                        commentCount,
-                    }: CurrentPagePostProps) => (
-                        <Discussion
-                            key={_id}
-                            postId={_id}
-                            hashtag={hashtag}
-                            src={bgImg}
-                            title={title}
-                            name={author}
-                            date={releaseDateRightFormat}
-                            like={likeCount}
-                            views={viewNumber}
-                            comments={commentCount}
-                            description={content}
-                        />
-                    )
-                )}
-            </>
-        ),
-        [currentPagePost]
+    useEffect(()=>{
+        postContainerRef.current && postContainerRef.current.scrollIntoView({block: "end"})
+    },[currentPagePost])
+
+
+    const currentPosts = (
+        <div >
+            {currentPagePost?.map(
+                ({
+                    _id,
+                    title,
+                    content,
+                    releaseDateRightFormat,
+                    hashtag,
+                    bgImg,
+                    author,
+                    likeCount,
+                    viewNumber,
+                    commentCount,
+                }: CurrentPagePostProps) => (
+                    <Discussion
+                        key={_id}
+                        postId={_id}
+                        hashtag={hashtag}
+                        src={bgImg}
+                        title={title}
+                        name={author}
+                        date={releaseDateRightFormat}
+                        like={likeCount}
+                        views={viewNumber}
+                        comments={commentCount}
+                        description={content}
+                    />
+                )
+            )}
+        </div>
     );
 
     return (
         <>
             <DiscussionHeader />
             <DiscussionFilter />
-            {currentPostsMemo}
+            {/* this div is for positioning */}
+            <div ref={postContainerRef}></div> 
+            {currentPosts}
             <Pagination totalPosts={totalPosts} postsPerPage={postsPerPage} />
         </>
     );
