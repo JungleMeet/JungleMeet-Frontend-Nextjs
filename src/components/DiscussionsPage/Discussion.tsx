@@ -45,7 +45,7 @@ const Discussion = ({
             <Image
                 src={src}
                 alt="cover image for the post"
-                paddingTop="45px"
+                marginTop="45px"
                 height="250px"
                 objectFit="cover"
             />

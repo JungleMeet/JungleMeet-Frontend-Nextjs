@@ -23,6 +23,7 @@ interface IContentProps {
             category: string;
         }
     ];
+    hashtag?: string;
 }
 
 const DiscussionsDetailContent = ({
@@ -35,6 +36,7 @@ const DiscussionsDetailContent = ({
     isLogged,
     currentId,
     hashtags,
+    hashtag,
 }: IContentProps) => {
     const dispatch = useDispatch();
 
@@ -49,13 +51,18 @@ const DiscussionsDetailContent = ({
         <Grid>
             <Flex key={postId} direction={"column"}>
                 <Box mt="70px" position="relative">
-                    <Image src={bgImg} w='100%'></Image>
+                    <Image src={bgImg} w="100%" height="250px"></Image>
                     <Text mt="40px">{content && parser(content)}</Text>
                     {hashtags?.map(({ _id, category }) => (
                         <Text key={_id} as="i" color="blue.500" fontSize="text4" lineHeight="lh28">
               #{category},&nbsp;
                         </Text>
                     ))}
+                    {hashtag && (
+                        <Text as="i" color="blue.500" fontSize="text4" lineHeight="lh28">
+              #{hashtag},
+                        </Text>
+                    )}
                     <Flex alignItems="center" mt="40px">
                         {isLogged ? (
                             <>
