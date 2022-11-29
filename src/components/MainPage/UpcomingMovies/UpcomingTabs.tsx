@@ -62,7 +62,7 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
             mb="50px"
             color="gray.500"
             borderBottom="0"
-            h='64px'
+            h="64px"
         >
             {tabTitles.map((tabTitle) => (
                 <Tab
@@ -92,8 +92,8 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
             {showRunning && (
                 <Image
                     src="/pikachu_running.gif"
-                    width='auto'
-                    h='100%'
+                    width="auto"
+                    h="100%"
                     // position="absolute"
                     // left={["418px", "418px", "514px"]}
                 />
