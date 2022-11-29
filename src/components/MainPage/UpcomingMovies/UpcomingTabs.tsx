@@ -92,8 +92,8 @@ const UpcomingTabs = ({ changeMovieListMethod, isLoading, setIsLoading }: IUpcom
                 <Image
                     src="/pikachu_running.gif"
                     width={"80px"}
-                    position="absolute"
-                    left={["418px", "418px", "514px"]}
+                    // position="absolute"
+                    // left={["418px", "418px", "514px"]}
                 />
             )}
             <SectionSubTitleSeeMore>
