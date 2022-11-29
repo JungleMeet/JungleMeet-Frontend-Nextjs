@@ -4,11 +4,9 @@ import DiscussionHeader from "./DiscussionHeader";
 import DiscussionFilter from "./DiscussionFilter";
 // import { discussionsData } from "./discussionsData";
 import { getPostsByCondition } from "@/utils/axiosPostApi";
-import Pagination from './Pagination/Pagination';
+import Pagination from "./Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { setTotalPosts, setCurrentPagePost } from "@/app/reducer/pageSlice";
-
-
 
 export interface CurrentPagePostProps {
     _id: string;
@@ -35,7 +33,7 @@ const DiscussionsPage = () => {
     const postsPerPage = useSelector((state: any) => state.page.postsPerPage);
     const sortBy = useSelector((state: any) => state.page.sortBy);
     const dispatch = useDispatch();
-    const postContainerRef=useRef<HTMLDivElement>(null)
+    const postContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -51,13 +49,12 @@ const DiscussionsPage = () => {
         fetchPosts();
     }, [sortBy, currentPage]);
 
-    useEffect(()=>{
-        postContainerRef.current && postContainerRef.current.scrollIntoView({block: "end"})
-    },[currentPagePost])
-
+    useEffect(() => {
+        postContainerRef.current && postContainerRef.current.scrollIntoView({ block: "end" });
+    }, [currentPagePost]);
 
     const currentPosts = (
-        <div >
+        <div>
             {currentPagePost?.map(
                 ({
                     _id,
@@ -94,7 +91,7 @@ const DiscussionsPage = () => {
             <DiscussionHeader />
             <DiscussionFilter />
             {/* this div is for positioning */}
-            <div ref={postContainerRef}></div> 
+            <div ref={postContainerRef}></div>
             {currentPosts}
             <Pagination totalPosts={totalPosts} postsPerPage={postsPerPage} />
         </>
