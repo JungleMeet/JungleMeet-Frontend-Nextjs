@@ -133,7 +133,7 @@ const DiscussionsDetailHeader = ({
                 <Button
                     w="100px"
                     onClick={() => {
-                        Router.push("/discussions");
+                        Router.back();
                     }}
                     h="40px"
                 >
