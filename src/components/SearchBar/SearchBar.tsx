@@ -1,8 +1,8 @@
 import { Input, InputGroup, useOutsideClick } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import styled from "styled-components";
-import { ChangeEvent, FormEvent, KeyboardEvent, useRef, useState } from "react";
-import { isEmpty } from "lodash";
+import { ChangeEvent, FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
+import { debounce, isEmpty } from "lodash";
 import { useRouter } from "next/router";
 import SearchPreview from "./SearchPreview";
 import { useTranslation } from "next-i18next";
@@ -40,15 +40,22 @@ const SearchBar = ({ maxWidth }: { maxWidth: string }) => {
     const router = useRouter();
     const { t } = useTranslation("home");
     const [query, setQuery] = useState("");
+    const [input, setInput] = useState("");
     const [canSearchPreviewOpen, setCanSearchPreviewOpen] = useState(true);
     const previewRef = useRef(null);
     useOutsideClick({
         ref: previewRef,
         handler: () => setCanSearchPreviewOpen(false),
     });
+    const debounceSetQuery = debounce(setQuery, 300);
+
+    useEffect(() => {
+        debounceSetQuery(input);
+        return debounceSetQuery.cancel;
+    }, [input]);
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-        setQuery(e.target.value);
+        setInput(e.target.value);
         setCanSearchPreviewOpen(true);
     };
     const detectEsc = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -80,7 +87,7 @@ const SearchBar = ({ maxWidth }: { maxWidth: string }) => {
                         color="#FFFFFF"
                         onKeyDown={detectEsc}
                         onChange={handleInput}
-                        value={query}
+                        value={input}
                         w="100%"
                         minW="270px"
                     />

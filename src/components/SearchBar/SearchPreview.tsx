@@ -21,7 +21,6 @@ const PreviewContainer = styled.div`
   ::-webkit-scrollbar-thumb {
     background-color: #ababac; /* color of the scroll thumb */
     border-radius: 20px; /* roundness of the scroll thumb */
-    /* border: 3px solid orange;  creates padding around scroll thumb */
   }
 `;
 
@@ -41,19 +40,7 @@ interface ISearchPreviewProps {
 
 const SearchPreview = React.forwardRef<HTMLDivElement, ISearchPreviewProps>(
     ({ query, clearQuery }, ref) => {
-        const [loading, setLoading] = useState(false);
-        const [searchResult, setSearchResult] = useState<PreviewItemProps[]>([]);
-
-        useEffect(() => {
-            // only search when user types in more than one character
-            if (query.length > 1) {
-                setLoading(true);
-                searchMovieName(query).then(({ data }) => {
-                    isEmpty(data) ? setSearchResult([]) : setSearchResult(data);
-                    setLoading(false);
-                });
-            }
-        }, [query]);
+        const { loading, searchResult } = useSearch(query);
 
         if (query.length < 2) return <></>;
         return (
@@ -75,3 +62,21 @@ const SearchPreview = React.forwardRef<HTMLDivElement, ISearchPreviewProps>(
 SearchPreview.displayName = "SearchPreview";
 
 export default SearchPreview;
+
+const useSearch = (query: string) => {
+    const [loading, setLoading] = useState(false);
+    const [searchResult, setSearchResult] = useState<PreviewItemProps[]>([]);
+
+    useEffect(() => {
+        const fetchResult = async () => {
+            if (query.length > 1) {
+                setLoading(true);
+                const data = await searchMovieName(query);
+                isEmpty(data) ? setSearchResult([]) : setSearchResult(data);
+                setLoading(false);
+            }
+        };
+        fetchResult();
+    }, [query]);
+    return { loading, searchResult };
+};
