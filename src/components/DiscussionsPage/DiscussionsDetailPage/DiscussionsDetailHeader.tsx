@@ -10,6 +10,7 @@ import {
     MenuItem,
     useToast,
     IconButton,
+    Button,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
@@ -170,7 +171,16 @@ const DiscussionsDetailHeader = ({
 
     return (
         <Flex key={postId} direction={"column"}>
-            <Box mt="100px">
+            <Button
+                w="100px"
+                onClick={() => {
+                    router.back();
+                }}
+                h="40px"
+            >
+                <Text>&lt; Back</Text>
+            </Button>
+            <Box mt="60px">
                 <Heading fontSize="h2" color="gray.900" fontWeight="700" lineHeight="h2">
                     {title}
                 </Heading>

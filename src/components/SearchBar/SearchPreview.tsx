@@ -36,35 +36,42 @@ const LoaderContainer = styled.div`
 
 interface ISearchPreviewProps {
     query: string;
+    clearQuery: () => void;
 }
 
-const SearchPreview = ({ query }: ISearchPreviewProps): JSX.Element => {
-    const [loading, setLoading] = useState(false);
-    const [searchResult, setSearchResult] = useState<PreviewItemProps[]>([]);
+const SearchPreview = React.forwardRef<HTMLDivElement, ISearchPreviewProps>(
+    ({ query, clearQuery }, ref) => {
+        const [loading, setLoading] = useState(false);
+        const [searchResult, setSearchResult] = useState<PreviewItemProps[]>([]);
 
-    useEffect(() => {
-    // only search when user types in more than one character
-        if (query.length > 1) {
-            setLoading(true);
-            searchMovieName(query).then(({ data }) => {
-                isEmpty(data) ? setSearchResult([]) : setSearchResult(data);
-                setLoading(false);
-            });
-        }
-    }, [query]);
+        useEffect(() => {
+            // only search when user types in more than one character
+            if (query.length > 1) {
+                setLoading(true);
+                searchMovieName(query).then(({ data }) => {
+                    isEmpty(data) ? setSearchResult([]) : setSearchResult(data);
+                    setLoading(false);
+                });
+            }
+        }, [query]);
 
-    if (query.length < 2) return <></>;
-    return (
-        <PreviewContainer>
-            {loading ? (
-                <LoaderContainer>
-                    <BeatLoader color="#d736b4" />
-                </LoaderContainer>
-            ) : (
-                searchResult?.map((item) => <PreviewItem key={item.resourceId} {...item} />)
-            )}
-        </PreviewContainer>
-    );
-};
+        if (query.length < 2) return <></>;
+        return (
+            <PreviewContainer ref={ref}>
+                {loading ? (
+                    <LoaderContainer>
+                        <BeatLoader color="#d736b4" />
+                    </LoaderContainer>
+                ) : (
+                    searchResult?.map((item) => (
+                        <PreviewItem key={item.resourceId} {...item} clearQuery={clearQuery} />
+                    ))
+                )}
+            </PreviewContainer>
+        );
+    }
+);
+
+SearchPreview.displayName = "SearchPreview";
 
 export default SearchPreview;

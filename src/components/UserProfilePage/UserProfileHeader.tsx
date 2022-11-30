@@ -179,21 +179,25 @@ const UserProfileHeader = ({
                         <></>
                     ) : (
                         <>
-                            <Button
-                                backgroundColor="lightBlue.600"
-                                mt={6}
-                                width="140px"
-                                height="50px"
-                                color="white"
-                                fontSize="text4"
-                                onClick={async () => {
-                                    await toggleFollowing(token, queryUserId);
-                                    setfFllowTrigger(!followTrigger);
-                                }}
-                            >
-                                {followed ? <Icon as={HiMinus} w={5} h={5} /> : <Icon as={HiPlus} w={5} h={5} />}
-                                <Text flexGrow={1}>{followed ? "Unfollow" : "Follow"}</Text>
-                            </Button>
+                            {token ? (
+                                <Button
+                                    backgroundColor="lightBlue.600"
+                                    mt={6}
+                                    width="140px"
+                                    height="50px"
+                                    color="white"
+                                    fontSize="text4"
+                                    onClick={async () => {
+                                        await toggleFollowing(token, queryUserId);
+                                        setfFllowTrigger(!followTrigger);
+                                    }}
+                                >
+                                    {followed ? <Icon as={HiMinus} w={5} h={5} /> : <Icon as={HiPlus} w={5} h={5} />}
+                                    <Text flexGrow={1}>{followed ? "Unfollow" : "Follow"}</Text>
+                                </Button>
+                            ) : (
+                                <></>
+                            )}
                         </>
                     )}
                 </Flex>

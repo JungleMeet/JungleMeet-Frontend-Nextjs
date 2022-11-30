@@ -55,7 +55,7 @@ const CloudinaryUploader = ({
                 </UploadWidget>
             ) : (
                 <Flex flexDirection="column" alignItems="flex-end">
-                    <Image src={bgImg} objectFit="cover" width="100%" />
+                    <Image src={bgImg} objectFit="cover" width="100%" height="250px" />
                     <UploadWidget callback={saveImage} croppingAspectRatio={croppingAspectRatio}>
                         {({ open }) => (
                             <Button
