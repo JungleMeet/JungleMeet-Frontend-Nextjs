@@ -6,10 +6,10 @@ import React, { useState } from "react";
 
 interface ICommentEditorProps {
     postId?: string;
-    setIsNewCommentSubmitted:React.Dispatch<React.SetStateAction<boolean>>
+    setIsNewCommentSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CommentEditor = ({ postId,setIsNewCommentSubmitted }: ICommentEditorProps) => {
+const CommentEditor = ({ postId, setIsNewCommentSubmitted }: ICommentEditorProps) => {
     const { editor, clearContent, content } = useEditorController();
     const [loading, setLoading] = useState(false);
     const toast = useToast();
@@ -28,7 +28,7 @@ const CommentEditor = ({ postId,setIsNewCommentSubmitted }: ICommentEditorProps)
                 duration: 5000,
                 isClosable: true,
             });
-            setIsNewCommentSubmitted(true)
+            setIsNewCommentSubmitted(true);
         });
     };
 

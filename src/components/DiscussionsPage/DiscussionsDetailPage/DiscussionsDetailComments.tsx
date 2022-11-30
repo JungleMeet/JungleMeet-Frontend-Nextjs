@@ -5,12 +5,15 @@ import { getCommentsByCondition } from "@/utils/axiosCommentApi";
 import Comment from "../../ReviewPage/Comment";
 import { useRouter } from "next/router";
 
-interface IDiscussionsDetailCommentsProps{
-    isNewCommentSubmitted:boolean;
-    setIsNewCommentSubmitted:React.Dispatch<React.SetStateAction<boolean>>
+interface IDiscussionsDetailCommentsProps {
+    isNewCommentSubmitted: boolean;
+    setIsNewCommentSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DiscussionsDetailComments = ({isNewCommentSubmitted, setIsNewCommentSubmitted}:IDiscussionsDetailCommentsProps) => {
+const DiscussionsDetailComments = ({
+    isNewCommentSubmitted,
+    setIsNewCommentSubmitted,
+}: IDiscussionsDetailCommentsProps) => {
     const [postComment, setPostComment] = useState([]);
     const [length, setLength] = useState(0);
     const commentsPerPage = 10;
@@ -30,13 +33,13 @@ const DiscussionsDetailComments = ({isNewCommentSubmitted, setIsNewCommentSubmit
 
                 setPostComment(data.topComments);
                 setNewComment(false);
-                setIsNewCommentSubmitted(false)
+                setIsNewCommentSubmitted(false);
             } catch (err) {
                 return err;
             }
         };
         (isNewCommentSubmitted || newComment) && getCommentDetail();
-    }, [id, newComment,isNewCommentSubmitted]);
+    }, [id, newComment, isNewCommentSubmitted]);
 
     return (
         <Grid>

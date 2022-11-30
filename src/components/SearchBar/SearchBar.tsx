@@ -40,19 +40,19 @@ const SearchBar = ({ maxWidth }: { maxWidth: string }) => {
     const router = useRouter();
     const { t } = useTranslation("home");
     const [query, setQuery] = useState("");
-    const [input, setInput]=useState("")
+    const [input, setInput] = useState("");
     const [canSearchPreviewOpen, setCanSearchPreviewOpen] = useState(true);
     const previewRef = useRef(null);
     useOutsideClick({
         ref: previewRef,
         handler: () => setCanSearchPreviewOpen(false),
     });
-    const debounceSetQuery=debounce(setQuery,300)
+    const debounceSetQuery = debounce(setQuery, 300);
 
-    useEffect(()=>{
-        debounceSetQuery(input)
-        return debounceSetQuery.cancel
-    },[input])
+    useEffect(() => {
+        debounceSetQuery(input);
+        return debounceSetQuery.cancel;
+    }, [input]);
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value);

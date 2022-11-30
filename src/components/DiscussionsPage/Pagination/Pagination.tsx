@@ -16,7 +16,7 @@ interface IPaginationProps {
 
 type HandleClickOnPageElementArg = string | number;
 
-const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps):JSX.Element => {
+const Pagination = ({ postsPerPage, totalPosts }: IPaginationProps): JSX.Element => {
     // const pageNumbers = [];
     const dispatch = useDispatch();
     const currentPage = useSelector((state: any) => state.page.currentPage);

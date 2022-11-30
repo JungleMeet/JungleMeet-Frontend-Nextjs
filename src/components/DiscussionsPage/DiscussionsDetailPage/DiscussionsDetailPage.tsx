@@ -46,8 +46,7 @@ const DiscussionsDetailPage = (): JSX.Element => {
     const toast = useToast();
     const [currentId, setCurrentId] = useState("");
     const [userRole, setUserRole] = useState("");
-    const [isNewCommentSubmitted, setIsNewCommentSubmitted] = useState(false)
-
+    const [isNewCommentSubmitted, setIsNewCommentSubmitted] = useState(false);
 
     useEffect(() => {
         const getDetail = async () => {
@@ -135,8 +134,13 @@ const DiscussionsDetailPage = (): JSX.Element => {
                 hashtag={postDetail?.hashtag}
                 hashtags={postDetail?.hashtags}
             />
-            {isEditorVisible ? <CommentEditor postId={id} setIsNewCommentSubmitted={setIsNewCommentSubmitted}/> : null}
-            <DiscussionsDetailComments isNewCommentSubmitted={isNewCommentSubmitted} setIsNewCommentSubmitted={setIsNewCommentSubmitted}/>
+            {isEditorVisible ? (
+                <CommentEditor postId={id} setIsNewCommentSubmitted={setIsNewCommentSubmitted} />
+            ) : null}
+            <DiscussionsDetailComments
+                isNewCommentSubmitted={isNewCommentSubmitted}
+                setIsNewCommentSubmitted={setIsNewCommentSubmitted}
+            />
         </Box>
     );
 };
