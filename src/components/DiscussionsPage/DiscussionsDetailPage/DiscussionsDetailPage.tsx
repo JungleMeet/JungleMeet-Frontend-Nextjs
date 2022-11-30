@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import DiscussionDetailHeader from "./DiscussionsDetailHeader";
 import { getPostById } from "@/utils/axiosPostApi";
 import { getUserById } from "@/utils/axiosUserApi";
-import { Box, useToast, Text, Button } from "@chakra-ui/react";
+import { Box, useToast, Button } from "@chakra-ui/react";
 import DiscussionsDetailContent from "./DiscussionsDetailContent";
 import DiscussionsDetailComments from "./DiscussionsDetailComments";
 import CommentEditor from "../../Editor/CommentEditor";
@@ -110,21 +110,17 @@ const DiscussionsDetailPage = (): JSX.Element => {
 
     return (
         <Box key={postDetail?._id}>
-            <Text alignContent={"center"}>
-                <Button
-                    color={"blue.400"}
-                    pl="0px"
-                    background={"none"}
-                    leftIcon={<ArrowBackIcon />}
-                    onClick={router.back}
-                >
-          Back
-                </Button>
-            </Text>
-
-            {/* <Button className="button icon-left" onClick={router.back}>
+            <Button
+                color={"blue.400"}
+                pl="0px"
+                _hover={{ color: "" }}
+                background={"none"}
+                leftIcon={<ArrowBackIcon />}
+                onClick={router.back}
+            >
         Back
-      </Button> */}
+            </Button>
+
             <DiscussionDetailHeader
                 postId={postDetail?._id}
                 title={postDetail?.title}
