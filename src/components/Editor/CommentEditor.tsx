@@ -2,13 +2,14 @@ import ContentEditor from "@/components/Editor/ContentEditor";
 import useEditorController from "@/components/Editor/useEditorController";
 import { createComment } from "@/utils/axiosCommentApi";
 import { Box, Button, ButtonGroup, useToast } from "@chakra-ui/react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 interface ICommentEditorProps {
     postId?: string;
+    setIsNewCommentSubmitted:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const CommentEditor = ({ postId }: ICommentEditorProps) => {
+const CommentEditor = ({ postId,setIsNewCommentSubmitted }: ICommentEditorProps) => {
     const { editor, clearContent, content } = useEditorController();
     const [loading, setLoading] = useState(false);
     const toast = useToast();
@@ -27,6 +28,7 @@ const CommentEditor = ({ postId }: ICommentEditorProps) => {
                 duration: 5000,
                 isClosable: true,
             });
+            setIsNewCommentSubmitted(true)
         });
     };
 

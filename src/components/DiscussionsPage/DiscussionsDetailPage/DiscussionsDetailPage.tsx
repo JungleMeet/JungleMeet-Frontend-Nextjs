@@ -46,9 +46,8 @@ const DiscussionsDetailPage = (): JSX.Element => {
     const toast = useToast();
     const [currentId, setCurrentId] = useState("");
     const [userRole, setUserRole] = useState("");
+    const [isNewCommentSubmitted, setIsNewCommentSubmitted] = useState(false)
 
-    // make sure id is a string to satisfy typescript
-    if (typeof id !== "string") router.push("/");
 
     useEffect(() => {
         const getDetail = async () => {
@@ -136,8 +135,8 @@ const DiscussionsDetailPage = (): JSX.Element => {
                 hashtag={postDetail?.hashtag}
                 hashtags={postDetail?.hashtags}
             />
-            {isEditorVisible ? <CommentEditor postId={id} /> : null}
-            <DiscussionsDetailComments />
+            {isEditorVisible ? <CommentEditor postId={id} setIsNewCommentSubmitted={setIsNewCommentSubmitted}/> : null}
+            <DiscussionsDetailComments isNewCommentSubmitted={isNewCommentSubmitted} setIsNewCommentSubmitted={setIsNewCommentSubmitted}/>
         </Box>
     );
 };

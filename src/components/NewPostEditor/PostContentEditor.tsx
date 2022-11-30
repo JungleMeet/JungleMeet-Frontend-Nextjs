@@ -92,7 +92,7 @@ const PostContentEditor = ({ bgImg, type }: IPostContentEditorProps) => {
             });
 
             dispatch(resetPostData());
-            console.log(res.data._id)
+            console.log(res.data._id);
             router.push("/discussions/" + res.data._id);
         } catch (error: unknown) {
             setIsLoading(false);
