@@ -88,27 +88,41 @@ export const searchPost = ({
     keyword: string;
     page: number;
     limit: number;
-}) =>axiosApi.get(`/search/all?keyword=${keyword}&page=${page}&limit=${limit}`);
+}) => axiosApi.get(`/search/all?keyword=${keyword}&page=${page}&limit=${limit}`);
 
-interface IUpdatePostParams{
-    postId:string,
-    postTitle:string,
-    content:string,
-    hashtags?:Array<string>,
-    bgImg?:string,
-    token:string,
+interface IUpdatePostParams {
+    postId: string;
+    postTitle: string;
+    content: string;
+    hashtags?: Array<string>;
+    bgImg?: string;
+    token: string;
 }
 
-export const updatePost=({postId,postTitle,content,hashtags,bgImg, token}:IUpdatePostParams)=>{
+export const updatePost = ({
+    postId,
+    postTitle,
+    content,
+    hashtags,
+    bgImg,
+    token,
+}: IUpdatePostParams) => {
     const config = {
         headers: { Authorization: `Bearer ${token}` },
     };
 
     const reqBody = {
-        title:postTitle,
+        title: postTitle,
         content,
         hashtags,
         bgImg,
     };
-    return axiosApi.put(`/${postId}`,reqBody, config)
-}
+    return axiosApi.put(`/${postId}`, reqBody, config);
+};
+
+export const deletePost = async (postId: string, role: string, token: string | null) => {
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    };
+    return await axiosApi.patch(`/admin/${postId}`, role, config);
+};

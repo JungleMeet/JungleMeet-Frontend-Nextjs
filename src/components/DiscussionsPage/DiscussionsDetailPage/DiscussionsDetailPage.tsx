@@ -3,12 +3,13 @@ import { useRouter } from "next/router";
 import DiscussionDetailHeader from "./DiscussionsDetailHeader";
 import { getPostById } from "@/utils/axiosPostApi";
 import { getUserById } from "@/utils/axiosUserApi";
-import { Box, useToast } from "@chakra-ui/react";
+import { Box, useToast, Text, Button } from "@chakra-ui/react";
 import DiscussionsDetailContent from "./DiscussionsDetailContent";
 import DiscussionsDetailComments from "./DiscussionsDetailComments";
 import CommentEditor from "../../Editor/CommentEditor";
 import { useSelector, useDispatch } from "react-redux";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import { getCurrentPostData } from "@/app/reducer/postEditingSlice";
 
 interface IpostDetail {
@@ -109,6 +110,21 @@ const DiscussionsDetailPage = (): JSX.Element => {
 
     return (
         <Box key={postDetail?._id}>
+            <Text alignContent={"center"}>
+                <Button
+                    color={"blue.400"}
+                    pl="0px"
+                    background={"none"}
+                    leftIcon={<ArrowBackIcon />}
+                    onClick={router.back}
+                >
+          Back
+                </Button>
+            </Text>
+
+            {/* <Button className="button icon-left" onClick={router.back}>
+        Back
+      </Button> */}
             <DiscussionDetailHeader
                 postId={postDetail?._id}
                 title={postDetail?.title}
