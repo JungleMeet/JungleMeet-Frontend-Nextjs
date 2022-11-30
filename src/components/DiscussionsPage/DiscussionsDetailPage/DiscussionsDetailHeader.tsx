@@ -141,6 +141,8 @@ const DiscussionsDetailHeader = ({
             const { id }: { id?: string } = router.query;
             const theAdmin = JSON.parse(localStorage.getItem("userInfo") || "{}");
 
+            if (!id) return;
+
             return deletePost(id, theAdmin.role, token)
                 .then(() => {
                     toast({
