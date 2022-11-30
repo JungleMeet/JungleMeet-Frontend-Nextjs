@@ -11,6 +11,7 @@ import {
     MenuItem,
     useToast,
     IconButton,
+    Button,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import DiscussionsFollowButton from "./DiscussionsFollowButton";
@@ -20,6 +21,7 @@ import DiscussionPostAuthor from "./DiscussionPostAuthor";
 import { openLoginModal } from "@/app/reducer/loginModalSlice";
 import { EditIcon, HamburgerIcon, DeleteIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 import {
     clickTheFollow,
@@ -64,6 +66,7 @@ const DiscussionsDetailHeader = ({
     const dispatch = useDispatch();
     const toast = useToast();
     const theLike = useSelector((state: any) => state.button.like);
+    const router = useRouter();
 
     useEffect(() => {
         const theUser = JSON.parse(localStorage.getItem("userInfo") || "{}");
@@ -127,7 +130,16 @@ const DiscussionsDetailHeader = ({
     return (
         <Grid>
             <Flex key={postId} direction={"column"}>
-                <Box mt="100px">
+                <Button
+                    w="100px"
+                    onClick={() => {
+                        router.back();
+                    }}
+                    h="40px"
+                >
+                    <Text>&lt; Back</Text>
+                </Button>
+                <Box mt="60px">
                     <Heading fontSize="h2" color="gray.900" fontWeight="700" lineHeight="h2">
                         {title}
                     </Heading>
