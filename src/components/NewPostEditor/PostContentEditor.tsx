@@ -74,11 +74,12 @@ const PostContentEditor = ({ bgImg, type }: IPostContentEditorProps) => {
         setIsLoading(true);
 
         try {
+            let res: any;
             if (type === "newPost") {
-                await addNewPost(postTitle, content, hashtags, token, bgImg);
+                res = await addNewPost(postTitle, content, hashtags, token, bgImg);
             }
             if (type === "updatePost") {
-                await updatePost({ postId, postTitle, content, hashtags, bgImg, token });
+                res = await updatePost({ postId, postTitle, content, hashtags, bgImg, token });
             }
             setIsLoading(false);
             clearContent();
@@ -91,7 +92,8 @@ const PostContentEditor = ({ bgImg, type }: IPostContentEditorProps) => {
             });
 
             dispatch(resetPostData());
-            router.push(type === "newPost" ? "/discussions" : `discussions/${postId}`);
+            console.log(res.data._id)
+            router.push("/discussions/" + res.data._id);
         } catch (error: unknown) {
             setIsLoading(false);
         }
