@@ -66,7 +66,7 @@ const DiscussionsDetailHeader = ({
     const dispatch = useDispatch();
     const toast = useToast();
     const theLike = useSelector((state: any) => state.button.like);
-    const Router = useRouter();
+    const router = useRouter();
 
     useEffect(() => {
         const theUser = JSON.parse(localStorage.getItem("userInfo") || "{}");
@@ -133,7 +133,7 @@ const DiscussionsDetailHeader = ({
                 <Button
                     w="100px"
                     onClick={() => {
-                        Router.back();
+                        router.back();
                     }}
                     h="40px"
                 >
