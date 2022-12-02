@@ -37,21 +37,3 @@ const SearchPreview = React.forwardRef<HTMLDivElement, ISearchPreviewProps>(
 SearchPreview.displayName = "SearchPreview";
 
 export default SearchPreview;
-
-// const useSearch = (query: string) => {
-//     const [loading, setLoading] = useState(false);
-//     const [searchResult, setSearchResult] = useState<PreviewItemProps[]>([]);
-
-//     useEffect(() => {
-//         const fetchResult = async () => {
-//             if (query.length > 1) {
-//                 setLoading(true);
-//                 const {data} = await searchMovieName(query);
-//                 isEmpty(data) ? setSearchResult([]) : setSearchResult(data);
-//                 setLoading(false);
-//             }
-//         };
-//         fetchResult();
-//     }, [query]);
-//     return { loading, searchResult };
-// };
