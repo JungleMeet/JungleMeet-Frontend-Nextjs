@@ -19,7 +19,7 @@ const useEditorController = () => {
                 placeholder: "start writing nice words...",
             }),
         ],
-        autofocus: true,
+        autofocus: false,
         content: "",
     });
 

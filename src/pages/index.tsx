@@ -3,7 +3,7 @@ import HeroBanner from "@/components/MainPage/HeroBanner/HeroBanner";
 import UpcomingMovies from "@/components/MainPage/UpcomingMovies/UpcomingMovies";
 import Footer from "@/components/FooterSection/Footer";
 import styled from "styled-components";
-import NavBar from "@/components/NavBarSection/NarBar";
+import NavBar from "@/components/NavBarSection/NavBar";
 import NowPlaying from "@/components/MainPage/NowPlaying/NowPlaying";
 import PopularDisscusion from "@/components/MainPage/PopularDisscusion/PopularDisscusion";
 import WeeklyTop10Post from "@/components/MainPage/WeeklyTop10Post/WeeklyTop10Post";

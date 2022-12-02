@@ -32,8 +32,6 @@ const PostContentEditor = ({ bgImg, type }: IPostContentEditorProps) => {
     const editHashtags = useSelector((state: any) => state.postEditing.hashtags);
     const editContent = useSelector((state: any) => state.postEditing.content);
 
-    console.log(editContent, editPostTitle, editHashtags);
-
     const initialData =
     type === "newPost"
         ? {
@@ -92,7 +90,6 @@ const PostContentEditor = ({ bgImg, type }: IPostContentEditorProps) => {
             });
 
             dispatch(resetPostData());
-            console.log(res.data._id);
             router.push("/discussions/" + res.data._id);
         } catch (error: unknown) {
             setIsLoading(false);

@@ -44,22 +44,24 @@ const genPageArray=(totalPage: number, centrePage:number)=>{
     return filteredUniqueOutput;
 }
 
-interface IUsePaginationArrayGeneratorProps{
-    totalPage:number;
-}
 
-const usePaginationArrayGenerator = ({totalPage}:IUsePaginationArrayGeneratorProps) => {
+const usePaginationArrayGenerator = ({totalPage}:{totalPage:number}) => {
     const [centrePage, setCentrePage] = useState(1)
-    // the initial state cannot be access therfore use the ||
-    const paginationArray=genPageArray(totalPage,centrePage||1)
+    const paginationArray=genPageArray(totalPage,centrePage)
+
+    const handleClickOnRightDot=()=>{
+        // when it is on page 1 or 2, +3 will not make any difference to the output array, set to 7 to cause UI change
+        // when the right dot shows, total page is more than 10, so 7 is definately available
+        if (centrePage<3) return setCentrePage(7)
+        if (centrePage+3<=totalPage) setCentrePage(prev=>prev+3)
+    }
 
     const handleClickOnLeftDot=()=>{
+        // please see comments in handleClickOnRightDot above for reasons for the first line of code
+        if (totalPage-centrePage<2) return setCentrePage(totalPage-6)
         if (centrePage-3>0) setCentrePage(prev=>prev-3)
     }
 
-    const handleClickOnRightDot=()=>{
-        if (centrePage+3<=totalPage) setCentrePage(prev=>prev+3)
-    }
     return ( {paginationArray,handleClickOnLeftDot,handleClickOnRightDot,setCentrePage } );
 }
  

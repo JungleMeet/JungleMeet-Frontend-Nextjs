@@ -47,30 +47,6 @@ const NavBar = () => {
                     <IconContainer showSearchBar={showSearchBar} />
                 </>
             )}
-            {/* {
-                showSearchBar
-                    ?
-                    <Box ml='5%' mr='5%' w='100%'>
-                        <SearchBar maxWidth='100%'/>
-                    </Box>
-                    
-                    :
-                    <>
-                        <Link href="/">
-                            <Image src="/JungleMeetLogoWhiteText.svg" ml="3.3%" cursor="pointer" alt="logo" />
-                        </Link>
-                        {!isMinWidthMedium && <SearchBar maxWidth='525px'/>}
-                        {isMinWidthMedium && <SearchIcon color='white' ml= 'auto' mr='-50px' onClick={handleClick}/>}
-                        
-                        <IconContainer />
-                    </>
-            } */}
-            {/* <Link href="/">
-                <Image src="/JungleMeetLogoWhiteText.svg" ml="3.3%" cursor="pointer" alt="logo" />
-            </Link>
-            {!isMinWidthMedium && <SearchBar maxWidth='525px'/>}
-            {isMinWidthMedium && <SearchIcon color='white' ml= 'auto' mr='-50px' onClick={handleClick}/>}
-            <IconContainer /> */}
         </NavBarContainer>
     );
 };

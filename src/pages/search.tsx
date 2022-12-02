@@ -33,8 +33,9 @@ const INITIAL_DISP_ITEMS = 3;
 
 const Search = () => {
     const router = useRouter();
-    const { name } = router.query;
-    if (typeof name !== "string" || !name) return <div>must provide a keyword</div>;
+    const name = router.query.name as string;
+    // 下面这行的代码其实很好，可以及早处理url没有名字的情况，但是会将useState useEffect放到if后面
+    // if (typeof name !== "string" || !name) return <div>must provide a keyword</div>;
 
     const [movieResult, setMovieResult] = useState<IMovieResultItemProps[]>([]);
     const [loadingMovie, setLoadingMovie] = useState(true);
@@ -142,6 +143,9 @@ const Search = () => {
     // work to here
         postRenderData?.map((result) => <PostResultItem key={result._id} {...result} keyword={name} />)
     );
+
+    if (typeof name !== "string" || !name) return <div>must provide a keyword</div>;
+
     return (
         <PageWrapper>
             <PageTitle>Search Results for: {name}</PageTitle>
