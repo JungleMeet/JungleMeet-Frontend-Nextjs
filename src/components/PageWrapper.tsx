@@ -1,5 +1,5 @@
 import Footer from "@/components/FooterSection/Footer";
-import NavBar from "@/components/NavBarSection/NarBar";
+import NavBar from "@/components/NavBarSection/NavBar";
 import { ContentWrapper, PageContainer } from "@/pages";
 import Header from "../layouts/Header";
 

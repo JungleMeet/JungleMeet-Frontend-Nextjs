@@ -23,9 +23,8 @@ export const getTopRated = async () => {
     return await axiosApi.get("/list?tag=top_rated");
 };
 
-export const searchMovieName = async (name: string, page = 1) => {
-    const {data}= await axiosApi.get(`/search?name=${name}&page=${page}`);
-    return data
+export const searchMovieName = (name: string, page = 1) => {
+    return axiosApi.get(`/search?name=${name}&page=${page}`);
 };
 
 export const getHeroBannerMovies = async () => {

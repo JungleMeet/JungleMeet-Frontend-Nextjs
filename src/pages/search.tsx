@@ -33,8 +33,7 @@ const INITIAL_DISP_ITEMS = 3;
 
 const Search = () => {
     const router = useRouter();
-    const { name } = router.query;
-    if (typeof name !== "string" || !name) return <div>must provide a keyword</div>;
+    const name = router.query.name as string;
 
     const [movieResult, setMovieResult] = useState<IMovieResultItemProps[]>([]);
     const [loadingMovie, setLoadingMovie] = useState(true);
@@ -142,6 +141,9 @@ const Search = () => {
     // work to here
         postRenderData?.map((result) => <PostResultItem key={result._id} {...result} keyword={name} />)
     );
+
+    if (typeof name !== "string" || !name) return <div>must provide a keyword</div>;
+
     return (
         <PageWrapper>
             <PageTitle>Search Results for: {name}</PageTitle>

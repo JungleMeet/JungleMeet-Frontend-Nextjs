@@ -1,7 +1,8 @@
 import usePostIdForMovieId from "@/hooks/usePostIdForMovieId";
 import { Box, Flex } from "@chakra-ui/react";
-import styled from "styled-components";
+import { useEffect, useRef } from "react";
 import TMDBRanking from "../MainPage/TMDBRanking";
+import { PreviewItemContainer } from "./styles";
 
 export interface PreviewItemProps {
     resourceId: number;
@@ -9,17 +10,9 @@ export interface PreviewItemProps {
     poster: string;
     year: string;
     voteAverage: number;
+    isActive: boolean;
     clearQuery: () => void;
 }
-
-const ItemContainer = styled.div`
-  padding: 20px 16px 20px 16px;
-  border-top: 0.5px #6d69697d solid;
-  cursor: pointer;
-  :hover {
-    background-color: #b8b9b87d;
-  }
-`;
 
 const PreviewItem = ({
     title,
@@ -28,15 +21,23 @@ const PreviewItem = ({
     voteAverage,
     resourceId,
     clearQuery,
+    isActive,
 }: PreviewItemProps): JSX.Element => {
     const createMoviePostByResourceId = usePostIdForMovieId();
+    const previewItemRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        isActive && previewItemRef.current && previewItemRef.current.scrollIntoView({ block: "end" });
+    }, [isActive]);
 
     return (
-        <ItemContainer
+        <PreviewItemContainer
             onClick={() => {
                 createMoviePostByResourceId(resourceId);
                 clearQuery();
             }}
+            isActive={isActive}
+            ref={previewItemRef}
         >
             <Flex justifyContent={"space-around"}>
                 <Box height={"100px"}>
@@ -54,7 +55,7 @@ const PreviewItem = ({
                     <TMDBRanking gap="20px" tmdb={voteAverage} color="black" />
                 </Flex>
             </Flex>
-        </ItemContainer>
+        </PreviewItemContainer>
     );
 };
 
